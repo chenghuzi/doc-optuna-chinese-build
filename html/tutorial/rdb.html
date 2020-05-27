@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Saving/Resuming Study with RDB Backend &mdash; Optuna 1.2.0 documentation</title>
+  <title>Saving/Resuming Study with RDB Backend &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -23,11 +23,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -37,8 +38,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="Distributed Optimization" href="distributed.html" />
     <link rel="prev" title="Advanced Configurations" href="configurations.html" /> 
 </head>
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                1.2.0
+                1.4.0
               </div>
             
           
@@ -92,7 +93,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">安装</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="first.html">First Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first.html">第一个优化例子</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configurations.html">Advanced Configurations</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Saving/Resuming Study with RDB Backend</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#new-study">New Study</a></li>
@@ -176,17 +177,17 @@
            <div itemprop="articleBody">
             
   <div class="section" id="saving-resuming-study-with-rdb-backend">
-<span id="rdb"></span><h1>Saving/Resuming Study with RDB Backend<a class="headerlink" href="#saving-resuming-study-with-rdb-backend" title="Permalink to this headline">¶</a></h1>
+<span id="rdb"></span><h1>Saving/Resuming Study with RDB Backend<a class="headerlink" href="#saving-resuming-study-with-rdb-backend" title="永久链接至标题">¶</a></h1>
 <p>An RDB backend enables persistent experiments (i.e., to save and resume a study) as well as access to history of studies.
 In addition, we can run multi-node optimization tasks with this feature, which is described in <a class="reference internal" href="distributed.html#distributed"><span class="std std-ref">Distributed Optimization</span></a>.</p>
 <p>In this section, let’s try simple examples running on a local environment with SQLite DB.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注解</p>
 <p>You can also utilize other RDB backends, e.g., PostgreSQL or MySQL, by setting the storage argument to the DB’s URL.
 Please refer to <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls">SQLAlchemy’s document</a> for how to set up the URL.</p>
 </div>
 <div class="section" id="new-study">
-<h2>New Study<a class="headerlink" href="#new-study" title="Permalink to this headline">¶</a></h2>
+<h2>New Study<a class="headerlink" href="#new-study" title="永久链接至标题">¶</a></h2>
 <p>We can create a persistent study by calling <a class="reference internal" href="../reference/study.html#optuna.study.create_study" title="optuna.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> function as follows.
 An SQLite file <code class="docutils literal notranslate"><span class="pre">example.db</span></code> is automatically initialized with a new study record.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
@@ -204,24 +205,24 @@ An SQLite file <code class="docutils literal notranslate"><span class="pre">exam
 </div>
 </div>
 <div class="section" id="resume-study">
-<h2>Resume Study<a class="headerlink" href="#resume-study" title="Permalink to this headline">¶</a></h2>
+<h2>Resume Study<a class="headerlink" href="#resume-study" title="永久链接至标题">¶</a></h2>
 <p>To resume a study, instantiate a <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> object passing the study name <code class="docutils literal notranslate"><span class="pre">example-study</span></code> and the DB URL <code class="docutils literal notranslate"><span class="pre">sqlite:///example.db</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">study_name</span><span class="o">=</span><span class="s1">&#39;example-study&#39;</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">&#39;sqlite:///example.db&#39;</span><span class="p">,</span> <span class="n">load_if_exists</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">study_name</span><span class="o">=</span><span class="s1">&#39;example-study&#39;</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">&#39;sqlite:///example.db&#39;</span><span class="p">,</span> <span class="n">load_if_exists</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="experimental-history">
-<h2>Experimental History<a class="headerlink" href="#experimental-history" title="Permalink to this headline">¶</a></h2>
+<h2>Experimental History<a class="headerlink" href="#experimental-history" title="永久链接至标题">¶</a></h2>
 <p>We can access histories of studies and trials via the <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> class.
 For example, we can get all trials of <code class="docutils literal notranslate"><span class="pre">example-study</span></code> as:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
-<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">study_name</span><span class="o">=</span><span class="s1">&#39;example-study&#39;</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">&#39;sqlite:///example.db&#39;</span><span class="p">,</span> <span class="n">load_if_exists</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">study_name</span><span class="o">=</span><span class="s1">&#39;example-study&#39;</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">&#39;sqlite:///example.db&#39;</span><span class="p">,</span> <span class="n">load_if_exists</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">trials_dataframe</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="s1">&#39;params&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The method <a class="reference internal" href="../reference/study.html#optuna.study.Study.trials_dataframe" title="optuna.study.Study.trials_dataframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">trials_dataframe()</span></code></a> returns a pandas dataframe like:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Out:</p>
@@ -234,7 +235,7 @@ For example, we can get all trials of <code class="docutils literal notranslate"
 <span class="go">5       5   57.319570  9.570969  COMPLETE</span>
 </pre></div>
 </div>
-<p>A <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> object also provides properties such as <a class="reference internal" href="../reference/study.html#optuna.study.Study.trials" title="optuna.study.Study.trials"><code class="xref py py-attr docutils literal notranslate"><span class="pre">trials</span></code></a>, <a class="reference internal" href="../reference/study.html#optuna.study.Study.best_value" title="optuna.study.Study.best_value"><code class="xref py py-attr docutils literal notranslate"><span class="pre">best_value</span></code></a>, <a class="reference internal" href="../reference/study.html#optuna.study.Study.best_params" title="optuna.study.Study.best_params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">best_params</span></code></a> (see also <a class="reference internal" href="first.html#firstopt"><span class="std std-ref">First Optimization</span></a>).</p>
+<p>A <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> object also provides properties such as <a class="reference internal" href="../reference/study.html#optuna.study.Study.trials" title="optuna.study.Study.trials"><code class="xref py py-attr docutils literal notranslate"><span class="pre">trials</span></code></a>, <a class="reference internal" href="../reference/study.html#optuna.study.Study.best_value" title="optuna.study.Study.best_value"><code class="xref py py-attr docutils literal notranslate"><span class="pre">best_value</span></code></a>, <a class="reference internal" href="../reference/study.html#optuna.study.Study.best_params" title="optuna.study.Study.best_params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">best_params</span></code></a> (see also <a class="reference internal" href="first.html#firstopt"><span class="std std-ref">第一个优化例子</span></a>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span><span class="o">.</span><span class="n">best_params</span>  <span class="c1"># Get best parameters for the objective function.</span>
 <span class="n">study</span><span class="o">.</span><span class="n">best_value</span>  <span class="c1"># Get best objective value.</span>
 <span class="n">study</span><span class="o">.</span><span class="n">best_trial</span>  <span class="c1"># Get best trial&#39;s information.</span>

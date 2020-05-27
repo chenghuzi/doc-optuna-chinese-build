@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Logging &mdash; Optuna 1.2.0 documentation</title>
+  <title>Logging &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -23,11 +23,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -37,8 +38,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="Multi-objective" href="multi_objective/index.html" />
     <link rel="prev" title="Integration" href="integration.html" /> 
 </head>
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                1.2.0
+                1.4.0
               </div>
             
           
@@ -177,18 +178,18 @@
            <div itemprop="articleBody">
             
   <span class="target" id="module-optuna.logging"></span><div class="section" id="logging">
-<h1>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<h1>Logging<a class="headerlink" href="#logging" title="永久链接至标题">¶</a></h1>
+<dl class="py function">
 <dt id="optuna.logging.get_verbosity">
-<code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">get_verbosity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/logging.html#get_verbosity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.logging.get_verbosity" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">get_verbosity</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a><a class="reference internal" href="../_modules/optuna/logging.html#get_verbosity"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.logging.get_verbosity" title="永久链接至目标">¶</a></dt>
 <dd><p>Return the current level for the Optuna’s root logger.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>Logging level, e.g., <code class="docutils literal notranslate"><span class="pre">optuna.logging.DEBUG</span></code> and <code class="docutils literal notranslate"><span class="pre">optuna.logging.INFO</span></code>.</p>
 </dd>
 </dl>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注解</p>
 <p>Optuna has following logging levels:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">optuna.logging.CRITICAL</span></code>, <code class="docutils literal notranslate"><span class="pre">optuna.logging.FATAL</span></code></p></li>
@@ -200,23 +201,23 @@
 </div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="optuna.logging.set_verbosity">
-<code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">set_verbosity</code><span class="sig-paren">(</span><em class="sig-param">verbosity</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/logging.html#set_verbosity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.logging.set_verbosity" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">set_verbosity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">verbosity</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/logging.html#set_verbosity"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.logging.set_verbosity" title="永久链接至目标">¶</a></dt>
 <dd><p>Set the level for the Optuna’s root logger.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">参数</dt>
 <dd class="field-odd"><p><strong>verbosity</strong> – Logging level, e.g., <code class="docutils literal notranslate"><span class="pre">optuna.logging.DEBUG</span></code> and <code class="docutils literal notranslate"><span class="pre">optuna.logging.INFO</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="optuna.logging.disable_default_handler">
-<code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">disable_default_handler</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/logging.html#disable_default_handler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.logging.disable_default_handler" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">disable_default_handler</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/logging.html#disable_default_handler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.logging.disable_default_handler" title="永久链接至目标">¶</a></dt>
 <dd><p>Disable the default handler of the Optuna’s root logger.</p>
-<p class="rubric">Example</p>
-<p>Stop and then resume logging to <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.stderr" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sys.stderr</span></code></a>.</p>
+<p class="rubric">示例</p>
+<p>Stop and then resume logging to <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.stderr" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sys.stderr</span></code></a>.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 
 <span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>
@@ -228,34 +229,34 @@
 <span class="c1"># There are logs in sys.stderr.</span>
 <span class="n">optuna</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">enable_default_handler</span><span class="p">()</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="c1"># [I 2020-02-23 17:00:54,314] Finished trial#10 resulted in value: ...</span>
-<span class="c1"># [I 2020-02-23 17:00:54,356] Finished trial#11 resulted in value: ...</span>
+<span class="c1"># [I 2020-02-23 17:00:54,314] Finished trial#10 with value: ...</span>
+<span class="c1"># [I 2020-02-23 17:00:54,356] Finished trial#11 with value: ...</span>
 <span class="c1"># ...</span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="optuna.logging.enable_default_handler">
-<code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">enable_default_handler</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/logging.html#enable_default_handler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.logging.enable_default_handler" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">enable_default_handler</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/logging.html#enable_default_handler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.logging.enable_default_handler" title="永久链接至目标">¶</a></dt>
 <dd><p>Enable the default handler of the Optuna’s root logger.</p>
 <p>Please refer to the example shown in <a class="reference internal" href="#optuna.logging.disable_default_handler" title="optuna.logging.disable_default_handler"><code class="xref py py-func docutils literal notranslate"><span class="pre">disable_default_handler()</span></code></a>.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="optuna.logging.disable_propagation">
-<code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">disable_propagation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/logging.html#disable_propagation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.logging.disable_propagation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">disable_propagation</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/logging.html#disable_propagation"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.logging.disable_propagation" title="永久链接至目标">¶</a></dt>
 <dd><p>Disable propagation of the library log outputs.</p>
 <p>Note that log propagation is disabled by default.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="optuna.logging.enable_propagation">
-<code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">enable_propagation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/logging.html#enable_propagation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.logging.enable_propagation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">enable_propagation</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/logging.html#enable_propagation"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.logging.enable_propagation" title="永久链接至目标">¶</a></dt>
 <dd><p>Enable propagation of the library log outputs.</p>
 <p>Please disable the Optuna’s default handler to prevent double logging if the root logger has
 been configured.</p>
-<p class="rubric">Example</p>
+<p class="rubric">示例</p>
 <p>Propagate all log output to the root logger in order to save them to the file.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -275,7 +276,7 @@ been configured.</p>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;foo.log&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="k">assert</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Start optimization.</span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="k">assert</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Finished trial#0 resulted in value:&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Finished trial#0 with value:&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>

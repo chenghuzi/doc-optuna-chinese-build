@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User Attributes &mdash; Optuna 1.2.0 documentation</title>
+  <title>User Attributes &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -23,11 +23,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -37,8 +38,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="Pruning Unpromising Trials" href="pruning.html" />
     <link rel="prev" title="Command-Line Interface" href="cli.html" /> 
 </head>
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                1.2.0
+                1.4.0
               </div>
             
           
@@ -92,7 +93,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">安装</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="first.html">First Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first.html">第一个优化例子</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configurations.html">Advanced Configurations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rdb.html">Saving/Resuming Study with RDB Backend</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributed.html">Distributed Optimization</a></li>
@@ -175,10 +176,10 @@
            <div itemprop="articleBody">
             
   <div class="section" id="user-attributes">
-<span id="attributes"></span><h1>User Attributes<a class="headerlink" href="#user-attributes" title="Permalink to this headline">¶</a></h1>
+<span id="attributes"></span><h1>User Attributes<a class="headerlink" href="#user-attributes" title="永久链接至标题">¶</a></h1>
 <p>This feature is to annotate experiments with user-defined attributes.</p>
 <div class="section" id="adding-user-attributes-to-studies">
-<h2>Adding User Attributes to Studies<a class="headerlink" href="#adding-user-attributes-to-studies" title="Permalink to this headline">¶</a></h2>
+<h2>Adding User Attributes to Studies<a class="headerlink" href="#adding-user-attributes-to-studies" title="永久链接至标题">¶</a></h2>
 <p>A <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> object provides <a class="reference internal" href="../reference/study.html#optuna.study.Study.set_user_attr" title="optuna.study.Study.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_user_attr()</span></code></a> method to
 register a pair of key and value as an user-defined attribute.
 A key is supposed to be a <code class="docutils literal notranslate"><span class="pre">str</span></code>, and a value be any object serializable with <code class="docutils literal notranslate"><span class="pre">json.dumps</span></code>.</p>
@@ -199,12 +200,12 @@ A key is supposed to be a <code class="docutils literal notranslate"><span class
 </pre></div>
 </div>
 <div class="admonition seealso">
-<p class="admonition-title">See also</p>
+<p class="admonition-title">参见</p>
 <p><code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">study</span> <span class="pre">set-user-attr</span></code> command, which sets an attribute via command line interface.</p>
 </div>
 </div>
 <div class="section" id="adding-user-attributes-to-trials">
-<h2>Adding User Attributes to Trials<a class="headerlink" href="#adding-user-attributes-to-trials" title="Permalink to this headline">¶</a></h2>
+<h2>Adding User Attributes to Trials<a class="headerlink" href="#adding-user-attributes-to-trials" title="永久链接至标题">¶</a></h2>
 <p>As with <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>, a <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> object provides
 <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.set_user_attr" title="optuna.trial.Trial.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_user_attr()</span></code></a> method.
 Attributes are set inside an objective function.</p>

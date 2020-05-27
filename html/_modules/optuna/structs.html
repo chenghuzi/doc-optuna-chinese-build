@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.structs &mdash; Optuna 1.2.0 documentation</title>
+  <title>optuna.structs &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -23,11 +23,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -37,8 +38,8 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -62,7 +63,7 @@
             
             
               <div class="version">
-                1.2.0
+                1.4.0
               </div>
             
           
@@ -137,7 +138,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../index.html">Module code</a> &raquo;</li>
+          <li><a href="../index.html">模块代码</a> &raquo;</li>
         
       <li>optuna.structs</li>
     
@@ -154,74 +155,54 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for optuna.structs</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">enum</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
+  <h1>optuna.structs 源代码</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
 
-<span class="kn">from</span> <span class="nn">optuna</span> <span class="k">import</span> <span class="n">exceptions</span>
-<span class="kn">from</span> <span class="nn">optuna</span> <span class="k">import</span> <span class="n">logging</span>
-<span class="kn">from</span> <span class="nn">optuna</span> <span class="k">import</span> <span class="n">type_checking</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">_study_direction</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">exceptions</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">trial</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">type_checking</span>
 
 <span class="k">if</span> <span class="n">type_checking</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>  <span class="c1"># NOQA</span>
-    <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Any</span>  <span class="c1"># NOQA</span>
-    <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span>  <span class="c1"># NOQA</span>
-    <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Optional</span>  <span class="c1"># NOQA</span>
+    <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>  <span class="c1"># NOQA</span>
+    <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>  <span class="c1"># NOQA</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>  <span class="c1"># NOQA</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>  <span class="c1"># NOQA</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>  <span class="c1"># NOQA</span>
 
-    <span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="k">import</span> <span class="n">BaseDistribution</span>  <span class="c1"># NOQA</span>
-
-
-<div class="viewcode-block" id="TrialState"><a class="viewcode-back" href="../../reference/structs.html#optuna.structs.TrialState">[docs]</a><span class="k">class</span> <span class="nc">TrialState</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;State of a :class:`~optuna.trial.Trial`.</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        RUNNING:</span>
-<span class="sd">            The :class:`~optuna.trial.Trial` is running.</span>
-<span class="sd">        COMPLETE:</span>
-<span class="sd">            The :class:`~optuna.trial.Trial` has been finished without any error.</span>
-<span class="sd">        PRUNED:</span>
-<span class="sd">            The :class:`~optuna.trial.Trial` has been pruned with</span>
-<span class="sd">            :class:`~optuna.exceptions.TrialPruned`.</span>
-<span class="sd">        FAIL:</span>
-<span class="sd">            The :class:`~optuna.trial.Trial` has failed due to an uncaught error.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">RUNNING</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">COMPLETE</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">PRUNED</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">FAIL</span> <span class="o">=</span> <span class="mi">3</span>
-    <span class="n">WAITING</span> <span class="o">=</span> <span class="mi">4</span>
-
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># type: () -&gt; str</span>
-
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">is_finished</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># type: () -&gt; bool</span>
-
-        <span class="k">return</span> <span class="bp">self</span> <span class="o">!=</span> <span class="n">TrialState</span><span class="o">.</span><span class="n">RUNNING</span> <span class="ow">and</span> <span class="bp">self</span> <span class="o">!=</span> <span class="n">TrialState</span><span class="o">.</span><span class="n">WAITING</span></div>
+    <span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="kn">import</span> <span class="n">BaseDistribution</span>  <span class="c1"># NOQA</span>
 
 
-<div class="viewcode-block" id="StudyDirection"><a class="viewcode-back" href="../../reference/structs.html#optuna.structs.StudyDirection">[docs]</a><span class="k">class</span> <span class="nc">StudyDirection</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Direction of a :class:`~optuna.study.Study`.</span>
+<span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        NOT_SET:</span>
-<span class="sd">            Direction has not been set.</span>
-<span class="sd">        MINIMIZE:</span>
-<span class="sd">            :class:`~optuna.study.Study` minimizes the objective function.</span>
-<span class="sd">        MAXIMIZE:</span>
-<span class="sd">            :class:`~optuna.study.Study` maximizes the objective function.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="n">_message</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;`structs` is deprecated. Classes have moved to the following modules. &quot;</span>
+    <span class="s2">&quot;`structs.StudyDirection`-&gt;`study.StudyDirection`, &quot;</span>
+    <span class="s2">&quot;`structs.StudySummary`-&gt;`study.StudySummary`, &quot;</span>
+    <span class="s2">&quot;`structs.FrozenTrial`-&gt;`trial.FrozenTrial`, &quot;</span>
+    <span class="s2">&quot;`structs.TrialState`-&gt;`trial.TrialState`, &quot;</span>
+    <span class="s2">&quot;`structs.TrialPruned`-&gt;`exceptions.TrialPruned`.&quot;</span>
+<span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">_message</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+<span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">_message</span><span class="p">)</span>
 
-    <span class="n">NOT_SET</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">MINIMIZE</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">MAXIMIZE</span> <span class="o">=</span> <span class="mi">2</span></div>
+<span class="c1"># The use of the structs.StudyDirection is deprecated and it is recommended that you use</span>
+<span class="c1"># study.StudyDirection instead. See the API reference for more details.</span>
+<span class="n">StudyDirection</span> <span class="o">=</span> <span class="n">_study_direction</span><span class="o">.</span><span class="n">StudyDirection</span>
+
+<span class="c1"># The use of the structs.TrialState is deprecated and it is recommended that you use</span>
+<span class="c1"># trial.TrialState instead. See the API reference for more details.</span>
+<span class="n">TrialState</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">TrialState</span>
 
 
-<div class="viewcode-block" id="FrozenTrial"><a class="viewcode-back" href="../../reference/structs.html#optuna.structs.FrozenTrial">[docs]</a><span class="k">class</span> <span class="nc">FrozenTrial</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="FrozenTrial"><a class="viewcode-back" href="../../reference/structs.html#optuna.structs.FrozenTrial">[文档]</a><span class="k">class</span> <span class="nc">FrozenTrial</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Status and results of a :class:`~optuna.trial.Trial`.</span>
+
+<span class="sd">    .. deprecated:: 1.4.0</span>
+
+<span class="sd">        This class was moved to :mod:`~optuna.trial`. Please use</span>
+<span class="sd">        :class:`~optuna.trial.FrozenTrial` instead.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        number:</span>
@@ -237,8 +218,6 @@
 <span class="sd">            Datetime where the :class:`~optuna.trial.Trial` finished.</span>
 <span class="sd">        params:</span>
 <span class="sd">            Dictionary that contains suggested parameters.</span>
-<span class="sd">        distributions:</span>
-<span class="sd">            Dictionary that contains the distributions of :attr:`params`.</span>
 <span class="sd">        user_attrs:</span>
 <span class="sd">            Dictionary that contains the attributes of the :class:`~optuna.trial.Trial` set with</span>
 <span class="sd">            :func:`optuna.trial.Trial.set_user_attr`.</span>
@@ -246,7 +225,7 @@
 <span class="sd">            Intermediate objective values set with :func:`optuna.trial.Trial.report`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">number</span><span class="p">,</span>  <span class="c1"># type: int</span>
         <span class="n">state</span><span class="p">,</span>  <span class="c1"># type: TrialState</span>
@@ -261,6 +240,13 @@
         <span class="n">trial_id</span><span class="p">,</span>  <span class="c1"># type: int</span>
     <span class="p">):</span>
         <span class="c1"># type: (...) -&gt; None</span>
+
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;The use of `structs.FrozenTrial` is deprecated. &quot;</span>
+            <span class="s2">&quot;Please use `trial.FrozenTrial` instead.&quot;</span>
+        <span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
@@ -277,17 +263,27 @@
     <span class="c1"># Ordered list of fields required for `__repr__`, `__hash__` and dataframe creation.</span>
     <span class="c1"># TODO(hvy): Remove this list in Python 3.6 as the order of `self.__dict__` is preserved.</span>
     <span class="n">_ordered_fields</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime_start&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime_complete&#39;</span><span class="p">,</span> <span class="s1">&#39;params&#39;</span><span class="p">,</span> <span class="s1">&#39;_distributions&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;user_attrs&#39;</span><span class="p">,</span> <span class="s1">&#39;system_attrs&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate_values&#39;</span><span class="p">,</span> <span class="s1">&#39;_trial_id&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="p">]</span>
+        <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;datetime_start&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;datetime_complete&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_distributions&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;user_attrs&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;system_attrs&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;intermediate_values&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_trial_id&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="c1"># type: (Any) -&gt; bool</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">FrozenTrial</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">NotImplemented</span>
         <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
 
-    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="c1"># type: (Any) -&gt; bool</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">FrozenTrial</span><span class="p">):</span>
@@ -295,7 +291,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">number</span>
 
-    <span class="k">def</span> <span class="nf">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="c1"># type: (Any) -&gt; bool</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">FrozenTrial</span><span class="p">):</span>
@@ -303,40 +299,49 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">&lt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">number</span>
 
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; int</span>
 
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ordered_fields</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; str</span>
 
-        <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">{cls}</span><span class="s1">(</span><span class="si">{kwargs}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{cls}</span><span class="s2">(</span><span class="si">{kwargs}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="bp">cls</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{field}</span><span class="s1">=</span><span class="si">{value}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">field</span><span class="o">=</span><span class="n">field</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">field</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="n">field</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
-                <span class="n">value</span><span class="o">=</span><span class="nb">repr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">)))</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ordered_fields</span><span class="p">)))</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">{field}</span><span class="s2">=</span><span class="si">{value}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">field</span><span class="o">=</span><span class="n">field</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">field</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">field</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+                    <span class="n">value</span><span class="o">=</span><span class="nb">repr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">)),</span>
+                <span class="p">)</span>
+                <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ordered_fields</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; None</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">datetime_start</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;`datetime_start` is supposed to be set.&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`datetime_start` is supposed to be set.&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">is_finished</span><span class="p">():</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">datetime_complete</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;`datetime_complete` is supposed to be set for a finished trial.&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`datetime_complete` is supposed to be set for a finished trial.&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">datetime_complete</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s1">&#39;`datetime_complete` is supposed to not be set for a finished trial.&#39;</span><span class="p">)</span>
+                    <span class="s2">&quot;`datetime_complete` is supposed to be None for an unfinished trial.&quot;</span>
+                <span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">TrialState</span><span class="o">.</span><span class="n">COMPLETE</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;`value` is supposed to be set for a complete trial.&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`value` is supposed to be set for a complete trial.&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Inconsistent parameters </span><span class="si">{}</span><span class="s1"> and distributions </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Inconsistent parameters </span><span class="si">{}</span><span class="s2"> and distributions </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
 
         <span class="k">for</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">param_value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">distribution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">distributions</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span>
@@ -344,29 +349,20 @@
             <span class="n">param_value_in_internal_repr</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">to_internal_repr</span><span class="p">(</span><span class="n">param_value</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">distribution</span><span class="o">.</span><span class="n">_contains</span><span class="p">(</span><span class="n">param_value_in_internal_repr</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;The value </span><span class="si">{}</span><span class="s2"> of parameter &#39;</span><span class="si">{}</span><span class="s2">&#39; isn&#39;t contained in the distribution </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span>
-                    <span class="nb">format</span><span class="p">(</span><span class="n">param_value</span><span class="p">,</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">distribution</span><span class="p">))</span>
+                    <span class="s2">&quot;The value </span><span class="si">{}</span><span class="s2"> of parameter &#39;</span><span class="si">{}</span><span class="s2">&#39; isn&#39;t contained in the distribution &quot;</span>
+                    <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param_value</span><span class="p">,</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">distribution</span><span class="p">)</span>
+                <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">distributions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; Dict[str, BaseDistribution]</span>
-        <span class="sd">&quot;&quot;&quot;Return the distributions for this trial.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            The distributions.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Dictionary that contains the distributions of :attr:`params`.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distributions</span>
 
     <span class="nd">@distributions</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">distributions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="c1"># type: (Dict[str, BaseDistribution]) -&gt; None</span>
-        <span class="sd">&quot;&quot;&quot;Set the distributions for this trial.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            value: The distributions.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">_distributions</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="nd">@property</span>
@@ -383,13 +379,15 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-            <span class="s1">&#39;The use of `FrozenTrial.trial_id` is deprecated. &#39;</span>
-            <span class="s1">&#39;Please use `FrozenTrial.number` instead.&#39;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+            <span class="s2">&quot;The use of `FrozenTrial.trial_id` is deprecated. &quot;</span>
+            <span class="s2">&quot;Please use `FrozenTrial.number` instead.&quot;</span><span class="p">,</span>
+            <span class="ne">DeprecationWarning</span><span class="p">,</span>
+        <span class="p">)</span>
 
-        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-            <span class="s1">&#39;The use of `FrozenTrial.trial_id` is deprecated. &#39;</span>
-            <span class="s1">&#39;Please use `FrozenTrial.number` instead.&#39;</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&quot;The use of `FrozenTrial.trial_id` is deprecated. &quot;</span>
+            <span class="s2">&quot;Please use `FrozenTrial.number` instead.&quot;</span>
+        <span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span>
 
@@ -400,11 +398,30 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">intermediate_values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">intermediate_values</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
+            <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">intermediate_values</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">duration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># type: () -&gt; Optional[timedelta]</span>
+        <span class="sd">&quot;&quot;&quot;Return the elapsed time taken to complete the trial.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The duration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">datetime_start</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">datetime_complete</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">datetime_complete</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">datetime_start</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
 
 
-<div class="viewcode-block" id="StudySummary"><a class="viewcode-back" href="../../reference/structs.html#optuna.structs.StudySummary">[docs]</a><span class="k">class</span> <span class="nc">StudySummary</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="StudySummary"><a class="viewcode-back" href="../../reference/structs.html#optuna.structs.StudySummary">[文档]</a><span class="k">class</span> <span class="nc">StudySummary</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Basic attributes and aggregated results of a :class:`~optuna.study.Study`.</span>
+
+<span class="sd">    .. deprecated:: 1.4.0</span>
+
+<span class="sd">        This class was moved to :mod:`~optuna.study`. Please use</span>
+<span class="sd">        :class:`~optuna.study.StudySummary` instead.</span>
 
 <span class="sd">    See also :func:`optuna.study.get_all_study_summaries`.</span>
 
@@ -412,7 +429,7 @@
 <span class="sd">        study_name:</span>
 <span class="sd">            Name of the :class:`~optuna.study.Study`.</span>
 <span class="sd">        direction:</span>
-<span class="sd">            :class:`StudyDirection` of the :class:`~optuna.study.Study`.</span>
+<span class="sd">            :class:`~optuna.study.StudyDirection` of the :class:`~optuna.study.Study`.</span>
 <span class="sd">        best_trial:</span>
 <span class="sd">            :class:`FrozenTrial` with best objective value in the :class:`~optuna.study.Study`.</span>
 <span class="sd">        user_attrs:</span>
@@ -427,18 +444,25 @@
 <span class="sd">            Datetime where the :class:`~optuna.study.Study` started.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">study_name</span><span class="p">,</span>  <span class="c1"># type: str</span>
-            <span class="n">direction</span><span class="p">,</span>  <span class="c1"># type: StudyDirection</span>
-            <span class="n">best_trial</span><span class="p">,</span>  <span class="c1"># type: Optional[FrozenTrial]</span>
-            <span class="n">user_attrs</span><span class="p">,</span>  <span class="c1"># type: Dict[str, Any]</span>
-            <span class="n">system_attrs</span><span class="p">,</span>  <span class="c1"># type: Dict[str, Any]</span>
-            <span class="n">n_trials</span><span class="p">,</span>  <span class="c1"># type: int</span>
-            <span class="n">datetime_start</span><span class="p">,</span>  <span class="c1"># type: Optional[datetime]</span>
-            <span class="n">study_id</span><span class="p">,</span>  <span class="c1"># type: int</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">study_name</span><span class="p">,</span>  <span class="c1"># type: str</span>
+        <span class="n">direction</span><span class="p">,</span>  <span class="c1"># type: _study_direction.StudyDirection</span>
+        <span class="n">best_trial</span><span class="p">,</span>  <span class="c1"># type: Optional[FrozenTrial]</span>
+        <span class="n">user_attrs</span><span class="p">,</span>  <span class="c1"># type: Dict[str, Any]</span>
+        <span class="n">system_attrs</span><span class="p">,</span>  <span class="c1"># type: Dict[str, Any]</span>
+        <span class="n">n_trials</span><span class="p">,</span>  <span class="c1"># type: int</span>
+        <span class="n">datetime_start</span><span class="p">,</span>  <span class="c1"># type: Optional[datetime]</span>
+        <span class="n">study_id</span><span class="p">,</span>  <span class="c1"># type: int</span>
     <span class="p">):</span>
         <span class="c1"># type: (...) -&gt; None</span>
+
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;The use of `structs.StudySummary` is deprecated. &quot;</span>
+            <span class="s2">&quot;Please use `study.StudySummary` instead.&quot;</span>
+        <span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">study_name</span> <span class="o">=</span> <span class="n">study_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
@@ -449,7 +473,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">datetime_start</span> <span class="o">=</span> <span class="n">datetime_start</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span> <span class="o">=</span> <span class="n">study_id</span>
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="c1"># type: (Any) -&gt; bool</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">StudySummary</span><span class="p">):</span>
@@ -457,7 +481,7 @@
 
         <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
 
-    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="c1"># type: (Any) -&gt; bool</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">StudySummary</span><span class="p">):</span>
@@ -465,7 +489,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">_study_id</span>
 
-    <span class="k">def</span> <span class="nf">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="c1"># type: (Any) -&gt; bool</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">StudySummary</span><span class="p">):</span>
@@ -480,18 +504,19 @@
 
 <span class="sd">        .. deprecated:: 0.20.0</span>
 <span class="sd">            The direct use of this attribute is deprecated and it is recommended that you use</span>
-<span class="sd">            :attr:`~optuna.structs.StudySummary.study_name` instead.</span>
+<span class="sd">            :attr:`~optuna.study.StudySummary.study_name` instead.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            The study ID.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;The use of `StudySummary.study_id` is deprecated. &#39;</span> \
-                  <span class="s1">&#39;Please use `StudySummary.study_name` instead.&#39;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;The use of `StudySummary.study_id` is deprecated. &quot;</span>
+            <span class="s2">&quot;Please use `StudySummary.study_name` instead.&quot;</span>
+        <span class="p">)</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
 
-        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span></div>
 
@@ -505,14 +530,15 @@
 <span class="sd">        :class:`~optuna.exceptions.TrialPruned` instead.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># type: (Any, Any) -&gt; None</span>
 
-        <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;The use of `optuna.structs.TrialPruned` is deprecated. &#39;</span> \
-                  <span class="s1">&#39;Please use `optuna.exceptions.TrialPruned` instead.&#39;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;The use of `optuna.structs.TrialPruned` is deprecated. &quot;</span>
+            <span class="s2">&quot;Please use `optuna.TrialPruned` instead.&quot;</span>
+        <span class="p">)</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
-        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 </pre></div>
 
            </div>

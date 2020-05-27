@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Optuna: 一个超参数优化框架 &mdash; Optuna 1.2.0 documentation</title>
+  <title>Optuna: 一个超参数优化框架 &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -23,11 +23,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -37,8 +38,8 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
     <link rel="next" title="安装" href="installation.html" /> 
 </head>
 
@@ -63,7 +64,7 @@
             
             
               <div class="version">
-                1.2.0
+                1.4.0
               </div>
             
           
@@ -159,10 +160,10 @@
             
   <p><a class="reference internal" href="https://raw.githubusercontent.com/optuna/optuna/master/docs/image/optuna-logo.png"><img alt="OPTUNA" src="https://raw.githubusercontent.com/optuna/optuna/master/docs/image/optuna-logo.png" style="width: 800px;" /></a></p>
 <div class="section" id="optuna">
-<h1>Optuna: 一个超参数优化框架<a class="headerlink" href="#optuna" title="Permalink to this headline">¶</a></h1>
+<h1>Optuna: 一个超参数优化框架<a class="headerlink" href="#optuna" title="永久链接至标题">¶</a></h1>
 <p><em>Optuna</em> 是一个特别为机器学习而设计的自动超参数优化软件框架。它的一大特色是有着 <em>define-by-run</em> 风格的用户自定义 API。由于这种API 的存在，用 Optuna 编写的代码模块化程度很高。同时，Optuna 的用户也可以动态地构造超参数的搜索空间。</p>
 <div class="section" id="id1">
-<h2>主要特点<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>主要特点<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <p>Optuna 有如下现代化的功能：</p>
 <ul class="simple">
 <li><p>并行的分布式优化</p></li>
@@ -171,7 +172,7 @@
 </ul>
 </div>
 <div class="section" id="id2">
-<h2>基本概念<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>基本概念<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <p>我们以如下方式使用 <em>study</em> 和 <em>trial</em> 这两个术语：</p>
 <ul class="simple">
 <li><p>Study: 基于目标函数的优化过程</p></li>
@@ -179,7 +180,7 @@
 </ul>
 <p>请参考下面的示例代码。一个 <em>study</em> 的目的是通过多次 <em>trial</em> (例如 <code class="docutils literal notranslate"><span class="pre">n_trials=100</span></code> ) 来找出最佳的超参数值集（比如选择 <code class="docutils literal notranslate"><span class="pre">classifier</span></code> 还是 <code class="docutils literal notranslate"><span class="pre">svm_c</span></code>）。而 Optuna 旨在加速和自动化此类 <em>study</em> 优化过程。</p>
 <p><a class="reference external" href="http://colab.research.google.com/github/optuna/optuna/blob/master/examples/quickstart.ipynb"><img alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="o">...</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">...</span>
 
 <span class="c1"># Define an objective function to be minimized.</span>
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
@@ -193,7 +194,7 @@
         <span class="n">rf_max_depth</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s1">&#39;rf_max_depth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
         <span class="n">regressor_obj</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="n">rf_max_depth</span><span class="p">)</span>
 
-    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_boston</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_boston</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">X_train</span><span class="p">,</span> <span class="n">X_val</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="n">regressor_obj</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -209,7 +210,7 @@
 </div>
 </div>
 <div class="section" id="communication">
-<h2>Communication<a class="headerlink" href="#communication" title="Permalink to this headline">¶</a></h2>
+<h2>Communication<a class="headerlink" href="#communication" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li><p>可在 <a class="reference external" href="https://github.com/optuna/optuna/issues">GitHub Issues</a> 报告bug、提feature request 和问问题。</p></li>
 <li><p>可在 <a class="reference external" href="https://gitter.im/optuna/optuna">Gitter</a> 与开发者互动.</p></li>
@@ -217,15 +218,15 @@
 </ul>
 </div>
 <div class="section" id="id3">
-<h2>贡献<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>贡献<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <p>欢迎大家对Optuna的一切贡献！但是在发送pull request时请遵从 <a class="reference external" href="https://github.com/optuna/optuna/blob/master/CONTRIBUTING.md">contribution guide</a> 的规范.</p>
 </div>
 <div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<h2>License<a class="headerlink" href="#license" title="永久链接至标题">¶</a></h2>
 <p>MIT License (see <a class="reference external" href="https://github.com/optuna/optuna/blob/master/LICENSE">LICENSE</a>).</p>
 </div>
 <div class="section" id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="永久链接至标题">¶</a></h2>
 <p>Takuya Akiba, Shotaro Sano, Toshihiko Yanase, Takeru Ohta, and Masanori
 Koyama. 2019. Optuna: A Next-generation Hyperparameter Optimization
 Framework. In KDD (<a class="reference external" href="https://arxiv.org/abs/1907.10902">arXiv</a>).</p>
@@ -234,7 +235,7 @@ Framework. In KDD (<a class="reference external" href="https://arxiv.org/abs/190
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/first.html">First Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/first.html">第一个优化例子</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial/configurations.html">Advanced Configurations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial/rdb.html">Saving/Resuming Study with RDB Backend</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial/distributed.html">Distributed Optimization</a></li>
@@ -281,11 +282,11 @@ Framework. In KDD (<a class="reference external" href="https://arxiv.org/abs/190
 </div>
 </div>
 <div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="永久链接至标题">¶</a></h1>
 <ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">索引</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">模块索引</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">搜索页面</span></a></p></li>
 </ul>
 </div>
 

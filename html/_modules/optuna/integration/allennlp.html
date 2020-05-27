@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>optuna.integration.allennlp &mdash; Optuna 1.4.0 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Optuna
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Optuna</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+        
+      <li>optuna.integration.allennlp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>optuna.integration.allennlp 源代码</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+<span class="kn">from</span> <span class="nn">optuna._experimental</span> <span class="kn">import</span> <span class="n">experimental</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">_jsonnet</span>
+    <span class="kn">import</span> <span class="nn">allennlp.commands</span>
+    <span class="kn">import</span> <span class="nn">allennlp.common.util</span>
+
+    <span class="n">_available</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">_import_error</span> <span class="o">=</span> <span class="n">e</span>
+    <span class="n">_available</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">TrackerCallback</span> <span class="o">=</span> <span class="nb">object</span>
+
+
+<div class="viewcode-block" id="dump_best_config"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.dump_best_config">[文档]</a><span class="k">def</span> <span class="nf">dump_best_config</span><span class="p">(</span><span class="n">input_config_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_config_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="n">optuna</span><span class="o">.</span><span class="n">Study</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Save JSON config file after updating with parameters from the best trial in the study.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        input_config_file:</span>
+<span class="sd">            Input Jsonnet config file used with</span>
+<span class="sd">            :class:`~optuna.integration.AllenNLPExecutor`.</span>
+<span class="sd">        output_config_file:</span>
+<span class="sd">            Output JSON config file.</span>
+<span class="sd">        study:</span>
+<span class="sd">            Instance of :class:`~optuna.study.Study`.</span>
+<span class="sd">            Note that :func:`~optuna.study.Study.optimize` must have been called.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">best_params</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">best_params</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">best_params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">best_params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">best_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">_jsonnet</span><span class="o">.</span><span class="n">evaluate_file</span><span class="p">(</span><span class="n">input_config_file</span><span class="p">,</span> <span class="n">ext_vars</span><span class="o">=</span><span class="n">best_params</span><span class="p">))</span>
+    <span class="n">best_config</span> <span class="o">=</span> <span class="n">allennlp</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">infer_and_cast</span><span class="p">(</span><span class="n">best_config</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_config_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">best_config</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AllenNLPExecutor"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.AllenNLPExecutor">[文档]</a><span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.4.0&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">AllenNLPExecutor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;AllenNLP extension to use optuna with Jsonnet config file.</span>
+
+<span class="sd">    This feature is experimental since AllenNLP major release will come soon.</span>
+<span class="sd">    The interface may change without prior notice to correspond to the update.</span>
+
+<span class="sd">    See the examples of `objective function &lt;https://github.com/optuna/optuna/blob/</span>
+<span class="sd">    master/examples/allennlp/allennlp_jsonnet.py&gt;`_ and</span>
+<span class="sd">    `config file &lt;https://github.com/optuna/optuna/blob/master/</span>
+<span class="sd">    examples/allennlp/classifier.jsonnet&gt;`_.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        trial:</span>
+<span class="sd">            A :class:`~optuna.trial.Trial` corresponding to the current evaluation</span>
+<span class="sd">            of the objective function.</span>
+<span class="sd">        config_file:</span>
+<span class="sd">            Config file for AllenNLP.</span>
+<span class="sd">            Hyperparameters should be masked with ``std.extVar``.</span>
+<span class="sd">            Please refer to `the config example &lt;https://github.com/allenai/allentune/blob/</span>
+<span class="sd">            master/examples/classifier.jsonnet&gt;`_.</span>
+<span class="sd">        serialization_dir:</span>
+<span class="sd">            A path which model weights and logs are saved.</span>
+<span class="sd">        metrics:</span>
+<span class="sd">            An evaluation metric for the result of ``objective``.</span>
+<span class="sd">        include_package:</span>
+<span class="sd">            Additional packages to include.</span>
+<span class="sd">            For more information, please see</span>
+<span class="sd">            `AllenNLP documentation &lt;https://docs.allennlp.org/master/api/commands/train/&gt;`_.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">trial</span><span class="p">:</span> <span class="n">optuna</span><span class="o">.</span><span class="n">Trial</span><span class="p">,</span>
+        <span class="n">config_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">serialization_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">metrics</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;best_validation_accuracy&quot;</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">include_package</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+
+        <span class="n">_check_allennlp_availability</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_params</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">params</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config_file</span> <span class="o">=</span> <span class="n">config_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_serialization_dir</span> <span class="o">=</span> <span class="n">serialization_dir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_metrics</span> <span class="o">=</span> <span class="n">metrics</span>
+        <span class="k">if</span> <span class="n">include_package</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">include_package</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">include_package</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_include_package</span> <span class="o">=</span> <span class="p">[</span><span class="n">include_package</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_include_package</span> <span class="o">=</span> <span class="n">include_package</span>
+
+    <span class="k">def</span> <span class="nf">_build_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Create a dict of params for AllenNLP.&quot;&quot;&quot;</span>
+        <span class="c1"># _build_params is based on allentune&#39;s train_func.</span>
+        <span class="c1"># https://github.com/allenai/allentune/blob/master/allentune/modules/allennlp_runner.py#L34-L65</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">_jsonnet</span><span class="o">.</span><span class="n">evaluate_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_config_file</span><span class="p">,</span> <span class="n">ext_vars</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="p">))</span>
+
+        <span class="c1"># _params contains a list of string or string as value values.</span>
+        <span class="c1"># Some params couldn&#39;t be casted correctly and</span>
+        <span class="c1"># infer_and_cast converts them into desired values.</span>
+        <span class="k">return</span> <span class="n">allennlp</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">infer_and_cast</span><span class="p">(</span><span class="n">_params</span><span class="p">)</span>
+
+<div class="viewcode-block" id="AllenNLPExecutor.run"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.AllenNLPExecutor.run">[文档]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Train a model using AllenNLP.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">import_func</span> <span class="o">=</span> <span class="n">allennlp</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">import_submodules</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="n">import_func</span> <span class="o">=</span> <span class="n">allennlp</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">import_module_and_submodules</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;AllenNLP&gt;0.9 has not been supported officially yet.&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">package_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_include_package</span><span class="p">:</span>
+            <span class="n">import_func</span><span class="p">(</span><span class="n">package_name</span><span class="p">)</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="n">allennlp</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">Params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_build_params</span><span class="p">())</span>
+        <span class="n">allennlp</span><span class="o">.</span><span class="n">commands</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">train_model</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_serialization_dir</span><span class="p">)</span>
+
+        <span class="n">metrics</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serialization_dir</span><span class="p">,</span> <span class="s2">&quot;metrics.json&quot;</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">metrics</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_metrics</span><span class="p">]</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_check_allennlp_availability</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_available</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+            <span class="s2">&quot;AllenNLP is not available. Please install AllenNLP to use this feature. &quot;</span>
+            <span class="s2">&quot;AllenNLP can be installed by executing `$ pip install allennlp`. &quot;</span>
+            <span class="s2">&quot;For further information, please refer to the installation guide of AllenNLP. &quot;</span>
+            <span class="s2">&quot;(The actual import error is as follows: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">_import_error</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+        <span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Optuna Contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+    <a href="../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

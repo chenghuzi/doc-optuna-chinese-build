@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Trial &mdash; Optuna 1.2.0 documentation</title>
+  <title>Trial &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -23,11 +23,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -37,8 +38,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="Visualization" href="visualization.html" />
     <link rel="prev" title="Study" href="study.html" /> 
 </head>
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                1.2.0
+                1.4.0
               </div>
             
           
@@ -177,10 +178,10 @@
            <div itemprop="articleBody">
             
   <span class="target" id="module-optuna.trial"></span><div class="section" id="trial">
-<h1>Trial<a class="headerlink" href="#trial" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<h1>Trial<a class="headerlink" href="#trial" title="永久链接至标题">¶</a></h1>
+<dl class="py class">
 <dt id="optuna.trial.Trial">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.trial.</code><code class="sig-name descname">Trial</code><span class="sig-paren">(</span><em class="sig-param">study</em>, <em class="sig-param">trial_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial.html#Trial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.trial.Trial" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.trial.</code><code class="sig-name descname">Trial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span></em>, <em class="sig-param"><span class="n">trial_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial" title="永久链接至目标">¶</a></dt>
 <dd><p>A trial is a process of evaluating an objective function.</p>
 <p>This object is passed to an objective function and provides interfaces to get parameter
 suggestion, manage the trial’s state, and set/get user-defined attributes of the trial.</p>
@@ -189,95 +190,102 @@ This object is seamlessly instantiated and passed to the objective function behi
 the <a class="reference internal" href="study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.study.Study.optimize()</span></code></a> method; hence library users do not care about
 instantiation of this object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>study</strong> – A <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> object.</p></li>
 <li><p><strong>trial_id</strong> – A trial ID that is automatically generated.</p></li>
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="optuna.trial.Trial.datetime_start">
-<em class="property">property </em><code class="sig-name descname">datetime_start</code><a class="headerlink" href="#optuna.trial.Trial.datetime_start" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">datetime_start</code><a class="headerlink" href="#optuna.trial.Trial.datetime_start" title="永久链接至目标">¶</a></dt>
 <dd><p>Return start datetime.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>Datetime where the <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> started.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="optuna.trial.Trial.distributions">
-<em class="property">property </em><code class="sig-name descname">distributions</code><a class="headerlink" href="#optuna.trial.Trial.distributions" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">distributions</code><a class="headerlink" href="#optuna.trial.Trial.distributions" title="永久链接至目标">¶</a></dt>
 <dd><p>Return distributions of parameters to be optimized.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>A dictionary containing all distributions.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="optuna.trial.Trial.number">
-<em class="property">property </em><code class="sig-name descname">number</code><a class="headerlink" href="#optuna.trial.Trial.number" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">number</code><a class="headerlink" href="#optuna.trial.Trial.number" title="永久链接至目标">¶</a></dt>
 <dd><p>Return trial’s number which is consecutive and unique in a study.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>A trial number.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="optuna.trial.Trial.params">
-<em class="property">property </em><code class="sig-name descname">params</code><a class="headerlink" href="#optuna.trial.Trial.params" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">params</code><a class="headerlink" href="#optuna.trial.Trial.params" title="永久链接至目标">¶</a></dt>
 <dd><p>Return parameters to be optimized.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>A dictionary containing all parameters.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="optuna.trial.Trial.report">
-<code class="sig-name descname">report</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial.html#Trial.report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.trial.Trial.report" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">report</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">step</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.report"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.report" title="永久链接至目标">¶</a></dt>
 <dd><p>Report an objective function value for a given step.</p>
 <p>The reported values are used by the pruners to determine whether this trial should be
 pruned.</p>
 <div class="admonition seealso">
-<p class="admonition-title">See also</p>
+<p class="admonition-title">参见</p>
 <p>Please refer to <a class="reference internal" href="pruners.html#optuna.pruners.BasePruner" title="optuna.pruners.BasePruner"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePruner</span></code></a>.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注解</p>
 <p>The reported value is converted to <code class="docutils literal notranslate"><span class="pre">float</span></code> type by applying <code class="docutils literal notranslate"><span class="pre">float()</span></code>
 function internally. Thus, it accepts all float-like types (e.g., <code class="docutils literal notranslate"><span class="pre">numpy.float32</span></code>).
 If the conversion fails, a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> is raised.</p>
 </div>
-<p class="rubric">Example</p>
+<p class="rubric">示例</p>
 <p>Report intermediate scores of <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html">SGDClassifier</a> training.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">SGDClassifier</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">clf</span> <span class="o">=</span> <span class="n">SGDClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
         <span class="n">clf</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
-        <span class="n">intermediate_value</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+        <span class="n">intermediate_value</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
         <span class="n">trial</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="n">intermediate_value</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">trial</span><span class="o">.</span><span class="n">should_prune</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="n">TrialPruned</span><span class="p">()</span>
+            <span class="k">raise</span> <span class="n">optuna</span><span class="o">.</span><span class="n">TrialPruned</span><span class="p">()</span>
 
-    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
 
-<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s1">&#39;maximize&#39;</span><span class="p">)</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>value</strong> – A value returned from the objective function.</p></li>
 <li><p><strong>step</strong> – Step of the trial (e.g., Epoch of neural network training).</p></li>
@@ -286,15 +294,22 @@ If the conversion fails, a <code class="docutils literal notranslate"><span clas
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="optuna.trial.Trial.set_user_attr">
-<code class="sig-name descname">set_user_attr</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial.html#Trial.set_user_attr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.trial.Trial.set_user_attr" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_user_attr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.set_user_attr"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.set_user_attr" title="永久链接至目标">¶</a></dt>
 <dd><p>Set user attributes to the trial.</p>
 <p>The user attributes in the trial can be access via <a class="reference internal" href="#optuna.trial.Trial.user_attrs" title="optuna.trial.Trial.user_attrs"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.user_attrs()</span></code></a>.</p>
-<p class="rubric">Example</p>
+<p class="rubric">示例</p>
 <p>Save fixed hyperparameters of neural network training.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
-<span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="k">import</span> <span class="n">MLPClassifier</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="kn">import</span> <span class="n">MLPClassifier</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">trial</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span><span class="s1">&#39;BATCHSIZE&#39;</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
@@ -304,16 +319,16 @@ If the conversion fails, a <code class="docutils literal notranslate"><span clas
                         <span class="n">momentum</span><span class="o">=</span><span class="n">momentum</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;sgd&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
 
-<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s1">&#39;maximize&#39;</span><span class="p">)</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="k">assert</span> <span class="s1">&#39;BATCHSIZE&#39;</span> <span class="ow">in</span> <span class="n">study</span><span class="o">.</span><span class="n">best_trial</span><span class="o">.</span><span class="n">user_attrs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 <span class="k">assert</span> <span class="n">study</span><span class="o">.</span><span class="n">best_trial</span><span class="o">.</span><span class="n">user_attrs</span><span class="p">[</span><span class="s1">&#39;BATCHSIZE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">128</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>key</strong> – A key string of the attribute.</p></li>
 <li><p><strong>value</strong> – A value of the attribute. The value should be JSON serializable.</p></li>
@@ -322,72 +337,79 @@ If the conversion fails, a <code class="docutils literal notranslate"><span clas
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="optuna.trial.Trial.should_prune">
-<code class="sig-name descname">should_prune</code><span class="sig-paren">(</span><em class="sig-param">step=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial.html#Trial.should_prune"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.trial.Trial.should_prune" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">should_prune</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">step</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.should_prune"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.should_prune" title="永久链接至目标">¶</a></dt>
 <dd><p>Suggest whether the trial should be pruned or not.</p>
 <p>The suggestion is made by a pruning algorithm associated with the trial and is based on
 previously reported values. The algorithm can be specified when constructing a
 <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注解</p>
 <p>If no values have been reported, the algorithm cannot make meaningful suggestions.
 Similarly, if this method is called multiple times with the exact same set of reported
 values, the suggestions will be the same.</p>
 </div>
 <div class="admonition seealso">
-<p class="admonition-title">See also</p>
+<p class="admonition-title">参见</p>
 <p>Please refer to the example code in <a class="reference internal" href="#optuna.trial.Trial.report" title="optuna.trial.Trial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.report()</span></code></a>.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">参数</dt>
 <dd class="field-odd"><p><strong>step</strong> – Deprecated since 0.12.0: Step of the trial (e.g., epoch of neural network
 training). Deprecated in favor of always considering the most recent step.</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A boolean value. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, the trial should be pruned according to the
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>A boolean value. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, the trial should be pruned according to the
 configured pruning algorithm. Otherwise, the trial should continue.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="optuna.trial.Trial.study_id">
-<em class="property">property </em><code class="sig-name descname">study_id</code><a class="headerlink" href="#optuna.trial.Trial.study_id" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">study_id</code><a class="headerlink" href="#optuna.trial.Trial.study_id" title="永久链接至目标">¶</a></dt>
 <dd><p>Return the study ID.</p>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 0.20.0: </span>The direct use of this attribute is deprecated and it is recommended that you use
+<p><span class="versionmodified deprecated">0.20.0 版后已移除: </span>The direct use of this attribute is deprecated and it is recommended that you use
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">study</span></code> instead.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>The study ID.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="optuna.trial.Trial.suggest_categorical">
-<code class="sig-name descname">suggest_categorical</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">choices</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial.html#Trial.suggest_categorical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_categorical" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">suggest_categorical</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">choices</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.suggest_categorical"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_categorical" title="永久链接至目标">¶</a></dt>
 <dd><p>Suggest a value for the categorical parameter.</p>
 <p>The value is sampled from <code class="docutils literal notranslate"><span class="pre">choices</span></code>.</p>
-<p class="rubric">Example</p>
+<p class="rubric">示例</p>
 <p>Suggest a kernel function of <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html">SVC</a>.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
-<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="k">import</span> <span class="n">SVC</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">kernel</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;kernel&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="s1">&#39;rbf&#39;</span><span class="p">])</span>
     <span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="s1">&#39;scale&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
 
-<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s1">&#39;maximize&#39;</span><span class="p">)</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> – A parameter name.</p></li>
 <li><p><strong>choices</strong> – Parameter value candidates.</p></li>
@@ -395,19 +417,19 @@ configured pruning algorithm. Otherwise, the trial should continue.</p>
 </dd>
 </dl>
 <div class="admonition seealso">
-<p class="admonition-title">See also</p>
+<p class="admonition-title">参见</p>
 <p><a class="reference internal" href="distributions.html#optuna.distributions.CategoricalDistribution" title="optuna.distributions.CategoricalDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">CategoricalDistribution</span></code></a>.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>A suggested value.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="optuna.trial.Trial.suggest_discrete_uniform">
-<code class="sig-name descname">suggest_discrete_uniform</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">low</em>, <em class="sig-param">high</em>, <em class="sig-param">q</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial.html#Trial.suggest_discrete_uniform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_discrete_uniform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">suggest_discrete_uniform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">q</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.suggest_discrete_uniform"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_discrete_uniform" title="永久链接至目标">¶</a></dt>
 <dd><p>Suggest a value for the discrete parameter.</p>
 <p>The value is sampled from the range <span class="math notranslate nohighlight">\([\mathsf{low}, \mathsf{high}]\)</span>,
 and the step of discretization is <span class="math notranslate nohighlight">\(q\)</span>. More specifically,
@@ -417,24 +439,31 @@ this method returns one of the values in the sequence
 where <span class="math notranslate nohighlight">\(k\)</span> denotes an integer. Note that <span class="math notranslate nohighlight">\(high\)</span> may be changed due to round-off
 errors if <span class="math notranslate nohighlight">\(q\)</span> is not an integer. Please check warning messages to find the changed
 values.</p>
-<p class="rubric">Example</p>
+<p class="rubric">示例</p>
 <p>Suggest a fraction of samples used for fitting the individual learners of
 <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html">GradientBoostingClassifier</a>.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">GradientBoostingClassifier</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">subsample</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_discrete_uniform</span><span class="p">(</span><span class="s1">&#39;subsample&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
     <span class="n">clf</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">subsample</span><span class="o">=</span><span class="n">subsample</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
 
-<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s1">&#39;maximize&#39;</span><span class="p">)</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> – A parameter name.</p></li>
 <li><p><strong>low</strong> – Lower endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">low</span></code> is included in the range.</p></li>
@@ -442,70 +471,156 @@ values.</p>
 <li><p><strong>q</strong> – A step of discretization.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">返回</dt>
 <dd class="field-even"><p>A suggested float value.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
+<dt id="optuna.trial.Trial.suggest_float">
+<code class="sig-name descname">suggest_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">log</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">step</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.suggest_float"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_float" title="永久链接至目标">¶</a></dt>
+<dd><p>Suggest a value for the floating point parameter.</p>
+<p>Note that this is a wrapper method for <a class="reference internal" href="#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a>,
+<a class="reference internal" href="#optuna.trial.Trial.suggest_loguniform" title="optuna.trial.Trial.suggest_loguniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_loguniform()</span></code></a> and
+<a class="reference internal" href="#optuna.trial.Trial.suggest_discrete_uniform" title="optuna.trial.Trial.suggest_discrete_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_discrete_uniform()</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">1.3.0 新版功能.</span></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p>Please see also <a class="reference internal" href="#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a>,
+<a class="reference internal" href="#optuna.trial.Trial.suggest_loguniform" title="optuna.trial.Trial.suggest_loguniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_loguniform()</span></code></a> and
+<a class="reference internal" href="#optuna.trial.Trial.suggest_discrete_uniform" title="optuna.trial.Trial.suggest_discrete_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_discrete_uniform()</span></code></a>.</p>
+</div>
+<p class="rubric">示例</p>
+<p>Suggest a momentum, learning rate and scaling factor of learning rate
+for neural network training.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="kn">import</span> <span class="n">MLPClassifier</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+    <span class="n">momentum</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s1">&#39;momentum&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">learning_rate_init</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s1">&#39;learning_rate_init&#39;</span><span class="p">,</span>
+                                             <span class="mf">1e-5</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">power_t</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s1">&#39;power_t&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">(</span><span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">momentum</span><span class="o">=</span><span class="n">momentum</span><span class="p">,</span>
+                        <span class="n">learning_rate_init</span><span class="o">=</span><span class="n">learning_rate_init</span><span class="p">,</span>
+                        <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;sgd&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">power_t</span><span class="o">=</span><span class="n">power_t</span><span class="p">)</span>
+    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
+
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s1">&#39;maximize&#39;</span><span class="p">)</span>
+<span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – A parameter name.</p></li>
+<li><p><strong>low</strong> – Lower endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">low</span></code> is included in the range.</p></li>
+<li><p><strong>high</strong> – Upper endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">high</span></code> is excluded from the
+range.</p></li>
+<li><p><strong>log</strong> – A flag to sample the value from the log domain or not.
+If <code class="docutils literal notranslate"><span class="pre">log</span></code> is true, the value is sampled from the range in the log domain.
+Otherwise, the value is sampled from the range in the linear domain.
+See also <a class="reference internal" href="#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a> and <a class="reference internal" href="#optuna.trial.Trial.suggest_loguniform" title="optuna.trial.Trial.suggest_loguniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_loguniform()</span></code></a>.</p></li>
+<li><p><strong>step</strong> – A step of discretization.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>A suggested float value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="optuna.trial.Trial.suggest_int">
-<code class="sig-name descname">suggest_int</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">low</em>, <em class="sig-param">high</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial.html#Trial.suggest_int"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_int" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">suggest_int</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">step</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">log</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.suggest_int"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_int" title="永久链接至目标">¶</a></dt>
 <dd><p>Suggest a value for the integer parameter.</p>
 <p>The value is sampled from the integers in <span class="math notranslate nohighlight">\([\mathsf{low}, \mathsf{high}]\)</span>.</p>
-<p class="rubric">Example</p>
+<p class="rubric">示例</p>
 <p>Suggest the number of trees in <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">RandomForestClassifier</a>.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">n_estimators</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
     <span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
 
-<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s1">&#39;maximize&#39;</span><span class="p">)</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> – A parameter name.</p></li>
 <li><p><strong>low</strong> – Lower endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">low</span></code> is included in the range.</p></li>
 <li><p><strong>high</strong> – Upper endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">high</span></code> is included in the range.</p></li>
+<li><p><strong>log</strong> – A flag to sample the value from the log domain or not.
+If <code class="docutils literal notranslate"><span class="pre">log</span></code> is true, at first, the range of suggested values is divided into grid
+points of width <code class="docutils literal notranslate"><span class="pre">step</span></code>. The range of suggested values is then converted to a log
+domain, from which a value is uniformly sampled. The uniformly sampled value is
+re-converted to the original domain and rounded to the nearest grid point that we
+just split, and the suggested value is determined.
+For example,
+if <cite>low = 2</cite>, <cite>high = 8</cite> and <cite>step = 2</cite>,
+then the range of suggested values is divided by <code class="docutils literal notranslate"><span class="pre">step</span></code> as <cite>[2, 4, 6, 8]</cite>
+and lower values tend to be more sampled than higher values.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A suggested integer value.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="optuna.trial.Trial.suggest_loguniform">
-<code class="sig-name descname">suggest_loguniform</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">low</em>, <em class="sig-param">high</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial.html#Trial.suggest_loguniform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_loguniform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">suggest_loguniform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.suggest_loguniform"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_loguniform" title="永久链接至目标">¶</a></dt>
 <dd><p>Suggest a value for the continuous parameter.</p>
 <p>The value is sampled from the range <span class="math notranslate nohighlight">\([\mathsf{low}, \mathsf{high})\)</span>
 in the log domain. When <span class="math notranslate nohighlight">\(\mathsf{low} = \mathsf{high}\)</span>, the value of
 <span class="math notranslate nohighlight">\(\mathsf{low}\)</span> will be returned.</p>
-<p class="rubric">Example</p>
+<p class="rubric">示例</p>
 <p>Suggest penalty parameter <code class="docutils literal notranslate"><span class="pre">C</span></code> of <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html">SVC</a>.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
-<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="k">import</span> <span class="n">SVC</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_loguniform</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mf">1e-5</span><span class="p">,</span> <span class="mf">1e2</span><span class="p">)</span>
     <span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="s1">&#39;scale&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
 
-<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s1">&#39;maximize&#39;</span><span class="p">)</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> – A parameter name.</p></li>
 <li><p><strong>low</strong> – Lower endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">low</span></code> is included in the range.</p></li>
@@ -513,23 +628,30 @@ in the log domain. When <span class="math notranslate nohighlight">\(\mathsf{low
 range.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">返回</dt>
 <dd class="field-even"><p>A suggested float value.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="optuna.trial.Trial.suggest_uniform">
-<code class="sig-name descname">suggest_uniform</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">low</em>, <em class="sig-param">high</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial.html#Trial.suggest_uniform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_uniform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">suggest_uniform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.suggest_uniform"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_uniform" title="永久链接至目标">¶</a></dt>
 <dd><p>Suggest a value for the continuous parameter.</p>
 <p>The value is sampled from the range <span class="math notranslate nohighlight">\([\mathsf{low}, \mathsf{high})\)</span>
 in the linear domain. When <span class="math notranslate nohighlight">\(\mathsf{low} = \mathsf{high}\)</span>, the value of
 <span class="math notranslate nohighlight">\(\mathsf{low}\)</span> will be returned.</p>
-<p class="rubric">Example</p>
+<p class="rubric">示例</p>
 <p>Suggest a momentum for neural network training.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
-<span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="k">import</span> <span class="n">MLPClassifier</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="kn">import</span> <span class="n">MLPClassifier</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">momentum</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_uniform</span><span class="p">(</span><span class="s1">&#39;momentum&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
@@ -537,14 +659,14 @@ in the linear domain. When <span class="math notranslate nohighlight">\(\mathsf{
                         <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;sgd&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
 
-<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s1">&#39;maximize&#39;</span><span class="p">)</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> – A parameter name.</p></li>
 <li><p><strong>low</strong> – Lower endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">low</span></code> is included in the range.</p></li>
@@ -552,18 +674,18 @@ in the linear domain. When <span class="math notranslate nohighlight">\(\mathsf{
 range.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">返回</dt>
 <dd class="field-even"><p>A suggested float value.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="optuna.trial.Trial.user_attrs">
-<em class="property">property </em><code class="sig-name descname">user_attrs</code><a class="headerlink" href="#optuna.trial.Trial.user_attrs" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">user_attrs</code><a class="headerlink" href="#optuna.trial.Trial.user_attrs" title="永久链接至目标">¶</a></dt>
 <dd><p>Return user attributes.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>A dictionary containing all user attributes.</p>
 </dd>
 </dl>
@@ -571,16 +693,16 @@ range.</p></li>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="optuna.trial.FixedTrial">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.trial.</code><code class="sig-name descname">FixedTrial</code><span class="sig-paren">(</span><em class="sig-param">params</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial.html#FixedTrial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.trial.FixedTrial" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.trial.</code><code class="sig-name descname">FixedTrial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">number</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_fixed.html#FixedTrial"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.FixedTrial" title="永久链接至目标">¶</a></dt>
 <dd><p>A trial class which suggests a fixed value for each parameter.</p>
 <p>This object has the same methods as <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>, and it suggests pre-defined
 parameter values. The parameter values can be determined at the construction of the
 <a class="reference internal" href="#optuna.trial.FixedTrial" title="optuna.trial.FixedTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixedTrial</span></code></a> object. In contrast to <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>,
 <a class="reference internal" href="#optuna.trial.FixedTrial" title="optuna.trial.FixedTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixedTrial</span></code></a> does not depend on <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>, and it is
 useful for deploying optimization results.</p>
-<p class="rubric">Example</p>
+<p class="rubric">示例</p>
 <p>Evaluate an objective function with parameter values given by a user.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 
@@ -593,14 +715,121 @@ useful for deploying optimization results.</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注解</p>
 <p>Please refer to <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> for details of methods and properties.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>params</strong> – A dictionary containing all parameters.</p>
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> – A dictionary containing all parameters.</p></li>
+<li><p><strong>number</strong> – A trial number. Defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+</ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="optuna.trial.FrozenTrial">
+<em class="property">class </em><code class="sig-prename descclassname">optuna.trial.</code><code class="sig-name descname">FrozenTrial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">number</span></em>, <em class="sig-param"><span class="n">state</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">datetime_start</span></em>, <em class="sig-param"><span class="n">datetime_complete</span></em>, <em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">distributions</span></em>, <em class="sig-param"><span class="n">user_attrs</span></em>, <em class="sig-param"><span class="n">system_attrs</span></em>, <em class="sig-param"><span class="n">intermediate_values</span></em>, <em class="sig-param"><span class="n">trial_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_frozen.html#FrozenTrial"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.FrozenTrial" title="永久链接至目标">¶</a></dt>
+<dd><p>Status and results of a <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>.</p>
+<dl class="py attribute">
+<dt id="optuna.trial.FrozenTrial.number">
+<code class="sig-name descname">number</code><a class="headerlink" href="#optuna.trial.FrozenTrial.number" title="永久链接至目标">¶</a></dt>
+<dd><p>Unique and consecutive number of <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> for each
+<a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>. Note that this field uses zero-based numbering.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="optuna.trial.FrozenTrial.state">
+<code class="sig-name descname">state</code><a class="headerlink" href="#optuna.trial.FrozenTrial.state" title="永久链接至目标">¶</a></dt>
+<dd><p><a class="reference internal" href="#optuna.trial.TrialState" title="optuna.trial.TrialState"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrialState</span></code></a> of the <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="optuna.trial.FrozenTrial.value">
+<code class="sig-name descname">value</code><a class="headerlink" href="#optuna.trial.FrozenTrial.value" title="永久链接至目标">¶</a></dt>
+<dd><p>Objective value of the <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="optuna.trial.FrozenTrial.datetime_start">
+<code class="sig-name descname">datetime_start</code><a class="headerlink" href="#optuna.trial.FrozenTrial.datetime_start" title="永久链接至目标">¶</a></dt>
+<dd><p>Datetime where the <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> started.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="optuna.trial.FrozenTrial.datetime_complete">
+<code class="sig-name descname">datetime_complete</code><a class="headerlink" href="#optuna.trial.FrozenTrial.datetime_complete" title="永久链接至目标">¶</a></dt>
+<dd><p>Datetime where the <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> finished.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="optuna.trial.FrozenTrial.params">
+<code class="sig-name descname">params</code><a class="headerlink" href="#optuna.trial.FrozenTrial.params" title="永久链接至目标">¶</a></dt>
+<dd><p>Dictionary that contains suggested parameters.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="optuna.trial.FrozenTrial.user_attrs">
+<code class="sig-name descname">user_attrs</code><a class="headerlink" href="#optuna.trial.FrozenTrial.user_attrs" title="永久链接至目标">¶</a></dt>
+<dd><p>Dictionary that contains the attributes of the <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> set with
+<a class="reference internal" href="#optuna.trial.Trial.set_user_attr" title="optuna.trial.Trial.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.set_user_attr()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="optuna.trial.FrozenTrial.intermediate_values">
+<code class="sig-name descname">intermediate_values</code><a class="headerlink" href="#optuna.trial.FrozenTrial.intermediate_values" title="永久链接至目标">¶</a></dt>
+<dd><p>Intermediate objective values set with <a class="reference internal" href="#optuna.trial.Trial.report" title="optuna.trial.Trial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.report()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="optuna.trial.FrozenTrial.distributions">
+<em class="property">property </em><code class="sig-name descname">distributions</code><a class="headerlink" href="#optuna.trial.FrozenTrial.distributions" title="永久链接至目标">¶</a></dt>
+<dd><p>Dictionary that contains the distributions of <a class="reference internal" href="#optuna.trial.FrozenTrial.params" title="optuna.trial.FrozenTrial.params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">params</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="optuna.trial.FrozenTrial.duration">
+<em class="property">property </em><code class="sig-name descname">duration</code><a class="headerlink" href="#optuna.trial.FrozenTrial.duration" title="永久链接至目标">¶</a></dt>
+<dd><p>Return the elapsed time taken to complete the trial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>The duration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="optuna.trial.TrialState">
+<em class="property">class </em><code class="sig-prename descclassname">optuna.trial.</code><code class="sig-name descname">TrialState</code><a class="reference internal" href="../_modules/optuna/trial/_state.html#TrialState"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.TrialState" title="永久链接至目标">¶</a></dt>
+<dd><p>State of a <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>.</p>
+<dl class="py attribute">
+<dt id="optuna.trial.TrialState.RUNNING">
+<code class="sig-name descname">RUNNING</code><a class="headerlink" href="#optuna.trial.TrialState.RUNNING" title="永久链接至目标">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> is running.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="optuna.trial.TrialState.COMPLETE">
+<code class="sig-name descname">COMPLETE</code><a class="headerlink" href="#optuna.trial.TrialState.COMPLETE" title="永久链接至目标">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> has been finished without any error.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="optuna.trial.TrialState.PRUNED">
+<code class="sig-name descname">PRUNED</code><a class="headerlink" href="#optuna.trial.TrialState.PRUNED" title="永久链接至目标">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> has been pruned with
+<a class="reference internal" href="exceptions.html#optuna.exceptions.TrialPruned" title="optuna.exceptions.TrialPruned"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrialPruned</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="optuna.trial.TrialState.FAIL">
+<code class="sig-name descname">FAIL</code><a class="headerlink" href="#optuna.trial.TrialState.FAIL" title="永久链接至目标">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> has failed due to an uncaught error.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>

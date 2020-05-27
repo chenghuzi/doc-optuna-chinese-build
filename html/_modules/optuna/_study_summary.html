@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>optuna._study_summary &mdash; Optuna 1.4.0 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Optuna
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Optuna</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">模块代码</a> &raquo;</li>
+        
+      <li>optuna._study_summary</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>optuna._study_summary 源代码</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">optuna._study_direction</span> <span class="kn">import</span> <span class="n">StudyDirection</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">trial</span>
+
+
+<span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="StudySummary"><a class="viewcode-back" href="../../reference/study.html#optuna.study.StudySummary">[文档]</a><span class="k">class</span> <span class="nc">StudySummary</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Basic attributes and aggregated results of a :class:`~optuna.study.Study`.</span>
+
+<span class="sd">    See also :func:`optuna.study.get_all_study_summaries`.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        study_name:</span>
+<span class="sd">            Name of the :class:`~optuna.study.Study`.</span>
+<span class="sd">        direction:</span>
+<span class="sd">            :class:`~optuna.study.StudyDirection` of the :class:`~optuna.study.Study`.</span>
+<span class="sd">        best_trial:</span>
+<span class="sd">            :class:`FrozenTrial` with best objective value in the :class:`~optuna.study.Study`.</span>
+<span class="sd">        user_attrs:</span>
+<span class="sd">            Dictionary that contains the attributes of the :class:`~optuna.study.Study` set with</span>
+<span class="sd">            :func:`optuna.study.Study.set_user_attr`.</span>
+<span class="sd">        system_attrs:</span>
+<span class="sd">            Dictionary that contains the attributes of the :class:`~optuna.study.Study` internally</span>
+<span class="sd">            set by Optuna.</span>
+<span class="sd">        n_trials:</span>
+<span class="sd">            The number of trials ran in the :class:`~optuna.study.Study`.</span>
+<span class="sd">        datetime_start:</span>
+<span class="sd">            Datetime where the :class:`~optuna.study.Study` started.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">study_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">direction</span><span class="p">:</span> <span class="n">StudyDirection</span><span class="p">,</span>
+        <span class="n">best_trial</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">trial</span><span class="o">.</span><span class="n">FrozenTrial</span><span class="p">],</span>
+        <span class="n">user_attrs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">system_attrs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">n_trials</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">datetime_start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">],</span>
+        <span class="n">study_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">study_name</span> <span class="o">=</span> <span class="n">study_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">best_trial</span> <span class="o">=</span> <span class="n">best_trial</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_attrs</span> <span class="o">=</span> <span class="n">user_attrs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_attrs</span> <span class="o">=</span> <span class="n">system_attrs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_trials</span> <span class="o">=</span> <span class="n">n_trials</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datetime_start</span> <span class="o">=</span> <span class="n">datetime_start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span> <span class="o">=</span> <span class="n">study_id</span>
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">StudySummary</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+        <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
+
+    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">StudySummary</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">_study_id</span>
+
+    <span class="k">def</span> <span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">StudySummary</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span> <span class="o">&lt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">_study_id</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">study_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Return the study ID.</span>
+
+<span class="sd">        .. deprecated:: 0.20.0</span>
+<span class="sd">            The direct use of this attribute is deprecated and it is recommended that you use</span>
+<span class="sd">            :attr:`~optuna.study.StudySummary.study_name` instead.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The study ID.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;The use of `StudySummary.study_id` is deprecated. &quot;</span>
+            <span class="s2">&quot;Please use `StudySummary.study_name` instead.&quot;</span>
+        <span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+
+        <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Optuna Contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+    <a href="../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

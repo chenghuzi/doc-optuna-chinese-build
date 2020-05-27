@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Samplers &mdash; Optuna 1.2.0 documentation</title>
+  <title>Samplers &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -23,11 +23,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -37,8 +38,8 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
     <link rel="next" title="Study" href="study.html" />
     <link rel="prev" title="Multi-objective" href="index.html" /> 
 </head>
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                1.2.0
+                1.4.0
               </div>
             
           
@@ -184,7 +185,160 @@
            <div itemprop="articleBody">
             
   <span class="target" id="module-optuna.multi_objective.samplers"></span><div class="section" id="samplers">
-<h1>Samplers<a class="headerlink" href="#samplers" title="Permalink to this headline">¶</a></h1>
+<h1>Samplers<a class="headerlink" href="#samplers" title="永久链接至标题">¶</a></h1>
+<dl class="py class">
+<dt id="optuna.multi_objective.samplers.BaseMultiObjectiveSampler">
+<em class="property">class </em><code class="sig-prename descclassname">optuna.multi_objective.samplers.</code><code class="sig-name descname">BaseMultiObjectiveSampler</code><a class="reference internal" href="../../_modules/optuna/multi_objective/samplers/_base.html#BaseMultiObjectiveSampler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.samplers.BaseMultiObjectiveSampler" title="永久链接至目标">¶</a></dt>
+<dd><p>Base class for multi-objective samplers.</p>
+<p>The abstract methods of this class are the same as ones defined by
+<a class="reference internal" href="../samplers.html#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a> except for taking
+multi-objective versions of study and trial instances as the arguments.</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>Added in v1.4.0 as an experimental feature. The interface may change in newer versions
+without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.4.0">https://github.com/optuna/optuna/releases/tag/v1.4.0</a>.</p>
+</div>
+<dl class="py method">
+<dt id="optuna.multi_objective.samplers.BaseMultiObjectiveSampler.infer_relative_search_space">
+<em class="property">abstract </em><code class="sig-name descname">infer_relative_search_space</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n"><a class="reference internal" href="study.html#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy">optuna.multi_objective.study.MultiObjectiveStudy</a></span></em>, <em class="sig-param"><span class="n">trial</span><span class="p">:</span> <span class="n"><a class="reference internal" href="trial.html#optuna.multi_objective.trial.FrozenMultiObjectiveTrial" title="optuna.multi_objective.trial.FrozenMultiObjectiveTrial">optuna.multi_objective.trial.FrozenMultiObjectiveTrial</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span>optuna.distributions.BaseDistribution<span class="p">]</span><a class="reference internal" href="../../_modules/optuna/multi_objective/samplers/_base.html#BaseMultiObjectiveSampler.infer_relative_search_space"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.samplers.BaseMultiObjectiveSampler.infer_relative_search_space" title="永久链接至目标">¶</a></dt>
+<dd><p>Infer the search space that will be used by relative sampling in the target trial.</p>
+<p>This method is called right before
+<a class="reference internal" href="#optuna.multi_objective.samplers.BaseMultiObjectiveSampler.sample_relative" title="optuna.multi_objective.samplers.BaseMultiObjectiveSampler.sample_relative"><code class="xref py py-func docutils literal notranslate"><span class="pre">sample_relative()</span></code></a>
+method, and the search space returned by this method is passed to it. The parameters not
+contained in the search space will be sampled by using
+<a class="reference internal" href="#optuna.multi_objective.samplers.BaseMultiObjectiveSampler.sample_independent" title="optuna.multi_objective.samplers.BaseMultiObjectiveSampler.sample_independent"><code class="xref py py-func docutils literal notranslate"><span class="pre">sample_independent()</span></code></a>
+method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study</strong> – Target study object.</p></li>
+<li><p><strong>trial</strong> – Target trial object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>A dictionary containing the parameter names and parameter’s distributions.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p>Please refer to <a class="reference internal" href="../samplers.html#optuna.samplers.intersection_search_space" title="optuna.samplers.intersection_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">intersection_search_space()</span></code></a> as an
+implementation of
+<a class="reference internal" href="#optuna.multi_objective.samplers.BaseMultiObjectiveSampler.infer_relative_search_space" title="optuna.multi_objective.samplers.BaseMultiObjectiveSampler.infer_relative_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="optuna.multi_objective.samplers.BaseMultiObjectiveSampler.sample_independent">
+<em class="property">abstract </em><code class="sig-name descname">sample_independent</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n"><a class="reference internal" href="study.html#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy">optuna.multi_objective.study.MultiObjectiveStudy</a></span></em>, <em class="sig-param"><span class="n">trial</span><span class="p">:</span> <span class="n"><a class="reference internal" href="trial.html#optuna.multi_objective.trial.FrozenMultiObjectiveTrial" title="optuna.multi_objective.trial.FrozenMultiObjectiveTrial">optuna.multi_objective.trial.FrozenMultiObjectiveTrial</a></span></em>, <em class="sig-param"><span class="n">param_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">param_distribution</span><span class="p">:</span> <span class="n">optuna.distributions.BaseDistribution</span></em><span class="sig-paren">)</span> &#x2192; Any<a class="reference internal" href="../../_modules/optuna/multi_objective/samplers/_base.html#BaseMultiObjectiveSampler.sample_independent"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.samplers.BaseMultiObjectiveSampler.sample_independent" title="永久链接至目标">¶</a></dt>
+<dd><p>Sample a parameter for a given distribution.</p>
+<p>This method is called only for the parameters not contained in the search space returned
+by <code class="xref py py-func docutils literal notranslate"><span class="pre">sample_relative()</span></code>
+method. This method is suitable for sampling algorithms that do not use the relationship
+between parameters such as random sampling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study</strong> – Target study object.</p></li>
+<li><p><strong>trial</strong> – Target trial object.</p></li>
+<li><p><strong>param_name</strong> – Name of the sampled parameter.</p></li>
+<li><p><strong>param_distribution</strong> – Distribution object that specifies a prior and/or scale of the sampling algorithm.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>A parameter value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="optuna.multi_objective.samplers.BaseMultiObjectiveSampler.sample_relative">
+<em class="property">abstract </em><code class="sig-name descname">sample_relative</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n"><a class="reference internal" href="study.html#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy">optuna.multi_objective.study.MultiObjectiveStudy</a></span></em>, <em class="sig-param"><span class="n">trial</span><span class="p">:</span> <span class="n"><a class="reference internal" href="trial.html#optuna.multi_objective.trial.FrozenMultiObjectiveTrial" title="optuna.multi_objective.trial.FrozenMultiObjectiveTrial">optuna.multi_objective.trial.FrozenMultiObjectiveTrial</a></span></em>, <em class="sig-param"><span class="n">search_space</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span>optuna.distributions.BaseDistribution<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span>Any<span class="p">]</span><a class="reference internal" href="../../_modules/optuna/multi_objective/samplers/_base.html#BaseMultiObjectiveSampler.sample_relative"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.samplers.BaseMultiObjectiveSampler.sample_relative" title="永久链接至目标">¶</a></dt>
+<dd><p>Sample parameters in a given search space.</p>
+<p>This method is called once at the beginning of each trial, i.e., right before the
+evaluation of the objective function. This method is suitable for sampling algorithms
+that use the relationship between parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study</strong> – Target study object.</p></li>
+<li><p><strong>trial</strong> – Target trial object.</p></li>
+<li><p><strong>search_space</strong> – The search space returned by
+<a class="reference internal" href="#optuna.multi_objective.samplers.BaseMultiObjectiveSampler.infer_relative_search_space" title="optuna.multi_objective.samplers.BaseMultiObjectiveSampler.infer_relative_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>A dictionary containing the parameter names and the values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="optuna.multi_objective.samplers.NSGAIIMultiObjectiveSampler">
+<em class="property">class </em><code class="sig-prename descclassname">optuna.multi_objective.samplers.</code><code class="sig-name descname">NSGAIIMultiObjectiveSampler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">population_size</span><span class="o">=</span><span class="default_value">50</span></em>, <em class="sig-param"><span class="n">mutation_prob</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">crossover_prob</span><span class="o">=</span><span class="default_value">0.9</span></em>, <em class="sig-param"><span class="n">swapping_prob</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">seed</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/optuna/multi_objective/samplers/_nsga2.html#NSGAIIMultiObjectiveSampler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.samplers.NSGAIIMultiObjectiveSampler" title="永久链接至目标">¶</a></dt>
+<dd><p>Multi-objective sampler using the NSGA-II algorithm.</p>
+<p>NSGA-II stands for “Nondominated Sorting Genetic Algorithm II”,
+which is a well known, fast and elitist multi-objective genetic algorithm.</p>
+<p>For further information about NSGA-II, please refer to the following paper:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ieeexplore.ieee.org/document/996017">A fast and elitist multiobjective genetic algorithm: NSGA-II</a></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>population_size</strong> – Number of individuals (trials) in a generation.</p></li>
+<li><p><strong>mutation_prob</strong> – Probability of mutating each parameter when creating a new individual.
+If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is specified, the value <code class="docutils literal notranslate"><span class="pre">1.0</span> <span class="pre">/</span> <span class="pre">len(parent_trial.params)</span></code> is used
+where <code class="docutils literal notranslate"><span class="pre">parent_trial</span></code> is the parent trial of the target individual.</p></li>
+<li><p><strong>crossover_prob</strong> – Probability that a crossover (parameters swapping between parents) will occur
+when creating a new individual.</p></li>
+<li><p><strong>swapping_prob</strong> – Probability of swapping each parameter of the parents during crossover.</p></li>
+<li><p><strong>seed</strong> – Seed for random number generator.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>Added in v1.5.0 as an experimental feature. The interface may change in newer versions
+without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.5.0">https://github.com/optuna/optuna/releases/tag/v1.5.0</a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="optuna.multi_objective.samplers.RandomMultiObjectiveSampler">
+<em class="property">class </em><code class="sig-prename descclassname">optuna.multi_objective.samplers.</code><code class="sig-name descname">RandomMultiObjectiveSampler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seed</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/optuna/multi_objective/samplers/_random.html#RandomMultiObjectiveSampler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.samplers.RandomMultiObjectiveSampler" title="永久链接至目标">¶</a></dt>
+<dd><p>Multi-objective sampler using random sampling.</p>
+<p>This sampler is based on <em>independent sampling</em>.
+See also <a class="reference internal" href="#optuna.multi_objective.samplers.BaseMultiObjectiveSampler" title="optuna.multi_objective.samplers.BaseMultiObjectiveSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMultiObjectiveSampler</span></code></a>
+for more details of ‘independent sampling’.</p>
+<p class="rubric">示例</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
+<span class="kn">from</span> <span class="nn">optuna.multi_objective.samplers</span> <span class="kn">import</span> <span class="n">RandomMultiObjectiveSampler</span>
+
+<span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_uniform</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_uniform</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">10</span>
+
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">multi_objective</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;minimize&quot;</span><span class="p">,</span> <span class="s2">&quot;minimize&quot;</span><span class="p">],</span>
+    <span class="n">sampler</span><span class="o">=</span><span class="n">RandomMultiObjectiveSampler</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Args:</dt><dd><p>seed: Seed for random number generator.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>Added in v1.4.0 as an experimental feature. The interface may change in newer versions
+without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.4.0">https://github.com/optuna/optuna/releases/tag/v1.4.0</a>.</p>
+</div>
+</dd></dl>
+
 </div>
 
 

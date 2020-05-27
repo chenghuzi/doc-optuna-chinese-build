@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Hyperparameter Importance &mdash; Optuna 1.2.0 documentation</title>
+  <title>Hyperparameter Importance &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -23,11 +23,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -37,8 +38,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="Integration" href="integration.html" />
     <link rel="prev" title="Exceptions" href="exceptions.html" /> 
 </head>
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                1.2.0
+                1.4.0
               </div>
             
           
@@ -177,7 +178,159 @@
            <div itemprop="articleBody">
             
   <span class="target" id="module-optuna.importance"></span><div class="section" id="hyperparameter-importance">
-<h1>Hyperparameter Importance<a class="headerlink" href="#hyperparameter-importance" title="Permalink to this headline">¶</a></h1>
+<h1>Hyperparameter Importance<a class="headerlink" href="#hyperparameter-importance" title="永久链接至标题">¶</a></h1>
+<dl class="py function">
+<dt id="optuna.importance.get_param_importances">
+<code class="sig-prename descclassname">optuna.importance.</code><code class="sig-name descname">get_param_importances</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n"><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study">optuna.study.Study</a></span></em>, <em class="sig-param"><span class="n">evaluator</span><span class="p">:</span> <span class="n">optuna.importance._base.BaseImportanceEvaluator</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">params</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><span class="p">]</span><a class="reference internal" href="../_modules/optuna/importance.html#get_param_importances"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.importance.get_param_importances" title="永久链接至目标">¶</a></dt>
+<dd><p>Evaluate parameter importances based on completed trials in the given study.</p>
+<p>The parameter importances are returned as a dictionary where the keys consist of parameter
+names and their values importances.
+The importances are represented by floating point numbers that sum to 1.0 over the entire
+dictionary.
+The higher the value, the more important.
+The returned dictionary is of type <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(在 Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.OrderedDict</span></code></a> and is ordered by
+its values in a descending order.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">params</span></code> is <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, all parameter that are present in all of the completed trials are
+assessed.
+This implies that conditional parameters will be excluded from the evaluation.
+To assess the importances of conditional parameters, a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of parameter names can be
+specified via <code class="docutils literal notranslate"><span class="pre">params</span></code>.
+If specified, only completed trials that contain all of the parameters will be considered.
+If no such trials are found, an error will be raised.</p>
+<p>If the given study does not contain completed trials, an error will be raised.</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">params</span></code> is specified as an empty list, an empty dictionary is returned.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study</strong> – An optimized study.</p></li>
+<li><p><strong>evaluator</strong> – An importance evaluator object that specifies which algorithm to base the importance
+assessment on.
+Defaults to
+<code class="xref py py-class docutils literal notranslate"><span class="pre">MeanDecreaseImpurityImportanceEvaluator</span></code>.</p></li>
+<li><p><strong>params</strong> – A list of names of parameters to assess.
+If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, all parameters that are present in all of the completed trials are
+assessed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>An <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(在 Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.OrderedDict</span></code></a> where the keys are parameter names and the values are
+assessed importances.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>Added in v1.3.0 as an experimental feature. The interface may change in newer versions
+without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.3.0">https://github.com/optuna/optuna/releases/tag/v1.3.0</a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="optuna.importance.FanovaImportanceEvaluator">
+<em class="property">class </em><code class="sig-prename descclassname">optuna.importance.</code><code class="sig-name descname">FanovaImportanceEvaluator</code><a class="reference internal" href="../_modules/optuna/importance/_fanova.html#FanovaImportanceEvaluator"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.importance.FanovaImportanceEvaluator" title="永久链接至目标">¶</a></dt>
+<dd><p>fANOVA parameter importance evaluator.</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>Requires the <a class="reference external" href="https://github.com/automl/fanova">fanova</a> Python package.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://proceedings.mlr.press/v32/hutter14.html">An Efficient Approach for Assessing Hyperparameter Importance</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>Added in v1.3.0 as an experimental feature. The interface may change in newer versions
+without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.3.0">https://github.com/optuna/optuna/releases/tag/v1.3.0</a>.</p>
+</div>
+<dl class="py method">
+<dt id="optuna.importance.FanovaImportanceEvaluator.evaluate">
+<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n"><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study">optuna.study.Study</a></span></em>, <em class="sig-param"><span class="n">params</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><span class="p">]</span><a class="reference internal" href="../_modules/optuna/importance/_fanova.html#FanovaImportanceEvaluator.evaluate"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.importance.FanovaImportanceEvaluator.evaluate" title="永久链接至目标">¶</a></dt>
+<dd><p>Evaluate parameter importances based on completed trials in the given study.</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>This method is not meant to be called by library users.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p>Please refer to <a class="reference internal" href="#optuna.importance.get_param_importances" title="optuna.importance.get_param_importances"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_param_importances()</span></code></a> for how a concrete
+evaluator should implement this method.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study</strong> – An optimized study.</p></li>
+<li><p><strong>params</strong> – A list of names of parameters to assess.
+If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, all parameters that are present in all of the completed trials are
+assessed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>An <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(在 Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.OrderedDict</span></code></a> where the keys are parameter names and the values
+are assessed importances.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="optuna.importance.MeanDecreaseImpurityImportanceEvaluator">
+<em class="property">class </em><code class="sig-prename descclassname">optuna.importance.</code><code class="sig-name descname">MeanDecreaseImpurityImportanceEvaluator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_estimators</span><span class="o">=</span><span class="default_value">16</span></em>, <em class="sig-param"><span class="n">max_depth</span><span class="o">=</span><span class="default_value">64</span></em>, <em class="sig-param"><span class="n">random_state</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/importance/_mean_decrease_impurity.html#MeanDecreaseImpurityImportanceEvaluator"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.importance.MeanDecreaseImpurityImportanceEvaluator" title="永久链接至目标">¶</a></dt>
+<dd><p>Mean Decrease Impurity (MDI) parameter importance evaluator.</p>
+<p>This evaluator fits a random forest that predicts objective values given hyperparameter
+configurations. Feature importances are then computed using MDI.</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>This evaluator requires the <a class="reference external" href="https://scikit-learn.org/stable/">sklean</a> Python package and
+is based on <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#sklearn.ensemble.RandomForestClassifier.feature_importances_">sklearn.ensemble.RandomForestClassifier.feature_importances_</a>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_estimators</strong> – Number of trees in the random forest.</p></li>
+<li><p><strong>max_depth</strong> – The maximum depth of each tree in the random forest.</p></li>
+<li><p><strong>random_seed</strong> – Seed for the random forest.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>Added in v1.5.0 as an experimental feature. The interface may change in newer versions
+without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.5.0">https://github.com/optuna/optuna/releases/tag/v1.5.0</a>.</p>
+</div>
+<dl class="py method">
+<dt id="optuna.importance.MeanDecreaseImpurityImportanceEvaluator.evaluate">
+<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n"><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study">optuna.study.Study</a></span></em>, <em class="sig-param"><span class="n">params</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><span class="p">]</span><a class="reference internal" href="../_modules/optuna/importance/_mean_decrease_impurity.html#MeanDecreaseImpurityImportanceEvaluator.evaluate"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.importance.MeanDecreaseImpurityImportanceEvaluator.evaluate" title="永久链接至目标">¶</a></dt>
+<dd><p>Evaluate parameter importances based on completed trials in the given study.</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>This method is not meant to be called by library users.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p>Please refer to <a class="reference internal" href="#optuna.importance.get_param_importances" title="optuna.importance.get_param_importances"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_param_importances()</span></code></a> for how a concrete
+evaluator should implement this method.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study</strong> – An optimized study.</p></li>
+<li><p><strong>params</strong> – A list of names of parameters to assess.
+If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, all parameters that are present in all of the completed trials are
+assessed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>An <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(在 Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.OrderedDict</span></code></a> where the keys are parameter names and the values
+are assessed importances.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 

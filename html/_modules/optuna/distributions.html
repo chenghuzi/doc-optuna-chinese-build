@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.distributions &mdash; Optuna 1.2.0 documentation</title>
+  <title>optuna.distributions &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -23,11 +23,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -37,8 +38,8 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -62,7 +63,7 @@
             
             
               <div class="version">
-                1.2.0
+                1.4.0
               </div>
             
           
@@ -137,7 +138,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../index.html">Module code</a> &raquo;</li>
+          <li><a href="../index.html">模块代码</a> &raquo;</li>
         
       <li>optuna.distributions</li>
     
@@ -154,19 +155,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for optuna.distributions</h1><div class="highlight"><pre>
+  <h1>optuna.distributions 源代码</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">import</span> <span class="nn">decimal</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 
-<span class="kn">from</span> <span class="nn">optuna</span> <span class="k">import</span> <span class="n">logging</span>
-<span class="kn">from</span> <span class="nn">optuna</span> <span class="k">import</span> <span class="n">type_checking</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">type_checking</span>
 
 <span class="k">if</span> <span class="n">type_checking</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Any</span>  <span class="c1"># NOQA</span>
-    <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span>  <span class="c1"># NOQA</span>
-    <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Sequence</span>  <span class="c1"># NOQA</span>
-    <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Union</span>  <span class="c1"># NOQA</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>  <span class="c1"># NOQA</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>  <span class="c1"># NOQA</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>  <span class="c1"># NOQA</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>  <span class="c1"># NOQA</span>
 
     <span class="n">CategoricalChoiceType</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
 
@@ -242,7 +244,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="c1"># type: (Any) -&gt; bool</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">):</span>
@@ -251,19 +253,19 @@
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
 
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; int</span>
 
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,)</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">())))</span>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; str</span>
 
-        <span class="n">kwargs</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
-        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">(</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">(</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="UniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.UniformDistribution">[docs]</a><span class="k">class</span> <span class="nc">UniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
+<div class="viewcode-block" id="UniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.UniformDistribution">[文档]</a><span class="k">class</span> <span class="nc">UniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A uniform distribution in the linear domain.</span>
 
 <span class="sd">    This object is instantiated by :func:`~optuna.trial.Trial.suggest_uniform`, and passed to</span>
@@ -276,17 +278,19 @@
 <span class="sd">            Upper endpoint of the range of the distribution. ``high`` is excluded from the range.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
         <span class="c1"># type: (float, float) -&gt; None</span>
 
         <span class="k">if</span> <span class="n">low</span> <span class="o">&gt;</span> <span class="n">high</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The `low` value must be smaller than or equal to the `high` value &quot;</span>
-                             <span class="s2">&quot;(low=</span><span class="si">{}</span><span class="s2">, high=</span><span class="si">{}</span><span class="s2">).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The `low` value must be smaller than or equal to the `high` value &quot;</span>
+                <span class="s2">&quot;(low=</span><span class="si">{}</span><span class="s2">, high=</span><span class="si">{}</span><span class="s2">).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">=</span> <span class="n">low</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">=</span> <span class="n">high</span>
 
-<div class="viewcode-block" id="UniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.UniformDistribution.single">[docs]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="UniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.UniformDistribution.single">[文档]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; bool</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
@@ -298,10 +302,10 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
 
 
-<div class="viewcode-block" id="LogUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.LogUniformDistribution">[docs]</a><span class="k">class</span> <span class="nc">LogUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
+<div class="viewcode-block" id="LogUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.LogUniformDistribution">[文档]</a><span class="k">class</span> <span class="nc">LogUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A uniform distribution in the log domain.</span>
 
 <span class="sd">    This object is instantiated by :func:`~optuna.trial.Trial.suggest_loguniform`, and passed to</span>
@@ -314,17 +318,24 @@
 <span class="sd">            Upper endpoint of the range of the distribution. ``high`` is excluded from the range.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
         <span class="c1"># type: (float, float) -&gt; None</span>
 
         <span class="k">if</span> <span class="n">low</span> <span class="o">&gt;</span> <span class="n">high</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The `low` value must be smaller than or equal to the `high` value &quot;</span>
-                             <span class="s2">&quot;(low=</span><span class="si">{}</span><span class="s2">, high=</span><span class="si">{}</span><span class="s2">).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The `low` value must be smaller than or equal to the `high` value &quot;</span>
+                <span class="s2">&quot;(low=</span><span class="si">{}</span><span class="s2">, high=</span><span class="si">{}</span><span class="s2">).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">low</span> <span class="o">&lt;=</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The `low` value must be larger than 0 for a log distribution &quot;</span>
+                <span class="s2">&quot;(low=</span><span class="si">{}</span><span class="s2">, high=</span><span class="si">{}</span><span class="s2">).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">=</span> <span class="n">low</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">=</span> <span class="n">high</span>
 
-<div class="viewcode-block" id="LogUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.LogUniformDistribution.single">[docs]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LogUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.LogUniformDistribution.single">[文档]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; bool</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
@@ -336,10 +347,10 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
 
 
-<div class="viewcode-block" id="DiscreteUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.DiscreteUniformDistribution">[docs]</a><span class="k">class</span> <span class="nc">DiscreteUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.DiscreteUniformDistribution">[文档]</a><span class="k">class</span> <span class="nc">DiscreteUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A discretized uniform distribution in the linear domain.</span>
 
 <span class="sd">    This object is instantiated by :func:`~optuna.trial.Trial.suggest_discrete_uniform`, and passed</span>
@@ -354,30 +365,39 @@
 <span class="sd">            A discretization step.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
         <span class="c1"># type: (float, float, float) -&gt; None</span>
 
         <span class="k">if</span> <span class="n">low</span> <span class="o">&gt;</span> <span class="n">high</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The `low` value must be smaller than or equal to the `high` value &quot;</span>
-                             <span class="s2">&quot;(low=</span><span class="si">{}</span><span class="s2">, high=</span><span class="si">{}</span><span class="s2">, q=</span><span class="si">{}</span><span class="s2">).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The `low` value must be smaller than or equal to the `high` value &quot;</span>
+                <span class="s2">&quot;(low=</span><span class="si">{}</span><span class="s2">, high=</span><span class="si">{}</span><span class="s2">, q=</span><span class="si">{}</span><span class="s2">).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">=</span> <span class="n">low</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">=</span> <span class="n">high</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span>
 
-<div class="viewcode-block" id="DiscreteUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.DiscreteUniformDistribution.single">[docs]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.DiscreteUniformDistribution.single">[文档]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; bool</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="n">high</span> <span class="o">=</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="p">))</span>
+        <span class="n">low</span> <span class="o">=</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">low</span><span class="p">))</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">))</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">q</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
 
     <span class="k">def</span> <span class="nf">_contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_value_in_internal_repr</span><span class="p">):</span>
         <span class="c1"># type: (float) -&gt; bool</span>
 
         <span class="n">value</span> <span class="o">=</span> <span class="n">param_value_in_internal_repr</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
 
 
-<div class="viewcode-block" id="IntUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.IntUniformDistribution">[docs]</a><span class="k">class</span> <span class="nc">IntUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
+<div class="viewcode-block" id="IntUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.IntUniformDistribution">[文档]</a><span class="k">class</span> <span class="nc">IntUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A uniform distribution on integers.</span>
 
 <span class="sd">    This object is instantiated by :func:`~optuna.trial.Trial.suggest_int`, and passed to</span>
@@ -388,17 +408,26 @@
 <span class="sd">            Lower endpoint of the range of the distribution. ``low`` is included in the range.</span>
 <span class="sd">        high:</span>
 <span class="sd">            Upper endpoint of the range of the distribution. ``high`` is included in the range.</span>
+<span class="sd">        step:</span>
+<span class="sd">            A step for spacing between values.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
-        <span class="c1"># type: (int, int) -&gt; None</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># type: (int, int, int) -&gt; None</span>
 
         <span class="k">if</span> <span class="n">low</span> <span class="o">&gt;</span> <span class="n">high</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The `low` value must be smaller than or equal to the `high` value &quot;</span>
-                             <span class="s2">&quot;(low=</span><span class="si">{}</span><span class="s2">, high=</span><span class="si">{}</span><span class="s2">).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The `low` value must be smaller than or equal to the `high` value &quot;</span>
+                <span class="s2">&quot;(low=</span><span class="si">{}</span><span class="s2">, high=</span><span class="si">{}</span><span class="s2">).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The `step` value must be non-zero positive value, but step=</span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">=</span> <span class="n">low</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">=</span> <span class="n">high</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="n">step</span>
 
     <span class="k">def</span> <span class="nf">to_external_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_value_in_internal_repr</span><span class="p">):</span>
         <span class="c1"># type: (float) -&gt; int</span>
@@ -410,19 +439,83 @@
 
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">param_value_in_external_repr</span><span class="p">)</span>
 
-<div class="viewcode-block" id="IntUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.IntUniformDistribution.single">[docs]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="IntUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.IntUniformDistribution.single">[文档]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; bool</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span></div>
 
     <span class="k">def</span> <span class="nf">_contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_value_in_internal_repr</span><span class="p">):</span>
         <span class="c1"># type: (float) -&gt; bool</span>
 
-        <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">param_value_in_internal_repr</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">param_value_in_internal_repr</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
 
 
-<div class="viewcode-block" id="CategoricalDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.CategoricalDistribution">[docs]</a><span class="k">class</span> <span class="nc">CategoricalDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
+<div class="viewcode-block" id="IntLogUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.IntLogUniformDistribution">[文档]</a><span class="k">class</span> <span class="nc">IntLogUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A uniform distribution on integers in the log domain.</span>
+
+<span class="sd">    This object is instantiated by :func:`~optuna.trial.Trial.suggest_int`, and passed to</span>
+<span class="sd">    :mod:`~optuna.samplers` in general.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        low:</span>
+<span class="sd">            Lower endpoint of the range of the distribution. ``low`` is included in the range.</span>
+<span class="sd">        high:</span>
+<span class="sd">            Upper endpoint of the range of the distribution. ``high`` is included in the range.</span>
+<span class="sd">        step:</span>
+<span class="sd">            A step for spacing between values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># type: (int, int, int) -&gt; None</span>
+
+        <span class="k">if</span> <span class="n">low</span> <span class="o">&gt;</span> <span class="n">high</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The `low` value must be smaller than or equal to the `high` value &quot;</span>
+                <span class="s2">&quot;(low=</span><span class="si">{}</span><span class="s2">, high=</span><span class="si">{}</span><span class="s2">).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The `step` value must be non-zero positive value, but step=</span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">low</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The `low` value must be equal to or greater than 1 for a log distribution &quot;</span>
+                <span class="s2">&quot;(low=</span><span class="si">{}</span><span class="s2">, high=</span><span class="si">{}</span><span class="s2">).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">=</span> <span class="n">low</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">=</span> <span class="n">high</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="n">step</span>
+
+    <span class="k">def</span> <span class="nf">to_external_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_value_in_internal_repr</span><span class="p">):</span>
+        <span class="c1"># type: (float) -&gt; int</span>
+
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">param_value_in_internal_repr</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">to_internal_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_value_in_external_repr</span><span class="p">):</span>
+        <span class="c1"># type: (int) -&gt; float</span>
+
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">param_value_in_external_repr</span><span class="p">)</span>
+
+<div class="viewcode-block" id="IntLogUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.IntLogUniformDistribution.single">[文档]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># type: () -&gt; bool</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span></div>
+
+    <span class="k">def</span> <span class="nf">_contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_value_in_internal_repr</span><span class="p">):</span>
+        <span class="c1"># type: (float) -&gt; bool</span>
+
+        <span class="n">value</span> <span class="o">=</span> <span class="n">param_value_in_internal_repr</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
+
+
+<div class="viewcode-block" id="CategoricalDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.CategoricalDistribution">[文档]</a><span class="k">class</span> <span class="nc">CategoricalDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A categorical distribution.</span>
 
 <span class="sd">    This object is instantiated by :func:`~optuna.trial.Trial.suggest_categorical`, and</span>
@@ -435,7 +528,7 @@
 <span class="sd">    .. note::</span>
 
 <span class="sd">        Not all types are guaranteed to be compatible with all storages. It is recommended to</span>
-<span class="sd">        restrict the types of the choices to :obj:`None`, :class:`bool`, :class&quot;`int`,</span>
+<span class="sd">        restrict the types of the choices to :obj:`None`, :class:`bool`, :class:`int`,</span>
 <span class="sd">        :class:`float` and :class:`str`.</span>
 
 <span class="sd">    Attributes:</span>
@@ -443,7 +536,7 @@
 <span class="sd">            Parameter value candidates.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">choices</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">choices</span><span class="p">):</span>
         <span class="c1"># type: (Sequence[CategoricalChoiceType]) -&gt; None</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">choices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -453,7 +546,8 @@
                 <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
                     <span class="s2">&quot;Choices for a categorical distribution should be a tuple of None, bool, &quot;</span>
                     <span class="s2">&quot;int, float and str for persistent storage but contains </span><span class="si">{}</span><span class="s2"> which is of type &quot;</span>
-                    <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+                    <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+                <span class="p">)</span>
                 <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
                 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">_get_library_root_logger</span><span class="p">()</span>
@@ -473,10 +567,10 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">param_value_in_external_repr</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s1">&#39;</span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> not in </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">param_value_in_external_repr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="p">))</span> <span class="kn">from</span> <span class="nn">e</span>
+                <span class="s2">&quot;&#39;</span><span class="si">{}</span><span class="s2">&#39; not in </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param_value_in_external_repr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="p">)</span>
+            <span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
 
-<div class="viewcode-block" id="CategoricalDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.CategoricalDistribution.single">[docs]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CategoricalDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.CategoricalDistribution.single">[文档]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; bool</span>
 
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span></div>
@@ -485,14 +579,20 @@
         <span class="c1"># type: (float) -&gt; bool</span>
 
         <span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">param_value_in_internal_repr</span><span class="p">)</span>
-        <span class="k">return</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">index</span> <span class="ow">and</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="p">)</span></div>
 
 
-<span class="n">DISTRIBUTION_CLASSES</span> <span class="o">=</span> <span class="p">(</span><span class="n">UniformDistribution</span><span class="p">,</span> <span class="n">LogUniformDistribution</span><span class="p">,</span> <span class="n">DiscreteUniformDistribution</span><span class="p">,</span>
-                        <span class="n">IntUniformDistribution</span><span class="p">,</span> <span class="n">CategoricalDistribution</span><span class="p">)</span>
+<span class="n">DISTRIBUTION_CLASSES</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">UniformDistribution</span><span class="p">,</span>
+    <span class="n">LogUniformDistribution</span><span class="p">,</span>
+    <span class="n">DiscreteUniformDistribution</span><span class="p">,</span>
+    <span class="n">IntUniformDistribution</span><span class="p">,</span>
+    <span class="n">IntLogUniformDistribution</span><span class="p">,</span>
+    <span class="n">CategoricalDistribution</span><span class="p">,</span>
+<span class="p">)</span>
 
 
-<div class="viewcode-block" id="json_to_distribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.json_to_distribution">[docs]</a><span class="k">def</span> <span class="nf">json_to_distribution</span><span class="p">(</span><span class="n">json_str</span><span class="p">):</span>
+<div class="viewcode-block" id="json_to_distribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.json_to_distribution">[文档]</a><span class="k">def</span> <span class="nf">json_to_distribution</span><span class="p">(</span><span class="n">json_str</span><span class="p">):</span>
     <span class="c1"># type: (str) -&gt; BaseDistribution</span>
     <span class="sd">&quot;&quot;&quot;Deserialize a distribution in JSON format.</span>
 
@@ -505,17 +605,17 @@
 
     <span class="n">json_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">CategoricalDistribution</span><span class="o">.</span><span class="vm">__name__</span><span class="p">:</span>
-        <span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;attributes&#39;</span><span class="p">][</span><span class="s1">&#39;choices&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;attributes&#39;</span><span class="p">][</span><span class="s1">&#39;choices&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">json_dict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">CategoricalDistribution</span><span class="o">.</span><span class="vm">__name__</span><span class="p">:</span>
+        <span class="n">json_dict</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">][</span><span class="s2">&quot;choices&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">json_dict</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">][</span><span class="s2">&quot;choices&quot;</span><span class="p">])</span>
 
     <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">DISTRIBUTION_CLASSES</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;attributes&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">json_dict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">json_dict</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">])</span>
 
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown distribution class: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]))</span></div>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unknown distribution class: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">json_dict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]))</span></div>
 
 
-<div class="viewcode-block" id="distribution_to_json"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.distribution_to_json">[docs]</a><span class="k">def</span> <span class="nf">distribution_to_json</span><span class="p">(</span><span class="n">dist</span><span class="p">):</span>
+<div class="viewcode-block" id="distribution_to_json"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.distribution_to_json">[文档]</a><span class="k">def</span> <span class="nf">distribution_to_json</span><span class="p">(</span><span class="n">dist</span><span class="p">):</span>
     <span class="c1"># type: (BaseDistribution) -&gt; str</span>
     <span class="sd">&quot;&quot;&quot;Serialize a distribution to JSON format.</span>
 
@@ -527,10 +627,10 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">dist</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s1">&#39;attributes&#39;</span><span class="p">:</span> <span class="n">dist</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()})</span></div>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">dist</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="n">dist</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()})</span></div>
 
 
-<div class="viewcode-block" id="check_distribution_compatibility"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.check_distribution_compatibility">[docs]</a><span class="k">def</span> <span class="nf">check_distribution_compatibility</span><span class="p">(</span><span class="n">dist_old</span><span class="p">,</span> <span class="n">dist_new</span><span class="p">):</span>
+<div class="viewcode-block" id="check_distribution_compatibility"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.check_distribution_compatibility">[文档]</a><span class="k">def</span> <span class="nf">check_distribution_compatibility</span><span class="p">(</span><span class="n">dist_old</span><span class="p">,</span> <span class="n">dist_new</span><span class="p">):</span>
     <span class="c1"># type: (BaseDistribution, BaseDistribution) -&gt; None</span>
     <span class="sd">&quot;&quot;&quot;A function to check compatibility of two distributions.</span>
 
@@ -545,15 +645,16 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">dist_old</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">!=</span> <span class="n">dist_new</span><span class="o">.</span><span class="vm">__class__</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot set different distribution kind to the same parameter name.&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot set different distribution kind to the same parameter name.&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dist_old</span><span class="p">,</span> <span class="n">CategoricalDistribution</span><span class="p">):</span>
         <span class="k">return</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dist_new</span><span class="p">,</span> <span class="n">CategoricalDistribution</span><span class="p">):</span>
         <span class="k">return</span>
     <span class="k">if</span> <span class="n">dist_old</span><span class="o">.</span><span class="n">choices</span> <span class="o">!=</span> <span class="n">dist_new</span><span class="o">.</span><span class="n">choices</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">CategoricalDistribution</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span>
-                         <span class="s1">&#39; does not support dynamic value space.&#39;</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="n">CategoricalDistribution</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot; does not support dynamic value space.&quot;</span>
+        <span class="p">)</span></div>
 </pre></div>
 
            </div>

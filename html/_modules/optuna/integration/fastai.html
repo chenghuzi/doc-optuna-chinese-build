@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.integration.fastai &mdash; Optuna 1.2.0 documentation</title>
+  <title>optuna.integration.fastai &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -23,11 +23,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -37,8 +38,8 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -62,7 +63,7 @@
             
             
               <div class="version">
-                1.2.0
+                1.4.0
               </div>
             
           
@@ -137,7 +138,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
         
       <li>optuna.integration.fastai</li>
     
@@ -154,16 +155,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for optuna.integration.fastai</h1><div class="highlight"><pre>
+  <h1>optuna.integration.fastai 源代码</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">optuna</span>
-<span class="kn">from</span> <span class="nn">optuna</span> <span class="k">import</span> <span class="n">type_checking</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">type_checking</span>
 
 <span class="k">if</span> <span class="n">type_checking</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Any</span>  <span class="c1"># NOQA</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>  <span class="c1"># NOQA</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">fastai.basic_train</span> <span class="k">import</span> <span class="n">Learner</span>  <span class="c1"># NOQA</span>
-    <span class="kn">from</span> <span class="nn">fastai.callbacks</span> <span class="k">import</span> <span class="n">TrackerCallback</span>
+    <span class="kn">from</span> <span class="nn">fastai.basic_train</span> <span class="kn">import</span> <span class="n">Learner</span>  <span class="c1"># NOQA</span>
+    <span class="kn">from</span> <span class="nn">fastai.callbacks</span> <span class="kn">import</span> <span class="n">TrackerCallback</span>
+
     <span class="n">_available</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="n">_import_error</span> <span class="o">=</span> <span class="n">e</span>
@@ -171,24 +173,15 @@
     <span class="n">TrackerCallback</span> <span class="o">=</span> <span class="nb">object</span>
 
 
-<div class="viewcode-block" id="FastAIPruningCallback"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.FastAIPruningCallback">[docs]</a><span class="k">class</span> <span class="nc">FastAIPruningCallback</span><span class="p">(</span><span class="n">TrackerCallback</span><span class="p">):</span>
+<div class="viewcode-block" id="FastAIPruningCallback"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.FastAIPruningCallback">[文档]</a><span class="k">class</span> <span class="nc">FastAIPruningCallback</span><span class="p">(</span><span class="n">TrackerCallback</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;FastAI callback to prune unpromising trials for fastai.</span>
 
 <span class="sd">    .. note::</span>
 <span class="sd">        This callback is for fastai&lt;2.0, not the coming version developed in fastai/fastai_dev.</span>
 
-<span class="sd">    Example:</span>
-
-<span class="sd">        Add a pruning callback which monitors validation loss directly to ``Learner``.</span>
-
-<span class="sd">        .. code::</span>
-
-<span class="sd">            # If registering this callback in construction</span>
-<span class="sd">            from functools import partial</span>
-
-<span class="sd">            learn = Learner(</span>
-<span class="sd">                data, model,</span>
-<span class="sd">                callback_fns=[partial(FastAIPruningCallback, trial=trial, monitor=&#39;valid_loss&#39;)])</span>
+<span class="sd">    See `the example &lt;https://github.com/optuna/optuna/blob/master/</span>
+<span class="sd">    examples/fastai_simple.py&gt;`__</span>
+<span class="sd">    if you want to add a pruning callback which monitors validation loss of a ``Learner``.</span>
 
 <span class="sd">    Example:</span>
 
@@ -215,7 +208,7 @@
 <span class="sd">            details.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">learn</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">monitor</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">learn</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">monitor</span><span class="p">):</span>
         <span class="c1"># type: (Learner, optuna.trial.Trial, str) -&gt; None</span>
 
         <span class="nb">super</span><span class="p">(</span><span class="n">FastAIPruningCallback</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">learn</span><span class="p">,</span> <span class="n">monitor</span><span class="p">)</span>
@@ -236,8 +229,8 @@
         <span class="c1"># - https://github.com/optuna/optuna/issue/655.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_trial</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">step</span><span class="o">=</span><span class="n">epoch</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trial</span><span class="o">.</span><span class="n">should_prune</span><span class="p">():</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Trial was pruned at epoch </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="n">optuna</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">TrialPruned</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Trial was pruned at epoch </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">optuna</span><span class="o">.</span><span class="n">TrialPruned</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
 
 
 <span class="k">def</span> <span class="nf">_check_fastai_availability</span><span class="p">():</span>
@@ -245,10 +238,11 @@
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">_available</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
-            <span class="s1">&#39;fastai is not available. Please install fastai to use this feature. &#39;</span>
-            <span class="s1">&#39;fastai can be installed by executing `$ pip install fastai`. &#39;</span>
-            <span class="s1">&#39;For further information, please refer to the installation guide of fastai. &#39;</span>
-            <span class="s1">&#39;(The actual import error is as follows: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">_import_error</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">)</span>
+            <span class="s2">&quot;fastai is not available. Please install fastai to use this feature. &quot;</span>
+            <span class="s2">&quot;fastai can be installed by executing `$ pip install fastai`. &quot;</span>
+            <span class="s2">&quot;For further information, please refer to the installation guide of fastai. &quot;</span>
+            <span class="s2">&quot;(The actual import error is as follows: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">_import_error</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+        <span class="p">)</span>
 </pre></div>
 
            </div>

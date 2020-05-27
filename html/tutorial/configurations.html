@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Advanced Configurations &mdash; Optuna 1.2.0 documentation</title>
+  <title>Advanced Configurations &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -23,11 +23,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -37,10 +38,10 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="Saving/Resuming Study with RDB Backend" href="rdb.html" />
-    <link rel="prev" title="First Optimization" href="first.html" /> 
+    <link rel="prev" title="第一个优化例子" href="first.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                1.2.0
+                1.4.0
               </div>
             
           
@@ -92,7 +93,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">安装</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="first.html">First Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first.html">第一个优化例子</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced Configurations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#defining-parameter-spaces">Defining Parameter Spaces</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#branches-and-loops">Branches and Loops</a><ul>
@@ -179,9 +180,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="advanced-configurations">
-<span id="configurations"></span><h1>Advanced Configurations<a class="headerlink" href="#advanced-configurations" title="Permalink to this headline">¶</a></h1>
+<span id="configurations"></span><h1>Advanced Configurations<a class="headerlink" href="#advanced-configurations" title="永久链接至标题">¶</a></h1>
 <div class="section" id="defining-parameter-spaces">
-<h2>Defining Parameter Spaces<a class="headerlink" href="#defining-parameter-spaces" title="Permalink to this headline">¶</a></h2>
+<h2>Defining Parameter Spaces<a class="headerlink" href="#defining-parameter-spaces" title="永久链接至标题">¶</a></h2>
 <p>Optuna supports five kinds of parameters.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="c1"># Categorical parameter</span>
@@ -204,7 +205,7 @@
 </div>
 </div>
 <div class="section" id="branches-and-loops">
-<h2>Branches and Loops<a class="headerlink" href="#branches-and-loops" title="Permalink to this headline">¶</a></h2>
+<h2>Branches and Loops<a class="headerlink" href="#branches-and-loops" title="永久链接至标题">¶</a></h2>
 <p>You can use branches or loops depending on the parameter values.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">classifier_name</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;SVC&#39;</span><span class="p">,</span> <span class="s1">&#39;RandomForest&#39;</span><span class="p">])</span>
@@ -223,22 +224,22 @@
 
     <span class="n">layers</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span><span class="p">):</span>
-        <span class="n">n_units</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">suggest_loguniform</span><span class="p">(</span><span class="s1">&#39;n_units_l{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
-        <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">n_units</span><span class="p">))</span>
+        <span class="n">n_units</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">suggest_loguniform</span><span class="p">(</span><span class="s1">&#39;n_units_l</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_units</span><span class="p">))</span>
         <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
-    <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">chainer</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">layers</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Please also refer to <a class="reference external" href="https://github.com/optuna/optuna/tree/master/examples">examples</a>.</p>
 <div class="section" id="note-on-the-number-of-parameters">
-<h3>Note on the Number of Parameters<a class="headerlink" href="#note-on-the-number-of-parameters" title="Permalink to this headline">¶</a></h3>
+<h3>Note on the Number of Parameters<a class="headerlink" href="#note-on-the-number-of-parameters" title="永久链接至标题">¶</a></h3>
 <p>The difficulty of optimization increases roughly exponentially with regard to the number of parameters. That is, the number of necessary trials increases exponentially when you increase the number of parameters, so it is recommended to not add unimportant parameters.</p>
 </div>
 </div>
 <div class="section" id="arguments-for-study-optimize">
-<h2>Arguments for <cite>Study.optimize</cite><a class="headerlink" href="#arguments-for-study-optimize" title="Permalink to this headline">¶</a></h2>
+<h2>Arguments for <cite>Study.optimize</cite><a class="headerlink" href="#arguments-for-study-optimize" title="永久链接至标题">¶</a></h2>
 <p>The method <a class="reference internal" href="../reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a> (and <code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">study</span> <span class="pre">optimize</span></code> CLI command as well)
 has several useful options such as <code class="docutils literal notranslate"><span class="pre">timeout</span></code>.
 For details, please refer to the API reference for <a class="reference internal" href="../reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a>.</p>
@@ -258,7 +259,7 @@ This is useful for use cases such as when it is hard to estimate the computation
         <a href="rdb.html" class="btn btn-neutral float-right" title="Saving/Resuming Study with RDB Backend" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="first.html" class="btn btn-neutral float-left" title="First Optimization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="first.html" class="btn btn-neutral float-left" title="第一个优化例子" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
