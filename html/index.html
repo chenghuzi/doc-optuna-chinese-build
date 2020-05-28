@@ -181,10 +181,10 @@
 <p><a class="reference external" href="http://colab.research.google.com/github/optuna/optuna/blob/master/examples/quickstart.ipynb"><img alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">...</span>
 
-<span class="c1"># Define an objective function to be minimized.</span>
+<span class="c1"># 定义待优化的目标函数</span>
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
 
-    <span class="c1"># Invoke suggest methods of a Trial object to generate hyperparameters.</span>
+    <span class="c1"># 调用 suggest 方法用于给该 Trial 生成超参数。</span>
     <span class="n">regressor_name</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;SVR&#39;</span><span class="p">,</span> <span class="s1">&#39;RandomForest&#39;</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">regressor_name</span> <span class="o">==</span> <span class="s1">&#39;SVR&#39;</span><span class="p">:</span>
         <span class="n">svr_c</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_loguniform</span><span class="p">(</span><span class="s1">&#39;svr_c&#39;</span><span class="p">,</span> <span class="mf">1e-10</span><span class="p">,</span> <span class="mf">1e10</span><span class="p">)</span>
@@ -201,10 +201,10 @@
 
     <span class="n">error</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_val</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">error</span>  <span class="c1"># An objective value linked with the Trial object.</span>
+    <span class="k">return</span> <span class="n">error</span>  <span class="c1"># Trial 对象对应的目标函数值.</span>
 
-<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>  <span class="c1"># Create a new study.</span>
-<span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># Invoke optimization of the objective function.</span>
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>  <span class="c1"># 创建新study.</span>
+<span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># 开始目标函数的优化过程。</span>
 </pre></div>
 </div>
 </div>
@@ -236,7 +236,7 @@ Framework. In KDD (<a class="reference external" href="https://arxiv.org/abs/190
 <li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorial/first.html">第一个优化例子</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial/configurations.html">高级配置</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/rdb.html">Saving/Resuming Study with RDB Backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/rdb.html">用 RDB 后端保存/恢复 Study</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial/distributed.html">Distributed Optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial/cli.html">Command-Line Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial/attributes.html">User Attributes</a></li>

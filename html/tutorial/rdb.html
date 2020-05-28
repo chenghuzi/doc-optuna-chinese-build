@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Saving/Resuming Study with RDB Backend &mdash; Optuna 1.4.0 documentation</title>
+  <title>用 RDB 后端保存/恢复 Study &mdash; Optuna 1.4.0 documentation</title>
   
 
   
@@ -94,10 +94,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="first.html">第一个优化例子</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configurations.html">高级配置</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Saving/Resuming Study with RDB Backend</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#new-study">New Study</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#resume-study">Resume Study</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#experimental-history">Experimental History</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">用 RDB 后端保存/恢复 Study</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#study">新建 Study</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">恢复 Study</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">实验历史记录</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="distributed.html">Distributed Optimization</a></li>
@@ -156,7 +156,7 @@
         
           <li><a href="index.html">Tutorial</a> &raquo;</li>
         
-      <li>Saving/Resuming Study with RDB Backend</li>
+      <li>用 RDB 后端保存/恢复 Study</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -175,26 +175,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="saving-resuming-study-with-rdb-backend">
-<span id="rdb"></span><h1>Saving/Resuming Study with RDB Backend<a class="headerlink" href="#saving-resuming-study-with-rdb-backend" title="Permalink to this headline">¶</a></h1>
-<p>An RDB backend enables persistent experiments (i.e., to save and resume a study) as well as access to history of studies.
-In addition, we can run multi-node optimization tasks with this feature, which is described in <a class="reference internal" href="distributed.html#distributed"><span class="std std-ref">Distributed Optimization</span></a>.</p>
-<p>In this section, let’s try simple examples running on a local environment with SQLite DB.</p>
+  <div class="section" id="rdb-study">
+<span id="rdb"></span><h1>用 RDB 后端保存/恢复 Study<a class="headerlink" href="#rdb-study" title="Permalink to this headline">¶</a></h1>
+<p>RDB后端可以实现持久化实验（即保存和恢复 study）以及访问 study 的历史记录。
+此外，我们还可以利用这个特点来进行多节点优化。具体描述见 <a class="reference internal" href="distributed.html#distributed"><span class="std std-ref">Distributed Optimization</span></a>.</p>
+<p>在本部分中，我们将尝试一个在本地环境下运行SQLite DB的简单例子。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You can also utilize other RDB backends, e.g., PostgreSQL or MySQL, by setting the storage argument to the DB’s URL.
-Please refer to <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls">SQLAlchemy’s document</a> for how to set up the URL.</p>
+<p>通过设置 DB 的 storage URL 参数，你也可以使用其他的 RDB 后端，比如 PostgreSQL 或者 MySQL.
+设置URL的方式参见 <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls">SQLAlchemy 的文档</a>.</p>
 </div>
-<div class="section" id="new-study">
-<h2>New Study<a class="headerlink" href="#new-study" title="Permalink to this headline">¶</a></h2>
-<p>We can create a persistent study by calling <a class="reference internal" href="../reference/study.html#optuna.study.create_study" title="optuna.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> function as follows.
-An SQLite file <code class="docutils literal notranslate"><span class="pre">example.db</span></code> is automatically initialized with a new study record.</p>
+<div class="section" id="study">
+<h2>新建 Study<a class="headerlink" href="#study" title="Permalink to this headline">¶</a></h2>
+<p>通过调用函数 <a class="reference internal" href="../reference/study.html#optuna.study.create_study" title="optuna.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a>，我们可以创建一个持久化的 study.
+创建新 study 会自动初始化一个 SQLite 文件 <code class="docutils literal notranslate"><span class="pre">example.db</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
-<span class="n">study_name</span> <span class="o">=</span> <span class="s1">&#39;example-study&#39;</span>  <span class="c1"># Unique identifier of the study.</span>
+<span class="n">study_name</span> <span class="o">=</span> <span class="s1">&#39;example-study&#39;</span>  <span class="c1"># 一个study 的唯一标识符。</span>
 <span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">study_name</span><span class="o">=</span><span class="n">study_name</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">&#39;sqlite:///example.db&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>To run a study, call <a class="reference internal" href="../reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a> method passing an objective function.</p>
+<p>为了运行一个 study, 我们需要将目标函数传入 <a class="reference internal" href="../reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a> 方法并调用它。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_uniform</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
@@ -203,28 +203,28 @@ An SQLite file <code class="docutils literal notranslate"><span class="pre">exam
 </pre></div>
 </div>
 </div>
-<div class="section" id="resume-study">
-<h2>Resume Study<a class="headerlink" href="#resume-study" title="Permalink to this headline">¶</a></h2>
-<p>To resume a study, instantiate a <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> object passing the study name <code class="docutils literal notranslate"><span class="pre">example-study</span></code> and the DB URL <code class="docutils literal notranslate"><span class="pre">sqlite:///example.db</span></code>.</p>
+<div class="section" id="id1">
+<h2>恢复 Study<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>为了恢复 study, 首先需要初始化一个 <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 对象， 并将该study 的名字 <code class="docutils literal notranslate"><span class="pre">example-study</span></code> 和 DB URL参数 <code class="docutils literal notranslate"><span class="pre">sqlite:///example.db</span></code> 传入其中。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">study_name</span><span class="o">=</span><span class="s1">&#39;example-study&#39;</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">&#39;sqlite:///example.db&#39;</span><span class="p">,</span> <span class="n">load_if_exists</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="experimental-history">
-<h2>Experimental History<a class="headerlink" href="#experimental-history" title="Permalink to this headline">¶</a></h2>
-<p>We can access histories of studies and trials via the <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> class.
-For example, we can get all trials of <code class="docutils literal notranslate"><span class="pre">example-study</span></code> as:</p>
+<div class="section" id="id2">
+<h2>实验历史记录<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>我们可以通过 <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 类来获得 study 和对应 trials的历史记录。
+比如，下面的语句可以获取 <code class="docutils literal notranslate"><span class="pre">example-study</span></code> 的所有 trials.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 <span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">study_name</span><span class="o">=</span><span class="s1">&#39;example-study&#39;</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">&#39;sqlite:///example.db&#39;</span><span class="p">,</span> <span class="n">load_if_exists</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">trials_dataframe</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="s1">&#39;params&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>The method <a class="reference internal" href="../reference/study.html#optuna.study.Study.trials_dataframe" title="optuna.study.Study.trials_dataframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">trials_dataframe()</span></code></a> returns a pandas dataframe like:</p>
+<p><a class="reference internal" href="../reference/study.html#optuna.study.Study.trials_dataframe" title="optuna.study.Study.trials_dataframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">trials_dataframe()</span></code></a> 方法会返回一个如下的 pandas dataframe：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Out:</p>
+<p>输出:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">   number       value  params_x     state</span>
 <span class="go">0       0   25.301959 -3.030105  COMPLETE</span>
 <span class="go">1       1    1.406223  0.814157  COMPLETE</span>
@@ -234,11 +234,11 @@ For example, we can get all trials of <code class="docutils literal notranslate"
 <span class="go">5       5   57.319570  9.570969  COMPLETE</span>
 </pre></div>
 </div>
-<p>A <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> object also provides properties such as <a class="reference internal" href="../reference/study.html#optuna.study.Study.trials" title="optuna.study.Study.trials"><code class="xref py py-attr docutils literal notranslate"><span class="pre">trials</span></code></a>, <a class="reference internal" href="../reference/study.html#optuna.study.Study.best_value" title="optuna.study.Study.best_value"><code class="xref py py-attr docutils literal notranslate"><span class="pre">best_value</span></code></a>, <a class="reference internal" href="../reference/study.html#optuna.study.Study.best_params" title="optuna.study.Study.best_params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">best_params</span></code></a> (see also <a class="reference internal" href="first.html#firstopt"><span class="std std-ref">第一个优化例子</span></a>).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span><span class="o">.</span><span class="n">best_params</span>  <span class="c1"># Get best parameters for the objective function.</span>
-<span class="n">study</span><span class="o">.</span><span class="n">best_value</span>  <span class="c1"># Get best objective value.</span>
-<span class="n">study</span><span class="o">.</span><span class="n">best_trial</span>  <span class="c1"># Get best trial&#39;s information.</span>
-<span class="n">study</span><span class="o">.</span><span class="n">trials</span>  <span class="c1"># Get all trials&#39; information.</span>
+<p><a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 对象也有一些其他属性，比如 <a class="reference internal" href="../reference/study.html#optuna.study.Study.trials" title="optuna.study.Study.trials"><code class="xref py py-attr docutils literal notranslate"><span class="pre">trials</span></code></a>, <a class="reference internal" href="../reference/study.html#optuna.study.Study.best_value" title="optuna.study.Study.best_value"><code class="xref py py-attr docutils literal notranslate"><span class="pre">best_value</span></code></a> 和 <a class="reference internal" href="../reference/study.html#optuna.study.Study.best_params" title="optuna.study.Study.best_params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">best_params</span></code></a> (见 <a class="reference internal" href="first.html#firstopt"><span class="std std-ref">第一个优化例子</span></a>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span><span class="o">.</span><span class="n">best_params</span>  <span class="c1"># 获取目标函数的最佳参数。</span>
+<span class="n">study</span><span class="o">.</span><span class="n">best_value</span>  <span class="c1"># 获取目标函数的最佳值。</span>
+<span class="n">study</span><span class="o">.</span><span class="n">best_trial</span>  <span class="c1"># 获得最佳 trial 的相关信息。</span>
+<span class="n">study</span><span class="o">.</span><span class="n">trials</span>  <span class="c1"># 获得所有 trial 的信息。</span>
 </pre></div>
 </div>
 </div>
