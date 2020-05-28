@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.trial._trial &mdash; Optuna 1.4.0 文档</title>
+  <title>optuna.trial._trial &mdash; Optuna 1.4.0 documentation</title>
   
 
   
@@ -27,7 +27,6 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/language_data.js"></script>
-        <script src="../../../_static/translations.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
@@ -38,8 +37,8 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="索引" href="../../../genindex.html" />
-    <link rel="search" title="搜索" href="../../../search.html" /> 
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -138,7 +137,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
         
       <li>optuna.trial._trial</li>
     
@@ -155,7 +154,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>optuna.trial._trial 源代码</h1><div class="highlight"><pre>
+  <h1>Source code for optuna.trial._trial</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
@@ -187,7 +186,7 @@
     <span class="n">FloatingPointDistributionType</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">UniformDistribution</span><span class="p">,</span> <span class="n">LogUniformDistribution</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="Trial"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial">[文档]</a><span class="k">class</span> <span class="nc">Trial</span><span class="p">(</span><span class="n">BaseTrial</span><span class="p">):</span>
+<div class="viewcode-block" id="Trial"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial">[docs]</a><span class="k">class</span> <span class="nc">Trial</span><span class="p">(</span><span class="n">BaseTrial</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A trial is a process of evaluating an objective function.</span>
 
 <span class="sd">    This object is passed to an objective function and provides interfaces to get parameter</span>
@@ -235,7 +234,7 @@
             <span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_search_space</span>
         <span class="p">)</span>
 
-<div class="viewcode-block" id="Trial.suggest_float"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.suggest_float">[文档]</a>    <span class="k">def</span> <span class="nf">suggest_float</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Trial.suggest_float"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.suggest_float">[docs]</a>    <span class="k">def</span> <span class="nf">suggest_float</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># type: (str, float, float, bool, Optional[float]) -&gt; float</span>
         <span class="sd">&quot;&quot;&quot;Suggest a value for the floating point parameter.</span>
 
@@ -315,7 +314,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">suggest_uniform</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Trial.suggest_uniform"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.suggest_uniform">[文档]</a>    <span class="k">def</span> <span class="nf">suggest_uniform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+<div class="viewcode-block" id="Trial.suggest_uniform"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.suggest_uniform">[docs]</a>    <span class="k">def</span> <span class="nf">suggest_uniform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
         <span class="c1"># type: (str, float, float) -&gt; float</span>
         <span class="sd">&quot;&quot;&quot;Suggest a value for the continuous parameter.</span>
 
@@ -372,7 +371,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_suggest</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">distribution</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Trial.suggest_loguniform"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.suggest_loguniform">[文档]</a>    <span class="k">def</span> <span class="nf">suggest_loguniform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+<div class="viewcode-block" id="Trial.suggest_loguniform"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.suggest_loguniform">[docs]</a>    <span class="k">def</span> <span class="nf">suggest_loguniform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
         <span class="c1"># type: (str, float, float) -&gt; float</span>
         <span class="sd">&quot;&quot;&quot;Suggest a value for the continuous parameter.</span>
 
@@ -428,7 +427,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_suggest</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">distribution</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Trial.suggest_discrete_uniform"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.suggest_discrete_uniform">[文档]</a>    <span class="k">def</span> <span class="nf">suggest_discrete_uniform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+<div class="viewcode-block" id="Trial.suggest_discrete_uniform"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.suggest_discrete_uniform">[docs]</a>    <span class="k">def</span> <span class="nf">suggest_discrete_uniform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
         <span class="c1"># type: (str, float, float, float) -&gt; float</span>
         <span class="sd">&quot;&quot;&quot;Suggest a value for the discrete parameter.</span>
 
@@ -492,7 +491,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_suggest</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">distribution</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Trial.suggest_int"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.suggest_int">[文档]</a>    <span class="k">def</span> <span class="nf">suggest_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Trial.suggest_int"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.suggest_int">[docs]</a>    <span class="k">def</span> <span class="nf">suggest_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="c1"># type: (str, int, int, int, bool) -&gt; int</span>
         <span class="sd">&quot;&quot;&quot;Suggest a value for the integer parameter.</span>
 
@@ -562,7 +561,7 @@
 
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_suggest</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">distribution</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Trial.suggest_categorical"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.suggest_categorical">[文档]</a>    <span class="k">def</span> <span class="nf">suggest_categorical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">choices</span><span class="p">):</span>
+<div class="viewcode-block" id="Trial.suggest_categorical"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.suggest_categorical">[docs]</a>    <span class="k">def</span> <span class="nf">suggest_categorical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">choices</span><span class="p">):</span>
         <span class="c1"># type: (str, Sequence[CategoricalChoiceType]) -&gt; CategoricalChoiceType</span>
         <span class="sd">&quot;&quot;&quot;Suggest a value for the categorical parameter.</span>
 
@@ -615,7 +614,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_suggest</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">CategoricalDistribution</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">choices</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Trial.report"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.report">[文档]</a>    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+<div class="viewcode-block" id="Trial.report"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.report">[docs]</a>    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
         <span class="c1"># type: (float, int) -&gt; None</span>
         <span class="sd">&quot;&quot;&quot;Report an objective function value for a given step.</span>
 
@@ -683,7 +682,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">set_trial_intermediate_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Trial.should_prune"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.should_prune">[文档]</a>    <span class="k">def</span> <span class="nf">should_prune</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Trial.should_prune"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.should_prune">[docs]</a>    <span class="k">def</span> <span class="nf">should_prune</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># type: (Optional[int]) -&gt; bool</span>
         <span class="sd">&quot;&quot;&quot;Suggest whether the trial should be pruned or not.</span>
 
@@ -719,7 +718,7 @@
         <span class="n">trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">get_trial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">pruner</span><span class="o">.</span><span class="n">prune</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Trial.set_user_attr"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.set_user_attr">[文档]</a>    <span class="k">def</span> <span class="nf">set_user_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="Trial.set_user_attr"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.Trial.set_user_attr">[docs]</a>    <span class="k">def</span> <span class="nf">set_user_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="c1"># type: (str, Any) -&gt; None</span>
         <span class="sd">&quot;&quot;&quot;Set user attributes to the trial.</span>
 

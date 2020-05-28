@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.distributions &mdash; Optuna 1.4.0 文档</title>
+  <title>optuna.distributions &mdash; Optuna 1.4.0 documentation</title>
   
 
   
@@ -27,7 +27,6 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/translations.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
@@ -38,8 +37,8 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="索引" href="../../genindex.html" />
-    <link rel="search" title="搜索" href="../../search.html" /> 
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -138,7 +137,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../index.html">模块代码</a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
         
       <li>optuna.distributions</li>
     
@@ -155,7 +154,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>optuna.distributions 源代码</h1><div class="highlight"><pre>
+  <h1>Source code for optuna.distributions</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
 <span class="kn">import</span> <span class="nn">decimal</span>
 <span class="kn">import</span> <span class="nn">json</span>
@@ -265,7 +264,7 @@
         <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">(</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="UniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.UniformDistribution">[文档]</a><span class="k">class</span> <span class="nc">UniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
+<div class="viewcode-block" id="UniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.UniformDistribution">[docs]</a><span class="k">class</span> <span class="nc">UniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A uniform distribution in the linear domain.</span>
 
 <span class="sd">    This object is instantiated by :func:`~optuna.trial.Trial.suggest_uniform`, and passed to</span>
@@ -290,7 +289,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">=</span> <span class="n">low</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">=</span> <span class="n">high</span>
 
-<div class="viewcode-block" id="UniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.UniformDistribution.single">[文档]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="UniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.UniformDistribution.single">[docs]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; bool</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
@@ -305,7 +304,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
 
 
-<div class="viewcode-block" id="LogUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.LogUniformDistribution">[文档]</a><span class="k">class</span> <span class="nc">LogUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
+<div class="viewcode-block" id="LogUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.LogUniformDistribution">[docs]</a><span class="k">class</span> <span class="nc">LogUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A uniform distribution in the log domain.</span>
 
 <span class="sd">    This object is instantiated by :func:`~optuna.trial.Trial.suggest_loguniform`, and passed to</span>
@@ -335,7 +334,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">=</span> <span class="n">low</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">=</span> <span class="n">high</span>
 
-<div class="viewcode-block" id="LogUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.LogUniformDistribution.single">[文档]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LogUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.LogUniformDistribution.single">[docs]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; bool</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
@@ -350,7 +349,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
 
 
-<div class="viewcode-block" id="DiscreteUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.DiscreteUniformDistribution">[文档]</a><span class="k">class</span> <span class="nc">DiscreteUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.DiscreteUniformDistribution">[docs]</a><span class="k">class</span> <span class="nc">DiscreteUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A discretized uniform distribution in the linear domain.</span>
 
 <span class="sd">    This object is instantiated by :func:`~optuna.trial.Trial.suggest_discrete_uniform`, and passed</span>
@@ -378,7 +377,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">=</span> <span class="n">high</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span>
 
-<div class="viewcode-block" id="DiscreteUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.DiscreteUniformDistribution.single">[文档]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.DiscreteUniformDistribution.single">[docs]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; bool</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="p">:</span>
@@ -397,7 +396,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
 
 
-<div class="viewcode-block" id="IntUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.IntUniformDistribution">[文档]</a><span class="k">class</span> <span class="nc">IntUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
+<div class="viewcode-block" id="IntUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.IntUniformDistribution">[docs]</a><span class="k">class</span> <span class="nc">IntUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A uniform distribution on integers.</span>
 
 <span class="sd">    This object is instantiated by :func:`~optuna.trial.Trial.suggest_int`, and passed to</span>
@@ -439,7 +438,7 @@
 
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">param_value_in_external_repr</span><span class="p">)</span>
 
-<div class="viewcode-block" id="IntUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.IntUniformDistribution.single">[文档]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="IntUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.IntUniformDistribution.single">[docs]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; bool</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="p">:</span>
@@ -453,7 +452,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
 
 
-<div class="viewcode-block" id="IntLogUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.IntLogUniformDistribution">[文档]</a><span class="k">class</span> <span class="nc">IntLogUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
+<div class="viewcode-block" id="IntLogUniformDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.IntLogUniformDistribution">[docs]</a><span class="k">class</span> <span class="nc">IntLogUniformDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A uniform distribution on integers in the log domain.</span>
 
 <span class="sd">    This object is instantiated by :func:`~optuna.trial.Trial.suggest_int`, and passed to</span>
@@ -501,7 +500,7 @@
 
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">param_value_in_external_repr</span><span class="p">)</span>
 
-<div class="viewcode-block" id="IntLogUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.IntLogUniformDistribution.single">[文档]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="IntLogUniformDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.IntLogUniformDistribution.single">[docs]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; bool</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="p">:</span>
@@ -515,7 +514,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span></div>
 
 
-<div class="viewcode-block" id="CategoricalDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.CategoricalDistribution">[文档]</a><span class="k">class</span> <span class="nc">CategoricalDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
+<div class="viewcode-block" id="CategoricalDistribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.CategoricalDistribution">[docs]</a><span class="k">class</span> <span class="nc">CategoricalDistribution</span><span class="p">(</span><span class="n">BaseDistribution</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A categorical distribution.</span>
 
 <span class="sd">    This object is instantiated by :func:`~optuna.trial.Trial.suggest_categorical`, and</span>
@@ -570,7 +569,7 @@
                 <span class="s2">&quot;&#39;</span><span class="si">{}</span><span class="s2">&#39; not in </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param_value_in_external_repr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="p">)</span>
             <span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
 
-<div class="viewcode-block" id="CategoricalDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.CategoricalDistribution.single">[文档]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CategoricalDistribution.single"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.CategoricalDistribution.single">[docs]</a>    <span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; bool</span>
 
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span></div>
@@ -592,7 +591,7 @@
 <span class="p">)</span>
 
 
-<div class="viewcode-block" id="json_to_distribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.json_to_distribution">[文档]</a><span class="k">def</span> <span class="nf">json_to_distribution</span><span class="p">(</span><span class="n">json_str</span><span class="p">):</span>
+<div class="viewcode-block" id="json_to_distribution"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.json_to_distribution">[docs]</a><span class="k">def</span> <span class="nf">json_to_distribution</span><span class="p">(</span><span class="n">json_str</span><span class="p">):</span>
     <span class="c1"># type: (str) -&gt; BaseDistribution</span>
     <span class="sd">&quot;&quot;&quot;Deserialize a distribution in JSON format.</span>
 
@@ -615,7 +614,7 @@
     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unknown distribution class: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">json_dict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]))</span></div>
 
 
-<div class="viewcode-block" id="distribution_to_json"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.distribution_to_json">[文档]</a><span class="k">def</span> <span class="nf">distribution_to_json</span><span class="p">(</span><span class="n">dist</span><span class="p">):</span>
+<div class="viewcode-block" id="distribution_to_json"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.distribution_to_json">[docs]</a><span class="k">def</span> <span class="nf">distribution_to_json</span><span class="p">(</span><span class="n">dist</span><span class="p">):</span>
     <span class="c1"># type: (BaseDistribution) -&gt; str</span>
     <span class="sd">&quot;&quot;&quot;Serialize a distribution to JSON format.</span>
 
@@ -630,7 +629,7 @@
     <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">dist</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="n">dist</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()})</span></div>
 
 
-<div class="viewcode-block" id="check_distribution_compatibility"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.check_distribution_compatibility">[文档]</a><span class="k">def</span> <span class="nf">check_distribution_compatibility</span><span class="p">(</span><span class="n">dist_old</span><span class="p">,</span> <span class="n">dist_new</span><span class="p">):</span>
+<div class="viewcode-block" id="check_distribution_compatibility"><a class="viewcode-back" href="../../reference/distributions.html#optuna.distributions.check_distribution_compatibility">[docs]</a><span class="k">def</span> <span class="nf">check_distribution_compatibility</span><span class="p">(</span><span class="n">dist_old</span><span class="p">,</span> <span class="n">dist_new</span><span class="p">):</span>
     <span class="c1"># type: (BaseDistribution, BaseDistribution) -&gt; None</span>
     <span class="sd">&quot;&quot;&quot;A function to check compatibility of two distributions.</span>
 

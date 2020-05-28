@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>第一个优化例子 &mdash; Optuna 1.4.0 文档</title>
+  <title>第一个优化例子 &mdash; Optuna 1.4.0 documentation</title>
   
 
   
@@ -27,7 +27,6 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
-        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -38,9 +37,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="Advanced Configurations" href="configurations.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="高级配置" href="configurations.html" />
     <link rel="prev" title="Tutorial" href="index.html" /> 
 </head>
 
@@ -98,7 +97,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#study">Study 对象</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="configurations.html">Advanced Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configurations.html">高级配置</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rdb.html">Saving/Resuming Study with RDB Backend</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributed.html">Distributed Optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html">Command-Line Interface</a></li>
@@ -176,9 +175,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="firstopt">
-<span id="id1"></span><h1>第一个优化例子<a class="headerlink" href="#firstopt" title="永久链接至标题">¶</a></h1>
+<span id="id1"></span><h1>第一个优化例子<a class="headerlink" href="#firstopt" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
-<h2>二次函数的例子<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<h2>二次函数的例子<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>Optuna 通常用于优化超参数，但是为了举例说明，我们将直接在 IPython shell 中优化一个二次函数。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 </pre></div>
@@ -219,13 +218,13 @@
 </div>
 <p>可以看到，Optuna 找到的最佳 <code class="docutils literal notranslate"><span class="pre">x``的值</span> <span class="pre">是</span> <span class="pre">``2.001707713205946</span></code>. 这非常靠近实际的最优值 <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <p>当Optuna被用于机器学习中的超参数搜索时，目标函数通常是对应模型的损失 (loss) 或者准确度 (accuracy).
 When used to search for hyper-parameters in machine learning, usually the objective function would return the loss or accuracy of the model.</p>
 </div>
 </div>
 <div class="section" id="study">
-<h2>Study 对象<a class="headerlink" href="#study" title="永久链接至标题">¶</a></h2>
+<h2>Study 对象<a class="headerlink" href="#study" title="Permalink to this headline">¶</a></h2>
 <p>下面是几个常用术语：</p>
 <ul class="simple">
 <li><p><strong>Trial</strong>: 目标函数的单次调用</p></li>
@@ -298,7 +297,7 @@ When used to search for hyper-parameters in machine learning, usually the object
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="configurations.html" class="btn btn-neutral float-right" title="Advanced Configurations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="configurations.html" class="btn btn-neutral float-right" title="高级配置" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

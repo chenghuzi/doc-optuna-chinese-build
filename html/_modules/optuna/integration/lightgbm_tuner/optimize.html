@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.integration.lightgbm_tuner.optimize &mdash; Optuna 1.4.0 文档</title>
+  <title>optuna.integration.lightgbm_tuner.optimize &mdash; Optuna 1.4.0 documentation</title>
   
 
   
@@ -27,7 +27,6 @@
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/language_data.js"></script>
-        <script src="../../../../_static/translations.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
@@ -38,8 +37,8 @@
   <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="索引" href="../../../../genindex.html" />
-    <link rel="search" title="搜索" href="../../../../search.html" /> 
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -138,7 +137,7 @@
     
       <li><a href="../../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../../index.html">模块代码</a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
           <li><a href="../lightgbm_tuner.html">optuna.integration.lightgbm_tuner</a> &raquo;</li>
         
@@ -157,7 +156,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>optuna.integration.lightgbm_tuner.optimize 源代码</h1><div class="highlight"><pre>
+  <h1>Source code for optuna.integration.lightgbm_tuner.optimize</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">json</span>
@@ -820,7 +819,7 @@
         <span class="k">return</span> <span class="n">_StepwiseStudy</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="n">step_name</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="LightGBMTuner"><a class="viewcode-back" href="../../../../reference/integration.html#optuna.integration.lightgbm_tuner.LightGBMTuner">[文档]</a><span class="k">class</span> <span class="nc">LightGBMTuner</span><span class="p">(</span><span class="n">LightGBMBaseTuner</span><span class="p">):</span>
+<div class="viewcode-block" id="LightGBMTuner"><a class="viewcode-back" href="../../../../reference/integration.html#optuna.integration.lightgbm_tuner.LightGBMTuner">[docs]</a><span class="k">class</span> <span class="nc">LightGBMTuner</span><span class="p">(</span><span class="n">LightGBMBaseTuner</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Hyperparameter tuner for LightGBM.</span>
 
 <span class="sd">    It optimizes the following hyperparameters in a stepwise manner:</span>
@@ -977,7 +976,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_best_booster</span><span class="p">()</span>
 
-<div class="viewcode-block" id="LightGBMTuner.get_best_booster"><a class="viewcode-back" href="../../../../reference/integration.html#optuna.integration.lightgbm_tuner.LightGBMTuner.get_best_booster">[文档]</a>    <span class="k">def</span> <span class="nf">get_best_booster</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;lgb.Booster&quot;</span><span class="p">:</span>
+<div class="viewcode-block" id="LightGBMTuner.get_best_booster"><a class="viewcode-back" href="../../../../reference/integration.html#optuna.integration.lightgbm_tuner.LightGBMTuner.get_best_booster">[docs]</a>    <span class="k">def</span> <span class="nf">get_best_booster</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;lgb.Booster&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Return the best booster.</span>
 
 <span class="sd">        If the best booster cannot be found, :class:`ValueError` will be raised. To prevent the</span>
@@ -1049,7 +1048,7 @@
         <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="LightGBMTunerCV"><a class="viewcode-back" href="../../../../reference/integration.html#optuna.integration.lightgbm_tuner.LightGBMTunerCV">[文档]</a><span class="k">class</span> <span class="nc">LightGBMTunerCV</span><span class="p">(</span><span class="n">LightGBMBaseTuner</span><span class="p">):</span>
+<div class="viewcode-block" id="LightGBMTunerCV"><a class="viewcode-back" href="../../../../reference/integration.html#optuna.integration.lightgbm_tuner.LightGBMTunerCV">[docs]</a><span class="k">class</span> <span class="nc">LightGBMTunerCV</span><span class="p">(</span><span class="n">LightGBMBaseTuner</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Hyperparameter tuner for LightGBM with cross-validation.</span>
 
 <span class="sd">    It employs the same stepwise approach as</span>

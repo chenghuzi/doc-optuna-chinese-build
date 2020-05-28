@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.exceptions &mdash; Optuna 1.4.0 文档</title>
+  <title>optuna.exceptions &mdash; Optuna 1.4.0 documentation</title>
   
 
   
@@ -27,7 +27,6 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/translations.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
@@ -38,8 +37,8 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="索引" href="../../genindex.html" />
-    <link rel="search" title="搜索" href="../../search.html" /> 
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -138,7 +137,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../index.html">模块代码</a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
         
       <li>optuna.exceptions</li>
     
@@ -155,14 +154,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>optuna.exceptions 源代码</h1><div class="highlight"><pre>
-<div class="viewcode-block" id="OptunaError"><a class="viewcode-back" href="../../reference/exceptions.html#optuna.exceptions.OptunaError">[文档]</a><span></span><span class="k">class</span> <span class="nc">OptunaError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+  <h1>Source code for optuna.exceptions</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="OptunaError"><a class="viewcode-back" href="../../reference/exceptions.html#optuna.exceptions.OptunaError">[docs]</a><span></span><span class="k">class</span> <span class="nc">OptunaError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for Optuna specific errors.&quot;&quot;&quot;</span>
 
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="TrialPruned"><a class="viewcode-back" href="../../reference/exceptions.html#optuna.exceptions.TrialPruned">[文档]</a><span class="k">class</span> <span class="nc">TrialPruned</span><span class="p">(</span><span class="n">OptunaError</span><span class="p">):</span>
+<div class="viewcode-block" id="TrialPruned"><a class="viewcode-back" href="../../reference/exceptions.html#optuna.exceptions.TrialPruned">[docs]</a><span class="k">class</span> <span class="nc">TrialPruned</span><span class="p">(</span><span class="n">OptunaError</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Exception for pruned trials.</span>
 
 <span class="sd">    This error tells a trainer that the current :class:`~optuna.trial.Trial` was pruned. It is</span>
@@ -207,7 +206,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="CLIUsageError"><a class="viewcode-back" href="../../reference/exceptions.html#optuna.exceptions.CLIUsageError">[文档]</a><span class="k">class</span> <span class="nc">CLIUsageError</span><span class="p">(</span><span class="n">OptunaError</span><span class="p">):</span>
+<div class="viewcode-block" id="CLIUsageError"><a class="viewcode-back" href="../../reference/exceptions.html#optuna.exceptions.CLIUsageError">[docs]</a><span class="k">class</span> <span class="nc">CLIUsageError</span><span class="p">(</span><span class="n">OptunaError</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Exception for CLI.</span>
 
 <span class="sd">    CLI raises this exception when it receives invalid configuration.</span>
@@ -216,7 +215,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="StorageInternalError"><a class="viewcode-back" href="../../reference/exceptions.html#optuna.exceptions.StorageInternalError">[文档]</a><span class="k">class</span> <span class="nc">StorageInternalError</span><span class="p">(</span><span class="n">OptunaError</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageInternalError"><a class="viewcode-back" href="../../reference/exceptions.html#optuna.exceptions.StorageInternalError">[docs]</a><span class="k">class</span> <span class="nc">StorageInternalError</span><span class="p">(</span><span class="n">OptunaError</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Exception for storage operation.</span>
 
 <span class="sd">    This error is raised when an operation failed in backend DB of storage.</span>
@@ -225,7 +224,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="DuplicatedStudyError"><a class="viewcode-back" href="../../reference/exceptions.html#optuna.exceptions.DuplicatedStudyError">[文档]</a><span class="k">class</span> <span class="nc">DuplicatedStudyError</span><span class="p">(</span><span class="n">OptunaError</span><span class="p">):</span>
+<div class="viewcode-block" id="DuplicatedStudyError"><a class="viewcode-back" href="../../reference/exceptions.html#optuna.exceptions.DuplicatedStudyError">[docs]</a><span class="k">class</span> <span class="nc">DuplicatedStudyError</span><span class="p">(</span><span class="n">OptunaError</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Exception for a duplicated study name.</span>
 
 <span class="sd">    This error is raised when a specified study name already exists in the storage.</span>

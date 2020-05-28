@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Pruners &mdash; Optuna 1.4.0 文档</title>
+  <title>Pruners &mdash; Optuna 1.4.0 documentation</title>
   
 
   
@@ -27,7 +27,6 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
-        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -38,8 +37,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Samplers" href="samplers.html" />
     <link rel="prev" title="Trial" href="multi_objective/trial.html" /> 
 </head>
@@ -178,27 +177,27 @@
            <div itemprop="articleBody">
             
   <span class="target" id="module-optuna.pruners"></span><div class="section" id="pruners">
-<h1>Pruners<a class="headerlink" href="#pruners" title="永久链接至标题">¶</a></h1>
+<h1>Pruners<a class="headerlink" href="#pruners" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="optuna.pruners.BasePruner">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.pruners.</code><code class="sig-name descname">BasePruner</code><a class="reference internal" href="../_modules/optuna/pruners/base.html#BasePruner"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.pruners.BasePruner" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.pruners.</code><code class="sig-name descname">BasePruner</code><a class="reference internal" href="../_modules/optuna/pruners/base.html#BasePruner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.pruners.BasePruner" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base class for pruners.</p>
 <dl class="py method">
 <dt id="optuna.pruners.BasePruner.prune">
-<em class="property">abstract </em><code class="sig-name descname">prune</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span></em>, <em class="sig-param"><span class="n">trial</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/pruners/base.html#BasePruner.prune"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.pruners.BasePruner.prune" title="永久链接至目标">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">prune</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span></em>, <em class="sig-param"><span class="n">trial</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/pruners/base.html#BasePruner.prune"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.pruners.BasePruner.prune" title="Permalink to this definition">¶</a></dt>
 <dd><p>Judge whether the trial should be pruned based on the reported values.</p>
 <p>Note that this method is not supposed to be called by library users. Instead,
 <a class="reference internal" href="trial.html#optuna.trial.Trial.report" title="optuna.trial.Trial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.report()</span></code></a> and <a class="reference internal" href="trial.html#optuna.trial.Trial.should_prune" title="optuna.trial.Trial.should_prune"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.should_prune()</span></code></a> provide
 user interfaces to implement pruning mechanism in an objective function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>study</strong> – Study object of the target study.</p></li>
 <li><p><strong>trial</strong> – FrozenTrial object of the target trial.
 Take a copy before modifying this object.</p></li>
 </ul>
 </dd>
-<dt class="field-even">返回</dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A boolean value representing whether the trial should be pruned.</p>
 </dd>
 </dl>
@@ -208,11 +207,11 @@ Take a copy before modifying this object.</p></li>
 
 <dl class="py class">
 <dt id="optuna.pruners.MedianPruner">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.pruners.</code><code class="sig-name descname">MedianPruner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_startup_trials</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">n_warmup_steps</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">interval_steps</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/pruners/median.html#MedianPruner"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.pruners.MedianPruner" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.pruners.</code><code class="sig-name descname">MedianPruner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_startup_trials</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">n_warmup_steps</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">interval_steps</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/pruners/median.html#MedianPruner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.pruners.MedianPruner" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pruner using the median stopping rule.</p>
 <p>Prune if the trial’s best intermediate result is worse than median of intermediate results of
 previous trials at the same step.</p>
-<p class="rubric">示例</p>
+<p class="rubric">Example</p>
 <p>We minimize an objective function with the median stopping rule.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
@@ -249,7 +248,7 @@ previous trials at the same step.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n_startup_trials</strong> – Pruning is disabled until the given number of trials finish in the same study.</p></li>
 <li><p><strong>n_warmup_steps</strong> – Pruning is disabled until the trial exceeds the given number of step.</p></li>
@@ -263,9 +262,9 @@ will be postponed until a value is reported.</p></li>
 
 <dl class="py class">
 <dt id="optuna.pruners.NopPruner">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.pruners.</code><code class="sig-name descname">NopPruner</code><a class="reference internal" href="../_modules/optuna/pruners/nop.html#NopPruner"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.pruners.NopPruner" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.pruners.</code><code class="sig-name descname">NopPruner</code><a class="reference internal" href="../_modules/optuna/pruners/nop.html#NopPruner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.pruners.NopPruner" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pruner which never prunes trials.</p>
-<p class="rubric">示例</p>
+<p class="rubric">Example</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDClassifier</span>
@@ -303,10 +302,10 @@ will be postponed until a value is reported.</p></li>
 
 <dl class="py class">
 <dt id="optuna.pruners.PercentilePruner">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.pruners.</code><code class="sig-name descname">PercentilePruner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">percentile</span></em>, <em class="sig-param"><span class="n">n_startup_trials</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">n_warmup_steps</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">interval_steps</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/pruners/percentile.html#PercentilePruner"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.pruners.PercentilePruner" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.pruners.</code><code class="sig-name descname">PercentilePruner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">percentile</span></em>, <em class="sig-param"><span class="n">n_startup_trials</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">n_warmup_steps</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">interval_steps</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/pruners/percentile.html#PercentilePruner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.pruners.PercentilePruner" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pruner to keep the specified percentile of the trials.</p>
 <p>Prune if the best intermediate value is in the bottom percentile among trials at the same step.</p>
-<p class="rubric">示例</p>
+<p class="rubric">Example</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDClassifier</span>
@@ -342,7 +341,7 @@ will be postponed until a value is reported.</p></li>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>percentile</strong> – Percentile which must be between 0 and 100 inclusive
 (e.g., When given 25.0, top of 25th percentile trials are kept).</p></li>
@@ -358,7 +357,7 @@ will be postponed until a value is reported. Value must be at least 1.</p></li>
 
 <dl class="py class">
 <dt id="optuna.pruners.SuccessiveHalvingPruner">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.pruners.</code><code class="sig-name descname">SuccessiveHalvingPruner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">min_resource</span><span class="o">=</span><span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">reduction_factor</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">min_early_stopping_rate</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/pruners/successive_halving.html#SuccessiveHalvingPruner"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.pruners.SuccessiveHalvingPruner" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.pruners.</code><code class="sig-name descname">SuccessiveHalvingPruner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">min_resource</span><span class="o">=</span><span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">reduction_factor</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">min_early_stopping_rate</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/pruners/successive_halving.html#SuccessiveHalvingPruner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.pruners.SuccessiveHalvingPruner" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pruner using Asynchronous Successive Halving Algorithm.</p>
 <p><a class="reference external" href="https://arxiv.org/abs/1502.07943">Successive Halving</a> is a bandit-based algorithm to
 identify the best one among multiple configurations. This class implements an asynchronous
@@ -368,7 +367,7 @@ version of Successive Halving. Please refer to the paper of
 resource, referred to as <span class="math notranslate nohighlight">\(R\)</span> in the paper. The maximum resource allocated to a trial is
 typically limited inside the objective function (e.g., <code class="docutils literal notranslate"><span class="pre">step</span></code> number in <a class="reference external" href="https://github.com/optuna/optuna/tree/c5777b3e/examples/pruning/simple.py#L31">simple.py</a>,
 <code class="docutils literal notranslate"><span class="pre">EPOCH</span></code> number in <a class="reference external" href="https://github.com/optuna/optuna/tree/c5777b3e/examples/pruning/chainer_integration.py#L65">chainer_integration.py</a>).</p>
-<p class="rubric">示例</p>
+<p class="rubric">Example</p>
 <p>We minimize an objective function with <code class="docutils literal notranslate"><span class="pre">SuccessiveHalvingPruner</span></code>.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
@@ -403,7 +402,7 @@ typically limited inside the objective function (e.g., <code class="docutils lit
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>min_resource</strong> – <p>A parameter for specifying the minimum resource allocated to a trial
 (in the <a class="reference external" href="http://arxiv.org/abs/1810.05934">paper</a> this parameter is
@@ -426,7 +425,7 @@ If the trial won the competition, it runs until the next completion point (i.e.,
 + \mathsf{rung})}\)</span> steps)
 and repeats the same procedure.</p>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <p>If the step of the last intermediate value may change with each trial, please
 manually specify the minimum possible step to <code class="docutils literal notranslate"><span class="pre">min_resource</span></code>.</p>
 </div>
@@ -448,7 +447,7 @@ referred to as <span class="math notranslate nohighlight">\(s\)</span>).</p>
 
 <dl class="py class">
 <dt id="optuna.pruners.HyperbandPruner">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.pruners.</code><code class="sig-name descname">HyperbandPruner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">min_resource</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">max_resource</span><span class="o">=</span><span class="default_value">auto</span></em>, <em class="sig-param"><span class="n">reduction_factor</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">n_brackets</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">min_early_stopping_rate_low</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/pruners/hyperband.html#HyperbandPruner"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.pruners.HyperbandPruner" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.pruners.</code><code class="sig-name descname">HyperbandPruner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">min_resource</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">max_resource</span><span class="o">=</span><span class="default_value">auto</span></em>, <em class="sig-param"><span class="n">reduction_factor</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">n_brackets</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">min_early_stopping_rate_low</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/pruners/hyperband.html#HyperbandPruner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.pruners.HyperbandPruner" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pruner using Hyperband.</p>
 <p>As SuccessiveHalving (SHA) requires the number of configurations
 <span class="math notranslate nohighlight">\(n\)</span> as its hyperparameter.  For a given finite budget <span class="math notranslate nohighlight">\(B\)</span>,
@@ -457,7 +456,7 @@ As you can see, there will be a trade-off of <span class="math notranslate nohig
 <a class="reference external" href="http://www.jmlr.org/papers/volume18/16-558/16-558.pdf">Hyperband</a> attacks this trade-off
 by trying different <span class="math notranslate nohighlight">\(n\)</span> values for a fixed budget.</p>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <ul class="simple">
 <li><p>In the Hyperband paper, the counterpart of <a class="reference internal" href="samplers.html#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSampler</span></code></a>
 is used.</p></li>
@@ -467,7 +466,7 @@ shows that <a class="reference internal" href="#optuna.pruners.HyperbandPruner" 
 </ul>
 </div>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <p>If you use <code class="docutils literal notranslate"><span class="pre">HyperbandPruner</span></code> with <a class="reference internal" href="samplers.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a>,
 it’s recommended to consider to set larger <code class="docutils literal notranslate"><span class="pre">n_trials</span></code> or <code class="docutils literal notranslate"><span class="pre">timeout</span></code> to make full use of
 the characteristics of <a class="reference internal" href="samplers.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a>
@@ -481,7 +480,7 @@ for <a class="reference internal" href="samplers.html#optuna.samplers.TPESampler
 at least <span class="math notranslate nohighlight">\(4 \times 10\)</span> trials are consumed for startup.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <p>Hyperband has several <a class="reference internal" href="#optuna.pruners.SuccessiveHalvingPruner" title="optuna.pruners.SuccessiveHalvingPruner"><code class="xref py py-class docutils literal notranslate"><span class="pre">SuccessiveHalvingPruner</span></code></a>. Each
 <a class="reference internal" href="#optuna.pruners.SuccessiveHalvingPruner" title="optuna.pruners.SuccessiveHalvingPruner"><code class="xref py py-class docutils literal notranslate"><span class="pre">SuccessiveHalvingPruner</span></code></a> is referred as “bracket” in the original
 paper. The number of brackets is an important factor to control the early stopping behavior
@@ -491,7 +490,7 @@ of Hyperband and is automatically determined by <code class="docutils literal no
 Please set <code class="docutils literal notranslate"><span class="pre">reduction_factor</span></code> so that the number of brackets is not too large　(about 4 ~
 6 in most use cases).　Please see Section 3.6 of the <a class="reference external" href="http://www.jmlr.org/papers/volume18/16-558/16-558.pdf">original paper</a> for the detail.</p>
 </div>
-<p class="rubric">示例</p>
+<p class="rubric">Example</p>
 <p>We minimize an objective function with Hyperband pruning algorithm.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
@@ -532,7 +531,7 @@ Please set <code class="docutils literal notranslate"><span class="pre">reductio
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>min_resource</strong> – A parameter for specifying the minimum resource allocated to a trial noted as <span class="math notranslate nohighlight">\(r\)</span>
 in the paper. A smaller <span class="math notranslate nohighlight">\(r\)</span> will give a result faster, but a larger
@@ -544,14 +543,14 @@ match the maximum iteration steps (e.g., the number of epochs for neural network
 When this argument is “auto”, the maximum resource is estimated according to the
 completed trials. The default value of this argument is “auto”.</p>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <p>With “auto”, the maximum resource will be the largest step reported by
 <a class="reference internal" href="trial.html#optuna.trial.Trial.report" title="optuna.trial.Trial.report"><code class="xref py py-meth docutils literal notranslate"><span class="pre">report()</span></code></a> in the first, or one of the first if trained in
 parallel, completed trial. No trials will be pruned until the maximum resource is
 determined.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <p>If the step of the last intermediate value may change with each trial, please
 manually specify the maximum possible step to <code class="docutils literal notranslate"><span class="pre">max_resource</span></code>.</p>
 </div>
@@ -560,7 +559,7 @@ manually specify the maximum possible step to <code class="docutils literal notr
 <span class="math notranslate nohighlight">\(\eta\)</span> in the paper.
 See the details for <a class="reference internal" href="#optuna.pruners.SuccessiveHalvingPruner" title="optuna.pruners.SuccessiveHalvingPruner"><code class="xref py py-class docutils literal notranslate"><span class="pre">SuccessiveHalvingPruner</span></code></a>.</p></li>
 <li><p><strong>n_brackets</strong> – <div class="deprecated">
-<p><span class="versionmodified deprecated">1.4.0 版后已移除: </span>This argument will be removed from <a class="reference internal" href="#optuna.pruners.HyperbandPruner" title="optuna.pruners.HyperbandPruner"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperbandPruner</span></code></a>. The
+<p><span class="versionmodified deprecated">Deprecated since version 1.4.0: </span>This argument will be removed from <a class="reference internal" href="#optuna.pruners.HyperbandPruner" title="optuna.pruners.HyperbandPruner"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperbandPruner</span></code></a>. The
 number of brackets are automatically determined based on <code class="docutils literal notranslate"><span class="pre">min_resource</span></code>,
 <code class="docutils literal notranslate"><span class="pre">max_resource</span></code> and <code class="docutils literal notranslate"><span class="pre">reduction_factor</span></code>.</p>
 </div>
@@ -568,7 +567,7 @@ number of brackets are automatically determined based on <code class="docutils l
 Defaults to <span class="math notranslate nohighlight">\(4\)</span>.</p>
 </p></li>
 <li><p><strong>min_early_stopping_rate_low</strong> – <div class="deprecated">
-<p><span class="versionmodified deprecated">1.4.0 版后已移除: </span>This argument will be removed from <a class="reference internal" href="#optuna.pruners.HyperbandPruner" title="optuna.pruners.HyperbandPruner"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperbandPruner</span></code></a>.</p>
+<p><span class="versionmodified deprecated">Deprecated since version 1.4.0: </span>This argument will be removed from <a class="reference internal" href="#optuna.pruners.HyperbandPruner" title="optuna.pruners.HyperbandPruner"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperbandPruner</span></code></a>.</p>
 </div>
 <p>A parameter for specifying the minimum early-stopping rate.
 This parameter is related to a parameter that is referred to as <span class="math notranslate nohighlight">\(s\)</span> and used in
@@ -579,7 +578,7 @@ The minimum early stopping rate for <span class="math notranslate nohighlight">\
 </dd>
 </dl>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <p>Added in v1.1.0 as an experimental feature. The interface may change in newer versions
 without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.1.0">https://github.com/optuna/optuna/releases/tag/v1.1.0</a>.</p>
 </div>
@@ -587,11 +586,11 @@ without prior notice. See <a class="reference external" href="https://github.com
 
 <dl class="py class">
 <dt id="optuna.pruners.ThresholdPruner">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.pruners.</code><code class="sig-name descname">ThresholdPruner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lower</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">upper</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_warmup_steps</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">interval_steps</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/pruners/threshold.html#ThresholdPruner"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.pruners.ThresholdPruner" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.pruners.</code><code class="sig-name descname">ThresholdPruner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lower</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">upper</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_warmup_steps</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">interval_steps</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/pruners/threshold.html#ThresholdPruner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.pruners.ThresholdPruner" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pruner to detect outlying metrics of the trials.</p>
 <p>Prune if a metric exceeds upper threshold,
 falls behind lower threshold or reaches <code class="docutils literal notranslate"><span class="pre">nan</span></code>.</p>
-<p class="rubric">示例</p>
+<p class="rubric">Example</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">create_study</span>
 <span class="kn">from</span> <span class="nn">optuna.pruners</span> <span class="kn">import</span> <span class="n">ThresholdPruner</span>
 <span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">TrialPruned</span>

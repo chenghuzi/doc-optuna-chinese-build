@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User-Defined Sampler &mdash; Optuna 1.4.0 文档</title>
+  <title>User-Defined Sampler &mdash; Optuna 1.4.0 documentation</title>
   
 
   
@@ -27,7 +27,6 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
-        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -38,8 +37,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="API Reference" href="../reference/index.html" />
     <link rel="prev" title="Pruning Unpromising Trials" href="pruning.html" /> 
 </head>
@@ -94,7 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">安装</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="first.html">第一个优化例子</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configurations.html">Advanced Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configurations.html">高级配置</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rdb.html">Saving/Resuming Study with RDB Backend</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributed.html">Distributed Optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html">Command-Line Interface</a></li>
@@ -176,7 +175,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="user-defined-sampler">
-<span id="sampler"></span><h1>User-Defined Sampler<a class="headerlink" href="#user-defined-sampler" title="永久链接至标题">¶</a></h1>
+<span id="sampler"></span><h1>User-Defined Sampler<a class="headerlink" href="#user-defined-sampler" title="Permalink to this headline">¶</a></h1>
 <p>Thanks to user-defined samplers, you can:</p>
 <ul class="simple">
 <li><p>experiment your own sampling algorithms,</p></li>
@@ -185,7 +184,7 @@
 </ul>
 <p>This section describes the internal behavior of sampler classes and shows an example of implementing a user-defined sampler.</p>
 <div class="section" id="overview-of-sampler">
-<h2>Overview of Sampler<a class="headerlink" href="#overview-of-sampler" title="永久链接至标题">¶</a></h2>
+<h2>Overview of Sampler<a class="headerlink" href="#overview-of-sampler" title="Permalink to this headline">¶</a></h2>
 <p>A sampler has the responsibility to determine the parameter values to be evaluated in a trial.
 When a <cite>suggest</cite> API (e.g., <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a>) is called inside an objective function, the corresponding distribution object (e.g., <a class="reference internal" href="../reference/distributions.html#optuna.distributions.UniformDistribution" title="optuna.distributions.UniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">UniformDistribution</span></code></a>) is created internally. A sampler samples a parameter value from the distribution. The sampled value is returned to the caller of the <cite>suggest</cite> API and evaluated in the objective function.</p>
 <p>To create a new sampler, you need to define a class that inherits <a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a>.
@@ -196,12 +195,12 @@ The base class has three abstract methods;
 <p>As the method names imply, Optuna supports two types of sampling: one is <strong>relative sampling</strong> that can consider the correlation of the parameters in a trial, and the other is <strong>independent sampling</strong> that samples each parameter independently.</p>
 <p>At the beginning of a trial, <a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-meth docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a> is called to provide the relative search space for the trial. Then, <a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.sample_relative" title="optuna.samplers.BaseSampler.sample_relative"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sample_relative()</span></code></a> is invoked to sample relative parameters from the search space. During the execution of the objective function, <a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.sample_independent" title="optuna.samplers.BaseSampler.sample_independent"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sample_independent()</span></code></a> is used to sample parameters that don’t belong to the relative search space.</p>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <p>Please refer to the document of <a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a> for further details.</p>
 </div>
 </div>
 <div class="section" id="an-example-implementing-simulatedannealingsampler">
-<h2>An Example: Implementing SimulatedAnnealingSampler<a class="headerlink" href="#an-example-implementing-simulatedannealingsampler" title="永久链接至标题">¶</a></h2>
+<h2>An Example: Implementing SimulatedAnnealingSampler<a class="headerlink" href="#an-example-implementing-simulatedannealingsampler" title="Permalink to this headline">¶</a></h2>
 <p>For example, the following code defines a sampler based on
 <a class="reference external" href="https://en.wikipedia.org/wiki/Simulated_annealing">Simulated Annealing (SA)</a>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -263,7 +262,7 @@ The base class has three abstract methods;
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <p>In favor of code simplicity, the above implementation doesn’t support some features (e.g., maximization).
 If you’re interested in how to support those features, please see
 <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/samplers/simulated_annealing_sampler.py">examples/samplers/simulated_annealing.py</a>.</p>
@@ -282,7 +281,7 @@ If you’re interested in how to support those features, please see
 <p>In this optimization, the values of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> parameters are sampled by using
 <code class="docutils literal notranslate"><span class="pre">SimulatedAnnealingSampler.sample_relative</span></code> method.</p>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <p>Strictly speaking, in the first trial,
 <code class="docutils literal notranslate"><span class="pre">SimulatedAnnealingSampler.sample_independent</span></code> method is used to sample parameter values.
 Because <a class="reference internal" href="../reference/samplers.html#optuna.samplers.intersection_search_space" title="optuna.samplers.intersection_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">intersection_search_space()</span></code></a> used in

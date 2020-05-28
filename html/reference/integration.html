@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Integration &mdash; Optuna 1.4.0 文档</title>
+  <title>Integration &mdash; Optuna 1.4.0 documentation</title>
   
 
   
@@ -27,7 +27,6 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
-        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -38,8 +37,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Logging" href="logging.html" />
     <link rel="prev" title="Hyperparameter Importance" href="importance.html" /> 
 </head>
@@ -178,16 +177,16 @@
            <div itemprop="articleBody">
             
   <span class="target" id="module-optuna.integration"></span><div class="section" id="integration">
-<h1>Integration<a class="headerlink" href="#integration" title="永久链接至标题">¶</a></h1>
+<h1>Integration<a class="headerlink" href="#integration" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="optuna.integration.ChainerPruningExtension">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">ChainerPruningExtension</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">observation_key</span></em>, <em class="sig-param"><span class="n">pruner_trigger</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/chainer.html#ChainerPruningExtension"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.ChainerPruningExtension" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">ChainerPruningExtension</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">observation_key</span></em>, <em class="sig-param"><span class="n">pruner_trigger</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/chainer.html#ChainerPruningExtension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.ChainerPruningExtension" title="Permalink to this definition">¶</a></dt>
 <dd><p>Chainer extension to prune unpromising trials.</p>
 <p>See <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/pruning/chainer_integration.py">the example</a>
 if you want to add a pruning extension which observes validation
 accuracy of a <a class="reference external" href="https://docs.chainer.org/en/stable/reference/generated/chainer.training.Trainer.html">Chainer Trainer</a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>trial</strong> – A <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> corresponding to the current evaluation of the
 objective function.</p></li>
@@ -206,10 +205,10 @@ unit like <code class="docutils literal notranslate"><span class="pre">(1,</span
 
 <dl class="py class">
 <dt id="optuna.integration.ChainerMNStudy">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">ChainerMNStudy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span></em>, <em class="sig-param"><span class="n">comm</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/chainermn.html#ChainerMNStudy"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.ChainerMNStudy" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">ChainerMNStudy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span></em>, <em class="sig-param"><span class="n">comm</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/chainermn.html#ChainerMNStudy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.ChainerMNStudy" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper of <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> to incorporate Optuna with ChainerMN.</p>
 <div class="admonition seealso">
-<p class="admonition-title">参见</p>
+<p class="admonition-title">See also</p>
 <p><code class="xref py py-class docutils literal notranslate"><span class="pre">ChainerMNStudy</span></code> provides the same interface as
 <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>. Please refer to <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.study.Study</span></code></a> for further
 details.</p>
@@ -218,7 +217,7 @@ details.</p>
 if you want to optimize an objective function that trains neural network
 written with ChainerMN.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>study</strong> – A <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> object.</p></li>
 <li><p><strong>comm</strong> – A <a class="reference external" href="https://docs.chainer.org/en/stable/chainermn/reference/index.html#communicators">ChainerMN communicator</a>.</p></li>
@@ -227,7 +226,7 @@ written with ChainerMN.</p>
 </dl>
 <dl class="py method">
 <dt id="optuna.integration.ChainerMNStudy.optimize">
-<code class="sig-name descname">optimize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em>, <em class="sig-param"><span class="n">n_trials</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">catch</span><span class="o">=</span><span class="default_value">()</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/chainermn.html#ChainerMNStudy.optimize"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.ChainerMNStudy.optimize" title="永久链接至目标">¶</a></dt>
+<code class="sig-name descname">optimize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em>, <em class="sig-param"><span class="n">n_trials</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">catch</span><span class="o">=</span><span class="default_value">()</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/chainermn.html#ChainerMNStudy.optimize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.ChainerMNStudy.optimize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optimize an objective function.</p>
 <p>This method provides the same interface as <a class="reference internal" href="study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.study.Study.optimize()</span></code></a> except
 the absence of <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code> argument.</p>
@@ -237,9 +236,9 @@ the absence of <code class="docutils literal notranslate"><span class="pre">n_jo
 
 <dl class="py class">
 <dt id="optuna.integration.CmaEsSampler">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">CmaEsSampler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x0</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sigma0</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cma_stds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">seed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cma_opts</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_startup_trials</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">independent_sampler</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">warn_independent_sampling</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/cma.html#CmaEsSampler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.CmaEsSampler" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">CmaEsSampler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x0</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sigma0</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cma_stds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">seed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cma_opts</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_startup_trials</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">independent_sampler</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">warn_independent_sampling</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/cma.html#CmaEsSampler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.CmaEsSampler" title="Permalink to this definition">¶</a></dt>
 <dd><p>A Sampler using cma library as the backend.</p>
-<p class="rubric">示例</p>
+<p class="rubric">Example</p>
 <p>Optimize a simple quadratic function by using <a class="reference internal" href="#optuna.integration.CmaEsSampler" title="optuna.integration.CmaEsSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">CmaEsSampler</span></code></a>.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 
@@ -256,7 +255,7 @@ the absence of <code class="docutils literal notranslate"><span class="pre">n_jo
 <p>Note that parallel execution of trials may affect the optimization performance of CMA-ES,
 especially if the number of trials running in parallel exceeds the population size.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x0</strong> – A dictionary of an initial parameter values for CMA-ES. By default, the mean of <code class="docutils literal notranslate"><span class="pre">low</span></code>
 and <code class="docutils literal notranslate"><span class="pre">high</span></code> for each distribution is used.
@@ -281,16 +280,16 @@ sampling. The parameters not contained in the relative search space are sampled
 by this sampler.
 The search space for <a class="reference internal" href="#optuna.integration.CmaEsSampler" title="optuna.integration.CmaEsSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">CmaEsSampler</span></code></a> is determined by
 <a class="reference internal" href="samplers.html#optuna.samplers.intersection_search_space" title="optuna.samplers.intersection_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">intersection_search_space()</span></code></a>.</p>
-<p>If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is specified, <a class="reference internal" href="samplers.html#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSampler</span></code></a> is used
+<p>If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is specified, <a class="reference internal" href="samplers.html#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSampler</span></code></a> is used
 as the default.</p>
 <div class="admonition seealso">
-<p class="admonition-title">参见</p>
+<p class="admonition-title">See also</p>
 <p><a class="reference internal" href="samplers.html#module-optuna.samplers" title="optuna.samplers"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.samplers</span></code></a> module provides built-in independent samplers
 such as <a class="reference internal" href="samplers.html#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSampler</span></code></a> and
 <a class="reference internal" href="samplers.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a>.</p>
 </div>
 </p></li>
-<li><p><strong>warn_independent_sampling</strong> – <p>If this is <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, a warning message is emitted when
+<li><p><strong>warn_independent_sampling</strong> – <p>If this is <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, a warning message is emitted when
 the value of a parameter is sampled by using an independent sampler.</p>
 <p>Note that the parameters of the first trial in a study are always sampled
 via an independent sampler, so no warning messages are emitted in this case.</p>
@@ -300,7 +299,7 @@ via an independent sampler, so no warning messages are emitted in this case.</p>
 </dl>
 <dl class="py method">
 <dt id="optuna.integration.CmaEsSampler.reseed_rng">
-<code class="sig-name descname">reseed_rng</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/integration/cma.html#CmaEsSampler.reseed_rng"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.CmaEsSampler.reseed_rng" title="永久链接至目标">¶</a></dt>
+<code class="sig-name descname">reseed_rng</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/integration/cma.html#CmaEsSampler.reseed_rng"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.CmaEsSampler.reseed_rng" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reseed sampler’s random number generator.</p>
 <p>This method is called by the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> instance if trials are executed
 in parallel with the option <code class="docutils literal notranslate"><span class="pre">n_jobs&gt;1</span></code>. In that case, the sampler instance will be
@@ -313,15 +312,15 @@ number generator.</p>
 
 <dl class="py class">
 <dt id="optuna.integration.FastAIPruningCallback">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">FastAIPruningCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">monitor</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/fastai.html#FastAIPruningCallback"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.FastAIPruningCallback" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">FastAIPruningCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">monitor</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/fastai.html#FastAIPruningCallback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.FastAIPruningCallback" title="Permalink to this definition">¶</a></dt>
 <dd><p>FastAI callback to prune unpromising trials for fastai.</p>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <p>This callback is for fastai&lt;2.0, not the coming version developed in fastai/fastai_dev.</p>
 </div>
 <p>See <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/fastai_simple.py">the example</a>
 if you want to add a pruning callback which monitors validation loss of a <code class="docutils literal notranslate"><span class="pre">Learner</span></code>.</p>
-<p class="rubric">示例</p>
+<p class="rubric">Example</p>
 <p>Register a pruning callback to <code class="docutils literal notranslate"><span class="pre">learn.fit</span></code> and <code class="docutils literal notranslate"><span class="pre">learn.fit_one_cycle</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">FastAIPruningCallback</span><span class="p">(</span><span class="n">learn</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="s1">&#39;valid_loss&#39;</span><span class="p">)])</span>
 <span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span>
@@ -330,7 +329,7 @@ if you want to add a pruning callback which monitors validation loss of a <code 
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>learn</strong> – <a class="reference external" href="https://docs.fast.ai/basic_train.html#Learner">fastai.basic_train.Learner</a>.</p></li>
 <li><p><strong>trial</strong> – A <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> corresponding to the current
@@ -345,12 +344,12 @@ details.</p></li>
 
 <dl class="py class">
 <dt id="optuna.integration.PyTorchIgnitePruningHandler">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">PyTorchIgnitePruningHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">metric</span></em>, <em class="sig-param"><span class="n">trainer</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/pytorch_ignite.html#PyTorchIgnitePruningHandler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.PyTorchIgnitePruningHandler" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">PyTorchIgnitePruningHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">metric</span></em>, <em class="sig-param"><span class="n">trainer</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/pytorch_ignite.html#PyTorchIgnitePruningHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.PyTorchIgnitePruningHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>PyTorch Ignite handler to prune unpromising trials.</p>
 <p>See <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/pytorch_ignite_simple.py">the example</a>
 if you want to add a pruning handler which observes validation accuracy.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>trial</strong> – A <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> corresponding to the current evaluation of the
 objective function.</p></li>
@@ -363,12 +362,12 @@ objective function.</p></li>
 
 <dl class="py class">
 <dt id="optuna.integration.KerasPruningCallback">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">KerasPruningCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">monitor</span></em>, <em class="sig-param"><span class="n">interval</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/keras.html#KerasPruningCallback"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.KerasPruningCallback" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">KerasPruningCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">monitor</span></em>, <em class="sig-param"><span class="n">interval</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/keras.html#KerasPruningCallback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.KerasPruningCallback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Keras callback to prune unpromising trials.</p>
 <p>See <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/pruning/keras_integration.py">the example</a>
 if you want to add a pruning callback which observes validation accuracy.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>trial</strong> – A <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> corresponding to the current evaluation of the
 objective function.</p></li>
@@ -384,13 +383,13 @@ epochs faster before applying pruning.</p></li>
 
 <dl class="py class">
 <dt id="optuna.integration.LightGBMPruningCallback">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">LightGBMPruningCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">metric</span></em>, <em class="sig-param"><span class="n">valid_name</span><span class="o">=</span><span class="default_value">'valid_0'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/lightgbm.html#LightGBMPruningCallback"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.LightGBMPruningCallback" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">LightGBMPruningCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">metric</span></em>, <em class="sig-param"><span class="n">valid_name</span><span class="o">=</span><span class="default_value">'valid_0'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/lightgbm.html#LightGBMPruningCallback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.LightGBMPruningCallback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callback for LightGBM to prune unpromising trials.</p>
 <p>See <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/pruning/lightgbm_integration.py">the example</a>
 if you want to add a pruning callback which observes AUC
 of a LightGBM model.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>trial</strong> – A <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> corresponding to the current evaluation of
 the objective function.</p></li>
@@ -412,7 +411,7 @@ instead of train method.</p></li>
 
 <dl class="py function">
 <dt id="optuna.integration.lightgbm.train">
-<code class="sig-prename descclassname">optuna.integration.lightgbm.</code><code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; Any<a class="reference internal" href="../_modules/optuna/integration/lightgbm_tuner.html#train"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.lightgbm.train" title="永久链接至目标">¶</a></dt>
+<code class="sig-prename descclassname">optuna.integration.lightgbm.</code><code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; Any<a class="reference internal" href="../_modules/optuna/integration/lightgbm_tuner.html#train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.lightgbm.train" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper of LightGBM Training API to tune hyperparameters.</p>
 <p>It tunes important hyperparameters (e.g., <code class="docutils literal notranslate"><span class="pre">min_child_samples</span></code> and <code class="docutils literal notranslate"><span class="pre">feature_fraction</span></code>) in a
 stepwise manner. It is a drop-in replacement for <a class="reference external" href="https://lightgbm.readthedocs.io/en/latest/pythonapi/lightgbm.train.html">lightgbm.train()</a>. See
@@ -423,7 +422,7 @@ suspended/resumed optimization and/or parallelization, refer to
 <a class="reference internal" href="#optuna.integration.lightgbm_tuner.LightGBMTuner" title="optuna.integration.lightgbm_tuner.LightGBMTuner"><code class="xref py py-class docutils literal notranslate"><span class="pre">LightGBMTuner</span></code></a> instead of this function.</p>
 <p>Arguments and keyword arguments for <a class="reference external" href="https://lightgbm.readthedocs.io/en/latest/pythonapi/lightgbm.train.html">lightgbm.train()</a> can be passed.</p>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <p>Added in v0.18.0 as an experimental feature. The interface may change in newer versions
 without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v0.18.0">https://github.com/optuna/optuna/releases/tag/v0.18.0</a>.</p>
 </div>
@@ -431,7 +430,7 @@ without prior notice. See <a class="reference external" href="https://github.com
 
 <dl class="py class">
 <dt id="optuna.integration.lightgbm_tuner.LightGBMTuner">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.lightgbm_tuner.</code><code class="sig-name descname">LightGBMTuner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span>Any<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">train_set</span><span class="p">:</span> <span class="n">lgb.Dataset</span></em>, <em class="sig-param"><span class="n">num_boost_round</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">valid_sets</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>VALID_SET_TYPE<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">valid_names</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Any<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fobj</span><span class="p">:</span> <span class="n">Optional[Callable[[…], Any]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">feval</span><span class="p">:</span> <span class="n">Optional[Callable[[…], Any]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">feature_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span> <span class="o">=</span> <span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">categorical_feature</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span> <span class="o">=</span> <span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">early_stopping_rounds</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">evals_result</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose_eval</span><span class="p">:</span> <span class="n">Union[bool, int, None]</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">learning_rates</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">keep_training_booster</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">callbacks</span><span class="p">:</span> <span class="n">Optional[List[Callable[[…], Any]]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">time_budget</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sample_size</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">best_params</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span>Any<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tuning_history</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span>Any<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study">optuna.study.Study</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">optuna_callbacks</span><span class="p">:</span> <span class="n">Optional[List[Callable[[optuna.study.Study, optuna.trial._frozen.FrozenTrial], None]]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model_dir</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbosity</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/lightgbm_tuner/optimize.html#LightGBMTuner"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTuner" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.lightgbm_tuner.</code><code class="sig-name descname">LightGBMTuner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>Any<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">train_set</span><span class="p">:</span> <span class="n">lgb.Dataset</span></em>, <em class="sig-param"><span class="n">num_boost_round</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">valid_sets</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>VALID_SET_TYPE<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">valid_names</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Any<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fobj</span><span class="p">:</span> <span class="n">Optional[Callable[[…], Any]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">feval</span><span class="p">:</span> <span class="n">Optional[Callable[[…], Any]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">feature_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span> <span class="o">=</span> <span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">categorical_feature</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span> <span class="o">=</span> <span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">early_stopping_rounds</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">evals_result</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose_eval</span><span class="p">:</span> <span class="n">Union[bool, int, None]</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">learning_rates</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">keep_training_booster</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">callbacks</span><span class="p">:</span> <span class="n">Optional[List[Callable[[…], Any]]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">time_budget</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sample_size</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">best_params</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>Any<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tuning_history</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>Any<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study">optuna.study.Study</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">optuna_callbacks</span><span class="p">:</span> <span class="n">Optional[List[Callable[[optuna.study.Study, optuna.trial._frozen.FrozenTrial], None]]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model_dir</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbosity</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/lightgbm_tuner/optimize.html#LightGBMTuner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTuner" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hyperparameter tuner for LightGBM.</p>
 <p>It optimizes the following hyperparameters in a stepwise manner:
 <code class="docutils literal notranslate"><span class="pre">lambda_l1</span></code>, <code class="docutils literal notranslate"><span class="pre">lambda_l2</span></code>, <code class="docutils literal notranslate"><span class="pre">num_leaves</span></code>, <code class="docutils literal notranslate"><span class="pre">feature_fraction</span></code>, <code class="docutils literal notranslate"><span class="pre">bagging_fraction</span></code>,
@@ -441,18 +440,18 @@ without prior notice. See <a class="reference external" href="https://github.com
 The arguments that only <a class="reference internal" href="#optuna.integration.lightgbm_tuner.LightGBMTuner" title="optuna.integration.lightgbm_tuner.LightGBMTuner"><code class="xref py py-class docutils literal notranslate"><span class="pre">LightGBMTuner</span></code></a> has are
 listed below:</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>time_budget</strong> – A time budget for parameter tuning in seconds.</p></li>
 <li><p><strong>best_params</strong> – <p>A dictionary to store the best parameters.</p>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">1.4.0 版后已移除: </span>Please use the <code class="docutils literal notranslate"><span class="pre">params</span></code> attribute of the best booster, which is obtained by
+<p><span class="versionmodified deprecated">Deprecated since version 1.4.0: </span>Please use the <code class="docutils literal notranslate"><span class="pre">params</span></code> attribute of the best booster, which is obtained by
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_best_booster()</span></code>.</p>
 </div>
 </p></li>
 <li><p><strong>tuning_history</strong> – <p>A List to store the history of parameter tuning.</p>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">1.4.0 版后已移除: </span>Please use the <code class="docutils literal notranslate"><span class="pre">study</span></code> argument to access optimization history.</p>
+<p><span class="versionmodified deprecated">Deprecated since version 1.4.0: </span>Please use the <code class="docutils literal notranslate"><span class="pre">study</span></code> argument to access optimization history.</p>
 </div>
 </p></li>
 <li><p><strong>study</strong> – A <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> instance to store optimization results. The
@@ -465,10 +464,10 @@ parameters used in the trial.</p></li>
 Each function must accept two parameters with the following types in this order:
 <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> and <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code>.
 Please note that this is not a <code class="docutils literal notranslate"><span class="pre">callbacks</span></code> argument of <a class="reference external" href="https://lightgbm.readthedocs.io/en/latest/pythonapi/lightgbm.train.html">lightgbm.train()</a> .</p></li>
-<li><p><strong>model_dir</strong> – A directory to save boosters. By default, it is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> and no boosters are
+<li><p><strong>model_dir</strong> – A directory to save boosters. By default, it is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> and no boosters are
 saved. Please set shared directory (e.g., directories on NFS) if you want to access
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_best_booster()</span></code> in distributed environments.
-Otherwise, it may raise <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a>. If the directory does not exist, it will be
+Otherwise, it may raise <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a>. If the directory does not exist, it will be
 created. The filenames of the boosters will be <code class="docutils literal notranslate"><span class="pre">{model_dir}/{trial_number}.pkl</span></code>
 (e.g., <code class="docutils literal notranslate"><span class="pre">./boosters/0.pkl</span></code>).</p></li>
 </ul>
@@ -476,31 +475,31 @@ created. The filenames of the boosters will be <code class="docutils literal not
 </dl>
 <dl class="py method">
 <dt id="optuna.integration.lightgbm_tuner.LightGBMTuner.best_booster">
-<em class="property">property </em><code class="sig-name descname">best_booster</code><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTuner.best_booster" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">best_booster</code><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTuner.best_booster" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the best booster.</p>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">1.4.0 版后已移除: </span>Please get the best booster via
+<p><span class="versionmodified deprecated">Deprecated since version 1.4.0: </span>Please get the best booster via
 <code class="xref py py-class docutils literal notranslate"><span class="pre">get_best_booster</span></code> instead.</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.lightgbm_tuner.LightGBMTuner.best_params">
-<em class="property">property </em><code class="sig-name descname">best_params</code><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTuner.best_params" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">best_params</code><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTuner.best_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return parameters of the best booster.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.lightgbm_tuner.LightGBMTuner.best_score">
-<em class="property">property </em><code class="sig-name descname">best_score</code><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTuner.best_score" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">best_score</code><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTuner.best_score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the score of the best booster.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.lightgbm_tuner.LightGBMTuner.get_best_booster">
-<code class="sig-name descname">get_best_booster</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; lgb.Booster<a class="reference internal" href="../_modules/optuna/integration/lightgbm_tuner/optimize.html#LightGBMTuner.get_best_booster"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTuner.get_best_booster" title="永久链接至目标">¶</a></dt>
+<code class="sig-name descname">get_best_booster</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; lgb.Booster<a class="reference internal" href="../_modules/optuna/integration/lightgbm_tuner/optimize.html#LightGBMTuner.get_best_booster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTuner.get_best_booster" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the best booster.</p>
-<p>If the best booster cannot be found, <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(在 Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a> will be raised. To prevent the
+<p>If the best booster cannot be found, <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a> will be raised. To prevent the
 errors, please save boosters by specifying the <code class="docutils literal notranslate"><span class="pre">model_dir</span></code> arguments of
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code> when you resume tuning
 or you run tuning in parallel.</p>
@@ -508,7 +507,7 @@ or you run tuning in parallel.</p>
 
 <dl class="py method">
 <dt id="optuna.integration.lightgbm_tuner.LightGBMTuner.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTuner.run" title="永久链接至目标">¶</a></dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTuner.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform the hyperparameter-tuning with given parameters.</p>
 </dd></dl>
 
@@ -516,7 +515,7 @@ or you run tuning in parallel.</p>
 
 <dl class="py class">
 <dt id="optuna.integration.lightgbm_tuner.LightGBMTunerCV">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.lightgbm_tuner.</code><code class="sig-name descname">LightGBMTunerCV</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span>Any<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">train_set</span><span class="p">:</span> <span class="n">lgb.Dataset</span></em>, <em class="sig-param"><span class="n">num_boost_round</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">folds</span><span class="p">:</span> <span class="n">Union[Generator[Tuple[int, int], None, None], Iterator[Tuple[int, int]], BaseCrossValidator, None]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nfold</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">5</span></em>, <em class="sig-param"><span class="n">stratified</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">shuffle</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">fobj</span><span class="p">:</span> <span class="n">Optional[Callable[[…], Any]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">feval</span><span class="p">:</span> <span class="n">Optional[Callable[[…], Any]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">feature_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span> <span class="o">=</span> <span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">categorical_feature</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span> <span class="o">=</span> <span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">early_stopping_rounds</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fpreproc</span><span class="p">:</span> <span class="n">Optional[Callable[[…], Any]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose_eval</span><span class="p">:</span> <span class="n">Union[bool, int, None]</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_stdv</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">callbacks</span><span class="p">:</span> <span class="n">Optional[List[Callable[[…], Any]]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">time_budget</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sample_size</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study">optuna.study.Study</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">optuna_callbacks</span><span class="p">:</span> <span class="n">Optional[List[Callable[[optuna.study.Study, optuna.trial._frozen.FrozenTrial], None]]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbosity</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/lightgbm_tuner/optimize.html#LightGBMTunerCV"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTunerCV" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.lightgbm_tuner.</code><code class="sig-name descname">LightGBMTunerCV</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>Any<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">train_set</span><span class="p">:</span> <span class="n">lgb.Dataset</span></em>, <em class="sig-param"><span class="n">num_boost_round</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">folds</span><span class="p">:</span> <span class="n">Union[Generator[Tuple[int, int], None, None], Iterator[Tuple[int, int]], BaseCrossValidator, None]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nfold</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">5</span></em>, <em class="sig-param"><span class="n">stratified</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">shuffle</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">fobj</span><span class="p">:</span> <span class="n">Optional[Callable[[…], Any]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">feval</span><span class="p">:</span> <span class="n">Optional[Callable[[…], Any]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">feature_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span> <span class="o">=</span> <span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">categorical_feature</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span> <span class="o">=</span> <span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">early_stopping_rounds</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fpreproc</span><span class="p">:</span> <span class="n">Optional[Callable[[…], Any]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose_eval</span><span class="p">:</span> <span class="n">Union[bool, int, None]</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_stdv</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">callbacks</span><span class="p">:</span> <span class="n">Optional[List[Callable[[…], Any]]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">time_budget</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sample_size</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study">optuna.study.Study</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">optuna_callbacks</span><span class="p">:</span> <span class="n">Optional[List[Callable[[optuna.study.Study, optuna.trial._frozen.FrozenTrial], None]]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbosity</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/lightgbm_tuner/optimize.html#LightGBMTunerCV"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTunerCV" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hyperparameter tuner for LightGBM with cross-validation.</p>
 <p>It employs the same stepwise approach as
 <a class="reference internal" href="#optuna.integration.lightgbm_tuner.LightGBMTuner" title="optuna.integration.lightgbm_tuner.LightGBMTuner"><code class="xref py py-class docutils literal notranslate"><span class="pre">LightGBMTuner</span></code></a>.
@@ -529,7 +528,7 @@ and validate boosters while <a class="reference internal" href="#optuna.integrat
 The arguments that only <a class="reference internal" href="#optuna.integration.lightgbm_tuner.LightGBMTunerCV" title="optuna.integration.lightgbm_tuner.LightGBMTunerCV"><code class="xref py py-class docutils literal notranslate"><span class="pre">LightGBMTunerCV</span></code></a> has are
 listed below:</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>time_budget</strong> – A time budget for parameter tuning in seconds.</p></li>
 <li><p><strong>study</strong> – A <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> instance to store optimization results. The
@@ -547,19 +546,19 @@ Please note that this is not a <code class="docutils literal notranslate"><span 
 </dl>
 <dl class="py method">
 <dt id="optuna.integration.lightgbm_tuner.LightGBMTunerCV.best_params">
-<em class="property">property </em><code class="sig-name descname">best_params</code><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTunerCV.best_params" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">best_params</code><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTunerCV.best_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return parameters of the best booster.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.lightgbm_tuner.LightGBMTunerCV.best_score">
-<em class="property">property </em><code class="sig-name descname">best_score</code><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTunerCV.best_score" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">best_score</code><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTunerCV.best_score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the score of the best booster.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.lightgbm_tuner.LightGBMTunerCV.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTunerCV.run" title="永久链接至目标">¶</a></dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#optuna.integration.lightgbm_tuner.LightGBMTunerCV.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform the hyperparameter-tuning with given parameters.</p>
 </dd></dl>
 
@@ -567,12 +566,12 @@ Please note that this is not a <code class="docutils literal notranslate"><span 
 
 <dl class="py class">
 <dt id="optuna.integration.MLflowCallback">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">MLflowCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tracking_uri</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">metric_name</span><span class="o">=</span><span class="default_value">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/mlflow.html#MLflowCallback"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.MLflowCallback" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">MLflowCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tracking_uri</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">metric_name</span><span class="o">=</span><span class="default_value">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/mlflow.html#MLflowCallback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.MLflowCallback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callback to track Optuna trials with MLflow.</p>
 <p>This callback adds relevant information that is
 tracked by Optuna to MLflow. The MLflow experiment
 will be named after the Optuna study name.</p>
-<p class="rubric">示例</p>
+<p class="rubric">Example</p>
 <p>Add MLflow callback to Optuna optimization.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 <span class="kn">from</span> <span class="nn">optuna.integration.mlflow</span> <span class="kn">import</span> <span class="n">MLflowCallback</span>
@@ -591,7 +590,7 @@ will be named after the Optuna study name.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>tracking_uri</strong> – <p>The URI of the MLflow tracking server.</p>
 <p>Please refer to <a class="reference external" href="https://www.mlflow.org/docs/latest/python_api/mlflow.html#mlflow.set_tracking_uri">mlflow.set_tracking_uri</a>
@@ -604,7 +603,7 @@ if it was roc-auc or accuracy.</p></li>
 </dd>
 </dl>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <p>Added in v1.4.0 as an experimental feature. The interface may change in newer versions
 without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.4.0">https://github.com/optuna/optuna/releases/tag/v1.4.0</a>.</p>
 </div>
@@ -612,12 +611,12 @@ without prior notice. See <a class="reference external" href="https://github.com
 
 <dl class="py class">
 <dt id="optuna.integration.MXNetPruningCallback">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">MXNetPruningCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">eval_metric</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/mxnet.html#MXNetPruningCallback"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.MXNetPruningCallback" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">MXNetPruningCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">eval_metric</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/mxnet.html#MXNetPruningCallback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.MXNetPruningCallback" title="Permalink to this definition">¶</a></dt>
 <dd><p>MXNet callback to prune unpromising trials.</p>
 <p>See <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/pruning/mxnet_integration.py">the example</a>
 if you want to add a pruning callback which observes accuracy.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>trial</strong> – A <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> corresponding to the current evaluation of the
 objective function.</p></li>
@@ -632,12 +631,12 @@ constructor. Please refer to <a class="reference external" href="https://mxnet.a
 
 <dl class="py class">
 <dt id="optuna.integration.PyTorchLightningPruningCallback">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">PyTorchLightningPruningCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">monitor</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/pytorch_lightning.html#PyTorchLightningPruningCallback"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.PyTorchLightningPruningCallback" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">PyTorchLightningPruningCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">monitor</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/pytorch_lightning.html#PyTorchLightningPruningCallback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.PyTorchLightningPruningCallback" title="Permalink to this definition">¶</a></dt>
 <dd><p>PyTorch Lightning callback to prune unpromising trials.</p>
 <p>See <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/pytorch_lightning_simple.py">the example</a>
 if you want to add a pruning callback which observes accuracy.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>trial</strong> – A <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> corresponding to the current evaluation of the
 objective function.</p></li>
@@ -653,9 +652,9 @@ how this dictionary is formatted.</p></li>
 
 <dl class="py class">
 <dt id="optuna.integration.SkoptSampler">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">SkoptSampler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">independent_sampler</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">warn_independent_sampling</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">skopt_kwargs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_startup_trials</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/skopt.html#SkoptSampler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.SkoptSampler" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">SkoptSampler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">independent_sampler</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">warn_independent_sampling</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">skopt_kwargs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_startup_trials</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/skopt.html#SkoptSampler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.SkoptSampler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sampler using Scikit-Optimize as the backend.</p>
-<p class="rubric">示例</p>
+<p class="rubric">Example</p>
 <p>Optimize a simple quadratic function by using <a class="reference internal" href="#optuna.integration.SkoptSampler" title="optuna.integration.SkoptSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">SkoptSampler</span></code></a>.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 
@@ -670,23 +669,23 @@ how this dictionary is formatted.</p></li>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>independent_sampler</strong> – <p>A <a class="reference internal" href="samplers.html#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a> instance that is used for independent
 sampling. The parameters not contained in the relative search space are sampled
 by this sampler.
 The search space for <a class="reference internal" href="#optuna.integration.SkoptSampler" title="optuna.integration.SkoptSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">SkoptSampler</span></code></a> is determined by
 <a class="reference internal" href="samplers.html#optuna.samplers.intersection_search_space" title="optuna.samplers.intersection_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">intersection_search_space()</span></code></a>.</p>
-<p>If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is specified, <a class="reference internal" href="samplers.html#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSampler</span></code></a> is used
+<p>If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is specified, <a class="reference internal" href="samplers.html#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSampler</span></code></a> is used
 as the default.</p>
 <div class="admonition seealso">
-<p class="admonition-title">参见</p>
+<p class="admonition-title">See also</p>
 <p><a class="reference internal" href="samplers.html#module-optuna.samplers" title="optuna.samplers"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.samplers</span></code></a> module provides built-in independent samplers
 such as <a class="reference internal" href="samplers.html#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSampler</span></code></a> and
 <a class="reference internal" href="samplers.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a>.</p>
 </div>
 </p></li>
-<li><p><strong>warn_independent_sampling</strong> – <p>If this is <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, a warning message is emitted when
+<li><p><strong>warn_independent_sampling</strong> – <p>If this is <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, a warning message is emitted when
 the value of a parameter is sampled by using an independent sampler.</p>
 <p>Note that the parameters of the first trial in a study are always sampled
 via an independent sampler, so no warning messages are emitted in this case.</p>
@@ -704,7 +703,7 @@ same study.</p></li>
 </dl>
 <dl class="py method">
 <dt id="optuna.integration.SkoptSampler.reseed_rng">
-<code class="sig-name descname">reseed_rng</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/integration/skopt.html#SkoptSampler.reseed_rng"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.SkoptSampler.reseed_rng" title="永久链接至目标">¶</a></dt>
+<code class="sig-name descname">reseed_rng</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/integration/skopt.html#SkoptSampler.reseed_rng"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.SkoptSampler.reseed_rng" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reseed sampler’s random number generator.</p>
 <p>This method is called by the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> instance if trials are executed
 in parallel with the option <code class="docutils literal notranslate"><span class="pre">n_jobs&gt;1</span></code>. In that case, the sampler instance will be
@@ -717,12 +716,12 @@ number generator.</p>
 
 <dl class="py class">
 <dt id="optuna.integration.TensorFlowPruningHook">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">TensorFlowPruningHook</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">estimator</span></em>, <em class="sig-param"><span class="n">metric</span></em>, <em class="sig-param"><span class="n">run_every_steps</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/tensorflow.html#TensorFlowPruningHook"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.TensorFlowPruningHook" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">TensorFlowPruningHook</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">estimator</span></em>, <em class="sig-param"><span class="n">metric</span></em>, <em class="sig-param"><span class="n">run_every_steps</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/tensorflow.html#TensorFlowPruningHook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.TensorFlowPruningHook" title="Permalink to this definition">¶</a></dt>
 <dd><p>TensorFlow SessionRunHook to prune unpromising trials.</p>
 <p>See <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/pruning/tensorflow_estimator_integration.py">the example</a>
 if you want to add a pruning hook to TensorFlow’s estimator.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>trial</strong> – A <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> corresponding to the current evaluation of
 the objective function.</p></li>
@@ -736,14 +735,14 @@ the objective function.</p></li>
 
 <dl class="py class">
 <dt id="optuna.integration.TFKerasPruningCallback">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">TFKerasPruningCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">monitor</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/tfkeras.html#TFKerasPruningCallback"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.TFKerasPruningCallback" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">TFKerasPruningCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">monitor</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/tfkeras.html#TFKerasPruningCallback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.TFKerasPruningCallback" title="Permalink to this definition">¶</a></dt>
 <dd><p>tf.keras callback to prune unpromising trials.</p>
 <p>This callback is intend to be compatible for TensorFlow v1 and v2,
 but only tested with TensorFlow v1.</p>
 <p>See <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/pruning/tfkeras_integration.py">the example</a>
 if you want to add a pruning callback which observes the validation accuracy.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>trial</strong> – A <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> corresponding to the current evaluation of the
 objective function.</p></li>
@@ -755,13 +754,13 @@ objective function.</p></li>
 
 <dl class="py class">
 <dt id="optuna.integration.XGBoostPruningCallback">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">XGBoostPruningCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">observation_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/xgboost.html#XGBoostPruningCallback"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.XGBoostPruningCallback" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">XGBoostPruningCallback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">observation_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/xgboost.html#XGBoostPruningCallback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.XGBoostPruningCallback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callback for XGBoost to prune unpromising trials.</p>
 <p>See <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/pruning/xgboost_integration.py">the example</a>
 if you want to add a pruning callback which observes validation AUC of
 a XGBoost model.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>trial</strong> – A <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> corresponding to the current evaluation of the
 objective function.</p></li>
@@ -778,14 +777,14 @@ for further details.</p></li>
 
 <dl class="py class">
 <dt id="optuna.integration.OptunaSearchCV">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">OptunaSearchCV</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">estimator</span></em>, <em class="sig-param"><span class="n">param_distributions</span></em>, <em class="sig-param"><span class="n">cv</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">enable_pruning</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">error_score</span><span class="o">=</span><span class="default_value">nan</span></em>, <em class="sig-param"><span class="n">max_iter</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">n_jobs</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">n_trials</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">random_state</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">refit</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">return_train_score</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">scoring</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">study</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">subsample</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/sklearn.html#OptunaSearchCV"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.OptunaSearchCV" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">OptunaSearchCV</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">estimator</span></em>, <em class="sig-param"><span class="n">param_distributions</span></em>, <em class="sig-param"><span class="n">cv</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">enable_pruning</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">error_score</span><span class="o">=</span><span class="default_value">nan</span></em>, <em class="sig-param"><span class="n">max_iter</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">n_jobs</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">n_trials</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">random_state</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">refit</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">return_train_score</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">scoring</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">study</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">subsample</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/sklearn.html#OptunaSearchCV"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.OptunaSearchCV" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hyperparameter search with cross-validation.</p>
 <div class="admonition warning">
-<p class="admonition-title">警告</p>
+<p class="admonition-title">Warning</p>
 <p>This feature is experimental. The interface may be changed in the future.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>estimator</strong> – Object to use to fit the data. This is assumed to implement the
 scikit-learn estimator interface. Either this needs to provide
@@ -804,7 +803,7 @@ either binary or multiclass,
 <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.StratifiedKFold</span></code> is used. otherwise,
 <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.KFold</span></code> is used.</p>
 </p></li>
-<li><p><strong>enable_pruning</strong> – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, pruning is performed in the case where the
+<li><p><strong>enable_pruning</strong> – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, pruning is performed in the case where the
 underlying estimator supports <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code>.</p></li>
 <li><p><strong>error_score</strong> – Value to assign to the score if an error occurs in fitting. If
 ‘raise’, the error is raised. If numeric,
@@ -813,21 +812,21 @@ affect the refit step, which will always raise the error.</p></li>
 <li><p><strong>max_iter</strong> – Maximum number of epochs. This is only used if the underlying
 estimator supports <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code>.</p></li>
 <li><p><strong>n_jobs</strong> – Number of parallel jobs. <code class="xref py py-obj docutils literal notranslate"><span class="pre">-1</span></code> means using all processors.</p></li>
-<li><p><strong>n_trials</strong> – Number of trials. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, there is no limitation on the
-number of trials. If <code class="xref py py-obj docutils literal notranslate"><span class="pre">timeout</span></code> is also set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>,
+<li><p><strong>n_trials</strong> – Number of trials. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, there is no limitation on the
+number of trials. If <code class="xref py py-obj docutils literal notranslate"><span class="pre">timeout</span></code> is also set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>,
 the study continues to create trials until it receives a
 termination signal such as Ctrl+C or SIGTERM. This trades off
 runtime vs quality of the solution.</p></li>
 <li><p><strong>random_state</strong> – Seed of the pseudo random number generator. If int, this is the
 seed used by the random number generator. If
 <code class="docutils literal notranslate"><span class="pre">numpy.random.RandomState</span></code> object, this is the random number
-generator. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, the global random state from
+generator. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, the global random state from
 <code class="docutils literal notranslate"><span class="pre">numpy.random</span></code> is used.</p></li>
-<li><p><strong>refit</strong> – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, refit the estimator with the best found
+<li><p><strong>refit</strong> – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, refit the estimator with the best found
 hyperparameters. The refitted estimator is made available at the
 <code class="docutils literal notranslate"><span class="pre">best_estimator_</span></code> attribute and permits using <code class="docutils literal notranslate"><span class="pre">predict</span></code>
 directly.</p></li>
-<li><p><strong>return_train_score</strong> – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, training scores will be included. Computing
+<li><p><strong>return_train_score</strong> – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, training scores will be included. Computing
 training scores is used to get insights on how different
 hyperparameter settings impact the overfitting/underfitting
 trade-off. However computing training scores can be
@@ -835,8 +834,8 @@ computationally expensive and is not strictly required to select
 the hyperparameters that yield the best generalization
 performance.</p></li>
 <li><p><strong>scoring</strong> – String or callable to evaluate the predictions on the validation data.
-If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, <code class="docutils literal notranslate"><span class="pre">score</span></code> on the estimator is used.</p></li>
-<li><p><strong>study</strong> – Study corresponds to the optimization task. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, a new
+If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, <code class="docutils literal notranslate"><span class="pre">score</span></code> on the estimator is used.</p></li>
+<li><p><strong>study</strong> – Study corresponds to the optimization task. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, a new
 study is created.</p></li>
 <li><p><strong>subsample</strong> – <p>Proportion of samples that are used during hyperparameter search.</p>
 <ul>
@@ -845,8 +844,8 @@ study is created.</p></li>
 </ul>
 </p></li>
 <li><p><strong>timeout</strong> – Time limit in seconds for the search of appropriate models. If
-<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, the study is executed without time limitation. If
-<code class="xref py py-obj docutils literal notranslate"><span class="pre">n_trials</span></code> is also set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, the study continues to
+<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, the study is executed without time limitation. If
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">n_trials</span></code> is also set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, the study continues to
 create trials until it receives a termination signal such as
 Ctrl+C or SIGTERM. This trades off runtime vs quality of the
 solution.</p></li>
@@ -858,7 +857,7 @@ solution.</p></li>
 <dt>
 <code class="sig-name descname">best_estimator\_</code></dt>
 <dd><p>Estimator that was chosen by the search. This is present only if
-<code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
+<code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -871,7 +870,7 @@ solution.</p></li>
 <dt>
 <code class="sig-name descname">refit_time\_</code></dt>
 <dd><p>Time for refitting the best estimator. This is present only if
-<code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
+<code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -892,7 +891,7 @@ solution.</p></li>
 <dd><p>Actual study.</p>
 </dd></dl>
 
-<p class="rubric">实际案例</p>
+<p class="rubric">Examples</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
@@ -912,48 +911,48 @@ solution.</p></li>
 </div>
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.best_index_">
-<em class="property">property </em><code class="sig-name descname">best_index_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.best_index_" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">best_index_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.best_index_" title="Permalink to this definition">¶</a></dt>
 <dd><p>Index which corresponds to the best candidate parameter setting.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.best_params_">
-<em class="property">property </em><code class="sig-name descname">best_params_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.best_params_" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">best_params_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.best_params_" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parameters of the best trial in the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.best_score_">
-<em class="property">property </em><code class="sig-name descname">best_score_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.best_score_" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">best_score_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.best_score_" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mean cross-validated score of the best estimator.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.best_trial_">
-<em class="property">property </em><code class="sig-name descname">best_trial_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.best_trial_" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">best_trial_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.best_trial_" title="Permalink to this definition">¶</a></dt>
 <dd><p>Best trial in the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.classes_">
-<em class="property">property </em><code class="sig-name descname">classes_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.classes_" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">classes_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.classes_" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class labels.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.decision_function">
-<em class="property">property </em><code class="sig-name descname">decision_function</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.decision_function" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">decision_function</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.decision_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call <code class="docutils literal notranslate"><span class="pre">decision_function</span></code> on the best estimator.</p>
 <p>This is available only if the underlying estimator supports
-<code class="docutils literal notranslate"><span class="pre">decision_function</span></code> and <code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
+<code class="docutils literal notranslate"><span class="pre">decision_function</span></code> and <code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">groups</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">fit_params</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/sklearn.html#OptunaSearchCV.fit"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.OptunaSearchCV.fit" title="永久链接至目标">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">groups</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">fit_params</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/sklearn.html#OptunaSearchCV.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.OptunaSearchCV.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run fit with all sets of parameters.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> – Training data.</p></li>
 <li><p><strong>y</strong> – Target variable.</p></li>
@@ -962,10 +961,10 @@ into train/validation set.</p></li>
 <li><p><strong>**fit_params</strong> – Parameters passed to <code class="docutils literal notranslate"><span class="pre">fit</span></code> on the estimator.</p></li>
 </ul>
 </dd>
-<dt class="field-even">返回</dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Return self.</p>
 </dd>
-<dt class="field-odd">返回类型</dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>self</p>
 </dd>
 </dl>
@@ -973,57 +972,57 @@ into train/validation set.</p></li>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.inverse_transform">
-<em class="property">property </em><code class="sig-name descname">inverse_transform</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.inverse_transform" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">inverse_transform</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.inverse_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call <code class="docutils literal notranslate"><span class="pre">inverse_transform</span></code> on the best estimator.</p>
 <p>This is available only if the underlying estimator supports
-<code class="docutils literal notranslate"><span class="pre">inverse_transform</span></code> and <code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
+<code class="docutils literal notranslate"><span class="pre">inverse_transform</span></code> and <code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.n_trials_">
-<em class="property">property </em><code class="sig-name descname">n_trials_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.n_trials_" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">n_trials_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.n_trials_" title="Permalink to this definition">¶</a></dt>
 <dd><p>Actual number of trials.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.predict">
-<em class="property">property </em><code class="sig-name descname">predict</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.predict" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">predict</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call <code class="docutils literal notranslate"><span class="pre">predict</span></code> on the best estimator.</p>
 <p>This is available only if the underlying estimator supports <code class="docutils literal notranslate"><span class="pre">predict</span></code>
-and <code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
+and <code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.predict_log_proba">
-<em class="property">property </em><code class="sig-name descname">predict_log_proba</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.predict_log_proba" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">predict_log_proba</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.predict_log_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call <code class="docutils literal notranslate"><span class="pre">predict_log_proba</span></code> on the best estimator.</p>
 <p>This is available only if the underlying estimator supports
-<code class="docutils literal notranslate"><span class="pre">predict_log_proba</span></code> and <code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
+<code class="docutils literal notranslate"><span class="pre">predict_log_proba</span></code> and <code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.predict_proba">
-<em class="property">property </em><code class="sig-name descname">predict_proba</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.predict_proba" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">predict_proba</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> on the best estimator.</p>
 <p>This is available only if the underlying estimator supports
-<code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> and <code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
+<code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> and <code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.score">
-<code class="sig-name descname">score</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/sklearn.html#OptunaSearchCV.score"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.OptunaSearchCV.score" title="永久链接至目标">¶</a></dt>
+<code class="sig-name descname">score</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/sklearn.html#OptunaSearchCV.score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.OptunaSearchCV.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the score on the given data.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> – Data.</p></li>
 <li><p><strong>y</strong> – Target variable.</p></li>
 </ul>
 </dd>
-<dt class="field-even">返回</dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Scaler score.</p>
 </dd>
-<dt class="field-odd">返回类型</dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>score</p>
 </dd>
 </dl>
@@ -1031,41 +1030,41 @@ and <code class="docutils literal notranslate"><span class="pre">refit</span></c
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.score_samples">
-<em class="property">property </em><code class="sig-name descname">score_samples</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.score_samples" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">score_samples</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.score_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call <code class="docutils literal notranslate"><span class="pre">score_samples</span></code> on the best estimator.</p>
 <p>This is available only if the underlying estimator supports
-<code class="docutils literal notranslate"><span class="pre">score_samples</span></code> and <code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
+<code class="docutils literal notranslate"><span class="pre">score_samples</span></code> and <code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.set_user_attr">
-<em class="property">property </em><code class="sig-name descname">set_user_attr</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.set_user_attr" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">set_user_attr</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.set_user_attr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call <code class="docutils literal notranslate"><span class="pre">set_user_attr</span></code> on the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.transform">
-<em class="property">property </em><code class="sig-name descname">transform</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.transform" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">transform</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call <code class="docutils literal notranslate"><span class="pre">transform</span></code> on the best estimator.</p>
 <p>This is available only if the underlying estimator supports
-<code class="docutils literal notranslate"><span class="pre">transform</span></code> and <code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
+<code class="docutils literal notranslate"><span class="pre">transform</span></code> and <code class="docutils literal notranslate"><span class="pre">refit</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.trials_">
-<em class="property">property </em><code class="sig-name descname">trials_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.trials_" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">trials_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.trials_" title="Permalink to this definition">¶</a></dt>
 <dd><p>All trials in the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.trials_dataframe">
-<em class="property">property </em><code class="sig-name descname">trials_dataframe</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.trials_dataframe" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">trials_dataframe</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.trials_dataframe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call <code class="docutils literal notranslate"><span class="pre">trials_dataframe</span></code> on the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.integration.OptunaSearchCV.user_attrs_">
-<em class="property">property </em><code class="sig-name descname">user_attrs_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.user_attrs_" title="永久链接至目标">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">user_attrs_</code><a class="headerlink" href="#optuna.integration.OptunaSearchCV.user_attrs_" title="Permalink to this definition">¶</a></dt>
 <dd><p>User attributes in the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
 </dd></dl>
 
@@ -1073,14 +1072,14 @@ and <code class="docutils literal notranslate"><span class="pre">refit</span></c
 
 <dl class="py class">
 <dt id="optuna.integration.AllenNLPExecutor">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">AllenNLPExecutor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">config_file</span></em>, <em class="sig-param"><span class="n">serialization_dir</span></em>, <em class="sig-param"><span class="n">metrics</span><span class="o">=</span><span class="default_value">best_validation_accuracy</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/allennlp.html#AllenNLPExecutor"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.AllenNLPExecutor" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.integration.</code><code class="sig-name descname">AllenNLPExecutor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">config_file</span></em>, <em class="sig-param"><span class="n">serialization_dir</span></em>, <em class="sig-param"><span class="n">metrics</span><span class="o">=</span><span class="default_value">best_validation_accuracy</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/integration/allennlp.html#AllenNLPExecutor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.AllenNLPExecutor" title="Permalink to this definition">¶</a></dt>
 <dd><p>AllenNLP extension to use optuna with Jsonnet config file.</p>
 <p>This feature is experimental since AllenNLP major release will come soon.
 The interface may change without prior notice to correspond to the update.</p>
 <p>See the examples of <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/allennlp/allennlp_jsonnet.py">objective function</a> and
 <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/allennlp/classifier.jsonnet">config file</a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>trial</strong> – A <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> corresponding to the current evaluation
 of the objective function.</p></li>
@@ -1096,13 +1095,13 @@ For more information, please see
 </dd>
 </dl>
 <div class="admonition note">
-<p class="admonition-title">注解</p>
+<p class="admonition-title">Note</p>
 <p>Added in v1.4.0 as an experimental feature. The interface may change in newer versions
 without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.4.0">https://github.com/optuna/optuna/releases/tag/v1.4.0</a>.</p>
 </div>
 <dl class="py method">
 <dt id="optuna.integration.AllenNLPExecutor.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><a class="reference internal" href="../_modules/optuna/integration/allennlp.html#AllenNLPExecutor.run"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.AllenNLPExecutor.run" title="永久链接至目标">¶</a></dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><a class="reference internal" href="../_modules/optuna/integration/allennlp.html#AllenNLPExecutor.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.AllenNLPExecutor.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Train a model using AllenNLP.</p>
 </dd></dl>
 
@@ -1110,10 +1109,10 @@ without prior notice. See <a class="reference external" href="https://github.com
 
 <dl class="py function">
 <dt id="optuna.integration.allennlp.dump_best_config">
-<code class="sig-prename descclassname">optuna.integration.allennlp.</code><code class="sig-name descname">dump_best_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_config_file</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">output_config_file</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n"><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study">optuna.study.Study</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/integration/allennlp.html#dump_best_config"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.integration.allennlp.dump_best_config" title="永久链接至目标">¶</a></dt>
+<code class="sig-prename descclassname">optuna.integration.allennlp.</code><code class="sig-name descname">dump_best_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_config_file</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">output_config_file</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n"><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study">optuna.study.Study</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/integration/allennlp.html#dump_best_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.integration.allennlp.dump_best_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save JSON config file after updating with parameters from the best trial in the study.</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>input_config_file</strong> – Input Jsonnet config file used with
 <a class="reference internal" href="#optuna.integration.AllenNLPExecutor" title="optuna.integration.AllenNLPExecutor"><code class="xref py py-class docutils literal notranslate"><span class="pre">AllenNLPExecutor</span></code></a>.</p></li>

@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.study &mdash; Optuna 1.4.0 文档</title>
+  <title>optuna.study &mdash; Optuna 1.4.0 documentation</title>
   
 
   
@@ -27,7 +27,6 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/translations.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
@@ -38,8 +37,8 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="索引" href="../../genindex.html" />
-    <link rel="search" title="搜索" href="../../search.html" /> 
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -138,7 +137,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../index.html">模块代码</a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
         
       <li>optuna.study</li>
     
@@ -155,7 +154,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>optuna.study 源代码</h1><div class="highlight"><pre>
+  <h1>Source code for optuna.study</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">collections</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
@@ -332,7 +331,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span>
 
 
-<div class="viewcode-block" id="Study"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study">[文档]</a><span class="k">class</span> <span class="nc">Study</span><span class="p">(</span><span class="n">BaseStudy</span><span class="p">):</span>
+<div class="viewcode-block" id="Study"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study">[docs]</a><span class="k">class</span> <span class="nc">Study</span><span class="p">(</span><span class="n">BaseStudy</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A study corresponds to an optimization task, i.e., a set of trials.</span>
 
 <span class="sd">    This object provides interfaces to run a new :class:`~optuna.trial.Trial`, access trials&#39;</span>
@@ -420,7 +419,7 @@
 
         <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">get_study_system_attrs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Study.optimize"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.optimize">[文档]</a>    <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span>
+<div class="viewcode-block" id="Study.optimize"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.optimize">[docs]</a>    <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">func</span><span class="p">,</span>  <span class="c1"># type: ObjectiveFuncType</span>
         <span class="n">n_trials</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: Optional[int]</span>
@@ -544,7 +543,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_progress_bar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_progress_bar</span></div>
 
-<div class="viewcode-block" id="Study.set_user_attr"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.set_user_attr">[文档]</a>    <span class="k">def</span> <span class="nf">set_user_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="Study.set_user_attr"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.set_user_attr">[docs]</a>    <span class="k">def</span> <span class="nf">set_user_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="c1"># type: (str, Any) -&gt; None</span>
         <span class="sd">&quot;&quot;&quot;Set a user attribute to the study.</span>
 
@@ -571,7 +570,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">set_study_system_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Study.trials_dataframe"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.trials_dataframe">[文档]</a>    <span class="k">def</span> <span class="nf">trials_dataframe</span><span class="p">(</span>
+<div class="viewcode-block" id="Study.trials_dataframe"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.trials_dataframe">[docs]</a>    <span class="k">def</span> <span class="nf">trials_dataframe</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">attrs</span><span class="o">=</span><span class="p">(</span>
             <span class="s2">&quot;number&quot;</span><span class="p">,</span>
@@ -688,7 +687,7 @@
 
         <span class="k">return</span> <span class="n">df</span></div>
 
-<div class="viewcode-block" id="Study.stop"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.stop">[文档]</a>    <span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.4.0&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="Study.stop"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.stop">[docs]</a>    <span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.4.0&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
         <span class="sd">&quot;&quot;&quot;Exit from the current optimization loop after the running trials finish.</span>
@@ -712,7 +711,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_stop_flag</span> <span class="o">=</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="Study.enqueue_trial"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.enqueue_trial">[文档]</a>    <span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.2.0&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="Study.enqueue_trial"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.enqueue_trial">[docs]</a>    <span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.2.0&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">enqueue_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="c1"># type: (Dict[str, Any]) -&gt; None</span>
         <span class="sd">&quot;&quot;&quot;Enqueue a trial with given parameter values.</span>
@@ -968,7 +967,7 @@
         <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="create_study"><a class="viewcode-back" href="../../reference/study.html#optuna.study.create_study">[文档]</a><span class="k">def</span> <span class="nf">create_study</span><span class="p">(</span>
+<div class="viewcode-block" id="create_study"><a class="viewcode-back" href="../../reference/study.html#optuna.study.create_study">[docs]</a><span class="k">def</span> <span class="nf">create_study</span><span class="p">(</span>
     <span class="n">storage</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: Union[None, str, storages.BaseStorage]</span>
     <span class="n">sampler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: samplers.BaseSampler</span>
     <span class="n">pruner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: pruners.BasePruner</span>
@@ -1051,7 +1050,7 @@
     <span class="k">return</span> <span class="n">study</span></div>
 
 
-<div class="viewcode-block" id="load_study"><a class="viewcode-back" href="../../reference/study.html#optuna.study.load_study">[文档]</a><span class="k">def</span> <span class="nf">load_study</span><span class="p">(</span>
+<div class="viewcode-block" id="load_study"><a class="viewcode-back" href="../../reference/study.html#optuna.study.load_study">[docs]</a><span class="k">def</span> <span class="nf">load_study</span><span class="p">(</span>
     <span class="n">study_name</span><span class="p">,</span>  <span class="c1"># type: str</span>
     <span class="n">storage</span><span class="p">,</span>  <span class="c1"># type: Union[str, storages.BaseStorage]</span>
     <span class="n">sampler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: samplers.BaseSampler</span>
@@ -1080,7 +1079,7 @@
     <span class="k">return</span> <span class="n">Study</span><span class="p">(</span><span class="n">study_name</span><span class="o">=</span><span class="n">study_name</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="n">storage</span><span class="p">,</span> <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span> <span class="n">pruner</span><span class="o">=</span><span class="n">pruner</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="delete_study"><a class="viewcode-back" href="../../reference/study.html#optuna.study.delete_study">[文档]</a><span class="k">def</span> <span class="nf">delete_study</span><span class="p">(</span>
+<div class="viewcode-block" id="delete_study"><a class="viewcode-back" href="../../reference/study.html#optuna.study.delete_study">[docs]</a><span class="k">def</span> <span class="nf">delete_study</span><span class="p">(</span>
     <span class="n">study_name</span><span class="p">,</span>  <span class="c1"># type: str</span>
     <span class="n">storage</span><span class="p">,</span>  <span class="c1"># type: Union[str, storages.BaseStorage]</span>
 <span class="p">):</span>
@@ -1101,7 +1100,7 @@
     <span class="n">storage</span><span class="o">.</span><span class="n">delete_study</span><span class="p">(</span><span class="n">study_id</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_all_study_summaries"><a class="viewcode-back" href="../../reference/study.html#optuna.study.get_all_study_summaries">[文档]</a><span class="k">def</span> <span class="nf">get_all_study_summaries</span><span class="p">(</span><span class="n">storage</span><span class="p">):</span>
+<div class="viewcode-block" id="get_all_study_summaries"><a class="viewcode-back" href="../../reference/study.html#optuna.study.get_all_study_summaries">[docs]</a><span class="k">def</span> <span class="nf">get_all_study_summaries</span><span class="p">(</span><span class="n">storage</span><span class="p">):</span>
     <span class="c1"># type: (Union[str, storages.BaseStorage]) -&gt; List[StudySummary]</span>
     <span class="sd">&quot;&quot;&quot;Get all history of studies stored in a specified storage.</span>
 
