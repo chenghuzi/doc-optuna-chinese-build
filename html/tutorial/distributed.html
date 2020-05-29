@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Distributed Optimization &mdash; Optuna 1.4.0 documentation</title>
+  <title>分布式优化 &mdash; Optuna 1.4.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Command-Line Interface" href="cli.html" />
-    <link rel="prev" title="Saving/Resuming Study with RDB Backend" href="rdb.html" /> 
+    <link rel="prev" title="用 RDB 后端保存/恢复 Study" href="rdb.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,8 +94,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="first.html">第一个优化例子</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configurations.html">高级配置</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rdb.html">Saving/Resuming Study with RDB Backend</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Distributed Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rdb.html">用 RDB 后端保存/恢复 Study</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">分布式优化</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html">Command-Line Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="attributes.html">User Attributes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pruning.html">Pruning Unpromising Trials</a></li>
@@ -151,7 +151,7 @@
         
           <li><a href="index.html">Tutorial</a> &raquo;</li>
         
-      <li>Distributed Optimization</li>
+      <li>分布式优化</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -170,15 +170,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="distributed-optimization">
-<span id="distributed"></span><h1>Distributed Optimization<a class="headerlink" href="#distributed-optimization" title="Permalink to this headline">¶</a></h1>
-<p>There is no complicated setup but just sharing the same study name among nodes/processes.</p>
-<p>First, create a shared study using <code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">create-study</span></code> command (or using <code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.create_study()</span></code> in a Python script).</p>
+  <div class="section" id="distributed">
+<span id="id1"></span><h1>分布式优化<a class="headerlink" href="#distributed" title="Permalink to this headline">¶</a></h1>
+<p>Optuna的分布式优化中没有复杂的设置，你只需让不同的节点/进程共享一个相同的 study 名。</p>
+<p>首先，使用 <code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">create-study</span></code> 命令 (如果是在Python脚本中的化，就用 <code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.create_study()</span></code>) 创建一个共享的 study.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ optuna create-study --study-name <span class="s2">&quot;distributed-example&quot;</span> --storage <span class="s2">&quot;sqlite:///example.db&quot;</span>
 <span class="o">[</span>I <span class="m">2018</span>-10-31 <span class="m">18</span>:21:57,885<span class="o">]</span> A new study created with name: distributed-example
 </pre></div>
 </div>
-<p>Then, write an optimization script. Let’s assume that <code class="docutils literal notranslate"><span class="pre">foo.py</span></code> contains the following code.</p>
+<p>然后写一个包含如下代码的脚本，<code class="docutils literal notranslate"><span class="pre">foo.py</span></code>, 来进行优化。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
@@ -190,17 +190,17 @@
     <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Finally, run the shared study from multiple processes.
-For example, run <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">1</span></code> in a terminal, and do <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">2</span></code> in another one.
-They get parameter suggestions based on shared trials’ history.</p>
-<p>Process 1:</p>
+<p>最后，从不同的进程中分别运行这个 share study。
+比如说，在一个终端中运行 <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">1</span></code>，在另一个终端中运行 <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">2</span></code>.
+这些进程基于这个共享 study 的 trial 历史记录来获取参数建议 (parameter suggestion).</p>
+<p>进程 1:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python foo.py
 <span class="o">[</span>I <span class="m">2018</span>-10-31 <span class="m">18</span>:46:44,308<span class="o">]</span> Finished a trial resulted in value: <span class="m">1</span>.1097007755908204. Current best value is <span class="m">0</span>.00020881104123229936 with parameters: <span class="o">{</span><span class="s1">&#39;x&#39;</span>: <span class="m">2</span>.014450295541348<span class="o">}</span>.
 <span class="o">[</span>I <span class="m">2018</span>-10-31 <span class="m">18</span>:46:44,361<span class="o">]</span> Finished a trial resulted in value: <span class="m">0</span>.5186699439824186. Current best value is <span class="m">0</span>.00020881104123229936 with parameters: <span class="o">{</span><span class="s1">&#39;x&#39;</span>: <span class="m">2</span>.014450295541348<span class="o">}</span>.
 ...
 </pre></div>
 </div>
-<p>Process 2 (the same command as process 1):</p>
+<p>进程 2 （使用和进程 1 相同的命令）:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python foo.py
 <span class="o">[</span>I <span class="m">2018</span>-10-31 <span class="m">18</span>:47:02,912<span class="o">]</span> Finished a trial resulted in value: <span class="m">29</span>.821448668796563. Current best value is <span class="m">0</span>.00020881104123229936 with parameters: <span class="o">{</span><span class="s1">&#39;x&#39;</span>: <span class="m">2</span>.014450295541348<span class="o">}</span>.
 <span class="o">[</span>I <span class="m">2018</span>-10-31 <span class="m">18</span>:47:02,968<span class="o">]</span> Finished a trial resulted in value: <span class="m">0</span>.7962498978463782. Current best value is <span class="m">0</span>.00020881104123229936 with parameters: <span class="o">{</span><span class="s1">&#39;x&#39;</span>: <span class="m">2</span>.014450295541348<span class="o">}</span>.
@@ -209,11 +209,11 @@ They get parameter suggestions based on shared trials’ history.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We do not recommend SQLite for large scale distributed optimizations because it may cause serious performance issues. Please consider to use another database engine like PostgreSQL or MySQL.</p>
+<p>我们不推荐在大型的分布式优化中使用 SQLite，因为这可能导致性能问题。在这种情况下，请考虑使用其他数据库，比如 PostgreSQL 或 MySQL.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Please avoid putting the SQLite database on NFS when running distributed optimizations. See also: <a class="reference external" href="https://www.sqlite.org/faq.html#q5">https://www.sqlite.org/faq.html#q5</a></p>
+<p>在运行分布式优化时，请不要将 SQLite 数据库文件放在 NFS (Network File System) 文件系统中。具体原因见 : <a class="reference external" href="https://www.sqlite.org/faq.html#q5">https://www.sqlite.org/faq.html#q5</a></p>
 </div>
 </div>
 
@@ -228,7 +228,7 @@ They get parameter suggestions based on shared trials’ history.</p>
         <a href="cli.html" class="btn btn-neutral float-right" title="Command-Line Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="rdb.html" class="btn btn-neutral float-left" title="Saving/Resuming Study with RDB Backend" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="rdb.html" class="btn btn-neutral float-left" title="用 RDB 后端保存/恢复 Study" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
