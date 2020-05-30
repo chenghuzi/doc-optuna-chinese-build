@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User Attributes &mdash; Optuna 1.4.0 documentation</title>
+  <title>用户定义属性 &mdash; Optuna 1.4.0 documentation</title>
   
 
   
@@ -97,9 +97,9 @@
 <li class="toctree-l2"><a class="reference internal" href="rdb.html">用 RDB 后端保存/恢复 Study</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributed.html">分布式优化</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html">命令行界面</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">User Attributes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#adding-user-attributes-to-studies">Adding User Attributes to Studies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#adding-user-attributes-to-trials">Adding User Attributes to Trials</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">用户定义属性</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#study">将用户定义属性添加到 Study</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trial">将用户属性添加到 Trial 中</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pruning.html">Pruning Unpromising Trials</a></li>
@@ -155,7 +155,7 @@
         
           <li><a href="index.html">Tutorial</a> &raquo;</li>
         
-      <li>User Attributes</li>
+      <li>用户定义属性</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -174,40 +174,38 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="user-attributes">
-<span id="attributes"></span><h1>User Attributes<a class="headerlink" href="#user-attributes" title="Permalink to this headline">¶</a></h1>
-<p>This feature is to annotate experiments with user-defined attributes.</p>
-<div class="section" id="adding-user-attributes-to-studies">
-<h2>Adding User Attributes to Studies<a class="headerlink" href="#adding-user-attributes-to-studies" title="Permalink to this headline">¶</a></h2>
-<p>A <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> object provides <a class="reference internal" href="../reference/study.html#optuna.study.Study.set_user_attr" title="optuna.study.Study.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_user_attr()</span></code></a> method to
-register a pair of key and value as an user-defined attribute.
-A key is supposed to be a <code class="docutils literal notranslate"><span class="pre">str</span></code>, and a value be any object serializable with <code class="docutils literal notranslate"><span class="pre">json.dumps</span></code>.</p>
+  <div class="section" id="attributes">
+<span id="id1"></span><h1>用户定义属性<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h1>
+<p>利用用户自定义属性，这个功能可以给实验做注解。</p>
+<div class="section" id="study">
+<h2>将用户定义属性添加到 Study<a class="headerlink" href="#study" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 对象提供了一个将键-值对设置为用户自定义属性的方法： <a class="reference internal" href="../reference/study.html#optuna.study.Study.set_user_attr" title="optuna.study.Study.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_user_attr()</span></code></a>.
+这里的键应该属于 <code class="docutils literal notranslate"><span class="pre">str</span></code> 类型， 而值可以是任何能用 <code class="docutils literal notranslate"><span class="pre">json.dumps</span></code> 来序列化的对象。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 <span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">storage</span><span class="o">=</span><span class="s1">&#39;sqlite:///example.db&#39;</span><span class="p">)</span>
 <span class="n">study</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span><span class="s1">&#39;contributors&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Akiba&#39;</span><span class="p">,</span> <span class="s1">&#39;Sano&#39;</span><span class="p">])</span>
 <span class="n">study</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span> <span class="s1">&#39;MNIST&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>We can access annotated attributes with <code class="xref py py-attr docutils literal notranslate"><span class="pre">user_attr</span></code> property.</p>
+<p>我们可以利用 <code class="xref py py-attr docutils literal notranslate"><span class="pre">user_attr</span></code> 属性来获取所有定义过的属性。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span><span class="o">.</span><span class="n">user_attrs</span>  <span class="c1"># {&#39;contributors&#39;: [&#39;Akiba&#39;, &#39;Sano&#39;], &#39;dataset&#39;: &#39;MNIST&#39;}</span>
 </pre></div>
 </div>
-<p><code class="xref py py-class docutils literal notranslate"><span class="pre">StudySummary</span></code> object, which can be retrieved by
-<a class="reference internal" href="../reference/study.html#optuna.study.get_all_study_summaries" title="optuna.study.get_all_study_summaries"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_all_study_summaries()</span></code></a>, also contains user-defined attributes.</p>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">StudySummary</span></code> 对象中也包含了用户的自定义属性。
+我们可以从 <a class="reference internal" href="../reference/study.html#optuna.study.get_all_study_summaries" title="optuna.study.get_all_study_summaries"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_all_study_summaries()</span></code></a> 中获取它。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study_summaries</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">get_all_study_summaries</span><span class="p">(</span><span class="s1">&#39;sqlite:///example.db&#39;</span><span class="p">)</span>
 <span class="n">study_summaries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">user_attrs</span>  <span class="c1"># {&#39;contributors&#39;: [&#39;Akiba&#39;, &#39;Sano&#39;], &#39;dataset&#39;: &#39;MNIST&#39;}</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">study</span> <span class="pre">set-user-attr</span></code> command, which sets an attribute via command line interface.</p>
+<p>在命令行界面里，<code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">study</span> <span class="pre">set-user-attr</span></code> 可用于设置用户定义属性。</p>
 </div>
 </div>
-<div class="section" id="adding-user-attributes-to-trials">
-<h2>Adding User Attributes to Trials<a class="headerlink" href="#adding-user-attributes-to-trials" title="Permalink to this headline">¶</a></h2>
-<p>As with <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>, a <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> object provides
-<a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.set_user_attr" title="optuna.trial.Trial.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_user_attr()</span></code></a> method.
-Attributes are set inside an objective function.</p>
+<div class="section" id="trial">
+<h2>将用户属性添加到 Trial 中<a class="headerlink" href="#trial" title="Permalink to this headline">¶</a></h2>
+<p>和 <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 类似，<a class="reference internal" href="../reference/trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 对象也提供了一个设置属性的方法 <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.set_user_attr" title="optuna.trial.Trial.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_user_attr()</span></code></a> 方法。
+这些属性是在目标函数内部设置的。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">iris</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
@@ -221,12 +219,11 @@ Attributes are set inside an objective function.</p>
     <span class="k">return</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">accuracy</span>  <span class="c1"># return error for minimization</span>
 </pre></div>
 </div>
-<p>We can access annotated attributes as:</p>
+<p>可以用如下方式获取这些注解的属性：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span><span class="o">.</span><span class="n">trials</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">user_attrs</span>  <span class="c1"># {&#39;accuracy&#39;: 0.83}</span>
 </pre></div>
 </div>
-<p>Note that, in this example, the attribute is not annotated to a <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>
-but a single <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>.</p>
+<p>注意，在本例中，属性不是被注解到 <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 的，它属于一个单独的 <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>.</p>
 </div>
 </div>
 
