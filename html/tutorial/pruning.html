@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Pruning Unpromising Trials &mdash; Optuna 1.4.0 documentation</title>
+  <title>对无望的 Trial 进行剪枝 (Pruning) &mdash; Optuna 1.4.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="User-Defined Sampler" href="sampler.html" />
-    <link rel="prev" title="User Attributes" href="attributes.html" /> 
+    <link rel="prev" title="用户定义属性" href="attributes.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -97,10 +97,10 @@
 <li class="toctree-l2"><a class="reference internal" href="rdb.html">用 RDB 后端保存/恢复 Study</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributed.html">分布式优化</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html">命令行界面</a></li>
-<li class="toctree-l2"><a class="reference internal" href="attributes.html">User Attributes</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Pruning Unpromising Trials</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#activating-pruners">Activating Pruners</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#integration-modules-for-pruning">Integration Modules for Pruning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes.html">用户定义属性</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">对无望的 Trial 进行剪枝 (Pruning)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pruner">开启 Pruner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">用于 Pruning 的集成模块</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="sampler.html">User-Defined Sampler</a></li>
@@ -155,7 +155,7 @@
         
           <li><a href="index.html">Tutorial</a> &raquo;</li>
         
-      <li>Pruning Unpromising Trials</li>
+      <li>对无望的 Trial 进行剪枝 (Pruning)</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -174,15 +174,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pruning-unpromising-trials">
-<span id="pruning"></span><h1>Pruning Unpromising Trials<a class="headerlink" href="#pruning-unpromising-trials" title="Permalink to this headline">¶</a></h1>
-<p>This feature automatically stops unpromising trials at the early stages of the training (a.k.a., automated early-stopping).
-Optuna provides interfaces to concisely implement the pruning mechanism in iterative training algorithms.</p>
-<div class="section" id="activating-pruners">
-<h2>Activating Pruners<a class="headerlink" href="#activating-pruners" title="Permalink to this headline">¶</a></h2>
-<p>To turn on the pruning feature, you need to call <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.report" title="optuna.trial.Trial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">report()</span></code></a> and <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.should_prune" title="optuna.trial.Trial.should_prune"><code class="xref py py-func docutils literal notranslate"><span class="pre">should_prune()</span></code></a> after each step of the iterative training.
-<a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.report" title="optuna.trial.Trial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">report()</span></code></a> periodically monitors the intermediate objective values.
-<a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.should_prune" title="optuna.trial.Trial.should_prune"><code class="xref py py-func docutils literal notranslate"><span class="pre">should_prune()</span></code></a> decides termination of the trial that does not meet a predefined condition.</p>
+  <div class="section" id="trial-pruning">
+<span id="pruning"></span><h1>对无望的 Trial 进行剪枝 (Pruning)<a class="headerlink" href="#trial-pruning" title="Permalink to this headline">¶</a></h1>
+<p>该功能可以在训练的早期阶段自动终止无望的 Trial (a.k.a., 自动化 early-stopping).
+Optuna 提供了一些接口，可以用于在迭代训练算法中简洁地实现剪枝 (Pruning)。</p>
+<div class="section" id="pruner">
+<h2>开启 Pruner<a class="headerlink" href="#pruner" title="Permalink to this headline">¶</a></h2>
+<p>为了打开 Pruning 功能，你需要在迭代式训练的每一步完成后调用函数 <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.report" title="optuna.trial.Trial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">report()</span></code></a> 和 <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.should_prune" title="optuna.trial.Trial.should_prune"><code class="xref py py-func docutils literal notranslate"><span class="pre">should_prune()</span></code></a>
+<a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.report" title="optuna.trial.Trial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">report()</span></code></a> 定期监测这个过程中的目标函数值。
+<a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.should_prune" title="optuna.trial.Trial.should_prune"><code class="xref py py-func docutils literal notranslate"><span class="pre">should_prune()</span></code></a> 根据提前定义好的条件，判定该 trial 是否需要终止。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;filename: prune.py&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">sklearn.datasets</span>
@@ -213,12 +213,12 @@ Optuna provides interfaces to concisely implement the pruning mechanism in itera
 
     <span class="k">return</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">valid_x</span><span class="p">,</span> <span class="n">valid_y</span><span class="p">)</span>
 
-<span class="c1"># Set up the median stopping rule as the pruning condition.</span>
+<span class="c1"># 将中位数终止规则作为 pruning 条件。</span>
 <span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">pruner</span><span class="o">=</span><span class="n">optuna</span><span class="o">.</span><span class="n">pruners</span><span class="o">.</span><span class="n">MedianPruner</span><span class="p">())</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Executing the script above:</p>
+<p>运行上述脚本:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python prune.py
 <span class="o">[</span>I <span class="m">2018</span>-11-21 <span class="m">17</span>:27:57,836<span class="o">]</span> Finished trial#0 resulted in value: <span class="m">0</span>.052631578947368474. Current best value is <span class="m">0</span>.052631578947368474 with parameters: <span class="o">{</span><span class="s1">&#39;alpha&#39;</span>: <span class="m">0</span>.011428158279113485<span class="o">}</span>.
 <span class="o">[</span>I <span class="m">2018</span>-11-21 <span class="m">17</span>:27:57,963<span class="o">]</span> Finished trial#1 resulted in value: <span class="m">0</span>.02631578947368418. Current best value is <span class="m">0</span>.02631578947368418 with parameters: <span class="o">{</span><span class="s1">&#39;alpha&#39;</span>: <span class="m">0</span>.01862693201743629<span class="o">}</span>.
@@ -233,12 +233,12 @@ Optuna provides interfaces to concisely implement the pruning mechanism in itera
 ...
 </pre></div>
 </div>
-<p>We can see <code class="docutils literal notranslate"><span class="pre">Setting</span> <span class="pre">status</span> <span class="pre">of</span> <span class="pre">trial#{}</span> <span class="pre">as</span> <span class="pre">TrialState.PRUNED</span></code> in the log messages.
-This means several trials are stopped before they finish all iterations.</p>
+<p>我们可以在输出信息中看到 <code class="docutils literal notranslate"><span class="pre">Setting</span> <span class="pre">status</span> <span class="pre">of</span> <span class="pre">trial#{}</span> <span class="pre">as</span> <span class="pre">TrialState.PRUNED</span></code>.
+这意味着这些 trial 在他们完成迭代之前就被终止了。</p>
 </div>
-<div class="section" id="integration-modules-for-pruning">
-<h2>Integration Modules for Pruning<a class="headerlink" href="#integration-modules-for-pruning" title="Permalink to this headline">¶</a></h2>
-<p>To implement pruning mechanism in much simpler forms, Optuna provides integration modules for the following libraries.</p>
+<div class="section" id="id1">
+<h2>用于 Pruning 的集成模块<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>为了能更加方便地实现 pruning, Optuna 为以下框架提供了集成模块。</p>
 <ul class="simple">
 <li><p>XGBoost: <a class="reference internal" href="../reference/integration.html#optuna.integration.XGBoostPruningCallback" title="optuna.integration.XGBoostPruningCallback"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.integration.XGBoostPruningCallback</span></code></a></p></li>
 <li><p>LightGBM: <a class="reference internal" href="../reference/integration.html#optuna.integration.LightGBMPruningCallback" title="optuna.integration.LightGBMPruningCallback"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.integration.LightGBMPruningCallback</span></code></a></p></li>
@@ -251,8 +251,8 @@ This means several trials are stopped before they finish all iterations.</p>
 <li><p>PyTorch Lightning <a class="reference internal" href="../reference/integration.html#optuna.integration.PyTorchLightningPruningCallback" title="optuna.integration.PyTorchLightningPruningCallback"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.integration.PyTorchLightningPruningCallback</span></code></a></p></li>
 <li><p>FastAI <a class="reference internal" href="../reference/integration.html#optuna.integration.FastAIPruningCallback" title="optuna.integration.FastAIPruningCallback"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.integration.FastAIPruningCallback</span></code></a></p></li>
 </ul>
-<p>For example, <a class="reference internal" href="../reference/integration.html#optuna.integration.XGBoostPruningCallback" title="optuna.integration.XGBoostPruningCallback"><code class="xref py py-class docutils literal notranslate"><span class="pre">XGBoostPruningCallback</span></code></a> introduces pruning without directly changing the logic of training iteration.
-(See also <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/pruning/xgboost_integration.py">example</a> for the entire script.)</p>
+<p>比如, <a class="reference internal" href="../reference/integration.html#optuna.integration.XGBoostPruningCallback" title="optuna.integration.XGBoostPruningCallback"><code class="xref py py-class docutils literal notranslate"><span class="pre">XGBoostPruningCallback</span></code></a> 在无需修改训练迭代逻辑的情况下引入了 pruning.
+(完整脚本见 <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/pruning/xgboost_integration.py">example</a> .)</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pruning_callback</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">XGBoostPruningCallback</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="s1">&#39;validation-error&#39;</span><span class="p">)</span>
 <span class="n">bst</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">dtrain</span><span class="p">,</span> <span class="n">evals</span><span class="o">=</span><span class="p">[(</span><span class="n">dvalid</span><span class="p">,</span> <span class="s1">&#39;validation&#39;</span><span class="p">)],</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">pruning_callback</span><span class="p">])</span>
 </pre></div>
@@ -271,7 +271,7 @@ This means several trials are stopped before they finish all iterations.</p>
         <a href="sampler.html" class="btn btn-neutral float-right" title="User-Defined Sampler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="attributes.html" class="btn btn-neutral float-left" title="User Attributes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="attributes.html" class="btn btn-neutral float-left" title="用户定义属性" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
