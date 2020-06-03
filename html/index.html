@@ -160,13 +160,13 @@
   <p><a class="reference internal" href="https://raw.githubusercontent.com/optuna/optuna/master/docs/image/optuna-logo.png"><img alt="OPTUNA" src="https://raw.githubusercontent.com/optuna/optuna/master/docs/image/optuna-logo.png" style="width: 800px;" /></a></p>
 <div class="section" id="optuna">
 <h1>Optuna: 一个超参数优化框架<a class="headerlink" href="#optuna" title="Permalink to this headline">¶</a></h1>
-<p><em>Optuna</em> 是一个特别为机器学习而设计的自动超参数优化软件框架。它的一大特色是有着 <em>define-by-run</em> 风格的用户自定义 API。由于这种API 的存在，用 Optuna 编写的代码模块化程度很高。同时，Optuna 的用户也可以动态地构造超参数的搜索空间。</p>
+<p><em>Optuna</em> 是一个特别为机器学习设计的自动超参数优化软件框架。它具有命令式的，<em>define-by-run</em> 风格的 API。由于这种 API 的存在，用 Optuna 编写的代码模块化程度很高，Optuna 的用户因此也可以动态地构造超参数的搜索空间。</p>
 <div class="section" id="id1">
 <h2>主要特点<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Optuna 有如下现代化的功能：</p>
 <ul class="simple">
 <li><p>并行的分布式优化</p></li>
-<li><p>对不理想实验 (trial) 的提前剪枝</p></li>
+<li><p>对不理想实验 (trial) 的剪枝 (pruning)</p></li>
 <li><p>轻量级、多功能和跨平台架构</p></li>
 </ul>
 </div>
@@ -181,7 +181,7 @@
 <p><a class="reference external" href="http://colab.research.google.com/github/optuna/optuna/blob/master/examples/quickstart.ipynb"><img alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">...</span>
 
-<span class="c1"># 定义待优化的目标函数</span>
+<span class="c1"># 定义待优化的目标函数。</span>
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
 
     <span class="c1"># 调用 suggest 方法用于给该 Trial 生成超参数。</span>
@@ -201,7 +201,7 @@
 
     <span class="n">error</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_val</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">error</span>  <span class="c1"># Trial 对象对应的目标函数值.</span>
+    <span class="k">return</span> <span class="n">error</span>  <span class="c1"># Trial 对象对应的目标函数值。</span>
 
 <span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>  <span class="c1"># 创建新study.</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># 开始目标函数的优化过程。</span>
