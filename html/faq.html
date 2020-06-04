@@ -98,10 +98,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#rdb-optuna">没有远程 RDB 的情况下可以使用 Optuna 吗？</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#study">如何保存和恢复 study？</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">如何禁用 Optuna 的日志信息？</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-to-save-machine-learning-models-trained-in-objective-functions">How to save machine learning models trained in objective functions?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-can-i-obtain-reproducible-optimization-results">How can I obtain reproducible optimization results?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-are-exceptions-from-trials-handled">How are exceptions from trials handled?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-are-nans-returned-by-trials-handled">How are NaNs returned by trials handled?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">如何在目标函数中保存训练好的机器学习模型？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">如何获得可复现的优化结果？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trial">Trial 抛出的异常是如何处理的？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trial-nan">Trial 返回的 NaN 是如何处理的？</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what-happens-when-i-dynamically-alter-a-search-space">What happens when I dynamically alter a search space?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-can-i-use-two-gpus-for-evaluating-two-trials-simultaneously">How can I use two GPUs for evaluating two trials simultaneously?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-can-i-test-my-objective-functions">How can I test my objective functions?</a></li>
@@ -175,27 +175,27 @@
 <h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#optuna" id="id3">某某库可以和 Optuna 配合使用吗？（某某是你最爱的机器学习库）</a></p></li>
-<li><p><a class="reference internal" href="#objective-func-additional-args" id="id4">如何定义带有独有参数的目标函数？</a></p></li>
-<li><p><a class="reference internal" href="#rdb-optuna" id="id5">没有远程 RDB 的情况下可以使用 Optuna 吗？</a></p></li>
-<li><p><a class="reference internal" href="#study" id="id6">如何保存和恢复 study？</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id7">如何禁用 Optuna 的日志信息？</a></p></li>
-<li><p><a class="reference internal" href="#how-to-save-machine-learning-models-trained-in-objective-functions" id="id8">How to save machine learning models trained in objective functions?</a></p></li>
-<li><p><a class="reference internal" href="#how-can-i-obtain-reproducible-optimization-results" id="id9">How can I obtain reproducible optimization results?</a></p></li>
-<li><p><a class="reference internal" href="#how-are-exceptions-from-trials-handled" id="id10">How are exceptions from trials handled?</a></p></li>
-<li><p><a class="reference internal" href="#how-are-nans-returned-by-trials-handled" id="id11">How are NaNs returned by trials handled?</a></p></li>
-<li><p><a class="reference internal" href="#what-happens-when-i-dynamically-alter-a-search-space" id="id12">What happens when I dynamically alter a search space?</a></p></li>
-<li><p><a class="reference internal" href="#how-can-i-use-two-gpus-for-evaluating-two-trials-simultaneously" id="id13">How can I use two GPUs for evaluating two trials simultaneously?</a></p></li>
-<li><p><a class="reference internal" href="#how-can-i-test-my-objective-functions" id="id14">How can I test my objective functions?</a></p></li>
+<li><p><a class="reference internal" href="#optuna" id="id5">某某库可以和 Optuna 配合使用吗？（某某是你最爱的机器学习库）</a></p></li>
+<li><p><a class="reference internal" href="#objective-func-additional-args" id="id6">如何定义带有独有参数的目标函数？</a></p></li>
+<li><p><a class="reference internal" href="#rdb-optuna" id="id7">没有远程 RDB 的情况下可以使用 Optuna 吗？</a></p></li>
+<li><p><a class="reference internal" href="#study" id="id8">如何保存和恢复 study？</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id9">如何禁用 Optuna 的日志信息？</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id10">如何在目标函数中保存训练好的机器学习模型？</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id11">如何获得可复现的优化结果？</a></p></li>
+<li><p><a class="reference internal" href="#trial" id="id12">Trial 抛出的异常是如何处理的？</a></p></li>
+<li><p><a class="reference internal" href="#trial-nan" id="id13">Trial 返回的 NaN 是如何处理的？</a></p></li>
+<li><p><a class="reference internal" href="#what-happens-when-i-dynamically-alter-a-search-space" id="id14">What happens when I dynamically alter a search space?</a></p></li>
+<li><p><a class="reference internal" href="#how-can-i-use-two-gpus-for-evaluating-two-trials-simultaneously" id="id15">How can I use two GPUs for evaluating two trials simultaneously?</a></p></li>
+<li><p><a class="reference internal" href="#how-can-i-test-my-objective-functions" id="id16">How can I test my objective functions?</a></p></li>
 </ul>
 </div>
 <div class="section" id="optuna">
-<h2><a class="toc-backref" href="#id3">某某库可以和 Optuna 配合使用吗？（某某是你最爱的机器学习库）</a><a class="headerlink" href="#optuna" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">某某库可以和 Optuna 配合使用吗？（某某是你最爱的机器学习库）</a><a class="headerlink" href="#optuna" title="Permalink to this headline">¶</a></h2>
 <p>Optuna 和绝大多数ML库兼容，并且很容易同他们配合使用。
 参见 <a class="reference external" href="https://github.com/optuna/optuna/tree/master/examples">examples</a>.</p>
 </div>
 <div class="section" id="objective-func-additional-args">
-<span id="id1"></span><h2><a class="toc-backref" href="#id4">如何定义带有独有参数的目标函数？</a><a class="headerlink" href="#objective-func-additional-args" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2><a class="toc-backref" href="#id6">如何定义带有独有参数的目标函数？</a><a class="headerlink" href="#objective-func-additional-args" title="Permalink to this headline">¶</a></h2>
 <p>有两种方法可以实现这类函数。</p>
 <p>首先，如下的可调用的 objective 类具有这个功能：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
@@ -237,7 +237,7 @@
 <p>其他例子参见 <a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/sklearn_additional_args.py">sklearn_addtitional_args.py</a> .</p>
 </div>
 <div class="section" id="rdb-optuna">
-<h2><a class="toc-backref" href="#id5">没有远程 RDB 的情况下可以使用 Optuna 吗？</a><a class="headerlink" href="#rdb-optuna" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">没有远程 RDB 的情况下可以使用 Optuna 吗？</a><a class="headerlink" href="#rdb-optuna" title="Permalink to this headline">¶</a></h2>
 <p>可以。</p>
 <p>在最简单的情况下，Optuna 使用内存 (in-memory) 存储：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>
@@ -252,7 +252,7 @@
 <p>更多细节请参考 <a class="reference internal" href="tutorial/rdb.html#rdb"><span class="std std-ref">用 RDB 后端保存/恢复 Study</span></a>.</p>
 </div>
 <div class="section" id="study">
-<h2><a class="toc-backref" href="#id6">如何保存和恢复 study？</a><a class="headerlink" href="#study" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">如何保存和恢复 study？</a><a class="headerlink" href="#study" title="Permalink to this headline">¶</a></h2>
 <p>有两种方法可以将 study 持久化。具体采用哪种取决于你是使用内存存储 (in-memory) 还是远程数据库存储 (RDB).
 通过 <code class="docutils literal notranslate"><span class="pre">pickle</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">joblib</span></code>, 采用了内存存储的 study 可以和普通的 Python 对象一样被存储和加载。
 比如用 <code class="docutils literal notranslate"><span class="pre">joblib</span></code> 的话：</p>
@@ -272,7 +272,7 @@
 <p>如果你用的是 RDB, 具体细节请参考 <a class="reference internal" href="tutorial/rdb.html#rdb"><span class="std std-ref">用 RDB 后端保存/恢复 Study</span></a>.</p>
 </div>
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id7">如何禁用 Optuna 的日志信息？</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">如何禁用 Optuna 的日志信息？</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>默认情况下，Optuna 打印处于 <code class="docutils literal notranslate"><span class="pre">optuna.logging.INFO</span></code> 层级的日志信息。
 通过设置  <a class="reference internal" href="reference/logging.html#optuna.logging.set_verbosity" title="optuna.logging.set_verbosity"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.logging.set_verbosity()</span></code></a>, 你可以改变这个层级。</p>
 <p>比如，下面的代码可以终止打印每一个trial的结果：</p>
@@ -285,19 +285,18 @@
 </div>
 <p>更多的细节请参考  <a class="reference internal" href="reference/logging.html#module-optuna.logging" title="optuna.logging"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.logging</span></code></a>.</p>
 </div>
-<div class="section" id="how-to-save-machine-learning-models-trained-in-objective-functions">
-<h2><a class="toc-backref" href="#id8">How to save machine learning models trained in objective functions?</a><a class="headerlink" href="#how-to-save-machine-learning-models-trained-in-objective-functions" title="Permalink to this headline">¶</a></h2>
-<p>Optuna saves hyperparameter values with its corresponding objective value to storage,
-but it discards intermediate objects such as machine learning models and neural network weights.
-To save models or weights, please use features of the machine learning library you used.</p>
-<p>We recommend saving <a class="reference internal" href="reference/trial.html#optuna.trial.Trial.number" title="optuna.trial.Trial.number"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.trial.Trial.number</span></code></a> with a model in order to identify its corresponding trial.
-For example, you can save SVM models trained in the objective function as follows:</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id10">如何在目标函数中保存训练好的机器学习模型？</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Optuna 会保存超参数和对应的目标函数值到存储对象中，但是它不会存储诸如机器学习模型或者网络权重这样的中间对象。
+要保存模型或者权重的话，请利用你正在使用的机器学习库提供的对应功能。</p>
+<p>在保存模型的时候，我们推荐将 <a class="reference internal" href="reference/trial.html#optuna.trial.Trial.number" title="optuna.trial.Trial.number"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.trial.Trial.number</span></code></a> 一同存储。这样易于之后确认对应的 trial.
+比如，你可以用以下方式在目标函数中保存训练好的 SVM 模型：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">svc_c</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_loguniform</span><span class="p">(</span><span class="s1">&#39;svc_c&#39;</span><span class="p">,</span> <span class="mf">1e-10</span><span class="p">,</span> <span class="mf">1e10</span><span class="p">)</span>
     <span class="n">clf</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">svc_c</span><span class="p">)</span>
     <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-    <span class="c1"># Save a trained model to a file.</span>
+    <span class="c1"># 将训练好的模型保存到文件。</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.pickle&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">number</span><span class="p">),</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fout</span><span class="p">:</span>
         <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">fout</span><span class="p">)</span>
     <span class="k">return</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">))</span>
@@ -306,42 +305,42 @@ For example, you can save SVM models trained in the objective function as follow
 <span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
-<span class="c1"># Load the best model.</span>
+<span class="c1"># 加载最佳模型。</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.pickle&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">study</span><span class="o">.</span><span class="n">best_trial</span><span class="o">.</span><span class="n">number</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fin</span><span class="p">:</span>
     <span class="n">best_clf</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fin</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">best_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="how-can-i-obtain-reproducible-optimization-results">
-<h2><a class="toc-backref" href="#id9">How can I obtain reproducible optimization results?</a><a class="headerlink" href="#how-can-i-obtain-reproducible-optimization-results" title="Permalink to this headline">¶</a></h2>
-<p>To make the parameters suggested by Optuna reproducible, you can specify a fixed random seed via <code class="docutils literal notranslate"><span class="pre">seed</span></code> argument of <a class="reference internal" href="reference/samplers.html#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSampler</span></code></a> or <a class="reference internal" href="reference/samplers.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> as follows:</p>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id11">如何获得可复现的优化结果？</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>要让 Optuna 生成的参数可复现的话，你可以通过设置 <a class="reference internal" href="reference/samplers.html#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSampler</span></code></a> 或者 <a class="reference internal" href="reference/samplers.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> 中的参数 <code class="docutils literal notranslate"><span class="pre">seed</span></code> 来指定一个固定的随机数种子：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">TPESampler</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Make the sampler behave in a deterministic way.</span>
 <span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">)</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>However, there are two caveats.</p>
-<p>First, when optimizing a study in distributed or parallel mode, there is inherent non-determinism.
-Thus it is very difficult to reproduce the same results in such condition.
-We recommend executing optimization of a study sequentially if you would like to reproduce the result.</p>
-<p>Second, if your objective function behaves in a non-deterministic way (i.e., it does not return the same value even if the same parameters were suggested), you cannot reproduce an optimization.
-To deal with this problem, please set an option (e.g., random seed) to make the behavior deterministic if your optimization target (e.g., an ML library) provides it.</p>
+<p>但是这么做的话有两个风险。</p>
+<p>首先，如果一个 study 的优化过程本身是分布式的或者并行的，那么这个过程中存在着固有的不确定性。
+因此，在这种情况下我们很难复现出同样的结果。
+如果你想复现结果的话，我们建议用顺序执行的方式来优化你的 study.</p>
+<p>其次，如果你的目标函数的行为本身就是不确定的（也就是说，即使送入同样的参数，其返回值也不是唯一的），那么你就无法复现这个优化过程。
+要解决这个问题的话，请设置一个选项（比如随机数种子）来让你的优化目标的行为变成确定性的，前提是你用的机器学习库支持这一功能。</p>
 </div>
-<div class="section" id="how-are-exceptions-from-trials-handled">
-<h2><a class="toc-backref" href="#id10">How are exceptions from trials handled?</a><a class="headerlink" href="#how-are-exceptions-from-trials-handled" title="Permalink to this headline">¶</a></h2>
-<p>Trials that raise exceptions without catching them will be treated as failures, i.e. with the <a class="reference internal" href="reference/trial.html#optuna.trial.TrialState.FAIL" title="optuna.trial.TrialState.FAIL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FAIL</span></code></a> status.</p>
-<p>By default, all exceptions except <a class="reference internal" href="reference/exceptions.html#optuna.exceptions.TrialPruned" title="optuna.exceptions.TrialPruned"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrialPruned</span></code></a> raised in objective functions are propagated to the caller of <a class="reference internal" href="reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a>.
-In other words, studies are aborted when such exceptions are raised.
-It might be desirable to continue a study with the remaining trials.
-To do so, you can specify in <a class="reference internal" href="reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a> which exception types to catch using the <code class="docutils literal notranslate"><span class="pre">catch</span></code> argument.
-Exceptions of these types are caught inside the study and will not propagate further.</p>
-<p>You can find the failed trials in log messages.</p>
+<div class="section" id="trial">
+<h2><a class="toc-backref" href="#id12">Trial 抛出的异常是如何处理的？</a><a class="headerlink" href="#trial" title="Permalink to this headline">¶</a></h2>
+<p>那些抛出异常却没有对应的捕获机制的 trial 会被视作失败的 trial, 也就是处于 <a class="reference internal" href="reference/trial.html#optuna.trial.TrialState.FAIL" title="optuna.trial.TrialState.FAIL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FAIL</span></code></a> 状态的 trial.</p>
+<p>在默认情况下，除了目标函数中抛出的 <a class="reference internal" href="reference/exceptions.html#optuna.exceptions.TrialPruned" title="optuna.exceptions.TrialPruned"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrialPruned</span></code></a>, 其他所有异常都会被传回给调用函数 <a class="reference internal" href="reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a>.
+换句话说，当此类异常被抛出时，对应的 study 就会被终止。
+但有时候我们希望能用剩余的 trial 将该 study 继续下去。
+要这么做的话，你得通过 <a class="reference internal" href="reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a> 函数中的 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 参数来指定要捕获的异常类型。
+这样，此类异常就会在 study 内部被捕获，而不会继续向外层传递。</p>
+<p>你可以在日志信息里找到失败的 trial.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>W <span class="m">2018</span>-12-07 <span class="m">16</span>:38:36,889<span class="o">]</span> Setting status of trial#0 as TrialState.FAIL because of <span class="se">\</span>
 the following error: ValueError<span class="o">(</span><span class="s1">&#39;A sample error in objective.&#39;</span><span class="o">)</span>
 </pre></div>
 </div>
-<p>You can also find the failed trials by checking the trial states as follows:</p>
+<p>也可以用如下方式来找出失败的 trial:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span><span class="o">.</span><span class="n">trials_dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -380,20 +379,20 @@ the following error: ValueError<span class="o">(</span><span class="s1">&#39;A s
 </table>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">catch</span></code> argument in <a class="reference internal" href="reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a>.</p>
+<p><a class="reference internal" href="reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a> 中的参数 <code class="docutils literal notranslate"><span class="pre">catch</span></code>.</p>
 </div>
 </div>
-<div class="section" id="how-are-nans-returned-by-trials-handled">
-<h2><a class="toc-backref" href="#id11">How are NaNs returned by trials handled?</a><a class="headerlink" href="#how-are-nans-returned-by-trials-handled" title="Permalink to this headline">¶</a></h2>
-<p>Trials that return <code class="xref py py-obj docutils literal notranslate"><span class="pre">NaN</span></code> (<code class="docutils literal notranslate"><span class="pre">float('nan')</span></code>) are treated as failures, but they will not abort studies.</p>
-<p>Trials which return <code class="xref py py-obj docutils literal notranslate"><span class="pre">NaN</span></code> are shown as follows:</p>
+<div class="section" id="trial-nan">
+<h2><a class="toc-backref" href="#id13">Trial 返回的 NaN 是如何处理的？</a><a class="headerlink" href="#trial-nan" title="Permalink to this headline">¶</a></h2>
+<p>返回 NaN 的 trial 被视为失败的 trial, 但是它们并不会导致 study 被终止。</p>
+<p>这些 trial 在日志里长这样：</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>W <span class="m">2018</span>-12-07 <span class="m">16</span>:41:59,000<span class="o">]</span> Setting status of trial#2 as TrialState.FAIL because the <span class="se">\</span>
 objective <span class="k">function</span> returned nan.
 </pre></div>
 </div>
 </div>
 <div class="section" id="what-happens-when-i-dynamically-alter-a-search-space">
-<h2><a class="toc-backref" href="#id12">What happens when I dynamically alter a search space?</a><a class="headerlink" href="#what-happens-when-i-dynamically-alter-a-search-space" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">What happens when I dynamically alter a search space?</a><a class="headerlink" href="#what-happens-when-i-dynamically-alter-a-search-space" title="Permalink to this headline">¶</a></h2>
 <p>Since parameters search spaces are specified in each call to the suggestion API, e.g.
 <a class="reference internal" href="reference/trial.html#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a> and <a class="reference internal" href="reference/trial.html#optuna.trial.Trial.suggest_int" title="optuna.trial.Trial.suggest_int"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_int()</span></code></a>,
 it is possible to in a single study alter the range by sampling parameters from different search
@@ -405,7 +404,7 @@ The behavior when altered is defined by each sampler individually.</p>
 </div>
 </div>
 <div class="section" id="how-can-i-use-two-gpus-for-evaluating-two-trials-simultaneously">
-<h2><a class="toc-backref" href="#id13">How can I use two GPUs for evaluating two trials simultaneously?</a><a class="headerlink" href="#how-can-i-use-two-gpus-for-evaluating-two-trials-simultaneously" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">How can I use two GPUs for evaluating two trials simultaneously?</a><a class="headerlink" href="#how-can-i-use-two-gpus-for-evaluating-two-trials-simultaneously" title="Permalink to this headline">¶</a></h2>
 <p>If your optimization target supports GPU (CUDA) acceleration and you want to specify which GPU is used, the easiest way is to set <code class="docutils literal notranslate"><span class="pre">CUDA_VISIBLE_DEVICES</span></code> environment variable:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># On a terminal.</span>
 <span class="c1">#</span>
@@ -423,7 +422,7 @@ $ optuna study optimize bar.py objective --study bar --storage sqlite:///example
 <p>Please refer to <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#env-vars">CUDA C Programming Guide</a> for further details.</p>
 </div>
 <div class="section" id="how-can-i-test-my-objective-functions">
-<h2><a class="toc-backref" href="#id14">How can I test my objective functions?</a><a class="headerlink" href="#how-can-i-test-my-objective-functions" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">How can I test my objective functions?</a><a class="headerlink" href="#how-can-i-test-my-objective-functions" title="Permalink to this headline">¶</a></h2>
 <p>When you test objective functions, you may prefer fixed parameter values to sampled ones.
 In that case, you can use <a class="reference internal" href="reference/trial.html#optuna.trial.FixedTrial" title="optuna.trial.FixedTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixedTrial</span></code></a>, which suggests fixed parameter values based on a given dictionary of parameters.
 For instance, you can input arbitrary values of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> to the objective function <span class="math notranslate nohighlight">\(x + y\)</span> as follows:</p>
