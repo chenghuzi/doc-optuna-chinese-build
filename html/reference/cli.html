@@ -187,293 +187,298 @@
             
   <div class="section" id="command-line-interface">
 <h1>Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>optuna
-    <span class="o">[</span>--version<span class="o">]</span>
-    <span class="o">[</span>-v <span class="p">|</span> -q<span class="o">]</span>
-    <span class="o">[</span>--log-file LOG_FILE<span class="o">]</span>
-    <span class="o">[</span>--debug<span class="o">]</span>
-    <span class="o">[</span>--storage STORAGE<span class="o">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optuna</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">version</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">-</span><span class="n">v</span> <span class="o">|</span> <span class="o">-</span><span class="n">q</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">file</span> <span class="n">LOG_FILE</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">debug</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">storage</span> <span class="n">STORAGE</span><span class="p">]</span>
 </pre></div>
 </div>
 <dl class="std option">
-<dt id="cmdoption-optuna-version">
-<code class="sig-name descname">--version</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-optuna-version" title="Permalink to this definition">¶</a></dt>
-<dd><p>show program’s version number and exit</p>
+<dt id="cmdoption-version">
+<code class="sig-name descname">--version</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-version" title="Permalink to this definition">¶</a></dt>
+<dd><p>显示应用的版本号并退出</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-v">
-<span id="cmdoption-optuna-verbose"></span><code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-optuna-v" title="Permalink to this definition">¶</a></dt>
-<dd><p>Increase verbosity of output. Can be repeated.</p>
+<dt id="cmdoption-v">
+<span id="cmdoption-verbose"></span><code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-v" title="Permalink to this definition">¶</a></dt>
+<dd><p>打印冗余内容。可重复。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-q">
-<span id="cmdoption-optuna-quiet"></span><code class="sig-name descname">-q</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--quiet</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-optuna-q" title="Permalink to this definition">¶</a></dt>
-<dd><p>Suppress output except warnings and errors.</p>
+<dt id="cmdoption-q">
+<span id="cmdoption-quiet"></span><code class="sig-name descname">-q</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--quiet</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>禁止打印除了警告和错误之外的输出。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-log-file">
-<code class="sig-name descname">--log-file</code><code class="sig-prename descclassname"> &lt;LOG_FILE&gt;</code><a class="headerlink" href="#cmdoption-optuna-log-file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Specify a file to log output. Disabled by default.</p>
+<dt id="cmdoption-log-file">
+<code class="sig-name descname">--log-file</code><code class="sig-prename descclassname"> &lt;LOG_FILE&gt;</code><a class="headerlink" href="#cmdoption-log-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>确定用于记录日志的文件名。该选项默认情况下是禁用的。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-debug">
-<code class="sig-name descname">--debug</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-optuna-debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Show tracebacks on errors.</p>
+<dt id="cmdoption-debug">
+<code class="sig-name descname">--debug</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>显示异常处理和堆栈跟踪信息。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-storage">
-<code class="sig-name descname">--storage</code><code class="sig-prename descclassname"> &lt;STORAGE&gt;</code><a class="headerlink" href="#cmdoption-optuna-storage" title="Permalink to this definition">¶</a></dt>
-<dd><p>DB URL. (e.g. sqlite:///example.db)</p>
+<dt id="cmdoption-storage">
+<code class="sig-name descname">--storage</code><code class="sig-prename descclassname"> &lt;STORAGE&gt;</code><a class="headerlink" href="#cmdoption-storage" title="Permalink to this definition">¶</a></dt>
+<dd><p>数据库 URL. (比如 <code class="docutils literal notranslate"><span class="pre">sqlite:///example.db</span></code> )</p>
 </dd></dl>
 
 <div class="section" id="create-study">
 <h2>create-study<a class="headerlink" href="#create-study" title="Permalink to this headline">¶</a></h2>
-<p>Create a new study.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>optuna create-study
-    <span class="o">[</span>--study-name STUDY_NAME<span class="o">]</span>
-    <span class="o">[</span>--direction <span class="o">{</span>minimize,maximize<span class="o">}]</span>
-    <span class="o">[</span>--skip-if-exists<span class="o">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optuna</span> <span class="n">create</span><span class="o">-</span><span class="n">study</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">study</span><span class="o">-</span><span class="n">name</span> <span class="n">STUDY_NAME</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">direction</span> <span class="p">{</span><span class="n">minimize</span><span class="p">,</span><span class="n">maximize</span><span class="p">}]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">skip</span><span class="o">-</span><span class="k">if</span><span class="o">-</span><span class="n">exists</span><span class="p">]</span>
 </pre></div>
 </div>
 <dl class="std option">
-<dt id="cmdoption-optuna-create-study-study-name">
-<code class="sig-name descname">--study-name</code><code class="sig-prename descclassname"> &lt;STUDY_NAME&gt;</code><a class="headerlink" href="#cmdoption-optuna-create-study-study-name" title="Permalink to this definition">¶</a></dt>
-<dd><p>A human-readable name of a study to distinguish it from others.</p>
+<dt id="cmdoption-study-name">
+<code class="sig-name descname">--study-name</code><code class="sig-prename descclassname"> &lt;STUDY_NAME&gt;</code><a class="headerlink" href="#cmdoption-study-name" title="Permalink to this definition">¶</a></dt>
+<dd><p>设定具有可读性的 study 名，以方便和其他的 study 区分。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-create-study-direction">
-<code class="sig-name descname">--direction</code><code class="sig-prename descclassname"> &lt;DIRECTION&gt;</code><a class="headerlink" href="#cmdoption-optuna-create-study-direction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set direction of optimization to a new study. Set ‘minimize’ for minimization and ‘maximize’ for maximization.</p>
+<dt id="cmdoption-direction">
+<code class="sig-name descname">--direction</code><code class="sig-prename descclassname"> &lt;DIRECTION&gt;</code><a class="headerlink" href="#cmdoption-direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>设定新 study 的优化方向。如果方向是最小化的话就设成 ‘minimize’, 如果是最大化就设置成 ‘maximize’.</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-create-study-skip-if-exists">
-<code class="sig-name descname">--skip-if-exists</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-optuna-create-study-skip-if-exists" title="Permalink to this definition">¶</a></dt>
-<dd><p>If specified, the creation of the study is skipped without any error when the study name is duplicated.</p>
+<dt id="cmdoption-skip-if-exists">
+<code class="sig-name descname">--skip-if-exists</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-skip-if-exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>如果开启该选项， 当存在一个同名的 study 时，optuna 在优化开始时将跳过创建 study 的过程，并且不报错。</p>
 </dd></dl>
 
-<p>This command is provided by the optuna plugin.</p>
+<p>该命令由 optuna 插件提供。</p>
 </div>
 <div class="section" id="dashboard">
 <h2>dashboard<a class="headerlink" href="#dashboard" title="Permalink to this headline">¶</a></h2>
-<p>Launch web dashboard (beta).</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>optuna dashboard
-    <span class="o">[</span>--study STUDY<span class="o">]</span>
-    <span class="o">[</span>--study-name STUDY_NAME<span class="o">]</span>
-    <span class="o">[</span>--out OUT<span class="o">]</span>
-    <span class="o">[</span>--allow-websocket-origin BOKEH_ALLOW_WEBSOCKET_ORIGINS<span class="o">]</span>
+<p>启动 web dashboard (beta).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optuna</span> <span class="n">dashboard</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">study</span> <span class="n">STUDY</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">study</span><span class="o">-</span><span class="n">name</span> <span class="n">STUDY_NAME</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">out</span> <span class="n">OUT</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">allow</span><span class="o">-</span><span class="n">websocket</span><span class="o">-</span><span class="n">origin</span> <span class="n">BOKEH_ALLOW_WEBSOCKET_ORIGINS</span><span class="p">]</span>
 </pre></div>
 </div>
 <dl class="std option">
-<dt id="cmdoption-optuna-dashboard-study">
-<code class="sig-name descname">--study</code><code class="sig-prename descclassname"> &lt;STUDY&gt;</code><a class="headerlink" href="#cmdoption-optuna-dashboard-study" title="Permalink to this definition">¶</a></dt>
-<dd><p>This argument is deprecated. Use –study-name instead.</p>
+<dt id="cmdoption-study">
+<code class="sig-name descname">--study</code><code class="sig-prename descclassname"> &lt;STUDY&gt;</code><a class="headerlink" href="#cmdoption-study" title="Permalink to this definition">¶</a></dt>
+<dd><p>该参数已弃用。作为替代，请使用  –study-name.</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-dashboard-study-name">
-<code class="sig-name descname">--study-name</code><code class="sig-prename descclassname"> &lt;STUDY_NAME&gt;</code><a class="headerlink" href="#cmdoption-optuna-dashboard-study-name" title="Permalink to this definition">¶</a></dt>
-<dd><p>A human-readable name of a study to distinguish it from others.</p>
+<dt id="cmdoption-0">
+<code class="sig-name descname">--study-name</code><code class="sig-prename descclassname"> &lt;STUDY_NAME&gt;</code><a class="headerlink" href="#cmdoption-0" title="Permalink to this definition">¶</a></dt>
+<dd><p>设定具有可读性的 study 名，以方便和其他的 study 区分。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-dashboard-out">
-<span id="cmdoption-optuna-dashboard-o"></span><code class="sig-name descname">--out</code><code class="sig-prename descclassname"> &lt;OUT&gt;</code><code class="sig-prename descclassname">, </code><code class="sig-name descname">-o</code><code class="sig-prename descclassname"> &lt;OUT&gt;</code><a class="headerlink" href="#cmdoption-optuna-dashboard-out" title="Permalink to this definition">¶</a></dt>
-<dd><p>Output HTML file path. If it is not given, a HTTP server starts and the dashboard is served.</p>
+<dt id="cmdoption-allow-websocket-origin">
+<code class="sig-name descname">--allow-websocket-origin</code><code class="sig-prename descclassname"> &lt;BOKEH_ALLOW_WEBSOCKET_ORIGINS&gt;</code><a class="headerlink" href="#cmdoption-allow-websocket-origin" title="Permalink to this definition">¶</a></dt>
+<dd><p>允许从制定的 host 发起的的 websocket 请求。
+该选项用法和 bokeh 的 <code class="docutils literal notranslate"><span class="pre">–allow-websocket-origin</span></code> 一样。
+更多细节见 <a class="reference external" href="https://docs.bokeh.org/en/latest/docs/reference/command/subcommands/serve.html">https://docs.bokeh.org/en/latest/docs/reference/command/subcommands/serve.html</a>.
+设定具有可读性的 study 名，以方便和其他的 study 区分。</p>
 </dd></dl>
 
-<dl class="std option">
-<dt id="cmdoption-optuna-dashboard-allow-websocket-origin">
-<code class="sig-name descname">--allow-websocket-origin</code><code class="sig-prename descclassname"> &lt;BOKEH_ALLOW_WEBSOCKET_ORIGINS&gt;</code><a class="headerlink" href="#cmdoption-optuna-dashboard-allow-websocket-origin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Allow websocket access from the specified host(s).Internally, it is used as the value of bokeh’s –allow-websocket-origin option. Please refer to <a class="reference external" href="https://bokeh.pydata.org/en/latest/docs/reference/command/subcommands/serve.html">https://bokeh.pydata.org/en/latest/docs/reference/command/subcommands/serve.html</a> for more details.</p>
-</dd></dl>
-
-<p>This command is provided by the optuna plugin.</p>
+<p>该命令由 optuna 插件提供。</p>
 </div>
 <div class="section" id="delete-study">
 <h2>delete-study<a class="headerlink" href="#delete-study" title="Permalink to this headline">¶</a></h2>
-<p>Delete a specified study.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>optuna delete-study <span class="o">[</span>--study-name STUDY_NAME<span class="o">]</span>
+<p>删除特定的 study.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optuna</span> <span class="n">delete</span><span class="o">-</span><span class="n">study</span> <span class="p">[</span><span class="o">--</span><span class="n">study</span><span class="o">-</span><span class="n">name</span> <span class="n">STUDY_NAME</span><span class="p">]</span>
 </pre></div>
 </div>
 <dl class="std option">
-<dt id="cmdoption-optuna-delete-study-study-name">
-<code class="sig-name descname">--study-name</code><code class="sig-prename descclassname"> &lt;STUDY_NAME&gt;</code><a class="headerlink" href="#cmdoption-optuna-delete-study-study-name" title="Permalink to this definition">¶</a></dt>
-<dd><p>A human-readable name of a study to distinguish it from others.</p>
+<dt id="cmdoption-1">
+<code class="sig-name descname">--study-name</code><code class="sig-prename descclassname"> &lt;STUDY_NAME&gt;</code><a class="headerlink" href="#cmdoption-1" title="Permalink to this definition">¶</a></dt>
+<dd><p>设定具有可读性的 study 名，以方便和其他的 study 区分。</p>
 </dd></dl>
 
-<p>This command is provided by the optuna plugin.</p>
+<p>该命令由 optuna 插件提供。</p>
 </div>
 <div class="section" id="storage-upgrade">
 <h2>storage upgrade<a class="headerlink" href="#storage-upgrade" title="Permalink to this headline">¶</a></h2>
-<p>Upgrade the schema of a storage.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>optuna storage upgrade
+<p>升级数据库。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optuna</span> <span class="n">storage</span> <span class="n">upgrade</span>
 </pre></div>
 </div>
-<p>This command is provided by the optuna plugin.</p>
+<p>该命令由 optuna 插件提供。</p>
 </div>
 <div class="section" id="studies">
 <h2>studies<a class="headerlink" href="#studies" title="Permalink to this headline">¶</a></h2>
-<p>Show a list of studies.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>optuna studies
-    <span class="o">[</span>-f <span class="o">{</span>csv,json,table,value,yaml<span class="o">}]</span>
-    <span class="o">[</span>-c COLUMN<span class="o">]</span>
-    <span class="o">[</span>--quote <span class="o">{</span>all,minimal,none,nonnumeric<span class="o">}]</span>
-    <span class="o">[</span>--noindent<span class="o">]</span>
-    <span class="o">[</span>--max-width &lt;integer&gt;<span class="o">]</span>
-    <span class="o">[</span>--fit-width<span class="o">]</span>
-    <span class="o">[</span>--print-empty<span class="o">]</span>
-    <span class="o">[</span>--sort-column SORT_COLUMN<span class="o">]</span>
+<p>显示 study 列表</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optuna</span> <span class="n">studies</span>
+   <span class="p">[</span><span class="o">-</span><span class="n">f</span> <span class="p">{</span><span class="n">csv</span><span class="p">,</span><span class="n">json</span><span class="p">,</span><span class="n">table</span><span class="p">,</span><span class="n">value</span><span class="p">,</span><span class="n">yaml</span><span class="p">}]</span>
+   <span class="p">[</span><span class="o">-</span><span class="n">c</span> <span class="n">COLUMN</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">quote</span> <span class="p">{</span><span class="nb">all</span><span class="p">,</span><span class="n">minimal</span><span class="p">,</span><span class="n">none</span><span class="p">,</span><span class="n">nonnumeric</span><span class="p">}]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">noindent</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">width</span> <span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">fit</span><span class="o">-</span><span class="n">width</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="nb">print</span><span class="o">-</span><span class="n">empty</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">sort</span><span class="o">-</span><span class="n">column</span> <span class="n">SORT_COLUMN</span><span class="p">]</span>
 </pre></div>
 </div>
 <dl class="std option">
-<dt id="cmdoption-optuna-studies-f">
-<span id="cmdoption-optuna-studies-format"></span><code class="sig-name descname">-f</code><code class="sig-prename descclassname"> &lt;FORMATTER&gt;</code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--format</code><code class="sig-prename descclassname"> &lt;FORMATTER&gt;</code><a class="headerlink" href="#cmdoption-optuna-studies-f" title="Permalink to this definition">¶</a></dt>
-<dd><p>the output format, defaults to table</p>
+<dt id="cmdoption-f">
+<span id="cmdoption-format"></span><code class="sig-name descname">-f</code><code class="sig-prename descclassname"> &lt;FORMATTER&gt;</code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--format</code><code class="sig-prename descclassname"> &lt;FORMATTER&gt;</code><a class="headerlink" href="#cmdoption-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>输出格式，默认情况下是表格。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-studies-c">
-<span id="cmdoption-optuna-studies-column"></span><code class="sig-name descname">-c</code><code class="sig-prename descclassname"> COLUMN</code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--column</code><code class="sig-prename descclassname"> COLUMN</code><a class="headerlink" href="#cmdoption-optuna-studies-c" title="Permalink to this definition">¶</a></dt>
-<dd><p>specify the column(s) to include, can be repeated to show multiple columns</p>
+<dt id="cmdoption-c">
+<span id="cmdoption-column"></span><code class="sig-name descname">-c</code><code class="sig-prename descclassname"> COLUMN</code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--column</code><code class="sig-prename descclassname"> COLUMN</code><a class="headerlink" href="#cmdoption-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>用于设定要展示的（表格）列。
+可设置多个 column 参数以同时显示多个column.</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-studies-quote">
-<code class="sig-name descname">--quote</code><code class="sig-prename descclassname"> &lt;QUOTE_MODE&gt;</code><a class="headerlink" href="#cmdoption-optuna-studies-quote" title="Permalink to this definition">¶</a></dt>
-<dd><p>when to include quotes, defaults to nonnumeric</p>
+<dt id="cmdoption-quote">
+<code class="sig-name descname">--quote</code><code class="sig-prename descclassname"> &lt;QUOTE_MODE&gt;</code><a class="headerlink" href="#cmdoption-quote" title="Permalink to this definition">¶</a></dt>
+<dd><p>设置引号模式。默认为数值。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-studies-noindent">
-<code class="sig-name descname">--noindent</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-optuna-studies-noindent" title="Permalink to this definition">¶</a></dt>
-<dd><p>whether to disable indenting the JSON</p>
+<dt id="cmdoption-noindent">
+<code class="sig-name descname">--noindent</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-noindent" title="Permalink to this definition">¶</a></dt>
+<dd><p>设定是否在 json 中禁用缩进。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-studies-max-width">
-<code class="sig-name descname">--max-width</code><code class="sig-prename descclassname"> &lt;integer&gt;</code><a class="headerlink" href="#cmdoption-optuna-studies-max-width" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maximum display width, &lt;1 to disable. You can also use the CLIFF_MAX_TERM_WIDTH environment variable, but the parameter takes precedence.</p>
+<dt id="cmdoption-max-width">
+<code class="sig-name descname">--max-width</code><code class="sig-prename descclassname"> &lt;integer&gt;</code><a class="headerlink" href="#cmdoption-max-width" title="Permalink to this definition">¶</a></dt>
+<dd><p>最大展示宽度。如果设置成小于 1 的数值，就代表禁用最大宽度限制。
+你也可以通过设置 <code class="docutils literal notranslate"><span class="pre">CLIFF_MAX_TERM_WIDTH</span> <span class="pre">``</span> <span class="pre">环境变量来限制最大宽度，</span>
+<span class="pre">但是</span> <span class="pre">``--max-width</span></code> 参数的优先级比环境变量高。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-studies-fit-width">
-<code class="sig-name descname">--fit-width</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-optuna-studies-fit-width" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fit the table to the display width. Implied if –max-width greater than 0. Set the environment variable CLIFF_FIT_WIDTH=1 to always enable</p>
+<dt id="cmdoption-fit-width">
+<code class="sig-name descname">--fit-width</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fit-width" title="Permalink to this definition">¶</a></dt>
+<dd><p>将输出表格设置成与显示屏同宽。
+如果 <code class="docutils literal notranslate"><span class="pre">-max-width</span></code> &gt; 1 的话，该选项会自动启用。
+设定是否在 json 中禁用缩进。
+也可以通过设置 <code class="docutils literal notranslate"><span class="pre">CLIFF_FIT_WIDTH</span></code> 环境变量的值为 1 来启用该选项。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-studies-print-empty">
-<code class="sig-name descname">--print-empty</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-optuna-studies-print-empty" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print empty table if there is no data to show.</p>
+<dt id="cmdoption-print-empty">
+<code class="sig-name descname">--print-empty</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-print-empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>在无数据的情况下也输出空表格</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-studies-sort-column">
-<code class="sig-name descname">--sort-column</code><code class="sig-prename descclassname"> SORT_COLUMN</code><a class="headerlink" href="#cmdoption-optuna-studies-sort-column" title="Permalink to this definition">¶</a></dt>
-<dd><p>specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated</p>
+<dt id="cmdoption-sort-column">
+<code class="sig-name descname">--sort-column</code><code class="sig-prename descclassname"> SORT_COLUMN</code><a class="headerlink" href="#cmdoption-sort-column" title="Permalink to this definition">¶</a></dt>
+<dd><p>按照指定列来对表格的行进行排序。
+越靠前指定的列在排序中的优先级越高。没有被指定的列不参与排序。</p>
 </dd></dl>
 
-<p>This command is provided by the optuna plugin.</p>
+<p>该命令由 optuna 插件提供。</p>
 </div>
 <div class="section" id="study-optimize">
 <h2>study optimize<a class="headerlink" href="#study-optimize" title="Permalink to this headline">¶</a></h2>
-<p>Start optimization of a study.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>optuna study optimize
-    <span class="o">[</span>--n-trials N_TRIALS<span class="o">]</span>
-    <span class="o">[</span>--timeout TIMEOUT<span class="o">]</span>
-    <span class="o">[</span>--n-jobs N_JOBS<span class="o">]</span>
-    <span class="o">[</span>--study STUDY<span class="o">]</span>
-    <span class="o">[</span>--study-name STUDY_NAME<span class="o">]</span>
-    file
-    method
+<p>针对特定 study 开始优化过程。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optuna</span> <span class="n">study</span> <span class="n">optimize</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">n</span><span class="o">-</span><span class="n">trials</span> <span class="n">N_TRIALS</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">timeout</span> <span class="n">TIMEOUT</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">n</span><span class="o">-</span><span class="n">jobs</span> <span class="n">N_JOBS</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">study</span> <span class="n">STUDY</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">study</span><span class="o">-</span><span class="n">name</span> <span class="n">STUDY_NAME</span><span class="p">]</span>
+   <span class="n">file</span>
+   <span class="n">method</span>
 </pre></div>
 </div>
 <dl class="std option">
-<dt id="cmdoption-optuna-study-optimize-n-trials">
-<code class="sig-name descname">--n-trials</code><code class="sig-prename descclassname"> &lt;N_TRIALS&gt;</code><a class="headerlink" href="#cmdoption-optuna-study-optimize-n-trials" title="Permalink to this definition">¶</a></dt>
-<dd><p>The number of trials. If this argument is not given, as many trials run as possible.</p>
+<dt id="cmdoption-n-trials">
+<code class="sig-name descname">--n-trials</code><code class="sig-prename descclassname"> &lt;N_TRIALS&gt;</code><a class="headerlink" href="#cmdoption-n-trials" title="Permalink to this definition">¶</a></dt>
+<dd><p>优化过程将运行的总 trial 数目。
+如果不设定该数目的话，优化过程会一直持续下去。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-study-optimize-timeout">
-<code class="sig-name descname">--timeout</code><code class="sig-prename descclassname"> &lt;TIMEOUT&gt;</code><a class="headerlink" href="#cmdoption-optuna-study-optimize-timeout" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stop study after the given number of second(s). If this argument is not given, as many trials run as possible.</p>
+<dt id="cmdoption-timeout">
+<code class="sig-name descname">--timeout</code><code class="sig-prename descclassname"> &lt;TIMEOUT&gt;</code><a class="headerlink" href="#cmdoption-timeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>到达指定时间（按秒计）以后终止 study.
+如果不设定该数目的话，优化过程也会一直持续下去。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-study-optimize-n-jobs">
-<code class="sig-name descname">--n-jobs</code><code class="sig-prename descclassname"> &lt;N_JOBS&gt;</code><a class="headerlink" href="#cmdoption-optuna-study-optimize-n-jobs" title="Permalink to this definition">¶</a></dt>
-<dd><p>The number of parallel jobs. If this argument is set to -1, the number is set to CPU counts.</p>
+<dt id="cmdoption-n-jobs">
+<code class="sig-name descname">--n-jobs</code><code class="sig-prename descclassname"> &lt;N_JOBS&gt;</code><a class="headerlink" href="#cmdoption-n-jobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>并行运行的任务个数。如果该参数设置为 -1, 则任务的实际数目将等于 CPU 的核心数。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-study-optimize-study">
-<code class="sig-name descname">--study</code><code class="sig-prename descclassname"> &lt;STUDY&gt;</code><a class="headerlink" href="#cmdoption-optuna-study-optimize-study" title="Permalink to this definition">¶</a></dt>
-<dd><p>This argument is deprecated. Use –study-name instead.</p>
+<dt id="cmdoption-2">
+<code class="sig-name descname">--study</code><code class="sig-prename descclassname"> &lt;STUDY&gt;</code><a class="headerlink" href="#cmdoption-2" title="Permalink to this definition">¶</a></dt>
+<dd><p>该参数已经弃用，请使用 <code class="docutils literal notranslate"><span class="pre">–study-name</span></code> 来替代它。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-study-optimize-study-name">
-<code class="sig-name descname">--study-name</code><code class="sig-prename descclassname"> &lt;STUDY_NAME&gt;</code><a class="headerlink" href="#cmdoption-optuna-study-optimize-study-name" title="Permalink to this definition">¶</a></dt>
-<dd><p>A human-readable name of a study to distinguish it from others.</p>
+<dt id="cmdoption-3">
+<code class="sig-name descname">--study-name</code><code class="sig-prename descclassname"> &lt;STUDY_NAME&gt;</code><a class="headerlink" href="#cmdoption-3" title="Permalink to this definition">¶</a></dt>
+<dd><p>设定具有可读性的 study 名，以方便和其他的 study 区分。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-study-optimize-arg-file">
-<code class="sig-name descname">file</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-optuna-study-optimize-arg-file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Python script file where the objective function resides.</p>
+<dt id="cmdoption-arg-file">
+<code class="sig-name descname">file</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-arg-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>用于指定定义了目标函数的 Python 脚本文件名。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-study-optimize-arg-method">
-<code class="sig-name descname">method</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-optuna-study-optimize-arg-method" title="Permalink to this definition">¶</a></dt>
-<dd><p>The method name of the objective function.</p>
+<dt id="cmdoption-arg-method">
+<code class="sig-name descname">method</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-arg-method" title="Permalink to this definition">¶</a></dt>
+<dd><p>目标函数的方法名。</p>
 </dd></dl>
 
-<p>This command is provided by the optuna plugin.</p>
+<p>该命令由 optuna 插件提供。</p>
 </div>
 <div class="section" id="study-set-user-attr">
 <h2>study set-user-attr<a class="headerlink" href="#study-set-user-attr" title="Permalink to this headline">¶</a></h2>
-<p>Set a user attribute to a study.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>optuna study set-user-attr
-    <span class="o">[</span>--study STUDY<span class="o">]</span>
-    <span class="o">[</span>--study-name STUDY_NAME<span class="o">]</span>
-    --key KEY
-    --value VALUE
+<p>针对特定 study 设定用户属性 (user attribute).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optuna</span> <span class="n">study</span> <span class="nb">set</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">attr</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">study</span> <span class="n">STUDY</span><span class="p">]</span>
+   <span class="p">[</span><span class="o">--</span><span class="n">study</span><span class="o">-</span><span class="n">name</span> <span class="n">STUDY_NAME</span><span class="p">]</span>
+   <span class="o">--</span><span class="n">key</span> <span class="n">KEY</span>
+   <span class="o">--</span><span class="n">value</span> <span class="n">VALUE</span>
 </pre></div>
 </div>
 <dl class="std option">
-<dt id="cmdoption-optuna-study-set-user-attr-study">
-<code class="sig-name descname">--study</code><code class="sig-prename descclassname"> &lt;STUDY&gt;</code><a class="headerlink" href="#cmdoption-optuna-study-set-user-attr-study" title="Permalink to this definition">¶</a></dt>
-<dd><p>This argument is deprecated. Use –study-name instead.</p>
+<dt id="cmdoption-4">
+<code class="sig-name descname">--study</code><code class="sig-prename descclassname"> &lt;STUDY&gt;</code><a class="headerlink" href="#cmdoption-4" title="Permalink to this definition">¶</a></dt>
+<dd><p>该参数已经弃用，请使用 <code class="docutils literal notranslate"><span class="pre">–study-name</span></code> 来替代它。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-study-set-user-attr-study-name">
-<code class="sig-name descname">--study-name</code><code class="sig-prename descclassname"> &lt;STUDY_NAME&gt;</code><a class="headerlink" href="#cmdoption-optuna-study-set-user-attr-study-name" title="Permalink to this definition">¶</a></dt>
-<dd><p>A human-readable name of a study to distinguish it from others.</p>
+<dt id="cmdoption-5">
+<code class="sig-name descname">--study-name</code><code class="sig-prename descclassname"> &lt;STUDY_NAME&gt;</code><a class="headerlink" href="#cmdoption-5" title="Permalink to this definition">¶</a></dt>
+<dd><p>设定具有可读性的 study 名，以方便和其他的 study 区分。</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-study-set-user-attr-key">
-<span id="cmdoption-optuna-study-set-user-attr-k"></span><code class="sig-name descname">--key</code><code class="sig-prename descclassname"> &lt;KEY&gt;</code><code class="sig-prename descclassname">, </code><code class="sig-name descname">-k</code><code class="sig-prename descclassname"> &lt;KEY&gt;</code><a class="headerlink" href="#cmdoption-optuna-study-set-user-attr-key" title="Permalink to this definition">¶</a></dt>
-<dd><p>Key of the user attribute.</p>
+<dt id="cmdoption-key">
+<span id="cmdoption-k"></span><code class="sig-name descname">--key</code><code class="sig-prename descclassname"> &lt;KEY&gt;</code><code class="sig-prename descclassname">, </code><code class="sig-name descname">-k</code><code class="sig-prename descclassname"> &lt;KEY&gt;</code><a class="headerlink" href="#cmdoption-key" title="Permalink to this definition">¶</a></dt>
+<dd><p>设定用户属性中的键 (key).</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-optuna-study-set-user-attr-value">
-<span id="cmdoption-optuna-study-set-user-attr-v"></span><code class="sig-name descname">--value</code><code class="sig-prename descclassname"> &lt;VALUE&gt;</code><code class="sig-prename descclassname">, </code><code class="sig-name descname">-v</code><code class="sig-prename descclassname"> &lt;VALUE&gt;</code><a class="headerlink" href="#cmdoption-optuna-study-set-user-attr-value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Value to be set.</p>
+<dt id="cmdoption-value">
+<span id="cmdoption-v"></span><code class="sig-name descname">--value</code><code class="sig-prename descclassname"> &lt;VALUE&gt;</code><code class="sig-prename descclassname">, </code><code class="sig-name descname">-v</code><code class="sig-prename descclassname"> &lt;VALUE&gt;</code><a class="headerlink" href="#cmdoption-value" title="Permalink to this definition">¶</a></dt>
+<dd><p>设定用户属性中的值 (value).</p>
 </dd></dl>
 
-<p>This command is provided by the optuna plugin.</p>
+<p>该命令由 optuna 插件提供。</p>
 </div>
 </div>
 
