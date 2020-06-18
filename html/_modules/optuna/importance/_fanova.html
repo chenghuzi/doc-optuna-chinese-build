@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.importance._fanova &mdash; Optuna 1.4.0 documentation</title>
+  <title>optuna.importance._fanova &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,12 +86,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">安装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -137,7 +137,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
         
           <li><a href="../importance.html">optuna.importance</a> &raquo;</li>
         
@@ -156,13 +156,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for optuna.importance._fanova</h1><div class="highlight"><pre>
+  <h1>optuna.importance._fanova 源代码</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">optuna._experimental</span> <span class="kn">import</span> <span class="n">experimental</span>
+<span class="kn">from</span> <span class="nn">optuna._imports</span> <span class="kn">import</span> <span class="n">try_import</span>
 <span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="kn">import</span> <span class="n">BaseDistribution</span>
 <span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="kn">import</span> <span class="n">CategoricalDistribution</span>
 <span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="kn">import</span> <span class="n">DiscreteUniformDistribution</span>
@@ -175,7 +176,7 @@
 <span class="kn">from</span> <span class="nn">optuna.importance._base</span> <span class="kn">import</span> <span class="n">BaseImportanceEvaluator</span>
 <span class="kn">from</span> <span class="nn">optuna.study</span> <span class="kn">import</span> <span class="n">Study</span>
 
-<span class="k">try</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">try_import</span><span class="p">()</span> <span class="k">as</span> <span class="n">_imports</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">ConfigSpace</span> <span class="kn">import</span> <span class="n">ConfigurationSpace</span>
     <span class="kn">from</span> <span class="nn">ConfigSpace.hyperparameters</span> <span class="kn">import</span> <span class="n">CategoricalHyperparameter</span>
     <span class="kn">from</span> <span class="nn">ConfigSpace.hyperparameters</span> <span class="kn">import</span> <span class="n">Hyperparameter</span>
@@ -183,17 +184,12 @@
     <span class="kn">from</span> <span class="nn">ConfigSpace.hyperparameters</span> <span class="kn">import</span> <span class="n">UniformIntegerHyperparameter</span>
     <span class="kn">from</span> <span class="nn">fanova</span> <span class="kn">import</span> <span class="n">fANOVA</span>
 
-    <span class="n">_available</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="n">ConfigurationSpace</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">Hyperparameter</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">fANOVA</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="n">_import_error</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="n">_available</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">_imports</span><span class="o">.</span><span class="n">is_successful</span><span class="p">():</span>
+    <span class="n">ConfigurationSpace</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># NOQA</span>
+    <span class="n">fANOVA</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># NOQA</span>
 
 
-<div class="viewcode-block" id="FanovaImportanceEvaluator"><a class="viewcode-back" href="../../../reference/importance.html#optuna.importance.FanovaImportanceEvaluator">[docs]</a><span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.3.0&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="FanovaImportanceEvaluator"><a class="viewcode-back" href="../../../reference/importance.html#optuna.importance.FanovaImportanceEvaluator">[文档]</a><span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.3.0&quot;</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">FanovaImportanceEvaluator</span><span class="p">(</span><span class="n">BaseImportanceEvaluator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;fANOVA parameter importance evaluator.</span>
 
@@ -208,9 +204,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">_check_fanova_availability</span><span class="p">()</span>
+        <span class="n">_imports</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
 
-<div class="viewcode-block" id="FanovaImportanceEvaluator.evaluate"><a class="viewcode-back" href="../../../reference/importance.html#optuna.importance.FanovaImportanceEvaluator.evaluate">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="n">Study</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<div class="viewcode-block" id="FanovaImportanceEvaluator.evaluate"><a class="viewcode-back" href="../../../reference/importance.html#optuna.importance.FanovaImportanceEvaluator.evaluate">[文档]</a>    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="n">Study</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
         <span class="n">distributions</span> <span class="o">=</span> <span class="n">_get_distributions</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
         <span class="n">params_data</span><span class="p">,</span> <span class="n">values_data</span> <span class="o">=</span> <span class="n">_get_study_data</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="n">distributions</span><span class="p">)</span>
 
@@ -251,7 +247,7 @@
     <span class="k">return</span> <span class="n">config_space</span>
 
 
-<span class="k">def</span> <span class="nf">_distribution_to_hyperparameter</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">distribution</span><span class="p">:</span> <span class="n">BaseDistribution</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Hyperparameter</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">_distribution_to_hyperparameter</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">distribution</span><span class="p">:</span> <span class="n">BaseDistribution</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Hyperparameter&quot;</span><span class="p">:</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">distribution</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">UniformDistribution</span><span class="p">):</span>
@@ -280,15 +276,6 @@
             <span class="s2">&quot;The parameter distribution should be one of the </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">distribution_list</span><span class="p">)</span>
         <span class="p">)</span>
     <span class="k">return</span> <span class="n">hp</span>
-
-
-<span class="k">def</span> <span class="nf">_check_fanova_availability</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">_available</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
-            <span class="s2">&quot;fanova is not available. Please install automl/fanova to use this feature. &quot;</span>
-            <span class="s2">&quot;For further information, please refer to the installation guide of automl/fanova. &quot;</span>
-            <span class="s2">&quot;(The actual import error is as follows: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">_import_error</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;).&quot;</span>
-        <span class="p">)</span>
 </pre></div>
 
            </div>

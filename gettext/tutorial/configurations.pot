@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, Optuna Contributors.
+# This file is distributed under the same license as the Optuna package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Optuna 1.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-17 19:47-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/tutorial/configurations.rst:4
+msgid "Advanced Configurations"
+msgstr ""
+
+#: ../../source/tutorial/configurations.rst:7
+msgid "Defining Parameter Spaces"
+msgstr ""
+
+#: ../../source/tutorial/configurations.rst:9
+msgid "Optuna supports five kinds of parameters."
+msgstr ""
+
+#: ../../source/tutorial/configurations.rst:32
+msgid "Branches and Loops"
+msgstr ""
+
+#: ../../source/tutorial/configurations.rst:34
+msgid "You can use branches or loops depending on the parameter values."
+msgstr ""
+
+#: ../../source/tutorial/configurations.rst:63
+msgid "Please also refer to `examples <https://github.com/optuna/optuna/tree/master/examples>`_."
+msgstr ""
+
+#: ../../source/tutorial/configurations.rst:67
+msgid "Note on the Number of Parameters"
+msgstr ""
+
+#: ../../source/tutorial/configurations.rst:69
+msgid "The difficulty of optimization increases roughly exponentially with regard to the number of parameters. That is, the number of necessary trials increases exponentially when you increase the number of parameters, so it is recommended to not add unimportant parameters."
+msgstr ""
+
+#: ../../source/tutorial/configurations.rst:73
+msgid "Arguments for `Study.optimize`"
+msgstr ""
+
+#: ../../source/tutorial/configurations.rst:75
+msgid "The method :func:`~optuna.study.Study.optimize` (and ``optuna study optimize`` CLI command as well) has several useful options such as ``timeout``. For details, please refer to the API reference for :func:`~optuna.study.Study.optimize`."
+msgstr ""
+
+#: ../../source/tutorial/configurations.rst:79
+msgid "**FYI**: If you give neither ``n_trials`` nor ``timeout`` options, the optimization continues until it receives a termination signal such as Ctrl+C or SIGTERM. This is useful for use cases such as when it is hard to estimate the computational costs required to optimize your objective function."
+msgstr ""

@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>命令行界面 &mdash; Optuna 1.4.0 documentation</title>
+  <title>命令行界面 &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="用户定义属性" href="attributes.html" />
     <link rel="prev" title="分布式优化" href="distributed.html" /> 
 </head>
@@ -88,22 +88,22 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">安装</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">教程</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="first.html">第一个优化例子</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configurations.html">高级配置</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rdb.html">用 RDB 后端保存/恢复 Study</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributed.html">分布式优化</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">命令行界面</a></li>
 <li class="toctree-l2"><a class="reference internal" href="attributes.html">用户定义属性</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pruning.html">对无望的 Trial 进行 Pruning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sampler.html">User-Defined Sampler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pruning.html">对无望的 Trial 进行剪枝 (Pruning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampler.html">用户定义的采样器 (Sampler)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -149,7 +149,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Tutorial</a> &raquo;</li>
+          <li><a href="index.html">教程</a> &raquo;</li>
         
       <li>命令行界面</li>
     
@@ -170,8 +170,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="cli">
-<span id="id1"></span><h1>命令行界面<a class="headerlink" href="#cli" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="command-line-interface">
+<span id="cli"></span><h1>命令行界面<a class="headerlink" href="#command-line-interface" title="永久链接至标题">¶</a></h1>
 <table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 33%" />
@@ -196,7 +196,7 @@
 <td><p>升级存储 schema.</p></td>
 </tr>
 <tr class="row-even"><td><p>studies</p></td>
-<td><p>输出 study 列表。</p></td>
+<td><p>输出 study 列表</p></td>
 </tr>
 <tr class="row-odd"><td><p>study optimize</p></td>
 <td><p>针对一个 study 开始优化过程。</p></td>
@@ -222,8 +222,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best value: </span><span class="si">{}</span><span class="s1"> (params: </span><span class="si">{}</span><span class="s1">)</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">study</span><span class="o">.</span><span class="n">best_value</span><span class="p">,</span> <span class="n">study</span><span class="o">.</span><span class="n">best_params</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>然而，通过 <code class="docutils literal notranslate"><span class="pre">optuna</span></code> 命令，我们可以少写一些上面这样的模版代码。
-假设有一个 <code class="docutils literal notranslate"><span class="pre">foo.py</span></code> 文件，它只包含如下代码：</p>
+<p>然而，通过 <code class="docutils literal notranslate"><span class="pre">optuna</span></code> 命令，我们可以少写一些上面这样的模版代码。假设有一个 <code class="docutils literal notranslate"><span class="pre">foo.py</span></code> 文件，它只包含如下代码：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_uniform</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
@@ -236,15 +235,14 @@ def objective<span class="o">(</span>trial<span class="o">)</span>:
     <span class="k">return</span> <span class="o">(</span>x - <span class="m">2</span><span class="o">)</span> ** <span class="m">2</span>
 
 $ <span class="nv">STUDY_NAME</span><span class="o">=</span><span class="sb">`</span>optuna create-study --storage sqlite:///example.db<span class="sb">`</span>
-$ optuna study optimize foo.py objective --n-trials<span class="o">=</span><span class="m">100</span> --storage sqlite:///example.db --study <span class="nv">$STUDY_NAME</span>
+$ optuna study optimize foo.py objective --n-trials<span class="o">=</span><span class="m">100</span> --storage sqlite:///example.db --study-name <span class="nv">$STUDY_NAME</span>
 <span class="o">[</span>I <span class="m">2018</span>-05-09 <span class="m">10</span>:40:25,196<span class="o">]</span> Finished a trial resulted in value: <span class="m">54</span>.353767789264026. Current best value is <span class="m">54</span>.353767789264026 with parameters: <span class="o">{</span><span class="s1">&#39;x&#39;</span>: -5.372500782588228<span class="o">}</span>.
 <span class="o">[</span>I <span class="m">2018</span>-05-09 <span class="m">10</span>:40:25,197<span class="o">]</span> Finished a trial resulted in value: <span class="m">15</span>.784266965526376. Current best value is <span class="m">15</span>.784266965526376 with parameters: <span class="o">{</span><span class="s1">&#39;x&#39;</span>: <span class="m">5</span>.972941852774387<span class="o">}</span>.
 ...
 <span class="o">[</span>I <span class="m">2018</span>-05-09 <span class="m">10</span>:40:26,204<span class="o">]</span> Finished a trial resulted in value: <span class="m">14</span>.704254135013741. Current best value is <span class="m">2</span>.280758099793617e-06 with parameters: <span class="o">{</span><span class="s1">&#39;x&#39;</span>: <span class="m">1</span>.9984897821018828<span class="o">}</span>.
 </pre></div>
 </div>
-<p>请注意，<code class="docutils literal notranslate"><span class="pre">foo.py</span></code> 中只包含目标函数的定义。
-通过向 <code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">study</span> <span class="pre">optimize</span></code> 命令传递该文件名和对应目标函数的方法名，我们就可以启动优化过程。</p>
+<p>请注意，<code class="docutils literal notranslate"><span class="pre">foo.py</span></code> 中只包含目标函数的定义。通过向 <code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">study</span> <span class="pre">optimize</span></code> 命令传递该文件名和对应目标函数的方法名，我们就可以启动优化过程。</p>
 </div>
 
 

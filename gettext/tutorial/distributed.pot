@@ -1,0 +1,53 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, Optuna Contributors.
+# This file is distributed under the same license as the Optuna package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Optuna 1.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-17 19:47-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/tutorial/distributed.rst:4
+msgid "Distributed Optimization"
+msgstr ""
+
+#: ../../source/tutorial/distributed.rst:6
+msgid "There is no complicated setup but just sharing the same study name among nodes/processes."
+msgstr ""
+
+#: ../../source/tutorial/distributed.rst:8
+msgid "First, create a shared study using ``optuna create-study`` command (or using :func:`optuna.create_study` in a Python script)."
+msgstr ""
+
+#: ../../source/tutorial/distributed.rst:15
+msgid "Then, write an optimization script. Let's assume that ``foo.py`` contains the following code."
+msgstr ""
+
+#: ../../source/tutorial/distributed.rst:29
+msgid "Finally, run the shared study from multiple processes. For example, run ``Process 1`` in a terminal, and do ``Process 2`` in another one. They get parameter suggestions based on shared trials' history."
+msgstr ""
+
+#: ../../source/tutorial/distributed.rst:33
+msgid "Process 1:"
+msgstr ""
+
+#: ../../source/tutorial/distributed.rst:42
+msgid "Process 2 (the same command as process 1):"
+msgstr ""
+
+#: ../../source/tutorial/distributed.rst:52
+msgid "We do not recommend SQLite for large scale distributed optimizations because it may cause serious performance issues. Please consider to use another database engine like PostgreSQL or MySQL."
+msgstr ""
+
+#: ../../source/tutorial/distributed.rst:55
+msgid "Please avoid putting the SQLite database on NFS when running distributed optimizations. See also: https://www.sqlite.org/faq.html#q5"
+msgstr ""

@@ -1,0 +1,257 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, Optuna Contributors.
+# This file is distributed under the same license as the Optuna package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Optuna 1.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-17 19:47-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/faq.rst:2
+msgid "FAQ"
+msgstr ""
+
+#: ../../source/faq.rst:8
+msgid "Can I use Optuna with X? (where X is your favorite ML library)"
+msgstr ""
+
+#: ../../source/faq.rst:10
+msgid "Optuna is compatible with most ML libraries, and it's easy to use Optuna with those. Please refer to `examples <https://github.com/optuna/optuna/tree/master/examples>`_."
+msgstr ""
+
+#: ../../source/faq.rst:17
+msgid "How to define objective functions that have own arguments?"
+msgstr ""
+
+#: ../../source/faq.rst:19
+msgid "There are two ways to realize it."
+msgstr ""
+
+#: ../../source/faq.rst:21
+msgid "First, callable classes can be used for that purpose as follows:"
+msgstr ""
+
+#: ../../source/faq.rst:43
+msgid "Second, you can use ``lambda`` or ``functools.partial`` for creating functions (closures) that hold extra arguments. Below is an example that uses ``lambda``:"
+msgstr ""
+
+#: ../../source/faq.rst:63
+msgid "Please also refer to `sklearn_addtitional_args.py <https://github.com/optuna/optuna/blob/master/examples/sklearn_additional_args.py>`_ example."
+msgstr ""
+
+#: ../../source/faq.rst:67
+msgid "Can I use Optuna without remote RDB servers?"
+msgstr ""
+
+#: ../../source/faq.rst:69
+msgid "Yes, it's possible."
+msgstr ""
+
+#: ../../source/faq.rst:71
+msgid "In the simplest form, Optuna works with in-memory storage:"
+msgstr ""
+
+#: ../../source/faq.rst:79
+msgid "If you want to save and resume studies,  it's handy to use SQLite as the local storage:"
+msgstr ""
+
+#: ../../source/faq.rst:86
+msgid "Please see :ref:`rdb` for more details."
+msgstr ""
+
+#: ../../source/faq.rst:90
+msgid "How can I save and resume studies?"
+msgstr ""
+
+#: ../../source/faq.rst:92
+msgid "There are two ways of persisting studies, which depends if you are using in-memory storage (default) or remote databases (RDB). In-memory studies can be saved and loaded like usual Python objects using ``pickle`` or ``joblib``. For example, using ``joblib``:"
+msgstr ""
+
+#: ../../source/faq.rst:102
+msgid "And to resume the study:"
+msgstr ""
+
+#: ../../source/faq.rst:113
+msgid "If you are using RDBs, see :ref:`rdb` for more details."
+msgstr ""
+
+#: ../../source/faq.rst:116
+msgid "How to suppress log messages of Optuna?"
+msgstr ""
+
+#: ../../source/faq.rst:118
+msgid "By default, Optuna shows log messages at the ``optuna.logging.INFO`` level. You can change logging levels by using  :func:`optuna.logging.set_verbosity`."
+msgstr ""
+
+#: ../../source/faq.rst:121
+msgid "For instance, you can stop showing each trial result as follows:"
+msgstr ""
+
+#: ../../source/faq.rst:132
+msgid "Please refer to :class:`optuna.logging` for further details."
+msgstr ""
+
+#: ../../source/faq.rst:136
+msgid "How to save machine learning models trained in objective functions?"
+msgstr ""
+
+#: ../../source/faq.rst:138
+msgid "Optuna saves hyperparameter values with its corresponding objective value to storage, but it discards intermediate objects such as machine learning models and neural network weights. To save models or weights, please use features of the machine learning library you used."
+msgstr ""
+
+#: ../../source/faq.rst:142
+msgid "We recommend saving :obj:`optuna.trial.Trial.number` with a model in order to identify its corresponding trial. For example, you can save SVM models trained in the objective function as follows:"
+msgstr ""
+
+#: ../../source/faq.rst:168
+msgid "How can I obtain reproducible optimization results?"
+msgstr ""
+
+#: ../../source/faq.rst:170
+msgid "To make the parameters suggested by Optuna reproducible, you can specify a fixed random seed via ``seed`` argument of :class:`~optuna.samplers.RandomSampler` or :class:`~optuna.samplers.TPESampler` as follows:"
+msgstr ""
+
+#: ../../source/faq.rst:178
+msgid "However, there are two caveats."
+msgstr ""
+
+#: ../../source/faq.rst:180
+msgid "First, when optimizing a study in distributed or parallel mode, there is inherent non-determinism. Thus it is very difficult to reproduce the same results in such condition. We recommend executing optimization of a study sequentially if you would like to reproduce the result."
+msgstr ""
+
+#: ../../source/faq.rst:184
+msgid "Second, if your objective function behaves in a non-deterministic way (i.e., it does not return the same value even if the same parameters were suggested), you cannot reproduce an optimization. To deal with this problem, please set an option (e.g., random seed) to make the behavior deterministic if your optimization target (e.g., an ML library) provides it."
+msgstr ""
+
+#: ../../source/faq.rst:189
+msgid "How are exceptions from trials handled?"
+msgstr ""
+
+#: ../../source/faq.rst:191
+msgid "Trials that raise exceptions without catching them will be treated as failures, i.e. with the :obj:`~optuna.trial.TrialState.FAIL` status."
+msgstr ""
+
+#: ../../source/faq.rst:193
+msgid "By default, all exceptions except :class:`~optuna.exceptions.TrialPruned` raised in objective functions are propagated to the caller of :func:`~optuna.study.Study.optimize`. In other words, studies are aborted when such exceptions are raised. It might be desirable to continue a study with the remaining trials. To do so, you can specify in :func:`~optuna.study.Study.optimize` which exception types to catch using the ``catch`` argument. Exceptions of these types are caught inside the study and will not propagate further."
+msgstr ""
+
+#: ../../source/faq.rst:199
+msgid "You can find the failed trials in log messages."
+msgstr ""
+
+#: ../../source/faq.rst:206
+msgid "You can also find the failed trials by checking the trial states as follows:"
+msgstr ""
+
+#: ../../source/faq.rst:1
+msgid "number"
+msgstr ""
+
+#: ../../source/faq.rst:1
+msgid "state"
+msgstr ""
+
+#: ../../source/faq.rst:1
+msgid "value"
+msgstr ""
+
+#: ../../source/faq.rst:1
+#: ../../source/faq.rst:1
+#: ../../source/faq.rst:1
+msgid "..."
+msgstr ""
+
+#: ../../source/faq.rst:1
+msgid "params"
+msgstr ""
+
+#: ../../source/faq.rst:1
+msgid "system_attrs"
+msgstr ""
+
+#: ../../source/faq.rst:1
+#: ../../source/faq.rst:1
+msgid "0"
+msgstr ""
+
+#: ../../source/faq.rst:1
+msgid "TrialState.FAIL"
+msgstr ""
+
+#: ../../source/faq.rst:1
+msgid "Setting status of trial#0 as TrialState.FAIL because of the following error: ValueError('A test error in objective.')"
+msgstr ""
+
+#: ../../source/faq.rst:1
+#: ../../source/faq.rst:1
+msgid "1"
+msgstr ""
+
+#: ../../source/faq.rst:1
+msgid "TrialState.COMPLETE"
+msgstr ""
+
+#: ../../source/faq.rst:1
+msgid "1269"
+msgstr ""
+
+#: ../../source/faq.rst:220
+msgid "The ``catch`` argument in :func:`~optuna.study.Study.optimize`."
+msgstr ""
+
+#: ../../source/faq.rst:224
+msgid "How are NaNs returned by trials handled?"
+msgstr ""
+
+#: ../../source/faq.rst:226
+msgid "Trials that return :obj:`NaN` (``float('nan')``) are treated as failures, but they will not abort studies."
+msgstr ""
+
+#: ../../source/faq.rst:228
+msgid "Trials which return :obj:`NaN` are shown as follows:"
+msgstr ""
+
+#: ../../source/faq.rst:237
+msgid "What happens when I dynamically alter a search space?"
+msgstr ""
+
+#: ../../source/faq.rst:239
+msgid "Since parameters search spaces are specified in each call to the suggestion API, e.g. :func:`~optuna.trial.Trial.suggest_uniform` and :func:`~optuna.trial.Trial.suggest_int`, it is possible to in a single study alter the range by sampling parameters from different search spaces in different trials. The behavior when altered is defined by each sampler individually."
+msgstr ""
+
+#: ../../source/faq.rst:247
+msgid "Discussion about the TPE sampler. https://github.com/optuna/optuna/issues/822"
+msgstr ""
+
+#: ../../source/faq.rst:251
+msgid "How can I use two GPUs for evaluating two trials simultaneously?"
+msgstr ""
+
+#: ../../source/faq.rst:253
+msgid "If your optimization target supports GPU (CUDA) acceleration and you want to specify which GPU is used, the easiest way is to set ``CUDA_VISIBLE_DEVICES`` environment variable:"
+msgstr ""
+
+#: ../../source/faq.rst:269
+msgid "Please refer to `CUDA C Programming Guide <https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#env-vars>`_ for further details."
+msgstr ""
+
+#: ../../source/faq.rst:273
+msgid "How can I test my objective functions?"
+msgstr ""
+
+#: ../../source/faq.rst:275
+msgid "When you test objective functions, you may prefer fixed parameter values to sampled ones. In that case, you can use :class:`~optuna.trial.FixedTrial`, which suggests fixed parameter values based on a given dictionary of parameters. For instance, you can input arbitrary values of :math:`x` and :math:`y` to the objective function :math:`x + y` as follows:"
+msgstr ""
+
+#: ../../source/faq.rst:290
+msgid "Using :class:`~optuna.trial.FixedTrial`, you can write unit tests as follows:"
+msgstr ""

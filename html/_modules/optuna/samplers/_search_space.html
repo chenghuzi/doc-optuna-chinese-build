@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.samplers._search_space &mdash; Optuna 1.4.0 documentation</title>
+  <title>optuna.samplers._search_space &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,12 +86,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">安装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -137,7 +137,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
         
       <li>optuna.samplers._search_space</li>
     
@@ -154,7 +154,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for optuna.samplers._search_space</h1><div class="highlight"><pre>
+  <h1>optuna.samplers._search_space 源代码</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
@@ -165,7 +165,7 @@
 <span class="kn">from</span> <span class="nn">optuna.study</span> <span class="kn">import</span> <span class="n">BaseStudy</span>
 
 
-<div class="viewcode-block" id="IntersectionSearchSpace"><a class="viewcode-back" href="../../../reference/samplers.html#optuna.samplers.IntersectionSearchSpace">[docs]</a><span class="k">class</span> <span class="nc">IntersectionSearchSpace</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="IntersectionSearchSpace"><a class="viewcode-back" href="../../../reference/samplers.html#optuna.samplers.IntersectionSearchSpace">[文档]</a><span class="k">class</span> <span class="nc">IntersectionSearchSpace</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class to calculate the intersection search space of a :class:`~optuna.study.BaseStudy`.</span>
 
 <span class="sd">    Intersection search space contains the intersection of parameter distributions that have been</span>
@@ -184,7 +184,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_search_space</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: Optional[Dict[str, BaseDistribution]]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: Optional[int]</span>
 
-<div class="viewcode-block" id="IntersectionSearchSpace.calculate"><a class="viewcode-back" href="../../../reference/samplers.html#optuna.samplers.IntersectionSearchSpace.calculate">[docs]</a>    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span>
+<div class="viewcode-block" id="IntersectionSearchSpace.calculate"><a class="viewcode-back" href="../../../reference/samplers.html#optuna.samplers.IntersectionSearchSpace.calculate">[文档]</a>    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="n">BaseStudy</span><span class="p">,</span> <span class="n">ordered_dict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Returns the intersection search space of the :class:`~optuna.study.BaseStudy`.</span>
@@ -211,7 +211,7 @@
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`IntersectionSearchSpace` cannot handle multiple studies.&quot;</span><span class="p">)</span>
 
         <span class="n">next_cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span>
-        <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">study</span><span class="o">.</span><span class="n">get_trials</span><span class="p">(</span><span class="n">deepcopy</span><span class="o">=</span><span class="kc">False</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">study</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">get_all_trials</span><span class="p">(</span><span class="n">study</span><span class="o">.</span><span class="n">_study_id</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="kc">False</span><span class="p">)):</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span> <span class="o">&gt;</span> <span class="n">trial</span><span class="o">.</span><span class="n">number</span><span class="p">:</span>
                 <span class="k">break</span>
 
@@ -244,7 +244,7 @@
         <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">search_space</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="intersection_search_space"><a class="viewcode-back" href="../../../reference/samplers.html#optuna.samplers.intersection_search_space">[docs]</a><span class="k">def</span> <span class="nf">intersection_search_space</span><span class="p">(</span>
+<div class="viewcode-block" id="intersection_search_space"><a class="viewcode-back" href="../../../reference/samplers.html#optuna.samplers.intersection_search_space">[文档]</a><span class="k">def</span> <span class="nf">intersection_search_space</span><span class="p">(</span>
     <span class="n">study</span><span class="p">:</span> <span class="n">BaseStudy</span><span class="p">,</span> <span class="n">ordered_dict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Return the intersection search space of the :class:`~optuna.study.BaseStudy`.</span>

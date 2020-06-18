@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>分布式优化 &mdash; Optuna 1.4.0 documentation</title>
+  <title>分布式优化 &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="命令行界面" href="cli.html" />
     <link rel="prev" title="用 RDB 后端保存/恢复 Study" href="rdb.html" /> 
 </head>
@@ -88,22 +88,22 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">安装</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">教程</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="first.html">第一个优化例子</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configurations.html">高级配置</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rdb.html">用 RDB 后端保存/恢复 Study</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">分布式优化</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html">命令行界面</a></li>
 <li class="toctree-l2"><a class="reference internal" href="attributes.html">用户定义属性</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pruning.html">对无望的 Trial 进行 Pruning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sampler.html">User-Defined Sampler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pruning.html">对无望的 Trial 进行剪枝 (Pruning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampler.html">用户定义的采样器 (Sampler)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -149,7 +149,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Tutorial</a> &raquo;</li>
+          <li><a href="index.html">教程</a> &raquo;</li>
         
       <li>分布式优化</li>
     
@@ -170,10 +170,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="distributed">
-<span id="id1"></span><h1>分布式优化<a class="headerlink" href="#distributed" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="distributed-optimization">
+<span id="distributed"></span><h1>分布式优化<a class="headerlink" href="#distributed-optimization" title="永久链接至标题">¶</a></h1>
 <p>Optuna的分布式优化中没有复杂的设置，你只需让不同的节点/进程共享一个相同的 study 名。</p>
-<p>首先，使用 <code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">create-study</span></code> 命令 (如果是在Python脚本中的化，就用 <code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.create_study()</span></code>) 创建一个共享的 study.</p>
+<p>首先，使用 <code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">create-study</span></code> 命令 (如果是在Python脚本中的化，就用 <a class="reference internal" href="../reference/core.html#optuna.create_study" title="optuna.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.create_study()</span></code></a>) 创建一个共享的 study.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ optuna create-study --study-name <span class="s2">&quot;distributed-example&quot;</span> --storage <span class="s2">&quot;sqlite:///example.db&quot;</span>
 <span class="o">[</span>I <span class="m">2018</span>-10-31 <span class="m">18</span>:21:57,885<span class="o">]</span> A new study created with name: distributed-example
 </pre></div>
@@ -190,9 +190,7 @@
     <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>最后，从不同的进程中分别运行这个 share study。
-比如说，在一个终端中运行 <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">1</span></code>，在另一个终端中运行 <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">2</span></code>.
-这些进程基于这个共享 study 的 trial 历史记录来获取参数建议 (parameter suggestion).</p>
+<p>最后，从不同的进程中分别运行这个 share study。比如说，在一个终端中运行 <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">1</span></code>，在另一个终端中运行 <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">2</span></code>. 这些进程基于这个共享 study 的 trial 历史记录来获取参数建议 (parameter suggestion)</p>
 <p>进程 1:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python foo.py
 <span class="o">[</span>I <span class="m">2018</span>-10-31 <span class="m">18</span>:46:44,308<span class="o">]</span> Finished a trial resulted in value: <span class="m">1</span>.1097007755908204. Current best value is <span class="m">0</span>.00020881104123229936 with parameters: <span class="o">{</span><span class="s1">&#39;x&#39;</span>: <span class="m">2</span>.014450295541348<span class="o">}</span>.
@@ -208,11 +206,11 @@
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注解</p>
 <p>我们不推荐在大型的分布式优化中使用 SQLite，因为这可能导致性能问题。在这种情况下，请考虑使用其他数据库，比如 PostgreSQL 或 MySQL.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注解</p>
 <p>在运行分布式优化时，请不要将 SQLite 数据库文件放在 NFS (Network File System) 文件系统中。具体原因见 : <a class="reference external" href="https://www.sqlite.org/faq.html#q5">https://www.sqlite.org/faq.html#q5</a></p>
 </div>
 </div>

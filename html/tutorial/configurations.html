@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>高级配置 &mdash; Optuna 1.4.0 documentation</title>
+  <title>高级配置 &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="用 RDB 后端保存/恢复 Study" href="rdb.html" />
     <link rel="prev" title="第一个优化例子" href="first.html" /> 
 </head>
@@ -88,30 +88,30 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">安装</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">教程</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="first.html">第一个优化例子</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">高级配置</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">定义参数空间</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#branches-loops">分支 (Branches) 与 循环 (Loops)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id3">参数个数的注意事项</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#defining-parameter-spaces">定义参数空间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#branches-and-loops">分支 (Branches) 与 循环 (Loops)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#note-on-the-number-of-parameters">参数个数的注意事项</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#study-optimize"><cite>Study.optimize</cite> 的参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arguments-for-study-optimize"><cite>Study.optimize</cite> 的参数</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rdb.html">用 RDB 后端保存/恢复 Study</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributed.html">分布式优化</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html">命令行界面</a></li>
 <li class="toctree-l2"><a class="reference internal" href="attributes.html">用户定义属性</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pruning.html">对无望的 Trial 进行 Pruning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sampler.html">User-Defined Sampler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pruning.html">对无望的 Trial 进行剪枝 (Pruning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampler.html">用户定义的采样器 (Sampler)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -157,7 +157,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Tutorial</a> &raquo;</li>
+          <li><a href="index.html">教程</a> &raquo;</li>
         
       <li>高级配置</li>
     
@@ -178,34 +178,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="configurations">
-<span id="id1"></span><h1>高级配置<a class="headerlink" href="#configurations" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id2">
-<h2>定义参数空间<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>Optuna 支持五种类型的参数
-Optuna supports five kinds of parameters.</p>
+  <div class="section" id="advanced-configurations">
+<span id="configurations"></span><h1>高级配置<a class="headerlink" href="#advanced-configurations" title="永久链接至标题">¶</a></h1>
+<div class="section" id="defining-parameter-spaces">
+<h2>定义参数空间<a class="headerlink" href="#defining-parameter-spaces" title="永久链接至标题">¶</a></h2>
+<p>Optuna 支持五种类型的参数。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
-    <span class="c1"># 类别参数</span>
+    <span class="c1"># Categorical parameter</span>
     <span class="n">optimizer</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;optimizer&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;MomentumSGD&#39;</span><span class="p">,</span> <span class="s1">&#39;Adam&#39;</span><span class="p">])</span>
 
-    <span class="c1"># 整形参数</span>
+    <span class="c1"># Int parameter</span>
     <span class="n">num_layers</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s1">&#39;num_layers&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-    <span class="c1"># 均匀分布参数</span>
+    <span class="c1"># Uniform parameter</span>
     <span class="n">dropout_rate</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_uniform</span><span class="p">(</span><span class="s1">&#39;dropout_rate&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 
-    <span class="c1"># 对数均匀分布参数</span>
+    <span class="c1"># Loguniform parameter</span>
     <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_loguniform</span><span class="p">(</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">,</span> <span class="mf">1e-5</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">)</span>
 
-    <span class="c1"># 离散均匀分布参数</span>
+    <span class="c1"># Discrete-uniform parameter</span>
     <span class="n">drop_path_rate</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_discrete_uniform</span><span class="p">(</span><span class="s1">&#39;drop_path_rate&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 
     <span class="o">...</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="branches-loops">
-<h2>分支 (Branches) 与 循环 (Loops)<a class="headerlink" href="#branches-loops" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="branches-and-loops">
+<h2>分支 (Branches) 与 循环 (Loops)<a class="headerlink" href="#branches-and-loops" title="永久链接至标题">¶</a></h2>
 <p>根据不同的参数值，你可以选择使用分支或者循环。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">classifier_name</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;SVC&#39;</span><span class="p">,</span> <span class="s1">&#39;RandomForest&#39;</span><span class="p">])</span>
@@ -233,16 +232,15 @@ Optuna supports five kinds of parameters.</p>
 </pre></div>
 </div>
 <p>更多例子见 <a class="reference external" href="https://github.com/optuna/optuna/tree/master/examples">examples</a>.</p>
-<div class="section" id="id3">
-<h3>参数个数的注意事项<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="note-on-the-number-of-parameters">
+<h3>参数个数的注意事项<a class="headerlink" href="#note-on-the-number-of-parameters" title="永久链接至标题">¶</a></h3>
 <p>随着参数个数的增长，优化的难度约成指数增长。也就是说，当你增加参数的个数的时候，优化所需要的 trial 个数会呈指数增长。因此我们推荐不要增加不必要的参数。</p>
 </div>
 </div>
-<div class="section" id="study-optimize">
-<h2><cite>Study.optimize</cite> 的参数<a class="headerlink" href="#study-optimize" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="arguments-for-study-optimize">
+<h2><cite>Study.optimize</cite> 的参数<a class="headerlink" href="#arguments-for-study-optimize" title="永久链接至标题">¶</a></h2>
 <p><a class="reference internal" href="../reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a> (还有命令 <code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">study</span> <span class="pre">optimize</span></code>) 有着数个有用的参数，比如``timeout``. 具体细节见 <a class="reference internal" href="../reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a> 的API参考资料。</p>
-<p><strong>供參考</strong>: 如果既没有给出 <code class="docutils literal notranslate"><span class="pre">n_trials</span></code> 也没有给出 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 参数的话，优化过程将一直持续下去，直到接收到一个诸如 Ctrl+C 或 SIGTERM 的终止信号。
-这在难以估算优化目标函数所需的计算成本的情况时是有用的。</p>
+<p><strong>供參考</strong>: 如果既没有给出 <code class="docutils literal notranslate"><span class="pre">n_trials</span></code> 也没有给出 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 参数的话，优化过程将一直持续下去，直到接收到一个诸如 Ctrl+C 或 SIGTERM 的终止信号</p>
 </div>
 </div>
 

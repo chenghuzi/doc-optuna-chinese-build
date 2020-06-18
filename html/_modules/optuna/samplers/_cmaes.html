@@ -1,0 +1,593 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>optuna.samplers._cmaes &mdash; Optuna 1.4.0 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Optuna
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">常见问题</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Optuna</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+        
+      <li>optuna.samplers._cmaes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>optuna.samplers._cmaes 源代码</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span> <span class="nn">cmaes</span> <span class="kn">import</span> <span class="n">CMA</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+<span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="kn">import</span> <span class="n">BaseDistribution</span>
+<span class="kn">from</span> <span class="nn">optuna.samplers</span> <span class="kn">import</span> <span class="n">BaseSampler</span>
+<span class="kn">from</span> <span class="nn">optuna.trial</span> <span class="kn">import</span> <span class="n">FrozenTrial</span>
+<span class="kn">from</span> <span class="nn">optuna.trial</span> <span class="kn">import</span> <span class="n">TrialState</span>
+
+<span class="c1"># Minimum value of sigma0 to avoid ZeroDivisionError.</span>
+<span class="n">_MIN_SIGMA0</span> <span class="o">=</span> <span class="mf">1e-10</span>
+
+
+<div class="viewcode-block" id="CmaEsSampler"><a class="viewcode-back" href="../../../reference/samplers.html#optuna.samplers.CmaEsSampler">[文档]</a><span class="k">class</span> <span class="nc">CmaEsSampler</span><span class="p">(</span><span class="n">BaseSampler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Sampler using CMA-ES algorithm.</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">        Optimize a simple quadratic function by using :class:`~optuna.samplers.CmaEsSampler`.</span>
+
+<span class="sd">        .. testcode::</span>
+
+<span class="sd">            import optuna</span>
+
+<span class="sd">            def objective(trial):</span>
+<span class="sd">                x = trial.suggest_uniform(&#39;x&#39;, -1, 1)</span>
+<span class="sd">                y = trial.suggest_int(&#39;y&#39;, -1, 1)</span>
+<span class="sd">                return x ** 2 + y</span>
+
+<span class="sd">            sampler = optuna.samplers.CmaEsSampler()</span>
+<span class="sd">            study = optuna.create_study(sampler=sampler)</span>
+<span class="sd">            study.optimize(objective, n_trials=20)</span>
+
+<span class="sd">    Please note that this sampler does not support CategoricalDistribution.</span>
+<span class="sd">    If your search space contains categorical parameters, I recommend you</span>
+<span class="sd">    to use :class:`~optuna.samplers.TPESampler` instead.</span>
+<span class="sd">    Furthermore, there is room for performance improvements in parallel</span>
+<span class="sd">    optimization settings. This sampler cannot use some trials for updating</span>
+<span class="sd">    the parameters of multivariate normal distribution.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        You can also use :class:`optuna.integration.CmaEsSampler` which is a sampler using cma</span>
+<span class="sd">        library as the backend.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        x0:</span>
+<span class="sd">            A dictionary of an initial parameter values for CMA-ES. By default, the mean of ``low``</span>
+<span class="sd">            and ``high`` for each distribution is used.</span>
+
+<span class="sd">        sigma0:</span>
+<span class="sd">            Initial standard deviation of CMA-ES. By default, ``sigma0`` is set to</span>
+<span class="sd">            ``min_range / 6``, where ``min_range`` denotes the minimum range of the distributions</span>
+<span class="sd">            in the search space.</span>
+
+<span class="sd">        seed:</span>
+<span class="sd">            A random seed for CMA-ES.</span>
+
+<span class="sd">        n_startup_trials:</span>
+<span class="sd">            The independent sampling is used instead of the CMA-ES algorithm until the given number</span>
+<span class="sd">            of trials finish in the same study.</span>
+
+<span class="sd">        independent_sampler:</span>
+<span class="sd">            A :class:`~optuna.samplers.BaseSampler` instance that is used for independent</span>
+<span class="sd">            sampling. The parameters not contained in the relative search space are sampled</span>
+<span class="sd">            by this sampler.</span>
+<span class="sd">            The search space for :class:`~optuna.samplers.CmaEsSampler` is determined by</span>
+<span class="sd">            :func:`~optuna.samplers.intersection_search_space()`.</span>
+
+<span class="sd">            If :obj:`None` is specified, :class:`~optuna.samplers.RandomSampler` is used</span>
+<span class="sd">            as the default.</span>
+
+<span class="sd">            .. seealso::</span>
+<span class="sd">                :class:`optuna.samplers` module provides built-in independent samplers</span>
+<span class="sd">                such as :class:`~optuna.samplers.RandomSampler` and</span>
+<span class="sd">                :class:`~optuna.samplers.TPESampler`.</span>
+
+<span class="sd">        warn_independent_sampling:</span>
+<span class="sd">            If this is :obj:`True`, a warning message is emitted when</span>
+<span class="sd">            the value of a parameter is sampled by using an independent sampler.</span>
+
+<span class="sd">            Note that the parameters of the first trial in a study are always sampled</span>
+<span class="sd">            via an independent sampler, so no warning messages are emitted in this case.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x0</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">sigma0</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">n_startup_trials</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">independent_sampler</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">BaseSampler</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">warn_independent_sampling</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">seed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x0</span> <span class="o">=</span> <span class="n">x0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sigma0</span> <span class="o">=</span> <span class="n">sigma0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_independent_sampler</span> <span class="o">=</span> <span class="n">independent_sampler</span> <span class="ow">or</span> <span class="n">optuna</span><span class="o">.</span><span class="n">samplers</span><span class="o">.</span><span class="n">RandomSampler</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_startup_trials</span> <span class="o">=</span> <span class="n">n_startup_trials</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_warn_independent_sampling</span> <span class="o">=</span> <span class="n">warn_independent_sampling</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cma_rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_search_space</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">samplers</span><span class="o">.</span><span class="n">IntersectionSearchSpace</span><span class="p">()</span>
+
+<div class="viewcode-block" id="CmaEsSampler.reseed_rng"><a class="viewcode-back" href="../../../reference/samplers.html#optuna.samplers.CmaEsSampler.reseed_rng">[文档]</a>    <span class="k">def</span> <span class="nf">reseed_rng</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># _cma_rng doesn&#39;t require reseeding because the relative sampling reseeds in each trial.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_independent_sampler</span><span class="o">.</span><span class="n">reseed_rng</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">infer_relative_search_space</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="s2">&quot;optuna.Study&quot;</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="s2">&quot;optuna.trial.FrozenTrial&quot;</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">]:</span>
+
+        <span class="n">search_space</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[str, BaseDistribution]</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">distribution</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_search_space</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">study</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">distribution</span><span class="o">.</span><span class="n">single</span><span class="p">():</span>
+                <span class="c1"># `cma` cannot handle distributions that contain just a single value, so we skip</span>
+                <span class="c1"># them. Note that the parameter values for such distributions are sampled in</span>
+                <span class="c1"># `Trial`.</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span>
+                <span class="n">distribution</span><span class="p">,</span>
+                <span class="p">(</span>
+                    <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">UniformDistribution</span><span class="p">,</span>
+                    <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">LogUniformDistribution</span><span class="p">,</span>
+                    <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">DiscreteUniformDistribution</span><span class="p">,</span>
+                    <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">IntUniformDistribution</span><span class="p">,</span>
+                    <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">IntLogUniformDistribution</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">):</span>
+                <span class="c1"># Categorical distribution is unsupported.</span>
+                <span class="k">continue</span>
+            <span class="n">search_space</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">distribution</span>
+
+        <span class="k">return</span> <span class="n">search_space</span>
+
+    <span class="k">def</span> <span class="nf">sample_relative</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">study</span><span class="p">:</span> <span class="s2">&quot;optuna.Study&quot;</span><span class="p">,</span>
+        <span class="n">trial</span><span class="p">:</span> <span class="s2">&quot;optuna.trial.FrozenTrial&quot;</span><span class="p">,</span>
+        <span class="n">search_space</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">search_space</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+
+        <span class="n">completed_trials</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">t</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">study</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">get_all_trials</span><span class="p">(</span><span class="n">study</span><span class="o">.</span><span class="n">_study_id</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">TrialState</span><span class="o">.</span><span class="n">COMPLETE</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">completed_trials</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_startup_trials</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">search_space</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s2">&quot;`CmaEsSampler` only supports two or more dimensional continuous &quot;</span>
+                <span class="s2">&quot;search space. `</span><span class="si">{}</span><span class="s2">` is used instead of `CmaEsSampler`.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_independent_sampler</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_warn_independent_sampling</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="p">{}</span>
+
+        <span class="c1"># TODO(c-bata): Remove `ordered_keys` by passing `ordered_dict=True`</span>
+        <span class="c1"># to `intersection_search_space`.</span>
+        <span class="n">ordered_keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">search_space</span><span class="p">]</span>
+        <span class="n">ordered_keys</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+        <span class="n">optimizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_restore_or_init_optimizer</span><span class="p">(</span><span class="n">completed_trials</span><span class="p">,</span> <span class="n">search_space</span><span class="p">,</span> <span class="n">ordered_keys</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">dim</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ordered_keys</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s2">&quot;`CmaEsSampler` does not support dynamic search space. &quot;</span>
+                <span class="s2">&quot;`</span><span class="si">{}</span><span class="s2">` is used instead of `CmaEsSampler`.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_independent_sampler</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_warn_independent_sampling</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="p">{}</span>
+
+        <span class="c1"># TODO(c-bata): Reduce the number of wasted trials during parallel optimization.</span>
+        <span class="c1"># See https://github.com/optuna/optuna/pull/920#discussion_r385114002 for details.</span>
+        <span class="n">solution_trials</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">t</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">completed_trials</span>
+            <span class="k">if</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">generation</span> <span class="o">==</span> <span class="n">t</span><span class="o">.</span><span class="n">system_attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cma:generation&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">solution_trials</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">population_size</span><span class="p">:</span>
+            <span class="n">solutions</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># type: List[Tuple[np.ndarray, float]]</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">solution_trials</span><span class="p">[:</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">population_size</span><span class="p">]:</span>
+                <span class="k">assert</span> <span class="n">t</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;completed trials must have a value&quot;</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                    <span class="p">[</span><span class="n">_to_cma_param</span><span class="p">(</span><span class="n">search_space</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">t</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ordered_keys</span><span class="p">],</span>
+                    <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">solutions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
+
+            <span class="n">optimizer_str</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">optimizer</span><span class="p">)</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
+            <span class="n">study</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">set_trial_system_attr</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">_trial_id</span><span class="p">,</span> <span class="s2">&quot;cma:optimizer&quot;</span><span class="p">,</span> <span class="n">optimizer_str</span><span class="p">)</span>
+
+        <span class="c1"># Caution: optimizer should update its seed value</span>
+        <span class="n">seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cma_rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">16</span><span class="p">)</span> <span class="o">+</span> <span class="n">trial</span><span class="o">.</span><span class="n">number</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">_rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">ask</span><span class="p">()</span>
+
+        <span class="n">study</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">set_trial_system_attr</span><span class="p">(</span>
+            <span class="n">trial</span><span class="o">.</span><span class="n">_trial_id</span><span class="p">,</span> <span class="s2">&quot;cma:generation&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">generation</span>
+        <span class="p">)</span>
+        <span class="n">external_values</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="n">_to_optuna_param</span><span class="p">(</span><span class="n">search_space</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ordered_keys</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">external_values</span>
+
+    <span class="k">def</span> <span class="nf">_restore_or_init_optimizer</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">completed_trials</span><span class="p">:</span> <span class="s2">&quot;List[optuna.trial.FrozenTrial]&quot;</span><span class="p">,</span>
+        <span class="n">search_space</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">],</span>
+        <span class="n">ordered_keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CMA</span><span class="p">:</span>
+
+        <span class="c1"># Restore a previous CMA object.</span>
+        <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">completed_trials</span><span class="p">):</span>
+            <span class="n">serialized_optimizer</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">system_attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="s2">&quot;cma:optimizer&quot;</span><span class="p">,</span> <span class="kc">None</span>
+            <span class="p">)</span>  <span class="c1"># type: Optional[str]</span>
+            <span class="k">if</span> <span class="n">serialized_optimizer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">serialized_optimizer</span><span class="p">))</span>
+
+        <span class="c1"># Init a CMA object.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_x0</span> <span class="o">=</span> <span class="n">_initialize_x0</span><span class="p">(</span><span class="n">search_space</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sigma0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sigma0</span> <span class="o">=</span> <span class="n">_initialize_sigma0</span><span class="p">(</span><span class="n">search_space</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sigma0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sigma0</span>
+        <span class="n">sigma0</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">sigma0</span><span class="p">,</span> <span class="n">_MIN_SIGMA0</span><span class="p">)</span>
+        <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_x0</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ordered_keys</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="n">_get_search_space_bound</span><span class="p">(</span><span class="n">ordered_keys</span><span class="p">,</span> <span class="n">search_space</span><span class="p">)</span>
+        <span class="n">n_dimension</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ordered_keys</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">CMA</span><span class="p">(</span>
+            <span class="n">mean</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span>
+            <span class="n">sigma</span><span class="o">=</span><span class="n">sigma0</span><span class="p">,</span>
+            <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
+            <span class="n">seed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_cma_rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">31</span> <span class="o">-</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">n_max_resampling</span><span class="o">=</span><span class="mi">10</span> <span class="o">*</span> <span class="n">n_dimension</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sample_independent</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">study</span><span class="p">:</span> <span class="s2">&quot;optuna.Study&quot;</span><span class="p">,</span>
+        <span class="n">trial</span><span class="p">:</span> <span class="s2">&quot;optuna.trial.FrozenTrial&quot;</span><span class="p">,</span>
+        <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">param_distribution</span><span class="p">:</span> <span class="n">BaseDistribution</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_warn_independent_sampling</span><span class="p">:</span>
+            <span class="n">complete_trials</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">study</span><span class="o">.</span><span class="n">trials</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">TrialState</span><span class="o">.</span><span class="n">COMPLETE</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">complete_trials</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_startup_trials</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_log_independent_sampling</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="n">param_name</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_independent_sampler</span><span class="o">.</span><span class="n">sample_independent</span><span class="p">(</span>
+            <span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">param_distribution</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_log_independent_sampling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="n">FrozenTrial</span><span class="p">,</span> <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&quot;The parameter &#39;</span><span class="si">{}</span><span class="s2">&#39; in trial#</span><span class="si">{}</span><span class="s2"> is sampled independently &quot;</span>
+            <span class="s2">&quot;by using `</span><span class="si">{}</span><span class="s2">` instead of `CmaEsSampler` &quot;</span>
+            <span class="s2">&quot;(optimization performance may be degraded). &quot;</span>
+            <span class="s2">&quot;You can suppress this warning by setting `warn_independent_sampling` &quot;</span>
+            <span class="s2">&quot;to `False` in the constructor of `CmaEsSampler`, &quot;</span>
+            <span class="s2">&quot;if this independent sampling is intended behavior.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">param_name</span><span class="p">,</span> <span class="n">trial</span><span class="o">.</span><span class="n">number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_independent_sampler</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_to_cma_param</span><span class="p">(</span><span class="n">distribution</span><span class="p">:</span> <span class="n">BaseDistribution</span><span class="p">,</span> <span class="n">optuna_param</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">LogUniformDistribution</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">optuna_param</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">IntUniformDistribution</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">optuna_param</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">IntLogUniformDistribution</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">optuna_param</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">optuna_param</span>
+
+
+<span class="k">def</span> <span class="nf">_to_optuna_param</span><span class="p">(</span><span class="n">distribution</span><span class="p">:</span> <span class="n">BaseDistribution</span><span class="p">,</span> <span class="n">cma_param</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">LogUniformDistribution</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">cma_param</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">DiscreteUniformDistribution</span><span class="p">):</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">cma_param</span> <span class="o">/</span> <span class="n">distribution</span><span class="o">.</span><span class="n">q</span><span class="p">)</span> <span class="o">*</span> <span class="n">distribution</span><span class="o">.</span><span class="n">q</span> <span class="o">+</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span>
+        <span class="c1"># v may slightly exceed range due to round-off errors.</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">),</span> <span class="n">distribution</span><span class="o">.</span><span class="n">high</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">IntUniformDistribution</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">cma_param</span> <span class="o">-</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="n">distribution</span><span class="o">.</span><span class="n">step</span><span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">distribution</span><span class="o">.</span><span class="n">step</span> <span class="o">+</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">IntLogUniformDistribution</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">cma_param</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">))</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">step</span><span class="p">))</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">step</span><span class="p">)</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">cma_param</span>
+
+
+<span class="k">def</span> <span class="nf">_initialize_x0</span><span class="p">(</span><span class="n">search_space</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="n">x0</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">distribution</span> <span class="ow">in</span> <span class="n">search_space</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">UniformDistribution</span><span class="p">):</span>
+            <span class="n">x0</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">distribution</span><span class="o">.</span><span class="n">high</span><span class="p">,</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">DiscreteUniformDistribution</span><span class="p">):</span>
+            <span class="n">x0</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">distribution</span><span class="o">.</span><span class="n">high</span><span class="p">,</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">IntUniformDistribution</span><span class="p">):</span>
+            <span class="n">x0</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">distribution</span><span class="o">.</span><span class="n">high</span><span class="p">,</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">]))</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">IntLogUniformDistribution</span><span class="p">):</span>
+            <span class="n">log_high</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">high</span><span class="p">)</span>
+            <span class="n">log_low</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">)</span>
+            <span class="n">x0</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">log_high</span><span class="p">,</span> <span class="n">log_low</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">LogUniformDistribution</span><span class="p">):</span>
+            <span class="n">log_high</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">high</span><span class="p">)</span>
+            <span class="n">log_low</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">)</span>
+            <span class="n">x0</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">log_high</span><span class="p">,</span> <span class="n">log_low</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="s2">&quot;The distribution </span><span class="si">{}</span><span class="s2"> is not implemented.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">distribution</span><span class="p">)</span>
+            <span class="p">)</span>
+    <span class="k">return</span> <span class="n">x0</span>
+
+
+<span class="k">def</span> <span class="nf">_initialize_sigma0</span><span class="p">(</span><span class="n">search_space</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+
+    <span class="n">sigma0</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">distribution</span> <span class="ow">in</span> <span class="n">search_space</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">UniformDistribution</span><span class="p">):</span>
+            <span class="n">sigma0</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">distribution</span><span class="o">.</span><span class="n">high</span> <span class="o">-</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">DiscreteUniformDistribution</span><span class="p">):</span>
+            <span class="n">sigma0</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">distribution</span><span class="o">.</span><span class="n">high</span> <span class="o">-</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">IntUniformDistribution</span><span class="p">):</span>
+            <span class="n">sigma0</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">distribution</span><span class="o">.</span><span class="n">high</span> <span class="o">-</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">IntLogUniformDistribution</span><span class="p">):</span>
+            <span class="n">log_high</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">high</span><span class="p">)</span>
+            <span class="n">log_low</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">)</span>
+            <span class="n">sigma0</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">log_high</span> <span class="o">-</span> <span class="n">log_low</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">LogUniformDistribution</span><span class="p">):</span>
+            <span class="n">log_high</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">high</span><span class="p">)</span>
+            <span class="n">log_low</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">)</span>
+            <span class="n">sigma0</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">log_high</span> <span class="o">-</span> <span class="n">log_low</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="s2">&quot;The distribution </span><span class="si">{}</span><span class="s2"> is not implemented.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">distribution</span><span class="p">)</span>
+            <span class="p">)</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">sigma0</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_get_search_space_bound</span><span class="p">(</span>
+    <span class="n">keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">search_space</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+
+    <span class="n">bounds</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">param_name</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">search_space</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span>
+            <span class="n">dist</span><span class="p">,</span>
+            <span class="p">(</span>
+                <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">UniformDistribution</span><span class="p">,</span>
+                <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">LogUniformDistribution</span><span class="p">,</span>
+                <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">DiscreteUniformDistribution</span><span class="p">,</span>
+                <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">IntUniformDistribution</span><span class="p">,</span>
+                <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">IntLogUniformDistribution</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">):</span>
+            <span class="n">bounds</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">_to_cma_param</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">low</span><span class="p">),</span> <span class="n">_to_cma_param</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">high</span><span class="p">)])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;The distribution </span><span class="si">{}</span><span class="s2"> is not implemented.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dist</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Optuna Contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+    <a href="../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

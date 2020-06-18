@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.trial._frozen &mdash; Optuna 1.4.0 documentation</title>
+  <title>optuna.trial._frozen &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,12 +86,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">安装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -137,7 +137,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
         
       <li>optuna.trial._frozen</li>
     
@@ -154,9 +154,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for optuna.trial._frozen</h1><div class="highlight"><pre>
+  <h1>optuna.trial._frozen 源代码</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">distributions</span>
 <span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">logging</span>
@@ -167,12 +166,9 @@
     <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>  <span class="c1"># NOQA</span>
     <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>  <span class="c1"># NOQA</span>
     <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>  <span class="c1"># NOQA</span>
-    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>  <span class="c1"># NOQA</span>
     <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>  <span class="c1"># NOQA</span>
 
     <span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="kn">import</span> <span class="n">BaseDistribution</span>  <span class="c1"># NOQA</span>
-    <span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="kn">import</span> <span class="n">CategoricalChoiceType</span>  <span class="c1"># NOQA</span>
-    <span class="kn">from</span> <span class="nn">optuna.study</span> <span class="kn">import</span> <span class="n">Study</span>  <span class="c1"># NOQA</span>
 
     <span class="n">FloatingPointDistributionType</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span>
         <span class="n">distributions</span><span class="o">.</span><span class="n">UniformDistribution</span><span class="p">,</span> <span class="n">distributions</span><span class="o">.</span><span class="n">LogUniformDistribution</span>
@@ -181,7 +177,7 @@
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="FrozenTrial"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.FrozenTrial">[docs]</a><span class="k">class</span> <span class="nc">FrozenTrial</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="FrozenTrial"><a class="viewcode-back" href="../../../reference/trial.html#optuna.trial.FrozenTrial">[文档]</a><span class="k">class</span> <span class="nc">FrozenTrial</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Status and results of a :class:`~optuna.trial.Trial`.</span>
 
 <span class="sd">    Attributes:</span>
@@ -337,32 +333,6 @@
     <span class="k">def</span> <span class="nf">distributions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="c1"># type: (Dict[str, BaseDistribution]) -&gt; None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_distributions</span> <span class="o">=</span> <span class="n">value</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">trial_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># type: () -&gt; int</span>
-        <span class="sd">&quot;&quot;&quot;Return the trial ID.</span>
-
-<span class="sd">        .. deprecated:: 0.19.0</span>
-<span class="sd">            The direct use of this attribute is deprecated and it is recommended that you use</span>
-<span class="sd">            :attr:`~optuna.trial.FrozenTrial.number` instead.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            The trial ID.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-            <span class="s2">&quot;The use of `FrozenTrial.trial_id` is deprecated. &quot;</span>
-            <span class="s2">&quot;Please use `FrozenTrial.number` instead.&quot;</span><span class="p">,</span>
-            <span class="ne">DeprecationWarning</span><span class="p">,</span>
-        <span class="p">)</span>
-
-        <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-            <span class="s2">&quot;The use of `FrozenTrial.trial_id` is deprecated. &quot;</span>
-            <span class="s2">&quot;Please use `FrozenTrial.number` instead.&quot;</span>
-        <span class="p">)</span>
-
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">last_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

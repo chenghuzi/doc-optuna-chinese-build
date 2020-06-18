@@ -1,0 +1,201 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, Optuna Contributors.
+# This file is distributed under the same license as the Optuna package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Optuna 1.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-17 19:47-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/reference/cli.rst:2
+msgid "Command Line Interface"
+msgstr ""
+
+#: ../../<_OptunaApp>:1
+msgid "show program's version number and exit"
+msgstr ""
+
+#: ../../<_OptunaApp>:1
+msgid "Increase verbosity of output. Can be repeated."
+msgstr ""
+
+#: ../../<_OptunaApp>:1
+msgid "Suppress output except warnings and errors."
+msgstr ""
+
+#: ../../<_OptunaApp>:1
+msgid "Specify a file to log output. Disabled by default."
+msgstr ""
+
+#: ../../<_OptunaApp>:1
+msgid "Show tracebacks on errors."
+msgstr ""
+
+#: ../../<_OptunaApp>:1
+msgid "DB URL. (e.g. sqlite:///example.db)"
+msgstr ""
+
+#: ../../<_StudySetUserAttribute>:None
+msgid "create-study"
+msgstr ""
+
+#: ../../<_CreateStudy>:1
+msgid "Create a new study."
+msgstr ""
+
+#: ../../<_CreateStudy>:1
+#: ../../<_Dashboard>:1
+#: ../../<_DeleteStudy>:1
+#: ../../<_StudyOptimize>:1
+#: ../../<_StudySetUserAttribute>:1
+msgid "A human-readable name of a study to distinguish it from others."
+msgstr ""
+
+#: ../../<_CreateStudy>:1
+msgid "Set direction of optimization to a new study. Set 'minimize' for minimization and 'maximize' for maximization."
+msgstr ""
+
+#: ../../<_CreateStudy>:1
+msgid "If specified, the creation of the study is skipped without any error when the study name is duplicated."
+msgstr ""
+
+#: ../../<_CreateStudy>:1
+#: ../../<_Dashboard>:1
+#: ../../<_DeleteStudy>:1
+#: ../../<_StorageUpgrade>:1
+#: ../../<_Studies>:1
+#: ../../<_StudyOptimize>:1
+#: ../../<_StudySetUserAttribute>:1
+msgid "This command is provided by the optuna plugin."
+msgstr ""
+
+#: ../../<_StudySetUserAttribute>:None
+msgid "dashboard"
+msgstr ""
+
+#: ../../<_Dashboard>:1
+msgid "Launch web dashboard (beta)."
+msgstr ""
+
+#: ../../<_Dashboard>:1
+#: ../../<_StudyOptimize>:1
+#: ../../<_StudySetUserAttribute>:1
+msgid "This argument is deprecated. Use --study-name instead."
+msgstr ""
+
+#: ../../<_Dashboard>:1
+msgid "Output HTML file path. If it is not given, a HTTP server starts and the dashboard is served."
+msgstr ""
+
+#: ../../<_Dashboard>:1
+msgid "Allow websocket access from the specified host(s).Internally, it is used as the value of bokeh's --allow-websocket-origin option. Please refer to https://bokeh.pydata.org/en/latest/docs/reference/command/subcommands/serve.html for more details."
+msgstr ""
+
+#: ../../<_StudySetUserAttribute>:None
+msgid "delete-study"
+msgstr ""
+
+#: ../../<_DeleteStudy>:1
+msgid "Delete a specified study."
+msgstr ""
+
+#: ../../<_StudySetUserAttribute>:None
+msgid "storage upgrade"
+msgstr ""
+
+#: ../../<_StorageUpgrade>:1
+msgid "Upgrade the schema of a storage."
+msgstr ""
+
+#: ../../<_StudySetUserAttribute>:None
+msgid "studies"
+msgstr ""
+
+#: ../../<_Studies>:1
+msgid "Show a list of studies."
+msgstr ""
+
+#: ../../<_Studies>:1
+msgid "the output format, defaults to table"
+msgstr ""
+
+#: ../../<_Studies>:1
+msgid "specify the column(s) to include, can be repeated to show multiple columns"
+msgstr ""
+
+#: ../../<_Studies>:1
+msgid "when to include quotes, defaults to nonnumeric"
+msgstr ""
+
+#: ../../<_Studies>:1
+msgid "whether to disable indenting the JSON"
+msgstr ""
+
+#: ../../<_Studies>:1
+msgid "Maximum display width, <1 to disable. You can also use the CLIFF_MAX_TERM_WIDTH environment variable, but the parameter takes precedence."
+msgstr ""
+
+#: ../../<_Studies>:1
+msgid "Fit the table to the display width. Implied if --max-width greater than 0. Set the environment variable CLIFF_FIT_WIDTH=1 to always enable"
+msgstr ""
+
+#: ../../<_Studies>:1
+msgid "Print empty table if there is no data to show."
+msgstr ""
+
+#: ../../<_Studies>:1
+msgid "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated"
+msgstr ""
+
+#: ../../<_StudySetUserAttribute>:None
+msgid "study optimize"
+msgstr ""
+
+#: ../../<_StudyOptimize>:1
+msgid "Start optimization of a study. Deprecated since version 2.0.0."
+msgstr ""
+
+#: ../../<_StudyOptimize>:1
+msgid "The number of trials. If this argument is not given, as many trials run as possible."
+msgstr ""
+
+#: ../../<_StudyOptimize>:1
+msgid "Stop study after the given number of second(s). If this argument is not given, as many trials run as possible."
+msgstr ""
+
+#: ../../<_StudyOptimize>:1
+msgid "The number of parallel jobs. If this argument is set to -1, the number is set to CPU counts."
+msgstr ""
+
+#: ../../<_StudyOptimize>:1
+msgid "Python script file where the objective function resides."
+msgstr ""
+
+#: ../../<_StudyOptimize>:1
+msgid "The method name of the objective function."
+msgstr ""
+
+#: ../../<_StudySetUserAttribute>:None
+msgid "study set-user-attr"
+msgstr ""
+
+#: ../../<_StudySetUserAttribute>:1
+msgid "Set a user attribute to a study."
+msgstr ""
+
+#: ../../<_StudySetUserAttribute>:1
+msgid "Key of the user attribute."
+msgstr ""
+
+#: ../../<_StudySetUserAttribute>:1
+msgid "Value to be set."
+msgstr ""

@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.integration.allennlp &mdash; Optuna 1.4.0 documentation</title>
+  <title>optuna.integration.allennlp &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,12 +86,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">安装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -137,7 +137,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
         
       <li>optuna.integration.allennlp</li>
     
@@ -154,7 +154,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for optuna.integration.allennlp</h1><div class="highlight"><pre>
+  <h1>optuna.integration.allennlp 源代码</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
@@ -166,20 +166,17 @@
 
 <span class="kn">import</span> <span class="nn">optuna</span>
 <span class="kn">from</span> <span class="nn">optuna._experimental</span> <span class="kn">import</span> <span class="n">experimental</span>
+<span class="kn">from</span> <span class="nn">optuna._imports</span> <span class="kn">import</span> <span class="n">try_import</span>
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">_jsonnet</span>
+<span class="k">with</span> <span class="n">try_import</span><span class="p">()</span> <span class="k">as</span> <span class="n">_imports</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">allennlp.commands</span>
     <span class="kn">import</span> <span class="nn">allennlp.common.util</span>
 
-    <span class="n">_available</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="n">_import_error</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="n">_available</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="n">TrackerCallback</span> <span class="o">=</span> <span class="nb">object</span>
+<span class="k">if</span> <span class="n">_imports</span><span class="o">.</span><span class="n">is_successful</span><span class="p">():</span>
+    <span class="kn">import</span> <span class="nn">_jsonnet</span>
 
 
-<div class="viewcode-block" id="dump_best_config"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.dump_best_config">[docs]</a><span class="k">def</span> <span class="nf">dump_best_config</span><span class="p">(</span><span class="n">input_config_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_config_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="n">optuna</span><span class="o">.</span><span class="n">Study</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="dump_best_config"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.dump_best_config">[文档]</a><span class="k">def</span> <span class="nf">dump_best_config</span><span class="p">(</span><span class="n">input_config_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_config_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="n">optuna</span><span class="o">.</span><span class="n">Study</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Save JSON config file after updating with parameters from the best trial in the study.</span>
 
 <span class="sd">    Args:</span>
@@ -193,6 +190,8 @@
 <span class="sd">            Note that :func:`~optuna.study.Study.optimize` must have been called.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_imports</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+
     <span class="n">best_params</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">best_params</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">best_params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">best_params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
@@ -203,7 +202,7 @@
         <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">best_config</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="AllenNLPExecutor"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.AllenNLPExecutor">[docs]</a><span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.4.0&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="AllenNLPExecutor"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.AllenNLPExecutor">[文档]</a><span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.4.0&quot;</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">AllenNLPExecutor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;AllenNLP extension to use optuna with Jsonnet config file.</span>
 
@@ -244,8 +243,7 @@
         <span class="o">*</span><span class="p">,</span>
         <span class="n">include_package</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">):</span>
-
-        <span class="n">_check_allennlp_availability</span><span class="p">()</span>
+        <span class="n">_imports</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_params</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">params</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config_file</span> <span class="o">=</span> <span class="n">config_file</span>
@@ -271,7 +269,7 @@
         <span class="c1"># infer_and_cast converts them into desired values.</span>
         <span class="k">return</span> <span class="n">allennlp</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">infer_and_cast</span><span class="p">(</span><span class="n">_params</span><span class="p">)</span>
 
-<div class="viewcode-block" id="AllenNLPExecutor.run"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.AllenNLPExecutor.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<div class="viewcode-block" id="AllenNLPExecutor.run"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.AllenNLPExecutor.run">[文档]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Train a model using AllenNLP.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">import_func</span> <span class="o">=</span> <span class="n">allennlp</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">import_submodules</span>
@@ -287,16 +285,6 @@
 
         <span class="n">metrics</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serialization_dir</span><span class="p">,</span> <span class="s2">&quot;metrics.json&quot;</span><span class="p">)))</span>
         <span class="k">return</span> <span class="n">metrics</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_metrics</span><span class="p">]</span></div></div>
-
-
-<span class="k">def</span> <span class="nf">_check_allennlp_availability</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">_available</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
-            <span class="s2">&quot;AllenNLP is not available. Please install AllenNLP to use this feature. &quot;</span>
-            <span class="s2">&quot;AllenNLP can be installed by executing `$ pip install allennlp`. &quot;</span>
-            <span class="s2">&quot;For further information, please refer to the installation guide of AllenNLP. &quot;</span>
-            <span class="s2">&quot;(The actual import error is as follows: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">_import_error</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
-        <span class="p">)</span>
 </pre></div>
 
            </div>

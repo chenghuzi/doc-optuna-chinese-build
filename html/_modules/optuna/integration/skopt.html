@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.integration.skopt &mdash; Optuna 1.4.0 documentation</title>
+  <title>optuna.integration.skopt &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,12 +86,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">安装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -137,7 +137,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
         
       <li>optuna.integration.skopt</li>
     
@@ -154,7 +154,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for optuna.integration.skopt</h1><div class="highlight"><pre>
+  <h1>optuna.integration.skopt 源代码</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">import</span> <span class="nn">optuna</span>
@@ -165,15 +165,9 @@
 <span class="kn">from</span> <span class="nn">optuna.trial</span> <span class="kn">import</span> <span class="n">TrialState</span>
 <span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">type_checking</span>
 
-<span class="k">try</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">optuna</span><span class="o">.</span><span class="n">_imports</span><span class="o">.</span><span class="n">try_import</span><span class="p">()</span> <span class="k">as</span> <span class="n">_imports</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">skopt</span>
     <span class="kn">from</span> <span class="nn">skopt.space</span> <span class="kn">import</span> <span class="n">space</span>
-
-    <span class="n">_available</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="n">_import_error</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="c1"># SkoptSampler is disabled because Scikit-Optimize is not available.</span>
-    <span class="n">_available</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="k">if</span> <span class="n">type_checking</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>  <span class="c1"># NOQA</span>
@@ -187,7 +181,7 @@
     <span class="kn">from</span> <span class="nn">optuna.trial</span> <span class="kn">import</span> <span class="n">FrozenTrial</span>  <span class="c1"># NOQA</span>
 
 
-<div class="viewcode-block" id="SkoptSampler"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.SkoptSampler">[docs]</a><span class="k">class</span> <span class="nc">SkoptSampler</span><span class="p">(</span><span class="n">BaseSampler</span><span class="p">):</span>
+<div class="viewcode-block" id="SkoptSampler"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.SkoptSampler">[文档]</a><span class="k">class</span> <span class="nc">SkoptSampler</span><span class="p">(</span><span class="n">BaseSampler</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Sampler using Scikit-Optimize as the backend.</span>
 
 <span class="sd">    Example:</span>
@@ -252,7 +246,7 @@
     <span class="p">):</span>
         <span class="c1"># type: (Optional[BaseSampler], bool, Optional[Dict[str, Any]], int) -&gt; None</span>
 
-        <span class="n">_check_skopt_availability</span><span class="p">()</span>
+        <span class="n">_imports</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_skopt_kwargs</span> <span class="o">=</span> <span class="n">skopt_kwargs</span> <span class="ow">or</span> <span class="p">{}</span>
         <span class="k">if</span> <span class="s2">&quot;dimensions&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_skopt_kwargs</span><span class="p">:</span>
@@ -263,7 +257,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_n_startup_trials</span> <span class="o">=</span> <span class="n">n_startup_trials</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_search_space</span> <span class="o">=</span> <span class="n">samplers</span><span class="o">.</span><span class="n">IntersectionSearchSpace</span><span class="p">()</span>
 
-<div class="viewcode-block" id="SkoptSampler.reseed_rng"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.SkoptSampler.reseed_rng">[docs]</a>    <span class="k">def</span> <span class="nf">reseed_rng</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="SkoptSampler.reseed_rng"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.SkoptSampler.reseed_rng">[文档]</a>    <span class="k">def</span> <span class="nf">reseed_rng</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_independent_sampler</span><span class="o">.</span><span class="n">reseed_rng</span><span class="p">()</span></div>
 
@@ -334,7 +328,6 @@
 
         <span class="n">dimensions</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">distribution</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_search_space</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-            <span class="c1"># TODO(nzw0301) support IntLogUniform</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">distributions</span><span class="o">.</span><span class="n">UniformDistribution</span><span class="p">):</span>
                 <span class="c1"># Convert the upper bound from exclusive (optuna) to inclusive (skopt).</span>
                 <span class="n">high</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">high</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">))</span>
@@ -346,6 +339,10 @@
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">distributions</span><span class="o">.</span><span class="n">IntUniformDistribution</span><span class="p">):</span>
                 <span class="n">count</span> <span class="o">=</span> <span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">high</span> <span class="o">-</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">)</span> <span class="o">//</span> <span class="n">distribution</span><span class="o">.</span><span class="n">step</span>
                 <span class="n">dimension</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">distributions</span><span class="o">.</span><span class="n">IntLogUniformDistribution</span><span class="p">):</span>
+                <span class="n">low</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span> <span class="o">-</span> <span class="mf">0.5</span>
+                <span class="n">high</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">high</span> <span class="o">+</span> <span class="mf">0.5</span>
+                <span class="n">dimension</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">Real</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">prior</span><span class="o">=</span><span class="s2">&quot;log-uniform&quot;</span><span class="p">)</span>
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">distributions</span><span class="o">.</span><span class="n">DiscreteUniformDistribution</span><span class="p">):</span>
                 <span class="n">count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">distribution</span><span class="o">.</span><span class="n">high</span> <span class="o">-</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">)</span> <span class="o">//</span> <span class="n">distribution</span><span class="o">.</span><span class="n">q</span><span class="p">)</span>
                 <span class="n">dimension</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
@@ -386,6 +383,12 @@
                 <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="o">*</span> <span class="n">distribution</span><span class="o">.</span><span class="n">q</span> <span class="o">+</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">distributions</span><span class="o">.</span><span class="n">IntUniformDistribution</span><span class="p">):</span>
                 <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="o">*</span> <span class="n">distribution</span><span class="o">.</span><span class="n">step</span> <span class="o">+</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">distributions</span><span class="o">.</span><span class="n">IntLogUniformDistribution</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">value</span> <span class="o">-</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="n">distribution</span><span class="o">.</span><span class="n">step</span><span class="p">)</span> <span class="o">*</span> <span class="n">distribution</span><span class="o">.</span><span class="n">step</span>
+                    <span class="o">+</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span>
+                <span class="p">)</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">distribution</span><span class="o">.</span><span class="n">low</span><span class="p">),</span> <span class="n">distribution</span><span class="o">.</span><span class="n">high</span><span class="p">)</span>
 
             <span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
@@ -433,18 +436,6 @@
             <span class="n">value</span> <span class="o">=</span> <span class="o">-</span><span class="n">value</span>
 
         <span class="k">return</span> <span class="n">param_values</span><span class="p">,</span> <span class="n">value</span>
-
-
-<span class="k">def</span> <span class="nf">_check_skopt_availability</span><span class="p">():</span>
-    <span class="c1"># type: () -&gt; None</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">_available</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
-            <span class="s2">&quot;Scikit-Optimize is not available. Please install it to use this feature. &quot;</span>
-            <span class="s2">&quot;Scikit-Optimize can be installed by executing `$ pip install scikit-optimize`. &quot;</span>
-            <span class="s2">&quot;For further information, please refer to the installation guide of Scikit-Optimize. &quot;</span>
-            <span class="s2">&quot;(The actual import error is as follows: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">_import_error</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
-        <span class="p">)</span>
 </pre></div>
 
            </div>

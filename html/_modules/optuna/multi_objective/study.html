@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.multi_objective.study &mdash; Optuna 1.4.0 documentation</title>
+  <title>optuna.multi_objective.study &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,12 +86,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">安装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -137,7 +137,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
         
       <li>optuna.multi_objective.study</li>
     
@@ -154,7 +154,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for optuna.multi_objective.study</h1><div class="highlight"><pre>
+  <h1>optuna.multi_objective.study 源代码</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">types</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
@@ -194,7 +194,7 @@
 <span class="c1">#</span>
 <span class="c1"># TODO(ohta): Consider to add `objective_labels` argument.</span>
 <span class="c1"># See: https://github.com/optuna/optuna/pull/1054#issuecomment-616382152</span>
-<div class="viewcode-block" id="create_study"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.create_study">[docs]</a><span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.4.0&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="create_study"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.create_study">[文档]</a><span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.4.0&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">create_study</span><span class="p">(</span>
     <span class="n">directions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="n">study_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -266,7 +266,7 @@
     <span class="k">return</span> <span class="n">MultiObjectiveStudy</span><span class="p">(</span><span class="n">study</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="load_study"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.load_study">[docs]</a><span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.4.0&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="load_study"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.load_study">[文档]</a><span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.4.0&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">load_study</span><span class="p">(</span>
     <span class="n">study_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">storage</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseStorage</span><span class="p">],</span>
@@ -298,7 +298,7 @@
     <span class="k">return</span> <span class="n">MultiObjectiveStudy</span><span class="p">(</span><span class="n">study</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MultiObjectiveStudy"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.MultiObjectiveStudy">[docs]</a><span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.4.0&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="MultiObjectiveStudy"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.MultiObjectiveStudy">[文档]</a><span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.4.0&quot;</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">MultiObjectiveStudy</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A study corresponds to a multi-objective optimization task, i.e., a set of trials.</span>
 
@@ -365,7 +365,7 @@
 
         <span class="k">return</span> <span class="n">adapter</span><span class="o">.</span><span class="n">_mo_sampler</span>
 
-<div class="viewcode-block" id="MultiObjectiveStudy.optimize"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.MultiObjectiveStudy.optimize">[docs]</a>    <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span>
+<div class="viewcode-block" id="MultiObjectiveStudy.optimize"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.MultiObjectiveStudy.optimize">[文档]</a>    <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">objective</span><span class="p">:</span> <span class="n">ObjectiveFuncType</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -434,7 +434,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_study</span><span class="o">.</span><span class="n">system_attrs</span>
 
-<div class="viewcode-block" id="MultiObjectiveStudy.set_user_attr"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.MultiObjectiveStudy.set_user_attr">[docs]</a>    <span class="k">def</span> <span class="nf">set_user_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="MultiObjectiveStudy.set_user_attr"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.MultiObjectiveStudy.set_user_attr">[文档]</a>    <span class="k">def</span> <span class="nf">set_user_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Set a user attribute to the study.</span>
 
 <span class="sd">        Args:</span>
@@ -459,7 +459,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_study</span><span class="o">.</span><span class="n">set_system_attr</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
-<div class="viewcode-block" id="MultiObjectiveStudy.enqueue_trial"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.MultiObjectiveStudy.enqueue_trial">[docs]</a>    <span class="k">def</span> <span class="nf">enqueue_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="MultiObjectiveStudy.enqueue_trial"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.MultiObjectiveStudy.enqueue_trial">[文档]</a>    <span class="k">def</span> <span class="nf">enqueue_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Enqueue a trial with given parameter values.</span>
 
 <span class="sd">        You can fix the next sampling parameters which will be evaluated in your</span>
@@ -489,7 +489,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_trials</span><span class="p">(</span><span class="n">deepcopy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<div class="viewcode-block" id="MultiObjectiveStudy.get_trials"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.MultiObjectiveStudy.get_trials">[docs]</a>    <span class="k">def</span> <span class="nf">get_trials</span><span class="p">(</span>
+<div class="viewcode-block" id="MultiObjectiveStudy.get_trials"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.MultiObjectiveStudy.get_trials">[文档]</a>    <span class="k">def</span> <span class="nf">get_trials</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">deepcopy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;multi_objective.trial.FrozenMultiObjectiveTrial&quot;</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Return all trials in the study.</span>
@@ -516,7 +516,7 @@
             <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_study</span><span class="o">.</span><span class="n">get_trials</span><span class="p">(</span><span class="n">deepcopy</span><span class="o">=</span><span class="n">deepcopy</span><span class="p">)</span>
         <span class="p">]</span></div>
 
-<div class="viewcode-block" id="MultiObjectiveStudy.get_pareto_front_trials"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.MultiObjectiveStudy.get_pareto_front_trials">[docs]</a>    <span class="k">def</span> <span class="nf">get_pareto_front_trials</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;multi_objective.trial.FrozenMultiObjectiveTrial&quot;</span><span class="p">]:</span>
+<div class="viewcode-block" id="MultiObjectiveStudy.get_pareto_front_trials"><a class="viewcode-back" href="../../../reference/multi_objective/study.html#optuna.multi_objective.study.MultiObjectiveStudy.get_pareto_front_trials">[文档]</a>    <span class="k">def</span> <span class="nf">get_pareto_front_trials</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;multi_objective.trial.FrozenMultiObjectiveTrial&quot;</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Return trials located at the pareto front in the study.</span>
 
 <span class="sd">        A trial is located at the pareto front if there are no trials that dominate the trial.</span>
@@ -552,7 +552,7 @@
 <span class="k">def</span> <span class="nf">_log_completed_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Study</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="n">Trial</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">values</span> <span class="o">=</span> <span class="n">multi_objective</span><span class="o">.</span><span class="n">trial</span><span class="o">.</span><span class="n">MultiObjectiveTrial</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span><span class="o">.</span><span class="n">_get_values</span><span class="p">()</span>
     <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-        <span class="s2">&quot;Finished trial#</span><span class="si">{}</span><span class="s2"> with values: </span><span class="si">{}</span><span class="s2"> with parameters: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="s2">&quot;Trial </span><span class="si">{}</span><span class="s2"> finished with values: </span><span class="si">{}</span><span class="s2"> with parameters: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">trial</span><span class="o">.</span><span class="n">number</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">trial</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="p">)</span>

@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>用户定义属性 &mdash; Optuna 1.4.0 documentation</title>
+  <title>用户定义属性 &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,9 +37,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="对无望的 Trial 进行 Pruning" href="pruning.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="对无望的 Trial 进行剪枝 (Pruning)" href="pruning.html" />
     <link rel="prev" title="命令行界面" href="cli.html" /> 
 </head>
 
@@ -88,26 +88,26 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">安装</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">教程</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="first.html">第一个优化例子</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configurations.html">高级配置</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rdb.html">用 RDB 后端保存/恢复 Study</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributed.html">分布式优化</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html">命令行界面</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">用户定义属性</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#study">将用户定义属性添加到 Study</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#trial">将用户属性添加到 Trial 中</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-user-attributes-to-studies">将用户定义属性添加到 Study</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-user-attributes-to-trials">将用户属性添加到 Trial 中</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="pruning.html">对无望的 Trial 进行 Pruning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sampler.html">User-Defined Sampler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pruning.html">对无望的 Trial 进行剪枝 (Pruning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampler.html">用户定义的采样器 (Sampler)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -153,7 +153,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Tutorial</a> &raquo;</li>
+          <li><a href="index.html">教程</a> &raquo;</li>
         
       <li>用户定义属性</li>
     
@@ -174,13 +174,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="attributes">
-<span id="id1"></span><h1>用户定义属性<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="user-attributes">
+<span id="attributes"></span><h1>用户定义属性<a class="headerlink" href="#user-attributes" title="永久链接至标题">¶</a></h1>
 <p>利用用户自定义属性，这个功能可以给实验做注解。</p>
-<div class="section" id="study">
-<h2>将用户定义属性添加到 Study<a class="headerlink" href="#study" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 对象提供了一个将键-值对设置为用户自定义属性的方法： <a class="reference internal" href="../reference/study.html#optuna.study.Study.set_user_attr" title="optuna.study.Study.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_user_attr()</span></code></a>.
-这里的键应该属于 <code class="docutils literal notranslate"><span class="pre">str</span></code> 类型， 而值可以是任何能用 <code class="docutils literal notranslate"><span class="pre">json.dumps</span></code> 来序列化的对象。</p>
+<div class="section" id="adding-user-attributes-to-studies">
+<h2>将用户定义属性添加到 Study<a class="headerlink" href="#adding-user-attributes-to-studies" title="永久链接至标题">¶</a></h2>
+<p><a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 对象提供了一个将键-值对设置为用户自定义属性的方法： <a class="reference internal" href="../reference/study.html#optuna.study.Study.set_user_attr" title="optuna.study.Study.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_user_attr()</span></code></a>. 这里的键应该属于 <code class="docutils literal notranslate"><span class="pre">str</span></code> 类型， 而值可以是任何能用 <code class="docutils literal notranslate"><span class="pre">json.dumps</span></code> 来序列化的对象。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 <span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">storage</span><span class="o">=</span><span class="s1">&#39;sqlite:///example.db&#39;</span><span class="p">)</span>
 <span class="n">study</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span><span class="s1">&#39;contributors&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Akiba&#39;</span><span class="p">,</span> <span class="s1">&#39;Sano&#39;</span><span class="p">])</span>
@@ -191,21 +190,19 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span><span class="o">.</span><span class="n">user_attrs</span>  <span class="c1"># {&#39;contributors&#39;: [&#39;Akiba&#39;, &#39;Sano&#39;], &#39;dataset&#39;: &#39;MNIST&#39;}</span>
 </pre></div>
 </div>
-<p><code class="xref py py-class docutils literal notranslate"><span class="pre">StudySummary</span></code> 对象中也包含了用户的自定义属性。
-我们可以从 <a class="reference internal" href="../reference/study.html#optuna.study.get_all_study_summaries" title="optuna.study.get_all_study_summaries"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_all_study_summaries()</span></code></a> 中获取它。</p>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">StudySummary</span></code> 对象中也包含了用户的自定义属性。我们可以从 <a class="reference internal" href="../reference/study.html#optuna.study.get_all_study_summaries" title="optuna.study.get_all_study_summaries"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_all_study_summaries()</span></code></a> 中获取它。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study_summaries</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">get_all_study_summaries</span><span class="p">(</span><span class="s1">&#39;sqlite:///example.db&#39;</span><span class="p">)</span>
 <span class="n">study_summaries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">user_attrs</span>  <span class="c1"># {&#39;contributors&#39;: [&#39;Akiba&#39;, &#39;Sano&#39;], &#39;dataset&#39;: &#39;MNIST&#39;}</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
-<p class="admonition-title">See also</p>
+<p class="admonition-title">参见</p>
 <p>在命令行界面里，<code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">study</span> <span class="pre">set-user-attr</span></code> 可用于设置用户定义属性。</p>
 </div>
 </div>
-<div class="section" id="trial">
-<h2>将用户属性添加到 Trial 中<a class="headerlink" href="#trial" title="Permalink to this headline">¶</a></h2>
-<p>和 <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 类似，<a class="reference internal" href="../reference/trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 对象也提供了一个设置属性的方法 <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.set_user_attr" title="optuna.trial.Trial.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_user_attr()</span></code></a> 方法。
-这些属性是在目标函数内部设置的。</p>
+<div class="section" id="adding-user-attributes-to-trials">
+<h2>将用户属性添加到 Trial 中<a class="headerlink" href="#adding-user-attributes-to-trials" title="永久链接至标题">¶</a></h2>
+<p>和 <a class="reference internal" href="../reference/study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 类似，<a class="reference internal" href="../reference/trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 对象也提供了一个设置属性的方法 <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.set_user_attr" title="optuna.trial.Trial.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_user_attr()</span></code></a> 方法</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">iris</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
@@ -235,7 +232,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pruning.html" class="btn btn-neutral float-right" title="对无望的 Trial 进行 Pruning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pruning.html" class="btn btn-neutral float-right" title="对无望的 Trial 进行剪枝 (Pruning)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="cli.html" class="btn btn-neutral float-left" title="命令行界面" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

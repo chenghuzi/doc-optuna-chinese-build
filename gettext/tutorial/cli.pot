@@ -1,0 +1,105 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, Optuna Contributors.
+# This file is distributed under the same license as the Optuna package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Optuna 1.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-17 19:47-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/tutorial/cli.rst:4
+msgid "Command-Line Interface"
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "Command"
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "Description"
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "create-study"
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "Create a new study."
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "delete-study"
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "Delete a specified study."
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "dashboard"
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "Launch web dashboard (beta)."
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "storage upgrade"
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "Upgrade the schema of a storage."
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "studies"
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "Show a list of studies."
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "study optimize"
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "Start optimization of a study."
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "study set-user-attr"
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:1
+msgid "Set a user attribute to a study."
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:18
+msgid "Optuna provides command-line interface as shown in the above table."
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:20
+msgid "Let us assume you are not in IPython shell and writing Python script files instead. It is totally fine to write scripts like the following:"
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:38
+msgid "However, we can reduce boilerplate codes by using our ``optuna`` command. Let us assume that ``foo.py`` contains only the following code."
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:47
+msgid "Even so, we can invoke the optimization as follows. (Don't care about ``--storage sqlite:///example.db`` for now, which is described in :ref:`rdb`.)"
+msgstr ""
+
+#: ../../source/tutorial/cli.rst:63
+msgid "Please note that ``foo.py`` only contains the definition of the objective function. By giving the script file name and the method name of objective function to ``optuna study optimize`` command, we can invoke the optimization."
+msgstr ""

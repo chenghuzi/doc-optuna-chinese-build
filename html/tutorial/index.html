@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tutorial &mdash; Optuna 1.4.0 documentation</title>
+  <title>教程 &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="第一个优化例子" href="first.html" />
     <link rel="prev" title="安装" href="../installation.html" /> 
 </head>
@@ -88,10 +88,10 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">安装</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">教程</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="first.html">第一个优化例子</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configurations.html">高级配置</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rdb.html">用 RDB 后端保存/恢复 Study</a></li>
@@ -103,7 +103,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -149,7 +149,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Tutorial</li>
+      <li>教程</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -169,41 +169,41 @@
            <div itemprop="articleBody">
             
   <div class="section" id="tutorial">
-<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<h1>教程<a class="headerlink" href="#tutorial" title="永久链接至标题">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="first.html">第一个优化例子</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="first.html#id2">二次函数的例子</a></li>
-<li class="toctree-l2"><a class="reference internal" href="first.html#study">Study 对象</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first.html#quadratic-function-example">二次函数的例子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first.html#study-object">Study 对象</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="configurations.html">高级配置</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="configurations.html#id2">定义参数空间</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configurations.html#branches-loops">分支 (Branches) 与 循环 (Loops)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configurations.html#study-optimize"><cite>Study.optimize</cite> 的参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configurations.html#defining-parameter-spaces">定义参数空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configurations.html#branches-and-loops">分支 (Branches) 与 循环 (Loops)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configurations.html#arguments-for-study-optimize"><cite>Study.optimize</cite> 的参数</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rdb.html">用 RDB 后端保存/恢复 Study</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rdb.html#study">新建 Study</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rdb.html#id1">恢复 Study</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rdb.html#id2">实验历史记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rdb.html#new-study">新建 Study</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rdb.html#resume-study">恢复 Study</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rdb.html#experimental-history">实验历史记录</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="distributed.html">分布式优化</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">命令行界面</a></li>
 <li class="toctree-l1"><a class="reference internal" href="attributes.html">用户定义属性</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="attributes.html#study">将用户定义属性添加到 Study</a></li>
-<li class="toctree-l2"><a class="reference internal" href="attributes.html#trial">将用户属性添加到 Trial 中</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes.html#adding-user-attributes-to-studies">将用户定义属性添加到 Study</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes.html#adding-user-attributes-to-trials">将用户属性添加到 Trial 中</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pruning.html">对无望的 Trial 进行剪枝 (Pruning)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pruning.html#pruner">开启 Pruner</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pruning.html#id1">用于 Pruning 的集成模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pruning.html#activating-pruners">开启 Pruner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pruning.html#integration-modules-for-pruning">用于 Pruning 的集成模块</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sampler.html">用户定义的采样器 (Sampler)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sampler.html#id2">Sampler 的概述</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sampler.html#sampler-simulatedannealingsampler">案例: 实现模拟退火 Sampler (SimulatedAnnealingSampler)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampler.html#overview-of-sampler">Sampler 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampler.html#an-example-implementing-simulatedannealingsampler">案例: 实现模拟退火 Sampler (SimulatedAnnealingSampler)</a></li>
 </ul>
 </li>
 </ul>

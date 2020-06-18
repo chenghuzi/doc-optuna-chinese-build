@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>第一个优化例子 &mdash; Optuna 1.4.0 documentation</title>
+  <title>第一个优化例子 &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,10 +37,10 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="高级配置" href="configurations.html" />
-    <link rel="prev" title="Tutorial" href="index.html" /> 
+    <link rel="prev" title="教程" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -88,13 +88,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">安装</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">教程</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">第一个优化例子</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">二次函数的例子</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#study">Study 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quadratic-function-example">二次函数的例子</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#study-object">Study 对象</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="configurations.html">高级配置</a></li>
@@ -102,12 +102,12 @@
 <li class="toctree-l2"><a class="reference internal" href="distributed.html">分布式优化</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html">命令行界面</a></li>
 <li class="toctree-l2"><a class="reference internal" href="attributes.html">用户定义属性</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pruning.html">对无望的 Trial 进行 Pruning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sampler.html">User-Defined Sampler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pruning.html">对无望的 Trial 进行剪枝 (Pruning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampler.html">用户定义的采样器 (Sampler)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -153,7 +153,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Tutorial</a> &raquo;</li>
+          <li><a href="index.html">教程</a> &raquo;</li>
         
       <li>第一个优化例子</li>
     
@@ -174,10 +174,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="firstopt">
-<span id="id1"></span><h1>第一个优化例子<a class="headerlink" href="#firstopt" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id2">
-<h2>二次函数的例子<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="first-optimization">
+<span id="firstopt"></span><h1>第一个优化例子<a class="headerlink" href="#first-optimization" title="永久链接至标题">¶</a></h1>
+<div class="section" id="quadratic-function-example">
+<h2>二次函数的例子<a class="headerlink" href="#quadratic-function-example" title="永久链接至标题">¶</a></h2>
 <p>Optuna 通常用于优化超参数，但是为了举例说明，我们将直接在 IPython shell 中优化一个二次函数。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 </pre></div>
@@ -188,7 +188,7 @@
     <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
 </pre></div>
 </div>
-<p>该函数的返回值是 <span class="math notranslate nohighlight">\((x - 2)^2\)</span>. 我们的目标是找到一个 <code class="docutils literal notranslate"><span class="pre">x</span></code>，使 <code class="docutils literal notranslate"><span class="pre">objective</span></code> 函数的输出最小。这被称为 “optimization” (优化)。 在优化过程中，Optuna 反复调用目标函数，在不同的 <code class="docutils literal notranslate"><span class="pre">x</span></code> 下对其进行求值。</p>
+<p>该函数的返回值是 <span class="math notranslate nohighlight">\((x - 2)^2\)</span>. 我们的目标是找到一个 <code class="docutils literal notranslate"><span class="pre">x</span></code>，使 <code class="docutils literal notranslate"><span class="pre">objective</span></code> 函数的输出最小。这被称为 &quot;optimization&quot; (优化)。 在优化过程中，Optuna 反复调用目标函数，在不同的 <code class="docutils literal notranslate"><span class="pre">x</span></code> 下对其进行求值。</p>
 <p>一个 <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 对应着目标函数的单次执行。在每次调用该函数的时候，它都被内部实例化一次。</p>
 <p>而 <cite>suggest</cite> API (例如 <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a>) 在目标函数内部被调用。它被用于获取单个 trial 的参数。在上面的例子中，<a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a> 在给定的范围（<code class="docutils literal notranslate"><span class="pre">-10</span></code> 到 <code class="docutils literal notranslate"><span class="pre">10</span></code>）内均匀地选择参数。</p>
 <p>为了开始优化过程，我们将创建一个 study 对象，并将目标函数传递给它的一个方法 <a class="reference internal" href="../reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a>：</p>
@@ -196,39 +196,38 @@
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>输出:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[I 2020-04-08 10:42:09,028] Finished trial#0 with value: 25.77382032395108 with parameters: {&#39;x&#39;: 7.076792326257898}. Best is trial#0 with value: 25.77382032395108.</span>
-<span class="go">[I 2020-04-08 10:42:09,064] Finished trial#1 with value: 1.5189812248635903 with parameters: {&#39;x&#39;: 0.7675304365366298}. Best is trial#1 with value: 1.5189812248635903.</span>
-<span class="go">[I 2020-04-08 10:42:09,106] Finished trial#2 with value: 34.4074691838153 with parameters: {&#39;x&#39;: -3.865788027521562}. Best is trial#1 with value: 1.5189812248635903.</span>
-<span class="go">[I 2020-04-08 10:42:09,145] Finished trial#3 with value: 3.3601305753722657 with parameters: {&#39;x&#39;: 3.8330658949891205}. Best is trial#1 with value: 1.5189812248635903.</span>
-<span class="go">[I 2020-04-08 10:42:09,185] Finished trial#4 with value: 61.16797535698886 with parameters: {&#39;x&#39;: -5.820995803412048}. Best is trial#1 with value: 1.5189812248635903.</span>
-<span class="go">[I 2020-04-08 10:42:09,228] Finished trial#5 with value: 90.08665552769618 with parameters: {&#39;x&#39;: -7.491399028999686}. Best is trial#1 with value: 1.5189812248635903.</span>
-<span class="go">[I 2020-04-08 10:42:09,274] Finished trial#6 with value: 25.254236332163032 with parameters: {&#39;x&#39;: 7.025359323686519}. Best is trial#1 with value: 1.5189812248635903.</span>
+<p>输出：</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[I 2020-04-08 10:42:09,028] Trial 0 finished with value: 25.77382032395108 with parameters: {&#39;x&#39;: 7.076792326257898}. Best is trial 0 with value: 25.77382032395108.</span>
+<span class="go">[I 2020-04-08 10:42:09,064] Trial 1 finished with value: 1.5189812248635903 with parameters: {&#39;x&#39;: 0.7675304365366298}. Best is trial 1 with value: 1.5189812248635903.</span>
+<span class="go">[I 2020-04-08 10:42:09,106] Trial 2 finished with value: 34.4074691838153 with parameters: {&#39;x&#39;: -3.865788027521562}. Best is trial 1 with value: 1.5189812248635903.</span>
+<span class="go">[I 2020-04-08 10:42:09,145] Trial 3 finished with value: 3.3601305753722657 with parameters: {&#39;x&#39;: 3.8330658949891205}. Best is trial 1 with value: 1.5189812248635903.</span>
+<span class="go">[I 2020-04-08 10:42:09,185] Trial 4 finished with value: 61.16797535698886 with parameters: {&#39;x&#39;: -5.820995803412048}. Best is trial 1 with value: 1.5189812248635903.</span>
+<span class="go">[I 2020-04-08 10:42:09,228] Trial 5 finished with value: 90.08665552769618 with parameters: {&#39;x&#39;: -7.491399028999686}. Best is trial 1 with value: 1.5189812248635903.</span>
+<span class="go">[I 2020-04-08 10:42:09,274] Trial 6 finished with value: 25.254236332163032 with parameters: {&#39;x&#39;: 7.025359323686519}. Best is trial 1 with value: 1.5189812248635903.</span>
 <span class="go">...</span>
-<span class="go">[I 2020-04-08 10:42:14,237] Finished trial#99 with value: 0.5227007740782738 with parameters: {&#39;x&#39;: 2.7229804797352926}. Best is trial#67 with value: 2.916284393762304e-06.</span>
+<span class="go">[I 2020-04-08 10:42:14,237] Trial 99 finished with value: 0.5227007740782738 with parameters: {&#39;x&#39;: 2.7229804797352926}. Best is trial 67 with value: 2.916284393762304e-06.</span>
 </pre></div>
 </div>
 <p>最佳参数可以通过如下方式获得：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span><span class="o">.</span><span class="n">best_params</span>
 </pre></div>
 </div>
-<p>输出:</p>
+<p>输出：</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{&#39;x&#39;: 2.001707713205946}</span>
 </pre></div>
 </div>
 <p>可以看到，Optuna 找到的最佳 <code class="docutils literal notranslate"><span class="pre">x``的值</span> <span class="pre">是</span> <span class="pre">``2.001707713205946</span></code>. 这非常靠近实际的最优值 <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>当Optuna被用于机器学习中的超参数搜索时，目标函数通常是对应模型的损失 (loss) 或者准确度 (accuracy).
-When used to search for hyper-parameters in machine learning, usually the objective function would return the loss or accuracy of the model.</p>
+<p class="admonition-title">注解</p>
+<p>当Optuna被用于机器学习中的超参数搜索时，目标函数通常是对应模型的损失 (loss) 或者准确度 (accuracy).</p>
 </div>
 </div>
-<div class="section" id="study">
-<h2>Study 对象<a class="headerlink" href="#study" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="study-object">
+<h2>Study 对象<a class="headerlink" href="#study-object" title="永久链接至标题">¶</a></h2>
 <p>下面是几个常用术语：</p>
 <ul class="simple">
 <li><p><strong>Trial</strong>: 目标函数的单次调用</p></li>
-<li><p><strong>Study</strong>: 一次优化过程，包含一系列的 rials.</p></li>
+<li><p><strong>Study</strong>: 一次优化过程，包含一系列的 trials.</p></li>
 <li><p><strong>Parameter</strong>: 待优化的参数，比如上面例子中的 <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p></li>
 </ul>
 <p>在 Optuna 中，我们用 study 对象来管理优化过程。 <a class="reference internal" href="../reference/study.html#optuna.study.create_study" title="optuna.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> 方法会返回一个 study 对象。该对象包含若干有用的属性，可以用于分析优化结果。</p>
@@ -236,7 +235,7 @@ When used to search for hyper-parameters in machine learning, usually the object
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span><span class="o">.</span><span class="n">best_params</span>
 </pre></div>
 </div>
-<p>输出:</p>
+<p>输出：</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{&#39;x&#39;: 2.001707713205946}</span>
 </pre></div>
 </div>
@@ -244,7 +243,7 @@ When used to search for hyper-parameters in machine learning, usually the object
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span><span class="o">.</span><span class="n">best_value</span>
 </pre></div>
 </div>
-<p>输出:</p>
+<p>输出：</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">2.916284393762304e-06</span>
 </pre></div>
 </div>
@@ -252,7 +251,7 @@ When used to search for hyper-parameters in machine learning, usually the object
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span><span class="o">.</span><span class="n">best_trial</span>
 </pre></div>
 </div>
-<p>输出:</p>
+<p>输出：</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">FrozenTrial(number=67, value=2.916284393762304e-06, datetime_start=datetime.datetime(2020, 4, 8, 10, 42, 12, 595884), datetime_complete=datetime.datetime(2020, 4, 8, 10, 42, 12, 639969), params={&#39;x&#39;: 2.001707713205946}, distributions={&#39;x&#39;: UniformDistribution(high=10, low=-10)}, user_attrs={}, system_attrs={}, intermediate_values={}, trial_id=67, state=TrialState.COMPLETE)</span>
 </pre></div>
 </div>
@@ -260,17 +259,17 @@ When used to search for hyper-parameters in machine learning, usually the object
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span><span class="o">.</span><span class="n">trials</span>
 </pre></div>
 </div>
-<p>输出:</p>
+<p>输出：</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[FrozenTrial(number=0, value=25.77382032395108, datetime_start=datetime.datetime(2020, 4, 8, 10, 42, 8, 987277), datetime_complete=datetime.datetime(2020, 4, 8, 10, 42, 9, 27959), params={&#39;x&#39;: 7.076792326257898}, distributions={&#39;x&#39;: UniformDistribution(high=10, low=-10)}, user_attrs={}, system_attrs={}, intermediate_values={}, trial_id=0, state=TrialState.COMPLETE),</span>
 <span class="go"> ...</span>
 <span class="go"> user_attrs={}, system_attrs={}, intermediate_values={}, trial_id=99, state=TrialState.COMPLETE)]</span>
 </pre></div>
 </div>
-<p>获得 trial 的数量:</p>
+<p>获得 trial 的数目：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">study</span><span class="o">.</span><span class="n">trials</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>输出:</p>
+<p>输出：</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">100</span>
 </pre></div>
 </div>
@@ -282,7 +281,7 @@ When used to search for hyper-parameters in machine learning, usually the object
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">study</span><span class="o">.</span><span class="n">trials</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>输出:</p>
+<p>输出：</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">200</span>
 </pre></div>
 </div>
@@ -300,7 +299,7 @@ When used to search for hyper-parameters in machine learning, usually the object
         <a href="configurations.html" class="btn btn-neutral float-right" title="高级配置" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="教程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

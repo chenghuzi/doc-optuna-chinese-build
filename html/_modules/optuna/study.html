@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.study &mdash; Optuna 1.4.0 documentation</title>
+  <title>optuna.study &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,12 +86,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">安装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -137,7 +137,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../index.html">Module code</a> &raquo;</li>
+          <li><a href="../index.html">模块代码</a> &raquo;</li>
         
       <li>optuna.study</li>
     
@@ -154,7 +154,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for optuna.study</h1><div class="highlight"><pre>
+  <h1>optuna.study 源代码</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">collections</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
@@ -168,18 +168,9 @@
 <span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span>
 
 <span class="kn">from</span> <span class="nn">optuna._experimental</span> <span class="kn">import</span> <span class="n">experimental</span>
+<span class="kn">from</span> <span class="nn">optuna._imports</span> <span class="kn">import</span> <span class="n">try_import</span>
 <span class="kn">from</span> <span class="nn">optuna._study_direction</span> <span class="kn">import</span> <span class="n">StudyDirection</span>
 <span class="kn">from</span> <span class="nn">optuna._study_summary</span> <span class="kn">import</span> <span class="n">StudySummary</span>  <span class="c1"># NOQA</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>  <span class="c1"># NOQA</span>
-
-    <span class="n">_pandas_available</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="n">_pandas_import_error</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="c1"># trials_dataframe is disabled because pandas is not available.</span>
-    <span class="n">_pandas_available</span> <span class="o">=</span> <span class="kc">False</span>
-
 <span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">exceptions</span>
 <span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">progress_bar</span> <span class="k">as</span> <span class="n">pbar_module</span>
@@ -206,6 +197,9 @@
 
     <span class="n">ObjectiveFuncType</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">trial_module</span><span class="o">.</span><span class="n">Trial</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span>
 
+<span class="k">with</span> <span class="n">try_import</span><span class="p">()</span> <span class="k">as</span> <span class="n">_pandas_imports</span><span class="p">:</span>
+    <span class="c1"># `trials_dataframe` is disabled if pandas is not available.</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>  <span class="c1"># NOQA</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -299,39 +293,11 @@
 <span class="sd">            A list of :class:`~optuna.FrozenTrial` objects.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">read_trials_from_remote_storage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">get_all_trials</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="n">deepcopy</span><span class="p">)</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">storage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># type: () -&gt; storages.BaseStorage</span>
-        <span class="sd">&quot;&quot;&quot;Return the storage object used by the study.</span>
 
-<span class="sd">        .. deprecated:: 0.15.0</span>
-<span class="sd">            The direct use of storage is deprecated.</span>
-<span class="sd">            Please access to storage via study&#39;s public methods</span>
-<span class="sd">            (e.g., :meth:`~optuna.study.Study.set_user_attr`).</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            A storage object.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-            <span class="s2">&quot;The direct use of storage is deprecated. &quot;</span>
-            <span class="s2">&quot;Please access to storage via study&#39;s public methods &quot;</span>
-            <span class="s2">&quot;(e.g., `Study.set_user_attr`)&quot;</span><span class="p">,</span>
-            <span class="ne">DeprecationWarning</span><span class="p">,</span>
-        <span class="p">)</span>
-
-        <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-            <span class="s2">&quot;The direct use of storage is deprecated. &quot;</span>
-            <span class="s2">&quot;Please access to storage via study&#39;s public methods &quot;</span>
-            <span class="s2">&quot;(e.g., `Study.set_user_attr`)&quot;</span>
-        <span class="p">)</span>
-
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span>
-
-
-<div class="viewcode-block" id="Study"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study">[docs]</a><span class="k">class</span> <span class="nc">Study</span><span class="p">(</span><span class="n">BaseStudy</span><span class="p">):</span>
+<div class="viewcode-block" id="Study"><a class="viewcode-back" href="../../reference/study.html#optuna.Study">[文档]</a><span class="k">class</span> <span class="nc">Study</span><span class="p">(</span><span class="n">BaseStudy</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A study corresponds to an optimization task, i.e., a set of trials.</span>
 
 <span class="sd">    This object provides interfaces to run a new :class:`~optuna.trial.Trial`, access trials&#39;</span>
@@ -377,27 +343,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_optimize_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">study_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># type: () -&gt; int</span>
-        <span class="sd">&quot;&quot;&quot;Return the study ID.</span>
-
-<span class="sd">        .. deprecated:: 0.20.0</span>
-<span class="sd">            The direct use of this attribute is deprecated and it is recommended that you use</span>
-<span class="sd">            :attr:`~optuna.study.Study.study_name` instead.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            The study ID.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="s2">&quot;The use of `Study.study_id` is deprecated. Please use `Study.study_name` instead.&quot;</span>
-        <span class="p">)</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span>
-
-    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">user_attrs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># type: () -&gt; Dict[str, Any]</span>
         <span class="sd">&quot;&quot;&quot;Return user attributes.</span>
@@ -419,7 +364,7 @@
 
         <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">get_study_system_attrs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Study.optimize"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.optimize">[docs]</a>    <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span>
+<div class="viewcode-block" id="Study.optimize"><a class="viewcode-back" href="../../reference/study.html#optuna.Study.optimize">[文档]</a>    <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">func</span><span class="p">,</span>  <span class="c1"># type: ObjectiveFuncType</span>
         <span class="n">n_trials</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: Optional[int]</span>
@@ -427,7 +372,7 @@
         <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># type: int</span>
         <span class="n">catch</span><span class="o">=</span><span class="p">(),</span>  <span class="c1"># type: Union[Tuple[()], Tuple[Type[Exception]]]</span>
         <span class="n">callbacks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: Optional[List[Callable[[Study, FrozenTrial], None]]]</span>
-        <span class="n">gc_after_trial</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># type: bool</span>
+        <span class="n">gc_after_trial</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># type: bool</span>
         <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># type: bool</span>
     <span class="p">):</span>
         <span class="c1"># type: (...) -&gt; None</span>
@@ -464,9 +409,11 @@
 <span class="sd">                must accept two parameters with the following types in this order:</span>
 <span class="sd">                :class:`~optuna.study.Study` and :class:`~optuna.FrozenTrial`.</span>
 <span class="sd">            gc_after_trial:</span>
-<span class="sd">                Flag to execute garbage collection at the end of each trial. By default, garbage</span>
-<span class="sd">                collection is enabled, just in case. You can turn it off with this argument if</span>
-<span class="sd">                memory is safely managed in your objective function.</span>
+<span class="sd">                Flag to determine whether to automatically run garbage collection after each trial.</span>
+<span class="sd">                Set to :obj:`True` to run the garbage collection, :obj:`False` otherwise.</span>
+<span class="sd">                When it runs, it runs a full collection by internally calling :func:`gc.collect`.</span>
+<span class="sd">                If you see an increase in memory consumption over several trials, try setting this</span>
+<span class="sd">                flag to :obj:`True`.</span>
 <span class="sd">            show_progress_bar:</span>
 <span class="sd">                Flag to show progress bars or not. To disable progress bar, set this ``False``.</span>
 <span class="sd">                Currently, progress bar is experimental feature and disabled</span>
@@ -534,7 +481,7 @@
 
                     <span class="n">parallel</span><span class="p">(</span>
                         <span class="n">delayed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_reseed_and_optimize_sequential</span><span class="p">)(</span>
-                            <span class="n">func</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">catch</span><span class="p">,</span> <span class="n">callbacks</span><span class="p">,</span> <span class="n">gc_after_trial</span><span class="p">,</span> <span class="n">time_start</span>
+                            <span class="n">func</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">catch</span><span class="p">,</span> <span class="n">callbacks</span><span class="p">,</span> <span class="n">gc_after_trial</span><span class="p">,</span> <span class="n">time_start</span><span class="p">,</span>
                         <span class="p">)</span>
                         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">_iter</span>
                     <span class="p">)</span>
@@ -543,7 +490,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_progress_bar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_progress_bar</span></div>
 
-<div class="viewcode-block" id="Study.set_user_attr"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.set_user_attr">[docs]</a>    <span class="k">def</span> <span class="nf">set_user_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="Study.set_user_attr"><a class="viewcode-back" href="../../reference/study.html#optuna.Study.set_user_attr">[文档]</a>    <span class="k">def</span> <span class="nf">set_user_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="c1"># type: (str, Any) -&gt; None</span>
         <span class="sd">&quot;&quot;&quot;Set a user attribute to the study.</span>
 
@@ -570,7 +517,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">set_study_system_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Study.trials_dataframe"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.trials_dataframe">[docs]</a>    <span class="k">def</span> <span class="nf">trials_dataframe</span><span class="p">(</span>
+<div class="viewcode-block" id="Study.trials_dataframe"><a class="viewcode-back" href="../../reference/study.html#optuna.Study.trials_dataframe">[文档]</a>    <span class="k">def</span> <span class="nf">trials_dataframe</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">attrs</span><span class="o">=</span><span class="p">(</span>
             <span class="s2">&quot;number&quot;</span><span class="p">,</span>
@@ -627,7 +574,7 @@
 <span class="sd">        .. _MultiIndex: https://pandas.pydata.org/pandas-docs/stable/advanced.html</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">_check_pandas_availability</span><span class="p">()</span>
+        <span class="n">_pandas_imports</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
 
         <span class="n">trials</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_trials</span><span class="p">(</span><span class="n">deepcopy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -687,7 +634,7 @@
 
         <span class="k">return</span> <span class="n">df</span></div>
 
-<div class="viewcode-block" id="Study.stop"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.stop">[docs]</a>    <span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.4.0&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="Study.stop"><a class="viewcode-back" href="../../reference/study.html#optuna.Study.stop">[文档]</a>    <span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.4.0&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
         <span class="sd">&quot;&quot;&quot;Exit from the current optimization loop after the running trials finish.</span>
@@ -711,7 +658,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_stop_flag</span> <span class="o">=</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="Study.enqueue_trial"><a class="viewcode-back" href="../../reference/study.html#optuna.study.Study.enqueue_trial">[docs]</a>    <span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.2.0&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="Study.enqueue_trial"><a class="viewcode-back" href="../../reference/study.html#optuna.Study.enqueue_trial">[文档]</a>    <span class="nd">@experimental</span><span class="p">(</span><span class="s2">&quot;1.2.0&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">enqueue_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="c1"># type: (Dict[str, Any]) -&gt; None</span>
         <span class="sd">&quot;&quot;&quot;Enqueue a trial with given parameter values.</span>
@@ -846,14 +793,14 @@
         <span class="c1"># type: () -&gt; Optional[int]</span>
 
         <span class="c1"># TODO(c-bata): Reduce database query counts for extracting waiting trials.</span>
-        <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_trials</span><span class="p">(</span><span class="n">deepcopy</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">get_all_trials</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">trial</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="n">TrialState</span><span class="o">.</span><span class="n">WAITING</span><span class="p">:</span>
                 <span class="k">continue</span>
 
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">set_trial_state</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">_trial_id</span><span class="p">,</span> <span class="n">TrialState</span><span class="o">.</span><span class="n">RUNNING</span><span class="p">):</span>
                 <span class="k">continue</span>
 
-            <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Trial#</span><span class="si">{}</span><span class="s2"> is popped from the trial queue.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">number</span><span class="p">))</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Trial </span><span class="si">{}</span><span class="s2"> popped from the trial queue.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">number</span><span class="p">))</span>
             <span class="k">return</span> <span class="n">trial</span><span class="o">.</span><span class="n">_trial_id</span>
 
         <span class="k">return</span> <span class="kc">None</span>
@@ -881,6 +828,9 @@
     <span class="p">):</span>
         <span class="c1"># type: (...) -&gt; trial_module.Trial</span>
 
+        <span class="c1"># Sync storage once at the beginning of the objective evaluation.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">read_trials_from_remote_storage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span><span class="p">)</span>
+
         <span class="n">trial_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pop_waiting_trial_id</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">trial_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">trial_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">create_new_trial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_study_id</span><span class="p">)</span>
@@ -890,9 +840,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">TrialPruned</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Setting status of trial#</span><span class="si">{}</span><span class="s2"> as </span><span class="si">{}</span><span class="s2">. </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">trial_number</span><span class="p">,</span> <span class="n">TrialState</span><span class="o">.</span><span class="n">PRUNED</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="p">)</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Trial </span><span class="si">{}</span><span class="s2"> pruned. </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">trial_number</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
             <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
             <span class="c1"># Register the last intermediate value if present as the value of the trial.</span>
@@ -906,8 +854,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">set_trial_state</span><span class="p">(</span><span class="n">trial_id</span><span class="p">,</span> <span class="n">TrialState</span><span class="o">.</span><span class="n">PRUNED</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">trial</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Setting status of trial#</span><span class="si">{}</span><span class="s2"> as </span><span class="si">{}</span><span class="s2"> because of the following error: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">trial_number</span><span class="p">,</span> <span class="n">TrialState</span><span class="o">.</span><span class="n">FAIL</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Trial </span><span class="si">{}</span><span class="s2"> failed because of the following error: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">trial_number</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
             <span class="p">)</span>
             <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">set_trial_system_attr</span><span class="p">(</span><span class="n">trial_id</span><span class="p">,</span> <span class="s2">&quot;fail_reason&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
@@ -931,9 +879,9 @@
             <span class="ne">TypeError</span><span class="p">,</span>
         <span class="p">):</span>
             <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="s2">&quot;Setting status of trial#</span><span class="si">{}</span><span class="s2"> as </span><span class="si">{}</span><span class="s2"> because the returned value from the &quot;</span>
-                <span class="s2">&quot;objective function cannot be casted to float. Returned value is: &quot;</span>
-                <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">trial_number</span><span class="p">,</span> <span class="n">TrialState</span><span class="o">.</span><span class="n">FAIL</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+                <span class="s2">&quot;Trial </span><span class="si">{}</span><span class="s2"> failed, because the returned value from the &quot;</span>
+                <span class="s2">&quot;objective function cannot be cast to float. Returned value is: &quot;</span>
+                <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">trial_number</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
             <span class="p">)</span>
             <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">set_trial_system_attr</span><span class="p">(</span><span class="n">trial_id</span><span class="p">,</span> <span class="s2">&quot;fail_reason&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
@@ -941,9 +889,8 @@
             <span class="k">return</span> <span class="n">trial</span>
 
         <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="s2">&quot;Setting status of trial#</span><span class="si">{}</span><span class="s2"> as </span><span class="si">{}</span><span class="s2"> because the objective function &quot;</span>
-                <span class="s2">&quot;returned </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">trial_number</span><span class="p">,</span> <span class="n">TrialState</span><span class="o">.</span><span class="n">FAIL</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Trial </span><span class="si">{}</span><span class="s2"> failed, because the objective function returned </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">trial_number</span><span class="p">,</span> <span class="n">result</span>
             <span class="p">)</span>
             <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">set_trial_system_attr</span><span class="p">(</span><span class="n">trial_id</span><span class="p">,</span> <span class="s2">&quot;fail_reason&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
@@ -960,14 +907,14 @@
         <span class="c1"># type: (trial_module.Trial, float) -&gt; None</span>
 
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-            <span class="s2">&quot;Finished trial#</span><span class="si">{}</span><span class="s2"> with value: </span><span class="si">{}</span><span class="s2"> with parameters: </span><span class="si">{}</span><span class="s2">. &quot;</span>
-            <span class="s2">&quot;Best is trial#</span><span class="si">{}</span><span class="s2"> with value: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">trial</span><span class="o">.</span><span class="n">number</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">trial</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_trial</span><span class="o">.</span><span class="n">number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_value</span>
+            <span class="s2">&quot;Trial </span><span class="si">{}</span><span class="s2"> finished with value: </span><span class="si">{}</span><span class="s2"> and parameters: </span><span class="si">{}</span><span class="s2">. &quot;</span>
+            <span class="s2">&quot;Best is trial </span><span class="si">{}</span><span class="s2"> with value: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">trial</span><span class="o">.</span><span class="n">number</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">trial</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_trial</span><span class="o">.</span><span class="n">number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_value</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="create_study"><a class="viewcode-back" href="../../reference/study.html#optuna.study.create_study">[docs]</a><span class="k">def</span> <span class="nf">create_study</span><span class="p">(</span>
+<div class="viewcode-block" id="create_study"><a class="viewcode-back" href="../../reference/study.html#optuna.create_study">[文档]</a><span class="k">def</span> <span class="nf">create_study</span><span class="p">(</span>
     <span class="n">storage</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: Union[None, str, storages.BaseStorage]</span>
     <span class="n">sampler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: samplers.BaseSampler</span>
     <span class="n">pruner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: pruners.BasePruner</span>
@@ -1050,7 +997,7 @@
     <span class="k">return</span> <span class="n">study</span></div>
 
 
-<div class="viewcode-block" id="load_study"><a class="viewcode-back" href="../../reference/study.html#optuna.study.load_study">[docs]</a><span class="k">def</span> <span class="nf">load_study</span><span class="p">(</span>
+<div class="viewcode-block" id="load_study"><a class="viewcode-back" href="../../reference/study.html#optuna.load_study">[文档]</a><span class="k">def</span> <span class="nf">load_study</span><span class="p">(</span>
     <span class="n">study_name</span><span class="p">,</span>  <span class="c1"># type: str</span>
     <span class="n">storage</span><span class="p">,</span>  <span class="c1"># type: Union[str, storages.BaseStorage]</span>
     <span class="n">sampler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: samplers.BaseSampler</span>
@@ -1079,7 +1026,7 @@
     <span class="k">return</span> <span class="n">Study</span><span class="p">(</span><span class="n">study_name</span><span class="o">=</span><span class="n">study_name</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="n">storage</span><span class="p">,</span> <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span> <span class="n">pruner</span><span class="o">=</span><span class="n">pruner</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="delete_study"><a class="viewcode-back" href="../../reference/study.html#optuna.study.delete_study">[docs]</a><span class="k">def</span> <span class="nf">delete_study</span><span class="p">(</span>
+<div class="viewcode-block" id="delete_study"><a class="viewcode-back" href="../../reference/study.html#optuna.delete_study">[文档]</a><span class="k">def</span> <span class="nf">delete_study</span><span class="p">(</span>
     <span class="n">study_name</span><span class="p">,</span>  <span class="c1"># type: str</span>
     <span class="n">storage</span><span class="p">,</span>  <span class="c1"># type: Union[str, storages.BaseStorage]</span>
 <span class="p">):</span>
@@ -1100,7 +1047,7 @@
     <span class="n">storage</span><span class="o">.</span><span class="n">delete_study</span><span class="p">(</span><span class="n">study_id</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_all_study_summaries"><a class="viewcode-back" href="../../reference/study.html#optuna.study.get_all_study_summaries">[docs]</a><span class="k">def</span> <span class="nf">get_all_study_summaries</span><span class="p">(</span><span class="n">storage</span><span class="p">):</span>
+<div class="viewcode-block" id="get_all_study_summaries"><a class="viewcode-back" href="../../reference/study.html#optuna.get_all_study_summaries">[文档]</a><span class="k">def</span> <span class="nf">get_all_study_summaries</span><span class="p">(</span><span class="n">storage</span><span class="p">):</span>
     <span class="c1"># type: (Union[str, storages.BaseStorage]) -&gt; List[StudySummary]</span>
     <span class="sd">&quot;&quot;&quot;Get all history of studies stored in a specified storage.</span>
 
@@ -1116,18 +1063,6 @@
 
     <span class="n">storage</span> <span class="o">=</span> <span class="n">storages</span><span class="o">.</span><span class="n">get_storage</span><span class="p">(</span><span class="n">storage</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">storage</span><span class="o">.</span><span class="n">get_all_study_summaries</span><span class="p">()</span></div>
-
-
-<span class="k">def</span> <span class="nf">_check_pandas_availability</span><span class="p">():</span>
-    <span class="c1"># type: () -&gt; None</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">_pandas_available</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
-            <span class="s2">&quot;pandas is not available. Please install pandas to use this feature. &quot;</span>
-            <span class="s2">&quot;pandas can be installed by executing `$ pip install pandas`. &quot;</span>
-            <span class="s2">&quot;For further information, please refer to the installation guide of pandas. &quot;</span>
-            <span class="s2">&quot;(The actual import error is as follows: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">_pandas_import_error</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
-        <span class="p">)</span>
 </pre></div>
 
            </div>

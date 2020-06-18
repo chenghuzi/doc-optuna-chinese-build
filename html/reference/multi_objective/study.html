@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Study &mdash; Optuna 1.4.0 documentation</title>
+  <title>Study &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
     <link rel="next" title="Trial" href="trial.html" />
     <link rel="prev" title="Samplers" href="samplers.html" /> 
 </head>
@@ -88,12 +88,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">安装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">教程</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../cli.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core.html">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli.html">命令行界面</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../distributions.html">Distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../exceptions.html">Exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../importance.html">Hyperparameter Importance</a></li>
@@ -103,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="samplers.html">Samplers</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Study</a></li>
 <li class="toctree-l3"><a class="reference internal" href="trial.html">Trial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="visualization.html">Visualization</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pruners.html">Pruners</a></li>
@@ -114,7 +116,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../visualization.html">Visualization</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -184,29 +186,29 @@
            <div itemprop="articleBody">
             
   <span class="target" id="module-optuna.multi_objective.study"></span><div class="section" id="study">
-<h1>Study<a class="headerlink" href="#study" title="Permalink to this headline">¶</a></h1>
+<h1>Study<a class="headerlink" href="#study" title="永久链接至标题">¶</a></h1>
 <dl class="py class">
 <dt id="optuna.multi_objective.study.MultiObjectiveStudy">
-<em class="property">class </em><code class="sig-prename descclassname">optuna.multi_objective.study.</code><code class="sig-name descname">MultiObjectiveStudy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#MultiObjectiveStudy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">optuna.multi_objective.study.</code><code class="sig-name descname">MultiObjectiveStudy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n"><a class="reference internal" href="../study.html#optuna.study.Study" title="optuna.study.Study">optuna.study.Study</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#MultiObjectiveStudy"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy" title="永久链接至目标">¶</a></dt>
 <dd><p>A study corresponds to a multi-objective optimization task, i.e., a set of trials.</p>
 <p>This object provides interfaces to run a new
-<code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code>, access trials’
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code>, access trials'
 history, set/get user-defined attributes of the study itself.</p>
 <p>Note that the direct use of this constructor is not recommended.
 To create and load a study, please refer to the documentation of
 <a class="reference internal" href="#optuna.multi_objective.study.create_study" title="optuna.multi_objective.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> and
 <a class="reference internal" href="#optuna.multi_objective.study.load_study" title="optuna.multi_objective.study.load_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_study()</span></code></a> respectively.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注解</p>
 <p>Added in v1.4.0 as an experimental feature. The interface may change in newer versions
 without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.4.0">https://github.com/optuna/optuna/releases/tag/v1.4.0</a>.</p>
 </div>
 <dl class="py method">
 <dt id="optuna.multi_objective.study.MultiObjectiveStudy.directions">
-<em class="property">property </em><code class="sig-name descname">directions</code><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.directions" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">directions</code><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.directions" title="永久链接至目标">¶</a></dt>
 <dd><p>Return the optimization direction list.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>A list that contains the optimization direction for each objective value.</p>
 </dd>
 </dl>
@@ -214,29 +216,29 @@ without prior notice. See <a class="reference external" href="https://github.com
 
 <dl class="py method">
 <dt id="optuna.multi_objective.study.MultiObjectiveStudy.enqueue_trial">
-<code class="sig-name descname">enqueue_trial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#MultiObjectiveStudy.enqueue_trial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.enqueue_trial" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">enqueue_trial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#MultiObjectiveStudy.enqueue_trial"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.enqueue_trial" title="永久链接至目标">¶</a></dt>
 <dd><p>Enqueue a trial with given parameter values.</p>
 <p>You can fix the next sampling parameters which will be evaluated in your
 objective function.</p>
 <p>Please refer to the documentation of <a class="reference internal" href="../study.html#optuna.study.Study.enqueue_trial" title="optuna.study.Study.enqueue_trial"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.study.Study.enqueue_trial()</span></code></a>
 for further details.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>params</strong> – Parameter values to pass your objective function.</p>
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>params</strong> -- Parameter values to pass your objective function.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.multi_objective.study.MultiObjectiveStudy.get_pareto_front_trials">
-<code class="sig-name descname">get_pareto_front_trials</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="trial.html#optuna.multi_objective.trial.FrozenMultiObjectiveTrial" title="optuna.multi_objective.trial.FrozenMultiObjectiveTrial">optuna.multi_objective.trial.FrozenMultiObjectiveTrial</a><span class="p">]</span><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#MultiObjectiveStudy.get_pareto_front_trials"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.get_pareto_front_trials" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_pareto_front_trials</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="trial.html#optuna.multi_objective.trial.FrozenMultiObjectiveTrial" title="optuna.multi_objective.trial.FrozenMultiObjectiveTrial">optuna.multi_objective.trial.FrozenMultiObjectiveTrial</a><span class="p">]</span><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#MultiObjectiveStudy.get_pareto_front_trials"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.get_pareto_front_trials" title="永久链接至目标">¶</a></dt>
 <dd><p>Return trials located at the pareto front in the study.</p>
 <p>A trial is located at the pareto front if there are no trials that dominate the trial.
-It’s called that a trial <code class="docutils literal notranslate"><span class="pre">t0</span></code> dominates another trial <code class="docutils literal notranslate"><span class="pre">t1</span></code> if
+It's called that a trial <code class="docutils literal notranslate"><span class="pre">t0</span></code> dominates another trial <code class="docutils literal notranslate"><span class="pre">t1</span></code> if
 <code class="docutils literal notranslate"><span class="pre">all(v0</span> <span class="pre">&lt;=</span> <span class="pre">v1)</span> <span class="pre">for</span> <span class="pre">v0,</span> <span class="pre">v1</span> <span class="pre">in</span> <span class="pre">zip(t0.values,</span> <span class="pre">t1.values)</span></code> and
 <code class="docutils literal notranslate"><span class="pre">any(v0</span> <span class="pre">&lt;</span> <span class="pre">v1)</span> <span class="pre">for</span> <span class="pre">v0,</span> <span class="pre">v1</span> <span class="pre">in</span> <span class="pre">zip(t0.values,</span> <span class="pre">t1.values)</span></code> are held.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>A list of <a class="reference internal" href="trial.html#optuna.multi_objective.trial.FrozenMultiObjectiveTrial" title="optuna.multi_objective.trial.FrozenMultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenMultiObjectiveTrial</span></code></a> objects.</p>
 </dd>
 </dl>
@@ -244,20 +246,20 @@ It’s called that a trial <code class="docutils literal notranslate"><span clas
 
 <dl class="py method">
 <dt id="optuna.multi_objective.study.MultiObjectiveStudy.get_trials">
-<code class="sig-name descname">get_trials</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">deepcopy</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="trial.html#optuna.multi_objective.trial.FrozenMultiObjectiveTrial" title="optuna.multi_objective.trial.FrozenMultiObjectiveTrial">optuna.multi_objective.trial.FrozenMultiObjectiveTrial</a><span class="p">]</span><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#MultiObjectiveStudy.get_trials"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.get_trials" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_trials</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">deepcopy</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="trial.html#optuna.multi_objective.trial.FrozenMultiObjectiveTrial" title="optuna.multi_objective.trial.FrozenMultiObjectiveTrial">optuna.multi_objective.trial.FrozenMultiObjectiveTrial</a><span class="p">]</span><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#MultiObjectiveStudy.get_trials"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.get_trials" title="永久链接至目标">¶</a></dt>
 <dd><p>Return all trials in the study.</p>
 <p>The returned trials are ordered by trial number.</p>
-<p>For library users, it’s recommended to use more handy
+<p>For library users, it's recommended to use more handy
 <a class="reference internal" href="#optuna.multi_objective.study.MultiObjectiveStudy.trials" title="optuna.multi_objective.study.MultiObjectiveStudy.trials"><code class="xref py py-attr docutils literal notranslate"><span class="pre">trials</span></code></a>
 property to get the trials instead.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>deepcopy</strong> – Flag to control whether to apply <code class="docutils literal notranslate"><span class="pre">copy.deepcopy()</span></code> to the trials.
-Note that if you set the flag to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>, you shouldn’t mutate
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>deepcopy</strong> -- Flag to control whether to apply <code class="docutils literal notranslate"><span class="pre">copy.deepcopy()</span></code> to the trials.
+Note that if you set the flag to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>, you shouldn't mutate
 any fields of the returned trial. Otherwise the internal state of
 the study may corrupt and unexpected behavior may happen.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">返回</dt>
 <dd class="field-even"><p>A list of <a class="reference internal" href="trial.html#optuna.multi_objective.trial.FrozenMultiObjectiveTrial" title="optuna.multi_objective.trial.FrozenMultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenMultiObjectiveTrial</span></code></a> objects.</p>
 </dd>
 </dl>
@@ -265,10 +267,10 @@ the study may corrupt and unexpected behavior may happen.</p>
 
 <dl class="py method">
 <dt id="optuna.multi_objective.study.MultiObjectiveStudy.n_objectives">
-<em class="property">property </em><code class="sig-name descname">n_objectives</code><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.n_objectives" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">n_objectives</code><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.n_objectives" title="永久链接至目标">¶</a></dt>
 <dd><p>Return the number of objectives.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>Number of objectives.</p>
 </dd>
 </dl>
@@ -276,7 +278,7 @@ the study may corrupt and unexpected behavior may happen.</p>
 
 <dl class="py method">
 <dt id="optuna.multi_objective.study.MultiObjectiveStudy.optimize">
-<code class="sig-name descname">optimize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">objective</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">[</span>multi_objective.trial.MultiObjectiveTrial<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">timeout</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_trials</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_jobs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">catch</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Tuple<span class="p">[</span><span class="p">(</span><span class="p">)</span><span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>Type<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)">Exception</a><span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">callbacks</span><span class="p">:</span> <span class="n">Optional[List[Callable[[multi_objective.study.MultiObjectiveStudy, multi_objective.trial.FrozenMultiObjectiveTrial], None]]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">gc_after_trial</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_progress_bar</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#MultiObjectiveStudy.optimize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.optimize" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">optimize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">objective</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">[</span>multi_objective.trial.MultiObjectiveTrial<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">timeout</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_trials</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_jobs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">catch</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Tuple<span class="p">[</span><span class="p">(</span><span class="p">)</span><span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>Type<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(在 Python v3.8)">Exception</a><span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">callbacks</span><span class="p">:</span> <span class="n">Optional[List[Callable[[multi_objective.study.MultiObjectiveStudy, multi_objective.trial.FrozenMultiObjectiveTrial], None]]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">gc_after_trial</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_progress_bar</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#MultiObjectiveStudy.optimize"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.optimize" title="永久链接至目标">¶</a></dt>
 <dd><p>Optimize an objective function.</p>
 <p>This method is the same as <a class="reference internal" href="../study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.study.Study.optimize()</span></code></a> except for
 taking an objective function that returns multi-objective values as the argument.</p>
@@ -286,10 +288,10 @@ for further details.</p>
 
 <dl class="py method">
 <dt id="optuna.multi_objective.study.MultiObjectiveStudy.sampler">
-<em class="property">property </em><code class="sig-name descname">sampler</code><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.sampler" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">sampler</code><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.sampler" title="永久链接至目标">¶</a></dt>
 <dd><p>Return the sampler.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMultiObjectiveSampler</span></code> object.</p>
 </dd>
 </dl>
@@ -297,13 +299,13 @@ for further details.</p>
 
 <dl class="py method">
 <dt id="optuna.multi_objective.study.MultiObjectiveStudy.set_user_attr">
-<code class="sig-name descname">set_user_attr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#MultiObjectiveStudy.set_user_attr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.set_user_attr" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_user_attr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#MultiObjectiveStudy.set_user_attr"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.set_user_attr" title="永久链接至目标">¶</a></dt>
 <dd><p>Set a user attribute to the study.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>key</strong> – A key string of the attribute.</p></li>
-<li><p><strong>value</strong> – A value of the attribute. The value should be JSON serializable.</p></li>
+<li><p><strong>key</strong> -- A key string of the attribute.</p></li>
+<li><p><strong>value</strong> -- A value of the attribute. The value should be JSON serializable.</p></li>
 </ul>
 </dd>
 </dl>
@@ -311,12 +313,12 @@ for further details.</p>
 
 <dl class="py method">
 <dt id="optuna.multi_objective.study.MultiObjectiveStudy.trials">
-<em class="property">property </em><code class="sig-name descname">trials</code><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.trials" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">trials</code><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.trials" title="永久链接至目标">¶</a></dt>
 <dd><p>Return all trials in the study.</p>
 <p>The returned trials are ordered by trial number.</p>
 <p>This is a short form of <code class="docutils literal notranslate"><span class="pre">self.get_trials(deepcopy=True)</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>A list of <a class="reference internal" href="trial.html#optuna.multi_objective.trial.FrozenMultiObjectiveTrial" title="optuna.multi_objective.trial.FrozenMultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenMultiObjectiveTrial</span></code></a> objects.</p>
 </dd>
 </dl>
@@ -324,10 +326,10 @@ for further details.</p>
 
 <dl class="py method">
 <dt id="optuna.multi_objective.study.MultiObjectiveStudy.user_attrs">
-<em class="property">property </em><code class="sig-name descname">user_attrs</code><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.user_attrs" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">user_attrs</code><a class="headerlink" href="#optuna.multi_objective.study.MultiObjectiveStudy.user_attrs" title="永久链接至目标">¶</a></dt>
 <dd><p>Return user attributes.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>A dictionary containing all user attributes.</p>
 </dd>
 </dl>
@@ -337,45 +339,45 @@ for further details.</p>
 
 <dl class="py function">
 <dt id="optuna.multi_objective.study.create_study">
-<code class="sig-prename descclassname">optuna.multi_objective.study.</code><code class="sig-name descname">create_study</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">directions</span><span class="p">:</span> <span class="n">List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">study_name</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">storage</span><span class="p">:</span> <span class="n">Union[None, str, optuna.storages.base.BaseStorage]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sampler</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>multi_objective.samplers.BaseMultiObjectiveSampler<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_if_exists</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy">optuna.multi_objective.study.MultiObjectiveStudy</a><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#create_study"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.multi_objective.study.create_study" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">optuna.multi_objective.study.</code><code class="sig-name descname">create_study</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">directions</span><span class="p">:</span> <span class="n">List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">study_name</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">storage</span><span class="p">:</span> <span class="n">Union[None, str, optuna.storages._base.BaseStorage]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sampler</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>multi_objective.samplers.BaseMultiObjectiveSampler<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_if_exists</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy">optuna.multi_objective.study.MultiObjectiveStudy</a><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#create_study"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.study.create_study" title="永久链接至目标">¶</a></dt>
 <dd><p>Create a new <a class="reference internal" href="#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveStudy</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>directions</strong> – Optimization direction for each objective value.
+<li><p><strong>directions</strong> -- Optimization direction for each objective value.
 Set <code class="docutils literal notranslate"><span class="pre">minimize</span></code> for minimization and <code class="docutils literal notranslate"><span class="pre">maximize</span></code> for maximization.</p></li>
-<li><p><strong>study_name</strong> – Study’s name. If this argument is set to None, a unique name is generated
+<li><p><strong>study_name</strong> -- Study's name. If this argument is set to None, a unique name is generated
 automatically.</p></li>
-<li><p><strong>storage</strong> – <p>Database URL. If this argument is set to None, in-memory storage is used, and the
+<li><p><strong>storage</strong> -- <p>Database URL. If this argument is set to None, in-memory storage is used, and the
 <a class="reference internal" href="../study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> will not be persistent.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注解</p>
 <blockquote>
 <div><p>When a database URL is passed, Optuna internally uses <a class="reference external" href="https://www.sqlalchemy.org/">SQLAlchemy</a> to handle
-the database. Please refer to <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls">SQLAlchemy’s document</a> for further details.
+the database. Please refer to <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls">SQLAlchemy's document</a> for further details.
 If you want to specify non-default options to <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html">SQLAlchemy Engine</a>, you can
 instantiate <a class="reference internal" href="../storages.html#optuna.storages.RDBStorage" title="optuna.storages.RDBStorage"><code class="xref py py-class docutils literal notranslate"><span class="pre">RDBStorage</span></code></a> with your desired options and
 pass it to the <code class="docutils literal notranslate"><span class="pre">storage</span></code> argument instead of a URL.</p>
 </div></blockquote>
 </div>
 </p></li>
-<li><p><strong>sampler</strong> – A sampler object that implements background algorithm for value suggestion.
-If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is specified,
+<li><p><strong>sampler</strong> -- A sampler object that implements background algorithm for value suggestion.
+If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is specified,
 <a class="reference internal" href="samplers.html#optuna.multi_objective.samplers.NSGAIIMultiObjectiveSampler" title="optuna.multi_objective.samplers.NSGAIIMultiObjectiveSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">NSGAIIMultiObjectiveSampler</span></code></a> is used
 as the default. See also <a class="reference internal" href="samplers.html#module-optuna.multi_objective.samplers" title="optuna.multi_objective.samplers"><code class="xref py py-class docutils literal notranslate"><span class="pre">samplers</span></code></a>.</p></li>
-<li><p><strong>load_if_exists</strong> – Flag to control the behavior to handle a conflict of study names.
+<li><p><strong>load_if_exists</strong> -- Flag to control the behavior to handle a conflict of study names.
 In the case where a study named <code class="docutils literal notranslate"><span class="pre">study_name</span></code> already exists in the <code class="docutils literal notranslate"><span class="pre">storage</span></code>,
 a <a class="reference internal" href="../exceptions.html#optuna.exceptions.DuplicatedStudyError" title="optuna.exceptions.DuplicatedStudyError"><code class="xref py py-class docutils literal notranslate"><span class="pre">DuplicatedStudyError</span></code></a> is raised if <code class="docutils literal notranslate"><span class="pre">load_if_exists</span></code> is
-set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>.
+set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>.
 Otherwise, the creation of the study is skipped, and the existing one is returned.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">返回</dt>
 <dd class="field-even"><p>A <a class="reference internal" href="#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveStudy</span></code></a> object.</p>
 </dd>
 </dl>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注解</p>
 <p>Added in v1.4.0 as an experimental feature. The interface may change in newer versions
 without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.4.0">https://github.com/optuna/optuna/releases/tag/v1.4.0</a>.</p>
 </div>
@@ -383,26 +385,26 @@ without prior notice. See <a class="reference external" href="https://github.com
 
 <dl class="py function">
 <dt id="optuna.multi_objective.study.load_study">
-<code class="sig-prename descclassname">optuna.multi_objective.study.</code><code class="sig-name descname">load_study</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">storage</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>optuna.storages.base.BaseStorage<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">sampler</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>multi_objective.samplers.BaseMultiObjectiveSampler<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy">optuna.multi_objective.study.MultiObjectiveStudy</a><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#load_study"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#optuna.multi_objective.study.load_study" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">optuna.multi_objective.study.</code><code class="sig-name descname">load_study</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">storage</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span>optuna.storages._base.BaseStorage<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">sampler</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>multi_objective.samplers.BaseMultiObjectiveSampler<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy">optuna.multi_objective.study.MultiObjectiveStudy</a><a class="reference internal" href="../../_modules/optuna/multi_objective/study.html#load_study"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.study.load_study" title="永久链接至目标">¶</a></dt>
 <dd><p>Load the existing <a class="reference internal" href="#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveStudy</span></code></a> that has the specified name.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>study_name</strong> – Study’s name. Each study has a unique name as an identifier.</p></li>
-<li><p><strong>storage</strong> – Database URL such as <code class="docutils literal notranslate"><span class="pre">sqlite:///example.db</span></code>. Please see also the documentation of
+<li><p><strong>study_name</strong> -- Study's name. Each study has a unique name as an identifier.</p></li>
+<li><p><strong>storage</strong> -- Database URL such as <code class="docutils literal notranslate"><span class="pre">sqlite:///example.db</span></code>. Please see also the documentation of
 <a class="reference internal" href="#optuna.multi_objective.study.create_study" title="optuna.multi_objective.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> for further details.</p></li>
-<li><p><strong>sampler</strong> – A sampler object that implements background algorithm for value suggestion.
-If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is specified,
+<li><p><strong>sampler</strong> -- A sampler object that implements background algorithm for value suggestion.
+If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is specified,
 <a class="reference internal" href="samplers.html#optuna.multi_objective.samplers.RandomMultiObjectiveSampler" title="optuna.multi_objective.samplers.RandomMultiObjectiveSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomMultiObjectiveSampler</span></code></a> is used
 as the default. See also <a class="reference internal" href="samplers.html#module-optuna.multi_objective.samplers" title="optuna.multi_objective.samplers"><code class="xref py py-class docutils literal notranslate"><span class="pre">samplers</span></code></a>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">返回</dt>
 <dd class="field-even"><p>A <a class="reference internal" href="#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveStudy</span></code></a> object.</p>
 </dd>
 </dl>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注解</p>
 <p>Added in v1.4.0 as an experimental feature. The interface may change in newer versions
 without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.4.0">https://github.com/optuna/optuna/releases/tag/v1.4.0</a>.</p>
 </div>

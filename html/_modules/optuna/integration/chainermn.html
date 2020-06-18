@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.integration.chainermn &mdash; Optuna 1.4.0 documentation</title>
+  <title>optuna.integration.chainermn &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,12 +86,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">安装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -137,7 +137,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
         
       <li>optuna.integration.chainermn</li>
     
@@ -154,10 +154,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for optuna.integration.chainermn</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">gc</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
+  <h1>optuna.integration.chainermn 源代码</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 
+<span class="kn">from</span> <span class="nn">optuna._imports</span> <span class="kn">import</span> <span class="n">try_import</span>
 <span class="kn">from</span> <span class="nn">optuna.logging</span> <span class="kn">import</span> <span class="n">get_logger</span>
 <span class="kn">from</span> <span class="nn">optuna.storages</span> <span class="kn">import</span> <span class="n">InMemoryStorage</span>
 <span class="kn">from</span> <span class="nn">optuna.storages</span> <span class="kn">import</span> <span class="n">RDBStorage</span>
@@ -170,7 +170,6 @@
     <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>  <span class="c1"># NOQA</span>
     <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>  <span class="c1"># NOQA</span>
     <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>  <span class="c1"># NOQA</span>
-    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>  <span class="c1"># NOQA</span>
     <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>  <span class="c1"># NOQA</span>
     <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>  <span class="c1"># NOQA</span>
     <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Type</span>  <span class="c1"># NOQA</span>
@@ -181,13 +180,9 @@
     <span class="kn">from</span> <span class="nn">optuna.study</span> <span class="kn">import</span> <span class="n">Study</span>  <span class="c1"># NOQA</span>
     <span class="kn">from</span> <span class="nn">optuna.trial</span> <span class="kn">import</span> <span class="n">Trial</span>  <span class="c1"># NOQA</span>
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">chainermn.communicators.communicator_base</span> <span class="kn">import</span> <span class="n">CommunicatorBase</span>  <span class="c1"># NOQA</span>
 
-    <span class="n">_available</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="n">_import_error</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="n">_available</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">with</span> <span class="n">try_import</span><span class="p">()</span> <span class="k">as</span> <span class="n">_imports</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">chainermn.communicators.communicator_base</span> <span class="kn">import</span> <span class="n">CommunicatorBase</span>  <span class="c1"># NOQA</span>
 
 
 <span class="k">class</span> <span class="nc">_ChainerMNObjectiveFunc</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -216,7 +211,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">objective</span><span class="p">(</span><span class="n">ChainerMNTrial</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">comm</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">comm</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="ChainerMNStudy"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.ChainerMNStudy">[docs]</a><span class="k">class</span> <span class="nc">ChainerMNStudy</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="ChainerMNStudy"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.ChainerMNStudy">[文档]</a><span class="k">class</span> <span class="nc">ChainerMNStudy</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A wrapper of :class:`~optuna.study.Study` to incorporate Optuna with ChainerMN.</span>
 
 <span class="sd">    .. seealso::</span>
@@ -244,7 +239,7 @@
     <span class="p">):</span>
         <span class="c1"># type: (...) -&gt; None</span>
 
-        <span class="n">_check_chainermn_availability</span><span class="p">()</span>
+        <span class="n">_imports</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">study</span><span class="o">.</span><span class="n">_storage</span><span class="p">,</span> <span class="n">InMemoryStorage</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;ChainerMN integration is not available with InMemoryStorage.&quot;</span><span class="p">)</span>
@@ -264,7 +259,7 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">ChainerMNStudy</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;delegate&quot;</span><span class="p">,</span> <span class="n">study</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ChainerMNStudy</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;comm&quot;</span><span class="p">,</span> <span class="n">comm</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ChainerMNStudy.optimize"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.ChainerMNStudy.optimize">[docs]</a>    <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span>
+<div class="viewcode-block" id="ChainerMNStudy.optimize"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.ChainerMNStudy.optimize">[文档]</a>    <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">func</span><span class="p">,</span>  <span class="c1"># type: Callable[[ChainerMNTrial, CommunicatorBase], float]</span>
         <span class="n">n_trials</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: Optional[int]</span>
@@ -298,13 +293,7 @@
                 <span class="k">except</span> <span class="n">TrialPruned</span><span class="p">:</span>
                     <span class="k">pass</span>
                 <span class="k">except</span> <span class="n">catch</span><span class="p">:</span>
-                    <span class="k">pass</span>
-                <span class="k">finally</span><span class="p">:</span>
-                    <span class="c1"># The following line mitigates memory problems that can be occurred in some</span>
-                    <span class="c1"># environments (e.g., services that use computing containers such as CircleCI).</span>
-                    <span class="c1"># Please refer to the following PR for further details:</span>
-                    <span class="c1"># https://github.com/optuna/optuna/pull/325.</span>
-                    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span></div>
+                    <span class="k">pass</span></div>
 
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
         <span class="c1"># type: (str) -&gt; Any</span>
@@ -340,12 +329,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="n">trial</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">comm</span> <span class="o">=</span> <span class="n">comm</span>
 
-    <span class="k">def</span> <span class="nf">suggest_float</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="c1"># type: (str, float, float, bool, Optional[float]) -&gt; float</span>
-
-        <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
-            <span class="c1"># type: () -&gt; float</span>
-
+    <span class="k">def</span> <span class="nf">suggest_float</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">low</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">high</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">step</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">log</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">func</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
             <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">delegate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">delegate</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="n">log</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
 
@@ -414,14 +407,12 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">delegate</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">comm</span><span class="o">.</span><span class="n">mpi_comm</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">should_prune</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="c1"># type: (Optional[int]) -&gt; bool</span>
-
+    <span class="k">def</span> <span class="nf">should_prune</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
             <span class="c1"># type: () -&gt; bool</span>
 
             <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">delegate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">delegate</span><span class="o">.</span><span class="n">should_prune</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">delegate</span><span class="o">.</span><span class="n">should_prune</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_with_mpi</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
 
@@ -452,17 +443,6 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">delegate</span><span class="o">.</span><span class="n">number</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_with_mpi</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">trial_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># type: () -&gt; int</span>
-
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-            <span class="s2">&quot;The use of `ChainerMNTrial.trial_id` is deprecated. &quot;</span>
-            <span class="s2">&quot;Please use `ChainerMNTrial.number` instead.&quot;</span><span class="p">,</span>
-            <span class="ne">DeprecationWarning</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">_trial_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -552,18 +532,6 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="ne">Exception</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="n">result</span>
             <span class="k">return</span> <span class="n">result</span>
-
-
-<span class="k">def</span> <span class="nf">_check_chainermn_availability</span><span class="p">():</span>
-    <span class="c1"># type: () -&gt; None</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">_available</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
-            <span class="s2">&quot;ChainerMN is not available. Please install ChainerMN to use this feature. &quot;</span>
-            <span class="s2">&quot;ChainerMN can be installed by executing `$ pip install chainermn`. &quot;</span>
-            <span class="s2">&quot;For further information, please refer to the installation guide of ChainerMN. &quot;</span>
-            <span class="s2">&quot;(The actual import error is as follows: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">_import_error</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
-        <span class="p">)</span>
 </pre></div>
 
            </div>

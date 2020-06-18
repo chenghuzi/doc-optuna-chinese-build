@@ -1,0 +1,165 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, Optuna Contributors.
+# This file is distributed under the same license as the Optuna package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Optuna 1.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-17 19:47-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/reference/visualization.rst:5
+msgid "Visualization"
+msgstr ""
+
+#: ../../source/reference/visualization.rst:8
+msgid ":mod:`~optuna.visualization` module uses plotly to create figures, but `JupyterLab`_ cannot render them by default. Please follow this `installation guide`_ to show figures in `JupyterLab`_."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_contour.py:docstring of optuna.visualization.plot_contour:1
+msgid "Plot the parameter relationship as contour plot in a study."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_contour.py:docstring of optuna.visualization.plot_contour:3
+#: ../../../optuna/optuna/visualization/_parallel_coordinate.py:docstring of optuna.visualization.plot_parallel_coordinate:3
+#: ../../../optuna/optuna/visualization/_slice.py:docstring of optuna.visualization.plot_slice:3
+msgid "Note that, If a parameter contains missing values, a trial with missing values is not plotted."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_contour.py:docstring of optuna.visualization.plot_contour:6
+#: ../../../optuna/optuna/visualization/_intermediate_values.py:docstring of optuna.visualization.plot_intermediate_values:4
+#: ../../../optuna/optuna/visualization/_optimization_history.py:docstring of optuna.visualization.plot_optimization_history:4
+#: ../../../optuna/optuna/visualization/_parallel_coordinate.py:docstring of optuna.visualization.plot_parallel_coordinate:6
+#: ../../../optuna/optuna/visualization/_param_importances.py:docstring of optuna.visualization.plot_param_importances:4
+#: ../../../optuna/optuna/visualization/_slice.py:docstring of optuna.visualization.plot_slice:6
+msgid "Example"
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_contour.py:docstring of optuna.visualization.plot_contour:7
+msgid "The following code snippet shows how to plot the parameter relationship as contour plot."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_contour.py:docstring of optuna.visualization.plot_contour:0
+#: ../../../optuna/optuna/visualization/_intermediate_values.py:docstring of optuna.visualization.plot_intermediate_values:0
+#: ../../../optuna/optuna/visualization/_optimization_history.py:docstring of optuna.visualization.plot_optimization_history:0
+#: ../../../optuna/optuna/visualization/_parallel_coordinate.py:docstring of optuna.visualization.plot_parallel_coordinate:0
+#: ../../../optuna/optuna/visualization/_param_importances.py:docstring of optuna.visualization.plot_param_importances:0
+#: ../../../optuna/optuna/visualization/_slice.py:docstring of optuna.visualization.plot_slice:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_contour.py:docstring of optuna.visualization.plot_contour:28
+#: ../../../optuna/optuna/visualization/_optimization_history.py:docstring of optuna.visualization.plot_optimization_history:27
+#: ../../../optuna/optuna/visualization/_parallel_coordinate.py:docstring of optuna.visualization.plot_parallel_coordinate:29
+#: ../../../optuna/optuna/visualization/_slice.py:docstring of optuna.visualization.plot_slice:28
+msgid "A :class:`~optuna.study.Study` object whose trials are plotted for their objective values."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_contour.py:docstring of optuna.visualization.plot_contour:30
+#: ../../../optuna/optuna/visualization/_parallel_coordinate.py:docstring of optuna.visualization.plot_parallel_coordinate:31
+#: ../../../optuna/optuna/visualization/_slice.py:docstring of optuna.visualization.plot_slice:30
+msgid "Parameter list to visualize. The default is all parameters."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_contour.py:docstring of optuna.visualization.plot_contour:0
+#: ../../../optuna/optuna/visualization/_intermediate_values.py:docstring of optuna.visualization.plot_intermediate_values:0
+#: ../../../optuna/optuna/visualization/_optimization_history.py:docstring of optuna.visualization.plot_optimization_history:0
+#: ../../../optuna/optuna/visualization/_parallel_coordinate.py:docstring of optuna.visualization.plot_parallel_coordinate:0
+#: ../../../optuna/optuna/visualization/_param_importances.py:docstring of optuna.visualization.plot_param_importances:0
+#: ../../../optuna/optuna/visualization/_slice.py:docstring of optuna.visualization.plot_slice:0
+#: ../../../optuna/optuna/visualization/_utils.py:docstring of optuna.visualization.is_available:0
+msgid "Returns"
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_contour.py:docstring of optuna.visualization.plot_contour:32
+#: ../../../optuna/optuna/visualization/_intermediate_values.py:docstring of optuna.visualization.plot_intermediate_values:47
+#: ../../../optuna/optuna/visualization/_optimization_history.py:docstring of optuna.visualization.plot_optimization_history:30
+#: ../../../optuna/optuna/visualization/_parallel_coordinate.py:docstring of optuna.visualization.plot_parallel_coordinate:33
+#: ../../../optuna/optuna/visualization/_param_importances.py:docstring of optuna.visualization.plot_param_importances:41
+#: ../../../optuna/optuna/visualization/_slice.py:docstring of optuna.visualization.plot_slice:32
+msgid "A :class:`plotly.graph_objs.Figure` object."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_intermediate_values.py:docstring of optuna.visualization.plot_intermediate_values:1
+msgid "Plot intermediate values of all trials in a study."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_intermediate_values.py:docstring of optuna.visualization.plot_intermediate_values:5
+msgid "The following code snippet shows how to plot intermediate values."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_intermediate_values.py:docstring of optuna.visualization.plot_intermediate_values:44
+msgid "A :class:`~optuna.study.Study` object whose trials are plotted for their intermediate values."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_optimization_history.py:docstring of optuna.visualization.plot_optimization_history:1
+msgid "Plot optimization history of all trials in a study."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_optimization_history.py:docstring of optuna.visualization.plot_optimization_history:5
+msgid "The following code snippet shows how to plot optimization history."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_parallel_coordinate.py:docstring of optuna.visualization.plot_parallel_coordinate:1
+msgid "Plot the high-dimentional parameter relationships in a study."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_parallel_coordinate.py:docstring of optuna.visualization.plot_parallel_coordinate:7
+msgid "The following code snippet shows how to plot the high-dimentional parameter relationships."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_param_importances.py:docstring of optuna.visualization.plot_param_importances:1
+msgid "Plot hyperparameter importances."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_param_importances.py:docstring of optuna.visualization.plot_param_importances:5
+msgid "The following code snippet shows how to plot hyperparameter importances."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_param_importances.py:docstring of optuna.visualization.plot_param_importances:30
+msgid "This function visualizes the results of :func:`optuna.importance.get_param_importances`."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_param_importances.py:docstring of optuna.visualization.plot_param_importances:32
+msgid "An optimized study."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_param_importances.py:docstring of optuna.visualization.plot_param_importances:33
+msgid "An importance evaluator object that specifies which algorithm to base the importance assessment on. Defaults to :class:`~optuna.importance._mean_decrease_impurity.MeanDecreaseImpurityImportanceEvaluator`."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_param_importances.py:docstring of optuna.visualization.plot_param_importances:37
+msgid "A list of names of parameters to assess. If :obj:`None`, all parameters that are present in all of the completed trials are assessed."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_param_importances.py:docstring of optuna.visualization.plot_param_importances:44
+msgid "Added in v1.5.0 as an experimental feature. The interface may change in newer versions without prior notice. See https://github.com/optuna/optuna/releases/tag/v1.5.0."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_slice.py:docstring of optuna.visualization.plot_slice:1
+msgid "Plot the parameter relationship as slice plot in a study."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_slice.py:docstring of optuna.visualization.plot_slice:7
+msgid "The following code snippet shows how to plot the parameter relationship as slice plot."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_utils.py:docstring of optuna.visualization.is_available:1
+msgid "Returns whether visualization is available or not."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_utils.py:docstring of optuna.visualization.is_available:5
+msgid ":mod:`~optuna.visualization` module depends on plotly version 4.0.0 or higher. If a supported version of plotly isn't installed in your environment, this function will return :obj:`False`. In such case, please execute ``$ pip install -U plotly>=4.0.0`` to install plotly."
+msgstr ""
+
+#: ../../../optuna/optuna/visualization/_utils.py:docstring of optuna.visualization.is_available:10
+msgid ":obj:`True` if visualization is available, :obj:`False` otherwise."
+msgstr ""

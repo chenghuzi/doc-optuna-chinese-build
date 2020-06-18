@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, Optuna Contributors.
+# This file is distributed under the same license as the Optuna package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Optuna 1.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-17 19:47-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/tutorial/attributes.rst:4
+msgid "User Attributes"
+msgstr ""
+
+#: ../../source/tutorial/attributes.rst:6
+msgid "This feature is to annotate experiments with user-defined attributes."
+msgstr ""
+
+#: ../../source/tutorial/attributes.rst:10
+msgid "Adding User Attributes to Studies"
+msgstr ""
+
+#: ../../source/tutorial/attributes.rst:12
+msgid "A :class:`~optuna.study.Study` object provides :func:`~optuna.study.Study.set_user_attr` method to register a pair of key and value as an user-defined attribute. A key is supposed to be a ``str``, and a value be any object serializable with ``json.dumps``."
+msgstr ""
+
+#: ../../source/tutorial/attributes.rst:24
+msgid "We can access annotated attributes with :attr:`~optuna.study.Study.user_attr` property."
+msgstr ""
+
+#: ../../source/tutorial/attributes.rst:30
+msgid ":class:`~optuna.struct.StudySummary` object, which can be retrieved by :func:`~optuna.study.get_all_study_summaries`, also contains user-defined attributes."
+msgstr ""
+
+#: ../../source/tutorial/attributes.rst:39
+msgid "``optuna study set-user-attr`` command, which sets an attribute via command line interface."
+msgstr ""
+
+#: ../../source/tutorial/attributes.rst:43
+msgid "Adding User Attributes to Trials"
+msgstr ""
+
+#: ../../source/tutorial/attributes.rst:45
+msgid "As with :class:`~optuna.study.Study`, a :class:`~optuna.trial.Trial` object provides :func:`~optuna.trial.Trial.set_user_attr` method. Attributes are set inside an objective function."
+msgstr ""
+
+#: ../../source/tutorial/attributes.rst:64
+msgid "We can access annotated attributes as:"
+msgstr ""
+
+#: ../../source/tutorial/attributes.rst:70
+msgid "Note that, in this example, the attribute is not annotated to a :class:`~optuna.study.Study` but a single :class:`~optuna.trial.Trial`."
+msgstr ""

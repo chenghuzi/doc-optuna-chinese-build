@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.integration.xgboost &mdash; Optuna 1.4.0 documentation</title>
+  <title>optuna.integration.xgboost &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,12 +86,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">安装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -137,7 +137,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
         
       <li>optuna.integration.xgboost</li>
     
@@ -154,17 +154,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for optuna.integration.xgboost</h1><div class="highlight"><pre>
+  <h1>optuna.integration.xgboost 源代码</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">optuna</span>
 
-<span class="k">try</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">optuna</span><span class="o">.</span><span class="n">_imports</span><span class="o">.</span><span class="n">try_import</span><span class="p">()</span> <span class="k">as</span> <span class="n">_imports</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">xgboost</span> <span class="k">as</span> <span class="nn">xgb</span>  <span class="c1"># NOQA</span>
-
-    <span class="n">_available</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="n">_import_error</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="c1"># XGBoostPruningCallback is disabled because XGBoost is not available.</span>
-    <span class="n">_available</span> <span class="o">=</span> <span class="kc">False</span>
 
 
 <span class="k">def</span> <span class="nf">_get_callback_context</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
@@ -183,7 +177,7 @@
     <span class="k">return</span> <span class="n">context</span>
 
 
-<div class="viewcode-block" id="XGBoostPruningCallback"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.XGBoostPruningCallback">[docs]</a><span class="k">class</span> <span class="nc">XGBoostPruningCallback</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="XGBoostPruningCallback"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.XGBoostPruningCallback">[文档]</a><span class="k">class</span> <span class="nc">XGBoostPruningCallback</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Callback for XGBoost to prune unpromising trials.</span>
 
 <span class="sd">    See `the example &lt;https://github.com/optuna/optuna/blob/master/</span>
@@ -207,7 +201,7 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">observation_key</span><span class="p">):</span>
         <span class="c1"># type: (optuna.trial.Trial, str) -&gt; None</span>
 
-        <span class="n">_check_xgboost_availability</span><span class="p">()</span>
+        <span class="n">_imports</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_trial</span> <span class="o">=</span> <span class="n">trial</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_observation_key</span> <span class="o">=</span> <span class="n">observation_key</span>
@@ -225,18 +219,6 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trial</span><span class="o">.</span><span class="n">should_prune</span><span class="p">():</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Trial was pruned at iteration </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">iteration</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">optuna</span><span class="o">.</span><span class="n">TrialPruned</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
-
-
-<span class="k">def</span> <span class="nf">_check_xgboost_availability</span><span class="p">():</span>
-    <span class="c1"># type: () -&gt; None</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">_available</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
-            <span class="s2">&quot;XGBoost is not available. Please install XGBoost to use this feature. &quot;</span>
-            <span class="s2">&quot;XGBoost can be installed by executing `$ pip install xgboost`. &quot;</span>
-            <span class="s2">&quot;For further information, please refer to the installation guide of XGBoost. &quot;</span>
-            <span class="s2">&quot;(The actual import error is as follows: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">_import_error</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
-        <span class="p">)</span>
 </pre></div>
 
            </div>

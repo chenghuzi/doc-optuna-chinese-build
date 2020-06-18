@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>用户定义的采样器 (Sampler) &mdash; Optuna 1.4.0 documentation</title>
+  <title>用户定义的采样器 (Sampler) &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="API Reference" href="../reference/index.html" />
     <link rel="prev" title="对无望的 Trial 进行剪枝 (Pruning)" href="pruning.html" /> 
 </head>
@@ -88,10 +88,10 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">安装</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">教程</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="first.html">第一个优化例子</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configurations.html">高级配置</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rdb.html">用 RDB 后端保存/恢复 Study</a></li>
@@ -100,14 +100,14 @@
 <li class="toctree-l2"><a class="reference internal" href="attributes.html">用户定义属性</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pruning.html">对无望的 Trial 进行剪枝 (Pruning)</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">用户定义的采样器 (Sampler)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Sampler 的概述</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sampler-simulatedannealingsampler">案例: 实现模拟退火 Sampler (SimulatedAnnealingSampler)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overview-of-sampler">Sampler 概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#an-example-implementing-simulatedannealingsampler">案例: 实现模拟退火 Sampler (SimulatedAnnealingSampler)</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -153,7 +153,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Tutorial</a> &raquo;</li>
+          <li><a href="index.html">教程</a> &raquo;</li>
         
       <li>用户定义的采样器 (Sampler)</li>
     
@@ -174,37 +174,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sampler">
-<span id="id1"></span><h1>用户定义的采样器 (Sampler)<a class="headerlink" href="#sampler" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="user-defined-sampler">
+<span id="sampler"></span><h1>用户定义的采样器 (Sampler)<a class="headerlink" href="#user-defined-sampler" title="永久链接至标题">¶</a></h1>
 <p>你可以用用户定义的 sampler 来实现：</p>
 <ul class="simple">
 <li><p>试验你自己的采样算法，</p></li>
 <li><p>实现具体任务对应的算法来改进优化性能，或者</p></li>
 <li><p>将其他的优化框架包装起来，整合进 Optuna 的管线中 (比如  <a class="reference internal" href="../reference/integration.html#optuna.integration.SkoptSampler" title="optuna.integration.SkoptSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">SkoptSampler</span></code></a> ).</p></li>
 </ul>
-<p>本节将介绍 sampler 类的内部行为，并展示一个实现用户自定义 sampler 的例子。
-This section describes the internal behavior of sampler classes and shows an example of implementing a user-defined sampler.</p>
-<div class="section" id="id2">
-<h2>Sampler 的概述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>Sampler 负责产生要被用在 trial 中求值的参数值。
-在目标函数内，当一个  <cite>suggest</cite> API (比如 <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a>) 被调用时，一个对应的分布对象 (比如 <a class="reference internal" href="../reference/distributions.html#optuna.distributions.UniformDistribution" title="optuna.distributions.UniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">UniformDistribution</span></code></a>) 就会从内部被创建。
-Sampler 则从该分布汇总采样一个参数值。该采样值会被返回给 <cite>suggest</cite> API 的调用者，进而在目标函数内被求值。</p>
-<p>为了创建一个新的 sampler, 你需要定一个继承 <a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a> 类的类。
-该基类提供三个抽象方法：
-<a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-meth docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a>,
-<a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.sample_relative" title="optuna.samplers.BaseSampler.sample_relative"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sample_relative()</span></code></a> 和
-<a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.sample_independent" title="optuna.samplers.BaseSampler.sample_independent"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sample_independent()</span></code></a>.</p>
+<p>本节将介绍 sampler 类的内部行为，并展示一个实现用户自定义 sampler 的例子。</p>
+<div class="section" id="overview-of-sampler">
+<h2>Sampler 概述<a class="headerlink" href="#overview-of-sampler" title="永久链接至标题">¶</a></h2>
+<p>Sampler 负责产生要被用在 trial 中求值的参数值。在目标函数内，当一个  <cite>suggest</cite> API (比如 <a class="reference internal" href="../reference/trial.html#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a>) 被调用时，一个对应的分布对象 (比如 <a class="reference internal" href="../reference/distributions.html#optuna.distributions.UniformDistribution" title="optuna.distributions.UniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">UniformDistribution</span></code></a>) 就会从内部被创建。Sampler 则从该分布汇总采样一个参数值。该采样值会被返回给 <cite>suggest</cite> API 的调用者，进而在目标函数内被求值。</p>
+<p>为了创建一个新的 sampler, 你需要定一个继承 <a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a> 类的类。该基类提供三个抽象方法：<a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-meth docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a>, <a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.sample_relative" title="optuna.samplers.BaseSampler.sample_relative"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sample_relative()</span></code></a> 和 <a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.sample_independent" title="optuna.samplers.BaseSampler.sample_independent"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sample_independent()</span></code></a>.</p>
 <p>从这些方法名可以看出，Optuna 支持两种类型的采样过程：一种是 <strong>relative sampling</strong>, 它考虑了单个 trial 内参数之间的相关性， 另一种是 <strong>independent sampling</strong>, 它对各个参数的采样是彼此独立的。</p>
-<p>在一个 trial 刚开始时，<a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-meth docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a> 会被调用，它向该 trial 提供一个相对搜索空间。
-之后， <a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.sample_relative" title="optuna.samplers.BaseSampler.sample_relative"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sample_relative()</span></code></a> 会被触发，它从该搜索空间中对相对参数进行采样。
-在目标函数的执行过程中，<a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.sample_independent" title="optuna.samplers.BaseSampler.sample_independent"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sample_independent()</span></code></a> 用于对不属于该相对搜索空间的参数进行采样。</p>
+<p>在一个 trial 刚开始时，<a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-meth docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a> 会被调用，它向该 trial 提供一个相对搜索空间。之后， <a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.sample_relative" title="optuna.samplers.BaseSampler.sample_relative"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sample_relative()</span></code></a> 会被触发，它从该搜索空间中对相对参数进行采样。在目标函数的执行过程中，<a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler.sample_independent" title="optuna.samplers.BaseSampler.sample_independent"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sample_independent()</span></code></a> 用于对不属于该相对搜索空间的参数进行采样。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注解</p>
 <p>更多细节参见 <a class="reference internal" href="../reference/samplers.html#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a> 的文档。</p>
 </div>
 </div>
-<div class="section" id="sampler-simulatedannealingsampler">
-<h2>案例: 实现模拟退火 Sampler (SimulatedAnnealingSampler)<a class="headerlink" href="#sampler-simulatedannealingsampler" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="an-example-implementing-simulatedannealingsampler">
+<h2>案例: 实现模拟退火 Sampler (SimulatedAnnealingSampler)<a class="headerlink" href="#an-example-implementing-simulatedannealingsampler" title="永久链接至标题">¶</a></h2>
 <p>下面的代码根据 <a class="reference external" href="https://en.wikipedia.org/wiki/Simulated_annealing">Simulated Annealing (SA)</a> 定义类一个 sampler：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">optuna</span>
@@ -221,10 +212,10 @@ Sampler 则从该分布汇总采样一个参数值。该采样值会被返回给
             <span class="k">return</span> <span class="p">{}</span>
 
         <span class="c1">#</span>
-        <span class="c1"># 实现模拟退火 (SA) 算法。</span>
+        <span class="c1"># An implementation of SA algorithm.</span>
         <span class="c1">#</span>
 
-        <span class="c1"># 计算转移概率。</span>
+        <span class="c1"># Calculate transition probability.</span>
         <span class="n">prev_trial</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">trials</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_trial</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">prev_trial</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_trial</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
             <span class="n">probability</span> <span class="o">=</span> <span class="mf">1.0</span>
@@ -236,9 +227,10 @@ Sampler 则从该分布汇总采样一个参数值。该采样值会被返回给
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">probability</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_current_trial</span> <span class="o">=</span> <span class="n">prev_trial</span>
 
-        <span class="c1"># 从当前点的邻域中对参数采样。</span>
+        <span class="c1"># Sample parameters from the neighborhood of the current point.</span>
         <span class="c1">#</span>
-        <span class="c1"># 采样结果会用在该目标函数的下一次求值中。</span>
+        <span class="c1"># The sampled parameters will be used during the next execution of</span>
+        <span class="c1"># the objective function passed to the study.</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">param_distribution</span> <span class="ow">in</span> <span class="n">search_space</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param_distribution</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">UniformDistribution</span><span class="p">):</span>
@@ -253,7 +245,7 @@ Sampler 则从该分布汇总采样一个参数值。该采样值会被返回给
         <span class="k">return</span> <span class="n">params</span>
 
     <span class="c1">#</span>
-    <span class="c1"># 下面的部分属于模版代码，和 SA 算法无关。</span>
+    <span class="c1"># The rest is boilerplate code and unrelated to SA algorithm.</span>
     <span class="c1">#</span>
     <span class="k">def</span> <span class="nf">infer_relative_search_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">optuna</span><span class="o">.</span><span class="n">samplers</span><span class="o">.</span><span class="n">intersection_search_space</span><span class="p">(</span><span class="n">study</span><span class="p">)</span>
@@ -264,10 +256,8 @@ Sampler 则从该分布汇总采样一个参数值。该采样值会被返回给
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>为了代码的简洁性，上面的实现没有支持一些特性 (比如 maximization).
-如果你对如何实现这些特性感兴趣，请看
-<a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/samplers/simulated_annealing_sampler.py">examples/samplers/simulated_annealing.py</a>.</p>
+<p class="admonition-title">注解</p>
+<p>为了代码的简洁性，上面的实现没有支持一些特性 (比如 maximization).如果你对如何实现这些特性感兴趣，请看`examples/samplers/simulated_annealing.py&lt;<a class="reference external" href="https://github.com/optuna/optuna/blob/master/examples/samplers/simulated_annealing_sampler.py">https://github.com/optuna/optuna/blob/master/examples/samplers/simulated_annealing_sampler.py</a>&gt;`_.</p>
 </div>
 <p>你可以像使用内置的 sampler 一样使用  <code class="docutils literal notranslate"><span class="pre">SimulatedAnnealingSampler</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
@@ -282,9 +272,8 @@ Sampler 则从该分布汇总采样一个参数值。该采样值会被返回给
 </div>
 <p>在上面这个优化过程中，参数 <code class="docutils literal notranslate"><span class="pre">x</span></code> 和 <code class="docutils literal notranslate"><span class="pre">y</span></code> 的值都是由 <code class="docutils literal notranslate"><span class="pre">SimulatedAnnealingSampler.sample_relative</span></code> 方法采样得出的。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>严格意义上说，在第一个 trial 中，<code class="docutils literal notranslate"><span class="pre">SimulatedAnnealingSampler.sample_independent</span></code> 用于采样参数值。
-因为，如果没有已经完成的 trial 的话， <code class="docutils literal notranslate"><span class="pre">SimulatedAnnealingSampler.infer_relative_search_space</span></code>  中的 <a class="reference internal" href="../reference/samplers.html#optuna.samplers.intersection_search_space" title="optuna.samplers.intersection_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">intersection_search_space()</span></code></a> 是无法对搜索空间进行推断的。</p>
+<p class="admonition-title">注解</p>
+<p>严格意义上说，在第一个 trial 中，<code class="docutils literal notranslate"><span class="pre">SimulatedAnnealingSampler.sample_independent</span></code> 用于采样参数值。因为，如果没有已经完成的 trial 的话， <code class="docutils literal notranslate"><span class="pre">SimulatedAnnealingSampler.infer_relative_search_space</span></code>  中的 <a class="reference internal" href="../reference/samplers.html#optuna.samplers.intersection_search_space" title="optuna.samplers.intersection_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">intersection_search_space()</span></code></a> 是无法对搜索空间进行推断的。</p>
 </div>
 </div>
 </div>

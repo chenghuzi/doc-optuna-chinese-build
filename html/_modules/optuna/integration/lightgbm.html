@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>optuna.integration.lightgbm &mdash; Optuna 1.4.0 documentation</title>
+  <title>optuna.integration.lightgbm &mdash; Optuna 1.4.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,12 +86,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">安装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">常见问题</a></li>
 </ul>
 
             
@@ -137,7 +137,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
         
       <li>optuna.integration.lightgbm</li>
     
@@ -154,29 +154,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for optuna.integration.lightgbm</h1><div class="highlight"><pre>
+  <h1>optuna.integration.lightgbm 源代码</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="kn">import</span> <span class="nn">optuna</span>
 
-<span class="kn">from</span> <span class="nn">optuna.integration</span> <span class="kn">import</span> <span class="n">lightgbm_tuner</span> <span class="k">as</span> <span class="n">tuner</span>
+<span class="kn">from</span> <span class="nn">optuna._imports</span> <span class="kn">import</span> <span class="n">try_import</span>
+<span class="kn">from</span> <span class="nn">optuna.integration</span> <span class="kn">import</span> <span class="n">_lightgbm_tuner</span> <span class="k">as</span> <span class="n">tuner</span>
 
-<span class="k">try</span><span class="p">:</span>
+
+<span class="k">with</span> <span class="n">try_import</span><span class="p">()</span> <span class="k">as</span> <span class="n">_imports</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">lightgbm</span> <span class="k">as</span> <span class="nn">lgb</span>  <span class="c1"># NOQA</span>
-
-    <span class="n">_available</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="n">_import_error</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="c1"># LightGBMPruningCallback is disabled because LightGBM is not available.</span>
-    <span class="n">_available</span> <span class="o">=</span> <span class="kc">False</span>
 
 
 <span class="c1"># Attach lightgbm API.</span>
-<span class="k">if</span> <span class="n">_available</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">_imports</span><span class="o">.</span><span class="n">is_successful</span><span class="p">():</span>
     <span class="c1"># To pass tests/integration_tests/lightgbm_tuner_tests/test_optimize.py.</span>
     <span class="kn">from</span> <span class="nn">lightgbm</span> <span class="kn">import</span> <span class="n">Dataset</span>  <span class="c1"># NOQA</span>
-    <span class="kn">from</span> <span class="nn">optuna.integration.lightgbm_tuner</span> <span class="kn">import</span> <span class="n">LightGBMTuner</span>  <span class="c1"># NOQA</span>
-    <span class="kn">from</span> <span class="nn">optuna.integration.lightgbm_tuner</span> <span class="kn">import</span> <span class="n">LightGBMTunerCV</span>  <span class="c1"># NOQA</span>
+    <span class="kn">from</span> <span class="nn">optuna.integration._lightgbm_tuner</span> <span class="kn">import</span> <span class="n">LightGBMTuner</span>  <span class="c1"># NOQA</span>
+    <span class="kn">from</span> <span class="nn">optuna.integration._lightgbm_tuner</span> <span class="kn">import</span> <span class="n">LightGBMTunerCV</span>  <span class="c1"># NOQA</span>
 
     <span class="n">_names_from_tuners</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;LGBMModel&quot;</span><span class="p">,</span> <span class="s2">&quot;LGBMClassifier&quot;</span><span class="p">,</span> <span class="s2">&quot;LGBMRegressor&quot;</span><span class="p">]</span>
 
@@ -192,9 +188,11 @@
 <span class="k">else</span><span class="p">:</span>
     <span class="c1"># To create docstring of train.</span>
     <span class="nb">setattr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">],</span> <span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">tuner</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">])</span>
+    <span class="nb">setattr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">],</span> <span class="s2">&quot;LightGBMTuner&quot;</span><span class="p">,</span> <span class="n">tuner</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;LightGBMTuner&quot;</span><span class="p">])</span>
+    <span class="nb">setattr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">],</span> <span class="s2">&quot;LightGBMTunerCV&quot;</span><span class="p">,</span> <span class="n">tuner</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;LightGBMTunerCV&quot;</span><span class="p">])</span>
 
 
-<div class="viewcode-block" id="LightGBMPruningCallback"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.LightGBMPruningCallback">[docs]</a><span class="k">class</span> <span class="nc">LightGBMPruningCallback</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="LightGBMPruningCallback"><a class="viewcode-back" href="../../../reference/integration.html#optuna.integration.LightGBMPruningCallback">[文档]</a><span class="k">class</span> <span class="nc">LightGBMPruningCallback</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Callback for LightGBM to prune unpromising trials.</span>
 
 <span class="sd">    See `the example &lt;https://github.com/optuna/optuna/blob/master/</span>
@@ -226,7 +224,7 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="n">valid_name</span><span class="o">=</span><span class="s2">&quot;valid_0&quot;</span><span class="p">):</span>
         <span class="c1"># type: (optuna.trial.Trial, str, str) -&gt; None</span>
 
-        <span class="n">_check_lightgbm_availability</span><span class="p">()</span>
+        <span class="n">_imports</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_trial</span> <span class="o">=</span> <span class="n">trial</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_valid_name</span> <span class="o">=</span> <span class="n">valid_name</span>
@@ -284,18 +282,6 @@
                 <span class="n">target_valid_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metric</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">evaluation_result_list</span><span class="p">)</span>
             <span class="p">)</span>
         <span class="p">)</span></div>
-
-
-<span class="k">def</span> <span class="nf">_check_lightgbm_availability</span><span class="p">():</span>
-    <span class="c1"># type: () -&gt; None</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">_available</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
-            <span class="s2">&quot;LightGBM is not available. Please install LightGBM to use this feature. &quot;</span>
-            <span class="s2">&quot;LightGBM can be installed by executing `$ pip install lightgbm`. &quot;</span>
-            <span class="s2">&quot;For further information, please refer to the installation guide of LightGBM. &quot;</span>
-            <span class="s2">&quot;(The actual import error is as follows: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">_import_error</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
-        <span class="p">)</span>
 </pre></div>
 
            </div>

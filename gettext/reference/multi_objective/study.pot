@@ -1,0 +1,220 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, Optuna Contributors.
+# This file is distributed under the same license as the Optuna package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Optuna 1.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-17 19:47-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/reference/multi_objective/study.rst:4
+msgid "Study"
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy:1
+msgid "A study corresponds to a multi-objective optimization task, i.e., a set of trials."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy:3
+msgid "This object provides interfaces to run a new :class:`~optuna.multi_objective.trial.Trial`, access trials' history, set/get user-defined attributes of the study itself."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy:7
+msgid "Note that the direct use of this constructor is not recommended. To create and load a study, please refer to the documentation of :func:`~optuna.multi_objective.study.create_study` and :func:`~optuna.multi_objective.study.load_study` respectively."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy:13
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.create_study:34
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.load_study:14
+msgid "Added in v1.4.0 as an experimental feature. The interface may change in newer versions without prior notice. See https://github.com/optuna/optuna/releases/tag/v1.4.0."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.directions:1
+msgid "Return the optimization direction list."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.directions:0
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.get_pareto_front_trials:0
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.get_trials:0
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.n_objectives:0
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.sampler:0
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.trials:0
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.user_attrs:0
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.create_study:0
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.load_study:0
+msgid "Returns"
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.directions:3
+msgid "A list that contains the optimization direction for each objective value."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.enqueue_trial:1
+msgid "Enqueue a trial with given parameter values."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.enqueue_trial:3
+msgid "You can fix the next sampling parameters which will be evaluated in your objective function."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.enqueue_trial:6
+msgid "Please refer to the documentation of :func:`optuna.study.Study.enqueue_trial` for further details."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.enqueue_trial:0
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.get_trials:0
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.set_user_attr:0
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.create_study:0
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.load_study:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.enqueue_trial:9
+msgid "Parameter values to pass your objective function."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.get_pareto_front_trials:1
+msgid "Return trials located at the pareto front in the study."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.get_pareto_front_trials:3
+msgid "A trial is located at the pareto front if there are no trials that dominate the trial. It's called that a trial ``t0`` dominates another trial ``t1`` if ``all(v0 <= v1) for v0, v1 in zip(t0.values, t1.values)`` and ``any(v0 < v1) for v0, v1 in zip(t0.values, t1.values)`` are held."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.get_pareto_front_trials:8
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.get_trials:14
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.trials:7
+msgid "A list of :class:`~optuna.multi_objective.trial.FrozenMultiObjectiveTrial` objects."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.get_trials:1
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.trials:1
+msgid "Return all trials in the study."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.get_trials:3
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.trials:3
+msgid "The returned trials are ordered by trial number."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.get_trials:5
+msgid "For library users, it's recommended to use more handy :attr:`~optuna.multi_objective.study.MultiObjectiveStudy.trials` property to get the trials instead."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.get_trials:9
+msgid "Flag to control whether to apply ``copy.deepcopy()`` to the trials. Note that if you set the flag to :obj:`False`, you shouldn't mutate any fields of the returned trial. Otherwise the internal state of the study may corrupt and unexpected behavior may happen."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.n_objectives:1
+msgid "Return the number of objectives."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.n_objectives:3
+msgid "Number of objectives."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.optimize:1
+msgid "Optimize an objective function."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.optimize:3
+msgid "This method is the same as :func:`optuna.study.Study.optimize` except for taking an objective function that returns multi-objective values as the argument."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.optimize:6
+msgid "Please refer to the documentation of :func:`optuna.study.Study.optimize` for further details."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.sampler:1
+msgid "Return the sampler."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.sampler:3
+msgid "A :class:`~multi_objective.samplers.BaseMultiObjectiveSampler` object."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.set_user_attr:1
+msgid "Set a user attribute to the study."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.set_user_attr:3
+msgid "A key string of the attribute."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.set_user_attr:4
+msgid "A value of the attribute. The value should be JSON serializable."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.trials:5
+msgid "This is a short form of ``self.get_trials(deepcopy=True)``."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.user_attrs:1
+msgid "Return user attributes."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.MultiObjectiveStudy.user_attrs:3
+msgid "A dictionary containing all user attributes."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.create_study:1
+msgid "Create a new :class:`~optuna.multi_objective.study.MultiObjectiveStudy`."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.create_study:3
+msgid "Optimization direction for each objective value. Set ``minimize`` for minimization and ``maximize`` for maximization."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.create_study:5
+msgid "Study's name. If this argument is set to None, a unique name is generated automatically."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.create_study:7
+msgid "Database URL. If this argument is set to None, in-memory storage is used, and the :class:`~optuna.study.Study` will not be persistent.  .. note::     When a database URL is passed, Optuna internally uses `SQLAlchemy`_ to handle     the database. Please refer to `SQLAlchemy's document`_ for further details.     If you want to specify non-default options to `SQLAlchemy Engine`_, you can     instantiate :class:`~optuna.storages.RDBStorage` with your desired options and     pass it to the ``storage`` argument instead of a URL.   .. _SQLAlchemy: https://www.sqlalchemy.org/  .. _SQLAlchemy's document:      https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls  .. _SQLAlchemy Engine: https://docs.sqlalchemy.org/en/latest/core/engines.html"
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.create_study:7
+msgid "Database URL. If this argument is set to None, in-memory storage is used, and the :class:`~optuna.study.Study` will not be persistent."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.create_study:11
+msgid "When a database URL is passed, Optuna internally uses `SQLAlchemy`_ to handle the database. Please refer to `SQLAlchemy's document`_ for further details. If you want to specify non-default options to `SQLAlchemy Engine`_, you can instantiate :class:`~optuna.storages.RDBStorage` with your desired options and pass it to the ``storage`` argument instead of a URL."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.create_study:21
+msgid "A sampler object that implements background algorithm for value suggestion. If :obj:`None` is specified, :class:`~optuna.multi_objective.samplers.NSGAIIMultiObjectiveSampler` is used as the default. See also :class:`~optuna.multi_objective.samplers`."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.create_study:25
+msgid "Flag to control the behavior to handle a conflict of study names. In the case where a study named ``study_name`` already exists in the ``storage``, a :class:`~optuna.exceptions.DuplicatedStudyError` is raised if ``load_if_exists`` is set to :obj:`False`. Otherwise, the creation of the study is skipped, and the existing one is returned."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.create_study:31
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.load_study:11
+msgid "A :class:`~optuna.multi_objective.study.MultiObjectiveStudy` object."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.load_study:1
+msgid "Load the existing :class:`MultiObjectiveStudy` that has the specified name."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.load_study:3
+msgid "Study's name. Each study has a unique name as an identifier."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.load_study:4
+msgid "Database URL such as ``sqlite:///example.db``. Please see also the documentation of :func:`~optuna.multi_objective.study.create_study` for further details."
+msgstr ""
+
+#: ../../../optuna/optuna/multi_objective/study.py:docstring of optuna.multi_objective.study.load_study:6
+msgid "A sampler object that implements background algorithm for value suggestion. If :obj:`None` is specified, :class:`~optuna.multi_objective.samplers.RandomMultiObjectiveSampler` is used as the default. See also :class:`~optuna.multi_objective.samplers`."
+msgstr ""
