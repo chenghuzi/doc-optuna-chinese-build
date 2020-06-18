@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="core.html">Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.html">命令行界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributions.html">Distributions</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="importance.html">Hyperparameter Importance</a></li>
@@ -182,16 +182,14 @@
 <dl class="py class">
 <dt id="optuna.exceptions.OptunaError">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.exceptions.</code><code class="sig-name descname">OptunaError</code><a class="reference internal" href="../_modules/optuna/exceptions.html#OptunaError"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.exceptions.OptunaError" title="永久链接至目标">¶</a></dt>
-<dd><p>Base class for Optuna specific errors.</p>
+<dd><p>Optuna 异常基类。</p>
 </dd></dl>
 
 <dl class="py class">
 <dt id="optuna.exceptions.TrialPruned">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.exceptions.</code><code class="sig-name descname">TrialPruned</code><a class="reference internal" href="../_modules/optuna/exceptions.html#TrialPruned"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.exceptions.TrialPruned" title="永久链接至目标">¶</a></dt>
-<dd><p>Exception for pruned trials.</p>
-<p>This error tells a trainer that the current <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> was pruned. It is
-supposed to be raised after <a class="reference internal" href="trial.html#optuna.trial.Trial.should_prune" title="optuna.trial.Trial.should_prune"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.should_prune()</span></code></a> as shown in the following
-example.</p>
+<dd><p>被剪枝 trial 异常。</p>
+<p>该 error 表明：当前 <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 已被剪枝。这种 error 一般会在 <a class="reference internal" href="trial.html#optuna.trial.Trial.should_prune" title="optuna.trial.Trial.should_prune"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.should_prune()</span></code></a> 之后被抛出。具体见下面的例子。</p>
 <p class="rubric">示例</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
@@ -228,27 +226,27 @@ example.</p>
 
 <div class="admonition seealso">
 <p class="admonition-title">参见</p>
-<p>The alias also exists as <a class="reference internal" href="core.html#optuna.TrialPruned" title="optuna.TrialPruned"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.TrialPruned</span></code></a>.</p>
+<p><a class="reference internal" href="core.html#optuna.TrialPruned" title="optuna.TrialPruned"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.TrialPruned</span></code></a> 是该异常的一个别名。</p>
 </div>
 <dl class="py class">
 <dt id="optuna.exceptions.CLIUsageError">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.exceptions.</code><code class="sig-name descname">CLIUsageError</code><a class="reference internal" href="../_modules/optuna/exceptions.html#CLIUsageError"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.exceptions.CLIUsageError" title="永久链接至目标">¶</a></dt>
-<dd><p>Exception for CLI.</p>
-<p>CLI raises this exception when it receives invalid configuration.</p>
+<dd><p>命令行界面异常。</p>
+<p>当接收到无效参数时，该异常会被抛出。</p>
 </dd></dl>
 
 <dl class="py class">
 <dt id="optuna.exceptions.StorageInternalError">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.exceptions.</code><code class="sig-name descname">StorageInternalError</code><a class="reference internal" href="../_modules/optuna/exceptions.html#StorageInternalError"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.exceptions.StorageInternalError" title="永久链接至目标">¶</a></dt>
-<dd><p>Exception for storage operation.</p>
-<p>This error is raised when an operation failed in backend DB of storage.</p>
+<dd><p>存储异常。</p>
+<p>当存储后端发生错误时，该异常会被抛出。</p>
 </dd></dl>
 
 <dl class="py class">
 <dt id="optuna.exceptions.DuplicatedStudyError">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.exceptions.</code><code class="sig-name descname">DuplicatedStudyError</code><a class="reference internal" href="../_modules/optuna/exceptions.html#DuplicatedStudyError"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.exceptions.DuplicatedStudyError" title="永久链接至目标">¶</a></dt>
-<dd><p>Exception for a duplicated study name.</p>
-<p>This error is raised when a specified study name already exists in the storage.</p>
+<dd><p>重复 study 名导致的异常。</p>
+<p>当存储空间中已经存在一个同名 study 时，该异常会被抛出。</p>
 </dd></dl>
 
 </div>
