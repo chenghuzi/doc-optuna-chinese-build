@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="core.html">Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.html">命令行界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributions.html">Distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="importance.html">Hyperparameter Importance</a></li>
@@ -182,25 +182,12 @@
 <dl class="py class">
 <dt id="optuna.samplers.BaseSampler">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.samplers.</code><code class="sig-name descname">BaseSampler</code><a class="reference internal" href="../_modules/optuna/samplers/_base.html#BaseSampler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.BaseSampler" title="永久链接至目标">¶</a></dt>
-<dd><p>Base class for samplers.</p>
-<p>Optuna combines two types of sampling strategies, which are called <em>relative sampling</em> and
-<em>independent sampling</em>.</p>
-<p><em>The relative sampling</em> determines values of multiple parameters simultaneously so that
-sampling algorithms can use relationship between parameters (e.g., correlation).
-Target parameters of the relative sampling are described in a relative search space, which
-is determined by <a class="reference internal" href="#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a>.</p>
-<p><em>The independent sampling</em> determines a value of a single parameter without considering any
-relationship between parameters. Target parameters of the independent sampling are the
-parameters not described in the relative search space.</p>
-<p>More specifically, parameters are sampled by the following procedure.
-At the beginning of a trial, <a class="reference internal" href="#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-meth docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a>
-is called to determine the relative search space for the trial. Then,
-<a class="reference internal" href="#optuna.samplers.BaseSampler.sample_relative" title="optuna.samplers.BaseSampler.sample_relative"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sample_relative()</span></code></a> is invoked to sample parameters
-from the relative search space. During the execution of the objective function,
-<a class="reference internal" href="#optuna.samplers.BaseSampler.sample_independent" title="optuna.samplers.BaseSampler.sample_independent"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sample_independent()</span></code></a> is used to sample
-parameters that don't belong to the relative search space.</p>
-<p>The following figure depicts the lifetime of a trial and how the above three methods are
-called in the trial.</p>
+<dd><p>Samplers 基类</p>
+<p>Optuna结合了两种类型的 sampling 策略，称为 <em>相对 sampling</em> 和 <em>独立 sampling</em>.</p>
+<p><em>相对 sampling</em> 同时确定多个参数的值，以便 sampling 算法可以使用参数之间的关系（例如，相关性）。相对 sampling 的目标参数是在一个相对搜索空间中描述的。该空间由 <a class="reference internal" href="#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a> 决定。</p>
+<p><em>独立 sampling</em> 确定一个单独的参数，并且不考虑不同参数之间的关系。独立 sampling的目标参数不由相对搜索空间描述。</p>
+<p>进一步来说，参数是按照以下步骤来采样得出的。在一个 trial 刚开始时，<a class="reference internal" href="#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-meth docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a> 会被调用以确定该 trial 的相对搜索空间。然后，<a class="reference internal" href="#optuna.samplers.BaseSampler.sample_relative" title="optuna.samplers.BaseSampler.sample_relative"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sample_relative()</span></code></a>  方法会被触发，用于从该搜索空间中对参数进行采样。在目标函数的执行过程中，<a class="reference internal" href="#optuna.samplers.BaseSampler.sample_independent" title="optuna.samplers.BaseSampler.sample_independent"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sample_independent()</span></code></a> 被用于对那些不属于相对搜索空间的参数进行采样。</p>
+<p>下图描述了一个 trial 的生命周期和上述方法是如何在一个trial 内被触发的。</p>
 <img alt="../_images/sampling-sequence.png" src="../_images/sampling-sequence.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -208,63 +195,48 @@ called in the trial.</p>
 <dl class="py method">
 <dt id="optuna.samplers.BaseSampler.infer_relative_search_space">
 <em class="property">abstract </em><code class="sig-name descname">infer_relative_search_space</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span></em>, <em class="sig-param"><span class="n">trial</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/samplers/_base.html#BaseSampler.infer_relative_search_space"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.BaseSampler.infer_relative_search_space" title="永久链接至目标">¶</a></dt>
-<dd><p>Infer the search space that will be used by relative sampling in the target trial.</p>
-<p>This method is called right before <a class="reference internal" href="#optuna.samplers.BaseSampler.sample_relative" title="optuna.samplers.BaseSampler.sample_relative"><code class="xref py py-func docutils literal notranslate"><span class="pre">sample_relative()</span></code></a>
-method, and the search space returned by this method is pass to it. The parameters not
-contained in the search space will be sampled by using
-<a class="reference internal" href="#optuna.samplers.BaseSampler.sample_independent" title="optuna.samplers.BaseSampler.sample_independent"><code class="xref py py-func docutils literal notranslate"><span class="pre">sample_independent()</span></code></a> method.</p>
+<dd><p>推断会用于目标 trial 的相对 sampling 的搜索空间。</p>
+<p>该方法会恰好在 <a class="reference internal" href="#optuna.samplers.BaseSampler.sample_relative" title="optuna.samplers.BaseSampler.sample_relative"><code class="xref py py-func docutils literal notranslate"><span class="pre">sample_relative()</span></code></a> 之前被调用，而由该方法返回的搜索空间会被传入它。那些不包含在这个搜索空间中的参数将用 <a class="reference internal" href="#optuna.samplers.BaseSampler.sample_independent" title="optuna.samplers.BaseSampler.sample_independent"><code class="xref py py-func docutils literal notranslate"><span class="pre">sample_independent()</span></code></a> 来进行采样。</p>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>study</strong> -- Target study object.</p></li>
-<li><p><strong>trial</strong> -- Target trial object.
-Take a copy before modifying this object.</p></li>
+<li><p><strong>trial</strong> -- 目标 trial 对象，在修改该对象之前请先复制它。</p></li>
 </ul>
 </dd>
 <dt class="field-even">返回</dt>
-<dd class="field-even"><p>A dictionary containing the parameter names and parameter's distributions.</p>
+<dd class="field-even"><p>一个包含了参数名和参数分布的字典。</p>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">参见</p>
-<p>Please refer to <a class="reference internal" href="#optuna.samplers.intersection_search_space" title="optuna.samplers.intersection_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">intersection_search_space()</span></code></a> as an
-implementation of <a class="reference internal" href="#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a>.</p>
+<p>作为以一个 <a class="reference internal" href="#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a> 的实现，请参考 <a class="reference internal" href="#optuna.samplers.intersection_search_space" title="optuna.samplers.intersection_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">intersection_search_space()</span></code></a>。</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.samplers.BaseSampler.reseed_rng">
 <code class="sig-name descname">reseed_rng</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/samplers/_base.html#BaseSampler.reseed_rng"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.BaseSampler.reseed_rng" title="永久链接至目标">¶</a></dt>
-<dd><p>Reseed sampler's random number generator.</p>
-<p>This method is called by the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> instance if trials are executed
-in parallel with the option <code class="docutils literal notranslate"><span class="pre">n_jobs&gt;1</span></code>. In that case, the sampler instance will be
-replicated including the state of the random number generator, and they may suggest the
-same values. To prevent this issue, this method assigns a different seed to each random
-number generator.</p>
+<dd><p>重设 sampler 的随机数种子。</p>
+<p>该方法由 <code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span> <span class="pre">的实例来调用。而且，如果选项</span> <span class="pre">``n_jobs&gt;1`</span></code> 的话，它会被并行执行。在那种情况下，这个 sampler 实例会被复制，其中就报错了随机数生成器的状态，因此它们可能会产生同样的 suggestion 值。为了防止出现这个问题，该方法给每一个随机数生成器赋予一个不同的种子。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.samplers.BaseSampler.sample_independent">
 <em class="property">abstract </em><code class="sig-name descname">sample_independent</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span></em>, <em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">param_name</span></em>, <em class="sig-param"><span class="n">param_distribution</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/samplers/_base.html#BaseSampler.sample_independent"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.BaseSampler.sample_independent" title="永久链接至目标">¶</a></dt>
-<dd><p>Sample a parameter for a given distribution.</p>
-<p>This method is called only for the parameters not contained in the search space returned
-by <a class="reference internal" href="#optuna.samplers.BaseSampler.sample_relative" title="optuna.samplers.BaseSampler.sample_relative"><code class="xref py py-func docutils literal notranslate"><span class="pre">sample_relative()</span></code></a> method. This method is suitable
-for sampling algorithms that do not use relationship between parameters such as random
-sampling and TPE.</p>
+<dd><p>从给定的分布中采样。</p>
+<p>只有当参数不属于 <a class="reference internal" href="#optuna.samplers.BaseSampler.sample_relative" title="optuna.samplers.BaseSampler.sample_relative"><code class="xref py py-func docutils literal notranslate"><span class="pre">sample_relative()</span></code></a>  时，该方法会被调用。该方法适用于那些不依赖参数关系的 sampling 算法，比如 随机 sampling 和TPE.</p>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p>The failed trials are ignored by any build-in samplers when they sample new
-parameters. Thus, failed trials are regarded as deleted in the samplers'
-perspective.</p>
+<p>当 sampler 采样新参数时，那些失败的 trial 会被内置的 sampler 忽略。因此，失败的 trial 对于 sampler 来说等价于 删除掉的trial.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>study</strong> -- Target study object.</p></li>
-<li><p><strong>trial</strong> -- Target trial object.
-Take a copy before modifying this object.</p></li>
-<li><p><strong>param_name</strong> -- Name of the sampled parameter.</p></li>
-<li><p><strong>param_distribution</strong> -- Distribution object that specifies a prior and/or scale of the sampling algorithm.</p></li>
+<li><p><strong>trial</strong> -- 目标 trial 对象，在修改该对象之前请先复制它。</p></li>
+<li><p><strong>param_name</strong> -- 参数名</p></li>
+<li><p><strong>param_distribution</strong> -- 确定了 sampling 算法的先验和/或者 尺度的分布对象。</p></li>
 </ul>
 </dd>
 <dt class="field-even">返回</dt>
@@ -276,28 +248,22 @@ Take a copy before modifying this object.</p></li>
 <dl class="py method">
 <dt id="optuna.samplers.BaseSampler.sample_relative">
 <em class="property">abstract </em><code class="sig-name descname">sample_relative</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span></em>, <em class="sig-param"><span class="n">trial</span></em>, <em class="sig-param"><span class="n">search_space</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/samplers/_base.html#BaseSampler.sample_relative"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.BaseSampler.sample_relative" title="永久链接至目标">¶</a></dt>
-<dd><p>Sample parameters in a given search space.</p>
-<p>This method is called once at the beginning of each trial, i.e., right before the
-evaluation of the objective function. This method is suitable for sampling algorithms
-that use relationship between parameters such as Gaussian Process and CMA-ES.</p>
+<dd><p>给定搜索空间中的 sample 参数。</p>
+<p>该方法会在每个 trial 刚开始时被调用一次，也就是在目标函数执行之前被调用一次。该方法适用于对那些依赖于不同参数之间关系的算法，比如 Gaussian Process and CMA-ES.</p>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p>The failed trials are ignored by any build-in samplers when they sample new
-parameters. Thus, failed trials are regarded as deleted in the samplers'
-perspective.</p>
+<p>当 sampler 采样新参数时，那些失败的 trial 会被内置的 sampler 忽略。因此，失败的 trial 对于 sampler 来说等价于 删除掉的trial.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>study</strong> -- Target study object.</p></li>
-<li><p><strong>trial</strong> -- Target trial object.
-Take a copy before modifying this object.</p></li>
-<li><p><strong>search_space</strong> -- The search space returned by
-<a class="reference internal" href="#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a>.</p></li>
+<li><p><strong>trial</strong> -- 目标 trial 对象，在修改该对象之前请先复制它。</p></li>
+<li><p><strong>search_space</strong> -- 由 <a class="reference internal" href="#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a> 返回的 搜索空间。</p></li>
 </ul>
 </dd>
 <dt class="field-even">返回</dt>
-<dd class="field-even"><p>A dictionary containing the parameter names and the values.</p>
+<dd class="field-even"><p>一个包含了参数名和参数分布的字典。</p>
 </dd>
 </dl>
 </dd></dl>
@@ -307,9 +273,8 @@ Take a copy before modifying this object.</p></li>
 <dl class="py class">
 <dt id="optuna.samplers.GridSampler">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.samplers.</code><code class="sig-name descname">GridSampler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">search_space</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/samplers/_grid.html#GridSampler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.GridSampler" title="永久链接至目标">¶</a></dt>
-<dd><p>Sampler using grid search.</p>
-<p>With <a class="reference internal" href="#optuna.samplers.GridSampler" title="optuna.samplers.GridSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridSampler</span></code></a>, the trials suggest all combinations of parameters
-in the given search space during the study.</p>
+<dd><p>使用网格搜索的 sampler.</p>
+<p>在一个 study 中，利用 <a class="reference internal" href="#optuna.samplers.GridSampler" title="optuna.samplers.GridSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridSampler</span></code></a>, trial 会在给定的搜索空间内 suggest 所有可能的参数组合。</p>
 <p class="rubric">示例</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 
@@ -328,17 +293,11 @@ in the given search space during the study.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p><a class="reference internal" href="#optuna.samplers.GridSampler" title="optuna.samplers.GridSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridSampler</span></code></a> raises an error if all combinations in the passed
-<code class="docutils literal notranslate"><span class="pre">search_space</span></code> has already been evaluated. Please make sure that unnecessary trials do
-not run during optimization by properly setting <code class="docutils literal notranslate"><span class="pre">n_trials</span></code> in the
-<a class="reference internal" href="study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a> method.</p>
+<p>如果传进来的 <code class="docutils literal notranslate"><span class="pre">search_space</span></code> 中的所有可能参数组合都已经被评估过了， <a class="reference internal" href="#optuna.samplers.GridSampler" title="optuna.samplers.GridSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridSampler</span></code></a> 会抛出一个错误。请通过设置合适的 <a class="reference internal" href="study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a> 的参数 <code class="docutils literal notranslate"><span class="pre">n_trials</span></code> 来避免那些不必要的 trial 在 优化过程中被执行。</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p><a class="reference internal" href="#optuna.samplers.GridSampler" title="optuna.samplers.GridSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridSampler</span></code></a> does not take care of a parameter's quantization
-specified by discrete suggest methods but just samples one of values specified in the
-search space. E.g., in the following code snippet, either of <code class="docutils literal notranslate"><span class="pre">-0.5</span></code> or <code class="docutils literal notranslate"><span class="pre">0.5</span></code> is
-sampled as <code class="docutils literal notranslate"><span class="pre">x</span></code> instead of an integer point.</p>
+<p><a class="reference internal" href="#optuna.samplers.GridSampler" title="optuna.samplers.GridSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridSampler</span></code></a> 无所谓由 离散 suggestion 方法确定的参数量化，它只是从一个搜索空间中采样一个参数。比如，在下面的代码片段中， 是 <code class="docutils literal notranslate"><span class="pre">-0.5</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">0.5</span></code>, 而不是一个整数点， 会被采样成 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的值，</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
@@ -355,23 +314,20 @@ sampled as <code class="docutils literal notranslate"><span class="pre">x</span>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
-<dd class="field-odd"><p><strong>search_space</strong> -- A dictionary whose key and value are a parameter name and the corresponding candidates
-of values, respectively.</p>
+<dd class="field-odd"><p><strong>search_space</strong> -- 一个键为参数名值为对应的待选参数的字典。</p>
 </dd>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p>Added in v1.2.0 as an experimental feature. The interface may change in newer versions
-without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.2.0">https://github.com/optuna/optuna/releases/tag/v1.2.0</a>.</p>
+<p>在 v1.2.0 中被作为一个试验性特性引入。该接口可能在未来的版本中在没有提前通知的情况下被改变。</p>
 </div>
 </dd></dl>
 
 <dl class="py class">
 <dt id="optuna.samplers.RandomSampler">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.samplers.</code><code class="sig-name descname">RandomSampler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seed</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/samplers/_random.html#RandomSampler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.RandomSampler" title="永久链接至目标">¶</a></dt>
-<dd><p>Sampler using random sampling.</p>
-<p>This sampler is based on <em>independent sampling</em>.
-See also <a class="reference internal" href="#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a> for more details of 'independent sampling'.</p>
+<dd><p>使用随机 sampling 的sampler.</p>
+<p>该 sampler 基于 <em>独立  sampling</em>，要看'独立 sampling' 的细节的话请参考 <a class="reference internal" href="#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a>. '</p>
 <p class="rubric">示例</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 <span class="kn">from</span> <span class="nn">optuna.samplers</span> <span class="kn">import</span> <span class="n">RandomSampler</span>
@@ -385,18 +341,14 @@ See also <a class="reference internal" href="#optuna.samplers.BaseSampler" title
 </pre></div>
 </div>
 <dl class="simple">
-<dt>Args:</dt><dd><p>seed: Seed for random number generator.</p>
+<dt>Args:</dt><dd><p>随机数种子。</p>
 </dd>
 </dl>
 <dl class="py method">
 <dt id="optuna.samplers.RandomSampler.reseed_rng">
 <code class="sig-name descname">reseed_rng</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/samplers/_random.html#RandomSampler.reseed_rng"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.RandomSampler.reseed_rng" title="永久链接至目标">¶</a></dt>
-<dd><p>Reseed sampler's random number generator.</p>
-<p>This method is called by the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> instance if trials are executed
-in parallel with the option <code class="docutils literal notranslate"><span class="pre">n_jobs&gt;1</span></code>. In that case, the sampler instance will be
-replicated including the state of the random number generator, and they may suggest the
-same values. To prevent this issue, this method assigns a different seed to each random
-number generator.</p>
+<dd><p>重设 sampler 的随机数种子。</p>
+<p>该方法由 <code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span> <span class="pre">的实例来调用。而且，如果选项</span> <span class="pre">``n_jobs&gt;1`</span></code> 的话，它会被并行执行。在那种情况下，这个 sampler 实例会被复制，其中就报错了随机数生成器的状态，因此它们可能会产生同样的 suggestion 值。为了防止出现这个问题，该方法给每一个随机数生成器赋予一个不同的种子。</p>
 </dd></dl>
 
 </dd></dl>
@@ -404,16 +356,12 @@ number generator.</p>
 <dl class="py class">
 <dt id="optuna.samplers.TPESampler">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.samplers.</code><code class="sig-name descname">TPESampler</code><span class="sig-paren">(</span><em class="sig-param">consider_prior=True</em>, <em class="sig-param">prior_weight=1.0</em>, <em class="sig-param">consider_magic_clip=True</em>, <em class="sig-param">consider_endpoints=False</em>, <em class="sig-param">n_startup_trials=10</em>, <em class="sig-param">n_ei_candidates=24</em>, <em class="sig-param">gamma=&lt;function default_gamma&gt;</em>, <em class="sig-param">weights=&lt;function default_weights&gt;</em>, <em class="sig-param">seed=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/samplers/_tpe/sampler.html#TPESampler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.TPESampler" title="永久链接至目标">¶</a></dt>
-<dd><p>Sampler using TPE (Tree-structured Parzen Estimator) algorithm.</p>
-<p>This sampler is based on <em>independent sampling</em>.
-See also <a class="reference internal" href="#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a> for more details of 'independent sampling'.</p>
-<p>On each trial, for each parameter, TPE fits one Gaussian Mixture Model (GMM) <code class="docutils literal notranslate"><span class="pre">l(x)</span></code> to
-the set of parameter values associated with the best objective values, and another GMM
-<code class="docutils literal notranslate"><span class="pre">g(x)</span></code> to the remaining parameter values. It chooses the parameter value <code class="docutils literal notranslate"><span class="pre">x</span></code> that
-maximizes the ratio <code class="docutils literal notranslate"><span class="pre">l(x)/g(x)</span></code>.</p>
-<p>For further information about TPE algorithm, please refer to the following papers:</p>
+<dd><p>使用 TPE (Tree-structured Parzen Estimator) 算法的 sampler.</p>
+<p>该 sampler 基于 <em>独立  sampling</em>，要看'独立 sampling' 的细节的话请参考 <a class="reference internal" href="#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a>. '</p>
+<p>在每一个 trial 中，对每一个参数， TPE将会拟合一个 Gaussian mixture 模型 (GM) <code class="docutils literal notranslate"><span class="pre">l(x)</span></code> 来设定最佳目标函数赌赢的参数值集合。而另一个 GMM <code class="docutils literal notranslate"><span class="pre">g(x)</span></code> 则会设置剩余的参数。它选择能最大化 <code class="docutils literal notranslate"><span class="pre">l(x)/g(x)</span></code> 的参数。</p>
+<p>要查看 TPE 算法的细节的话，请参考这里:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://papers.nips.cc/paper/4443-algorithms-for-hyper-parameter-optimization.pdf">Algorithms for Hyper-Parameter Optimization</a></p></li>
+<li><p>超参数优化算法：&lt;<a class="reference external" href="https://papers.nips.cc/paper/4443-algorithms-for-hyper-parameter-optimization.pdf">https://papers.nips.cc/paper/4443-algorithms-for-hyper-parameter-optimization.pdf</a>&gt;`_</p></li>
 <li><p><a class="reference external" href="http://proceedings.mlr.press/v28/bergstra13.pdf">Making a Science of Model Search: Hyperparameter Optimization in Hundreds of
 Dimensions for Vision Architectures</a></p></li>
 </ul>
@@ -432,49 +380,25 @@ Dimensions for Vision Architectures</a></p></li>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>consider_prior</strong> -- Enhance the stability of Parzen estimator by imposing a Gaussian prior when
-<a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>. The prior is only effective if the sampling distribution is
-either <a class="reference internal" href="distributions.html#optuna.distributions.UniformDistribution" title="optuna.distributions.UniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">UniformDistribution</span></code></a>,
-<a class="reference internal" href="distributions.html#optuna.distributions.DiscreteUniformDistribution" title="optuna.distributions.DiscreteUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">DiscreteUniformDistribution</span></code></a>,
-<a class="reference internal" href="distributions.html#optuna.distributions.LogUniformDistribution" title="optuna.distributions.LogUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogUniformDistribution</span></code></a>,
-<a class="reference internal" href="distributions.html#optuna.distributions.IntUniformDistribution" title="optuna.distributions.IntUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntUniformDistribution</span></code></a>,
-or <a class="reference internal" href="distributions.html#optuna.distributions.IntLogUniformDistribution" title="optuna.distributions.IntLogUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntLogUniformDistribution</span></code></a>.</p></li>
-<li><p><strong>prior_weight</strong> -- The weight of the prior. This argument is used in
-<a class="reference internal" href="distributions.html#optuna.distributions.UniformDistribution" title="optuna.distributions.UniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">UniformDistribution</span></code></a>,
-<a class="reference internal" href="distributions.html#optuna.distributions.DiscreteUniformDistribution" title="optuna.distributions.DiscreteUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">DiscreteUniformDistribution</span></code></a>,
-<a class="reference internal" href="distributions.html#optuna.distributions.LogUniformDistribution" title="optuna.distributions.LogUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogUniformDistribution</span></code></a>,
-<a class="reference internal" href="distributions.html#optuna.distributions.IntUniformDistribution" title="optuna.distributions.IntUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntUniformDistribution</span></code></a>,
-<a class="reference internal" href="distributions.html#optuna.distributions.IntLogUniformDistribution" title="optuna.distributions.IntLogUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntLogUniformDistribution</span></code></a>, and
-<a class="reference internal" href="distributions.html#optuna.distributions.CategoricalDistribution" title="optuna.distributions.CategoricalDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">CategoricalDistribution</span></code></a>.</p></li>
-<li><p><strong>consider_magic_clip</strong> -- Enable a heuristic to limit the smallest variances of Gaussians used in
-the Parzen estimator.</p></li>
-<li><p><strong>consider_endpoints</strong> -- Take endpoints of domains into account when calculating variances of Gaussians
-in Parzen estimator. See the original paper for details on the heuristics
-to calculate the variances.</p></li>
-<li><p><strong>n_startup_trials</strong> -- The random sampling is used instead of the TPE algorithm until the given number
-of trials finish in the same study.</p></li>
-<li><p><strong>n_ei_candidates</strong> -- Number of candidate samples used to calculate the expected improvement.</p></li>
-<li><p><strong>gamma</strong> -- A function that takes the number of finished trials and returns the number
-of trials to form a density function for samples with low grains.
-See the original paper for more details.</p></li>
-<li><p><strong>weights</strong> -- <p>A function that takes the number of finished trials and returns a weight for them.
-See <a class="reference external" href="http://proceedings.mlr.press/v28/bergstra13.pdf">Making a Science of Model Search: Hyperparameter Optimization in Hundreds of
-Dimensions for Vision Architectures</a>
-for more details.</p>
-</p></li>
-<li><p><strong>seed</strong> -- Seed for random number generator.</p></li>
+<li><p><strong>consider_prior</strong> -- 当 <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> 时通过一个高斯先验来提升 Parzen estimator 的稳定性。这个先验只有当 sampling 分布是以下这些分布中间的一个时起作用： <a class="reference internal" href="distributions.html#optuna.distributions.UniformDistribution" title="optuna.distributions.UniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">UniformDistribution</span></code></a>, <a class="reference internal" href="distributions.html#optuna.distributions.DiscreteUniformDistribution" title="optuna.distributions.DiscreteUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">DiscreteUniformDistribution</span></code></a>, <a class="reference internal" href="distributions.html#optuna.distributions.LogUniformDistribution" title="optuna.distributions.LogUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogUniformDistribution</span></code></a>, <a class="reference internal" href="distributions.html#optuna.distributions.IntUniformDistribution" title="optuna.distributions.IntUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntUniformDistribution</span></code></a>, 或者  <a class="reference internal" href="distributions.html#optuna.distributions.IntLogUniformDistribution" title="optuna.distributions.IntLogUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntLogUniformDistribution</span></code></a>.</p></li>
+<li><p><strong>prior_weight</strong> -- 先验的权重，该选项用于 <a class="reference internal" href="distributions.html#optuna.distributions.UniformDistribution" title="optuna.distributions.UniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">UniformDistribution</span></code></a>, <a class="reference internal" href="distributions.html#optuna.distributions.DiscreteUniformDistribution" title="optuna.distributions.DiscreteUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">DiscreteUniformDistribution</span></code></a>, <a class="reference internal" href="distributions.html#optuna.distributions.LogUniformDistribution" title="optuna.distributions.LogUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogUniformDistribution</span></code></a>, <a class="reference internal" href="distributions.html#optuna.distributions.IntUniformDistribution" title="optuna.distributions.IntUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntUniformDistribution</span></code></a>, <a class="reference internal" href="distributions.html#optuna.distributions.IntLogUniformDistribution" title="optuna.distributions.IntLogUniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntLogUniformDistribution</span></code></a>, 和 <a class="reference internal" href="distributions.html#optuna.distributions.CategoricalDistribution" title="optuna.distributions.CategoricalDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">CategoricalDistribution</span></code></a> 中。</p></li>
+<li><p><strong>consider_magic_clip</strong> -- 启用一个启发式算法以限制 Parzen estimator 所使用的高斯分布的最小方差。</p></li>
+<li><p><strong>consider_endpoints</strong> -- 在 Parzen estimator 中计算高斯方差时，请考虑域的端点。 有关启发式计算方差的详细信息，请参见原始论文</p></li>
+<li><p><strong>n_startup_trials</strong> -- 在给定的 trial 次数在同一 study 中完成之前，将使用随机抽样代替 TPE 算法</p></li>
+<li><p><strong>n_ei_candidates</strong> -- 用于计算预期改进的候选样本数。</p></li>
+<li><p><strong>gamma</strong> -- 该函数接受完成的 trial 次数作为参数，并返回 trial 次数以形成一个粗粒度的密度函数。 更多详细信息请参见原始论文</p></li>
+<li><p><strong>weights</strong> -- 该函数接受完成的 trial 次数作为参数，并为它们返回一个权重。 更多细节见 <a class="reference external" href="http://proceedings.mlr.press/v28/bergstra13.pdf">Making a Science of Model Search: Hyperparameter Optimization in Hundreds of Dimensions for Vision Architectures</a> .</p></li>
+<li><p><strong>seed</strong> -- 随机数种子</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt id="optuna.samplers.TPESampler.hyperopt_parameters">
 <em class="property">static </em><code class="sig-name descname">hyperopt_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/samplers/_tpe/sampler.html#TPESampler.hyperopt_parameters"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.TPESampler.hyperopt_parameters" title="永久链接至目标">¶</a></dt>
-<dd><p>Return the the default parameters of hyperopt (v0.1.2).</p>
-<p><a class="reference internal" href="#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> can be instantiated with the parameters returned
-by this method.</p>
+<dd><p>返回 hypoeropt (v0.1.2) 的默认参数。</p>
+<p><a class="reference internal" href="#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> 可以由该方法返回的参数值来进行实例化。</p>
 <p class="rubric">示例</p>
-<p>Create a <a class="reference internal" href="#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> instance with the default
-parameters of <a class="reference external" href="https://github.com/hyperopt/hyperopt/tree/0.1.2">hyperopt</a>.</p>
+<p>用 <a class="reference external" href="https://github.com/hyperopt/hyperopt/tree/0.1.2">hyperopt</a> 的默认参数创建一个 <a class="reference internal" href="#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a>  实例。</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 <span class="kn">from</span> <span class="nn">optuna.samplers</span> <span class="kn">import</span> <span class="n">TPESampler</span>
 
@@ -489,7 +413,7 @@ parameters of <a class="reference external" href="https://github.com/hyperopt/hy
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>A dictionary containing the default parameters of hyperopt.</p>
+<dd class="field-odd"><p>包含 hyperopt 的默认参数的字典。</p>
 </dd>
 </dl>
 </dd></dl>
@@ -497,12 +421,8 @@ parameters of <a class="reference external" href="https://github.com/hyperopt/hy
 <dl class="py method">
 <dt id="optuna.samplers.TPESampler.reseed_rng">
 <code class="sig-name descname">reseed_rng</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/samplers/_tpe/sampler.html#TPESampler.reseed_rng"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.TPESampler.reseed_rng" title="永久链接至目标">¶</a></dt>
-<dd><p>Reseed sampler's random number generator.</p>
-<p>This method is called by the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> instance if trials are executed
-in parallel with the option <code class="docutils literal notranslate"><span class="pre">n_jobs&gt;1</span></code>. In that case, the sampler instance will be
-replicated including the state of the random number generator, and they may suggest the
-same values. To prevent this issue, this method assigns a different seed to each random
-number generator.</p>
+<dd><p>重设 sampler 的随机数种子。</p>
+<p>该方法由 <code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span> <span class="pre">的实例来调用。而且，如果选项</span> <span class="pre">``n_jobs&gt;1`</span></code> 的话，它会被并行执行。在那种情况下，这个 sampler 实例会被复制，其中就报错了随机数生成器的状态，因此它们可能会产生同样的 suggestion 值。为了防止出现这个问题，该方法给每一个随机数生成器赋予一个不同的种子。</p>
 </dd></dl>
 
 </dd></dl>
@@ -510,9 +430,9 @@ number generator.</p>
 <dl class="py class">
 <dt id="optuna.samplers.CmaEsSampler">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.samplers.</code><code class="sig-name descname">CmaEsSampler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x0</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span>Any<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sigma0</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_startup_trials</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">independent_sampler</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>optuna.samplers._base.BaseSampler<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">warn_independent_sampling</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/samplers/_cmaes.html#CmaEsSampler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.CmaEsSampler" title="永久链接至目标">¶</a></dt>
-<dd><p>A Sampler using CMA-ES algorithm.</p>
+<dd><p>使用 CMA-ES 算法的 sampler.</p>
 <p class="rubric">示例</p>
-<p>Optimize a simple quadratic function by using <a class="reference internal" href="#optuna.samplers.CmaEsSampler" title="optuna.samplers.CmaEsSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">CmaEsSampler</span></code></a>.</p>
+<p>用 <a class="reference internal" href="#optuna.samplers.CmaEsSampler" title="optuna.samplers.CmaEsSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">CmaEsSampler</span></code></a> 来优化一个简单的二次函数。</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
@@ -525,59 +445,28 @@ number generator.</p>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Please note that this sampler does not support CategoricalDistribution.
-If your search space contains categorical parameters, I recommend you
-to use <a class="reference internal" href="#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> instead.
-Furthermore, there is room for performance improvements in parallel
-optimization settings. This sampler cannot use some trials for updating
-the parameters of multivariate normal distribution.</p>
+<p>请注意，此 sampler 不支持 CategoricalDistribution。如果您的搜索空间包含分类参数，作为代替，建议您使用 <a class="reference internal" href="#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a>. 此外，并行优化设置中还有性能改进空间。 这个 sampler 无法使用一些 trial 来更新多元正态分布的参数。</p>
 <div class="admonition seealso">
 <p class="admonition-title">参见</p>
-<p>You can also use <a class="reference internal" href="integration.html#optuna.integration.CmaEsSampler" title="optuna.integration.CmaEsSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.integration.CmaEsSampler</span></code></a> which is a sampler using cma
-library as the backend.</p>
+<p>你也可以使用 <a class="reference internal" href="integration.html#optuna.integration.CmaEsSampler" title="optuna.integration.CmaEsSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.integration.CmaEsSampler</span></code></a>, 它是一个用 cma 库作为后端的 sampler.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x0</strong> -- A dictionary of an initial parameter values for CMA-ES. By default, the mean of <code class="docutils literal notranslate"><span class="pre">low</span></code>
-and <code class="docutils literal notranslate"><span class="pre">high</span></code> for each distribution is used.</p></li>
-<li><p><strong>sigma0</strong> -- Initial standard deviation of CMA-ES. By default, <code class="docutils literal notranslate"><span class="pre">sigma0</span></code> is set to
-<code class="docutils literal notranslate"><span class="pre">min_range</span> <span class="pre">/</span> <span class="pre">6</span></code>, where <code class="docutils literal notranslate"><span class="pre">min_range</span></code> denotes the minimum range of the distributions
-in the search space.</p></li>
-<li><p><strong>seed</strong> -- A random seed for CMA-ES.</p></li>
-<li><p><strong>n_startup_trials</strong> -- The independent sampling is used instead of the CMA-ES algorithm until the given number
-of trials finish in the same study.</p></li>
-<li><p><strong>independent_sampler</strong> -- <p>A <a class="reference internal" href="#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a> instance that is used for independent
-sampling. The parameters not contained in the relative search space are sampled
-by this sampler.
-The search space for <a class="reference internal" href="#optuna.samplers.CmaEsSampler" title="optuna.samplers.CmaEsSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">CmaEsSampler</span></code></a> is determined by
-<a class="reference internal" href="#optuna.samplers.intersection_search_space" title="optuna.samplers.intersection_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">intersection_search_space()</span></code></a>.</p>
-<p>If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is specified, <a class="reference internal" href="#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSampler</span></code></a> is used
-as the default.</p>
-<div class="admonition seealso">
-<p class="admonition-title">参见</p>
-<p><a class="reference internal" href="#module-optuna.samplers" title="optuna.samplers"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.samplers</span></code></a> module provides built-in independent samplers
-such as <a class="reference internal" href="#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSampler</span></code></a> and
-<a class="reference internal" href="#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a>.</p>
-</div>
-</p></li>
-<li><p><strong>warn_independent_sampling</strong> -- <p>If this is <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, a warning message is emitted when
-the value of a parameter is sampled by using an independent sampler.</p>
-<p>Note that the parameters of the first trial in a study are always sampled
-via an independent sampler, so no warning messages are emitted in this case.</p>
-</p></li>
+<li><p><strong>x0</strong> -- 一个包含了 CMA-ES 的初始参数的字典。在默认情况下，每个分布的 <code class="docutils literal notranslate"><span class="pre">low</span></code> and <code class="docutils literal notranslate"><span class="pre">high</span></code> 的平均数是被采用的。</p></li>
+<li><p><strong>sigma0</strong> -- CMA-ES 的初始标准差。默认情况下， <code class="docutils literal notranslate"><span class="pre">sigma0</span></code> 会被设置成 <code class="docutils literal notranslate"><span class="pre">min_range</span> <span class="pre">/</span> <span class="pre">6</span></code>, 而 <code class="docutils literal notranslate"><span class="pre">min_range</span></code> 代表着搜索空间中最小的分布范围。</p></li>
+<li><p><strong>seed</strong> -- CMA-ES 的随机数种子。</p></li>
+<li><p><strong>n_startup_trials</strong> -- 除非同一个 study 中指定个数的 trial 已经完成，否则将会采用独立 sampling 而不是 CMA-ES 算法。</p></li>
+<li><p><strong>independent_sampler</strong> -- 一个 <a class="reference internal" href="#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a>  实例，它用于独立 sampling.那些并不包含在相对搜索空间中的参数是通过这个 sampler 来采样的。<a class="reference internal" href="#optuna.samplers.CmaEsSampler" title="optuna.samplers.CmaEsSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">CmaEsSampler</span></code></a> 的搜索空间 是通过 <a class="reference internal" href="#optuna.samplers.intersection_search_space" title="optuna.samplers.intersection_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">intersection_search_space()</span></code></a> 来确定的。如果设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> 的话，<a class="reference internal" href="#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSampler</span></code></a> 会作为默认 sampler 被使用。.. seealso::     <a class="reference internal" href="#module-optuna.samplers" title="optuna.samplers"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.samplers</span></code></a> 模块提供了内置的独立 sampler, 比如 <a class="reference internal" href="#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSampler</span></code></a> 和     <a class="reference internal" href="#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a>.</p></li>
+<li><p><strong>warn_independent_sampling</strong> -- 如果这是 <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, 那么当一个参数的值是通过独立 sampler 来采样时，它会触发一个 warning 信息。注意，由于一个 study 中的第一个 trial 的参数总要通过独立 sampler 来采样，因此这种情况下 warning 信息不会被触发。</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt id="optuna.samplers.CmaEsSampler.reseed_rng">
 <code class="sig-name descname">reseed_rng</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/samplers/_cmaes.html#CmaEsSampler.reseed_rng"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.CmaEsSampler.reseed_rng" title="永久链接至目标">¶</a></dt>
-<dd><p>Reseed sampler's random number generator.</p>
-<p>This method is called by the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> instance if trials are executed
-in parallel with the option <code class="docutils literal notranslate"><span class="pre">n_jobs&gt;1</span></code>. In that case, the sampler instance will be
-replicated including the state of the random number generator, and they may suggest the
-same values. To prevent this issue, this method assigns a different seed to each random
-number generator.</p>
+<dd><p>重设 sampler 的随机数种子。</p>
+<p>该方法由 <code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span> <span class="pre">的实例来调用。而且，如果选项</span> <span class="pre">``n_jobs&gt;1`</span></code> 的话，它会被并行执行。在那种情况下，这个 sampler 实例会被复制，其中就报错了随机数生成器的状态，因此它们可能会产生同样的 suggestion 值。为了防止出现这个问题，该方法给每一个随机数生成器赋予一个不同的种子。</p>
 </dd></dl>
 
 </dd></dl>
@@ -586,30 +475,21 @@ number generator.</p>
 <dt id="optuna.samplers.IntersectionSearchSpace">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.samplers.</code><code class="sig-name descname">IntersectionSearchSpace</code><a class="reference internal" href="../_modules/optuna/samplers/_search_space.html#IntersectionSearchSpace"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.IntersectionSearchSpace" title="永久链接至目标">¶</a></dt>
 <dd><p>A class to calculate the intersection search space of a <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseStudy</span></code>.</p>
-<p>Intersection search space contains the intersection of parameter distributions that have been
-suggested in the completed trials of the study so far.
-If there are multiple parameters that have the same name but different distributions,
-neither is included in the resulting search space
-(i.e., the parameters with dynamic value ranges are excluded).</p>
-<p>Note that an instance of this class is supposed to be used for only one study.
-If different studies are passed to <a class="reference internal" href="#optuna.samplers.IntersectionSearchSpace.calculate" title="optuna.samplers.IntersectionSearchSpace.calculate"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate()</span></code></a>,
-a <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a> is raised.</p>
+<p>交叉搜索空间包含着该 study 中目前已完成的 trial 中参数 suggestion 值的分布的交集。如果存在多个拥有同一个名字但是其分布不同的参数的话，那么它们都不会被纳入最终的搜索空间 （也就是说，带有动态范围的参数会被排除）。</p>
+<p>注意，该类的实例只应用于一个 study。如果不同的 study 被传入 <a class="reference internal" href="#optuna.samplers.IntersectionSearchSpace.calculate" title="optuna.samplers.IntersectionSearchSpace.calculate"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate()</span></code></a> 的话，一个 <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a> 会被抛出。</p>
 <dl class="py method">
 <dt id="optuna.samplers.IntersectionSearchSpace.calculate">
 <code class="sig-name descname">calculate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n">optuna.study.BaseStudy</span></em>, <em class="sig-param"><span class="n">ordered_dict</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span>optuna.distributions.BaseDistribution<span class="p">]</span><a class="reference internal" href="../_modules/optuna/samplers/_search_space.html#IntersectionSearchSpace.calculate"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.IntersectionSearchSpace.calculate" title="永久链接至目标">¶</a></dt>
-<dd><p>Returns the intersection search space of the <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseStudy</span></code>.</p>
+<dd><p>返回 <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseStudy</span></code> 的交叉搜索空间。</p>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>study</strong> -- A study with completed trials.</p></li>
-<li><p><strong>ordered_dict</strong> -- A boolean flag determining the return type.
-If <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>, the returned object will be a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>.
-If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, the returned object will be an <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collections.OrderedDict</span></code></a>
-sorted by keys, i.e. parameter names.</p></li>
+<li><p><strong>study</strong> -- 带有已完成的 trial 的 study.</p></li>
+<li><p><strong>ordered_dict</strong> -- 一个布尔选项，用于确定返回值的类型。如果设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> 的话，返回的对象会是一个 <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>.如果设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, 返回对象会是一个键（也就是参数）已排过序的 <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collections.OrderedDict</span></code></a>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">返回</dt>
-<dd class="field-even"><p>A dictionary containing the parameter names and parameter's distributions.</p>
+<dd class="field-even"><p>一个包含了参数名和参数分布的字典。</p>
 </dd>
 </dl>
 </dd></dl>
@@ -619,30 +499,21 @@ sorted by keys, i.e. parameter names.</p></li>
 <dl class="py function">
 <dt id="optuna.samplers.intersection_search_space">
 <code class="sig-prename descclassname">optuna.samplers.</code><code class="sig-name descname">intersection_search_space</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n">optuna.study.BaseStudy</span></em>, <em class="sig-param"><span class="n">ordered_dict</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span>optuna.distributions.BaseDistribution<span class="p">]</span><a class="reference internal" href="../_modules/optuna/samplers/_search_space.html#intersection_search_space"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.samplers.intersection_search_space" title="永久链接至目标">¶</a></dt>
-<dd><p>Return the intersection search space of the <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseStudy</span></code>.</p>
-<p>Intersection search space contains the intersection of parameter distributions that have been
-suggested in the completed trials of the study so far.
-If there are multiple parameters that have the same name but different distributions,
-neither is included in the resulting search space
-(i.e., the parameters with dynamic value ranges are excluded).</p>
+<dd><p>返回 <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseStudy</span></code> 的交叉搜索空间。</p>
+<p>交叉搜索空间包含着该 study 中目前已完成的 trial 中参数 suggestion 值的分布的交集。如果存在多个拥有同一个名字但是其分布不同的参数的话，那么它们都不会被纳入最终的搜索空间 （也就是说，带有动态范围的参数会被排除）。</p>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p><a class="reference internal" href="#optuna.samplers.IntersectionSearchSpace" title="optuna.samplers.IntersectionSearchSpace"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntersectionSearchSpace</span></code></a> provides the same functionality with
-a much faster way. Please consider using it if you want to reduce execution time
-as much as possible.</p>
+<p><a class="reference internal" href="#optuna.samplers.IntersectionSearchSpace" title="optuna.samplers.IntersectionSearchSpace"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntersectionSearchSpace</span></code></a> 能以更快的速度提供同样的功能。如果你想尽可能降低运行时间的话，可以考虑使用它。</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>study</strong> -- A study with completed trials.</p></li>
-<li><p><strong>ordered_dict</strong> -- A boolean flag determining the return type.
-If <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>, the returned object will be a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>.
-If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, the returned object will be an <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collections.OrderedDict</span></code></a> sorted by
-keys, i.e. parameter names.</p></li>
+<li><p><strong>study</strong> -- 带有已完成的 trial 的 study.</p></li>
+<li><p><strong>ordered_dict</strong> -- 一个布尔选项，用于确定返回值的类型。如果设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> 的话，返回的对象会是一个 <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>.如果设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, 返回对象会是一个键（也就是参数）已排过序的 <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collections.OrderedDict</span></code></a>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">返回</dt>
-<dd class="field-even"><p>A dictionary containing the parameter names and parameter's distributions.</p>
+<dd class="field-even"><p>一个包含了参数名和参数分布的字典。</p>
 </dd>
 </dl>
 </dd></dl>

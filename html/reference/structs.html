@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="core.html">Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.html">命令行界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributions.html">Distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="importance.html">Hyperparameter Importance</a></li>
@@ -182,77 +182,74 @@
 <dl class="py class">
 <dt id="optuna.structs.TrialState">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.structs.</code><code class="sig-name descname">TrialState</code><a class="reference internal" href="../_modules/optuna/trial/_state.html#TrialState"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.structs.TrialState" title="永久链接至目标">¶</a></dt>
-<dd><p>State of a <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>.</p>
+<dd><p><a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 的状态</p>
 <dl class="py attribute">
 <dt id="optuna.structs.TrialState.RUNNING">
 <code class="sig-name descname">RUNNING</code><a class="headerlink" href="#optuna.structs.TrialState.RUNNING" title="永久链接至目标">¶</a></dt>
-<dd><p>The <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> is running.</p>
+<dd><p>运行中的 <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.structs.TrialState.COMPLETE">
 <code class="sig-name descname">COMPLETE</code><a class="headerlink" href="#optuna.structs.TrialState.COMPLETE" title="永久链接至目标">¶</a></dt>
-<dd><p>The <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> has been finished without any error.</p>
+<dd><p>已完成且未触发错误的 <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.structs.TrialState.PRUNED">
 <code class="sig-name descname">PRUNED</code><a class="headerlink" href="#optuna.structs.TrialState.PRUNED" title="永久链接至目标">¶</a></dt>
-<dd><p>The <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> has been pruned with
-<a class="reference internal" href="exceptions.html#optuna.exceptions.TrialPruned" title="optuna.exceptions.TrialPruned"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrialPruned</span></code></a>.</p>
+<dd><p>已经被 <a class="reference internal" href="exceptions.html#optuna.exceptions.TrialPruned" title="optuna.exceptions.TrialPruned"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrialPruned</span></code></a> 剪枝的 <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.structs.TrialState.FAIL">
 <code class="sig-name descname">FAIL</code><a class="headerlink" href="#optuna.structs.TrialState.FAIL" title="永久链接至目标">¶</a></dt>
-<dd><p>The <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> has failed due to an uncaught error.</p>
+<dd><p>由于未捕获的错误，该 <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 已经失败。</p>
 </dd></dl>
 
 <div class="deprecated">
-<p><span class="versionmodified deprecated">1.4.0 版后已移除: </span>This class is deprecated. Please use <a class="reference internal" href="trial.html#optuna.trial.TrialState" title="optuna.trial.TrialState"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrialState</span></code></a> instead.</p>
+<p><span class="versionmodified deprecated">1.4.0 版后已移除: </span>该类已废弃。请改用 <a class="reference internal" href="trial.html#optuna.trial.TrialState" title="optuna.trial.TrialState"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrialState</span></code></a>.</p>
 </div>
 </dd></dl>
 
 <dl class="py class">
 <dt id="optuna.structs.StudyDirection">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.structs.</code><code class="sig-name descname">StudyDirection</code><a class="reference internal" href="../_modules/optuna/_study_direction.html#StudyDirection"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.structs.StudyDirection" title="永久链接至目标">¶</a></dt>
-<dd><p>Direction of a <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
+<dd><p><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 的方向。</p>
 <dl class="py attribute">
 <dt id="optuna.structs.StudyDirection.NOT_SET">
 <code class="sig-name descname">NOT_SET</code><a class="headerlink" href="#optuna.structs.StudyDirection.NOT_SET" title="永久链接至目标">¶</a></dt>
-<dd><p>Direction has not been set.</p>
+<dd><p>方向未设置。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.structs.StudyDirection.MINIMIZE">
 <code class="sig-name descname">MINIMIZE</code><a class="headerlink" href="#optuna.structs.StudyDirection.MINIMIZE" title="永久链接至目标">¶</a></dt>
-<dd><p><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> minimizes the objective function.</p>
+<dd><p><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 将最小化目标函数</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.structs.StudyDirection.MAXIMIZE">
 <code class="sig-name descname">MAXIMIZE</code><a class="headerlink" href="#optuna.structs.StudyDirection.MAXIMIZE" title="永久链接至目标">¶</a></dt>
-<dd><p><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> maximizes the objective function.</p>
+<dd><p><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 将最大化目标函数。</p>
 </dd></dl>
 
 <div class="deprecated">
-<p><span class="versionmodified deprecated">1.4.0 版后已移除: </span>This class is deprecated. Please use <a class="reference internal" href="study.html#optuna.study.StudyDirection" title="optuna.study.StudyDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">StudyDirection</span></code></a> instead.</p>
+<p><span class="versionmodified deprecated">1.4.0 版后已移除: </span>该类已废弃，请改用 <a class="reference internal" href="study.html#optuna.study.StudyDirection" title="optuna.study.StudyDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">StudyDirection</span></code></a>.</p>
 </div>
 </dd></dl>
 
 <dl class="py class">
 <dt id="optuna.structs.FrozenTrial">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.structs.</code><code class="sig-name descname">FrozenTrial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">number</span></em>, <em class="sig-param"><span class="n">state</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">datetime_start</span></em>, <em class="sig-param"><span class="n">datetime_complete</span></em>, <em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">distributions</span></em>, <em class="sig-param"><span class="n">user_attrs</span></em>, <em class="sig-param"><span class="n">system_attrs</span></em>, <em class="sig-param"><span class="n">intermediate_values</span></em>, <em class="sig-param"><span class="n">trial_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/structs.html#FrozenTrial"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.structs.FrozenTrial" title="永久链接至目标">¶</a></dt>
-<dd><p>Status and results of a <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>.</p>
+<dd><p><a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 的状态和返回结果。</p>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">1.4.0 版后已移除: </span>This class was moved to <a class="reference internal" href="trial.html#module-optuna.trial" title="optuna.trial"><code class="xref py py-mod docutils literal notranslate"><span class="pre">trial</span></code></a>. Please use
-<a class="reference internal" href="trial.html#optuna.trial.FrozenTrial" title="optuna.trial.FrozenTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code></a> instead.</p>
+<p><span class="versionmodified deprecated">1.4.0 版后已移除: </span>该类已经迁移至 <a class="reference internal" href="trial.html#module-optuna.trial" title="optuna.trial"><code class="xref py py-mod docutils literal notranslate"><span class="pre">trial</span></code></a>, 请改用 <a class="reference internal" href="trial.html#optuna.trial.FrozenTrial" title="optuna.trial.FrozenTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code></a>.</p>
 </div>
 <dl class="py attribute">
 <dt id="optuna.structs.FrozenTrial.number">
 <code class="sig-name descname">number</code><a class="headerlink" href="#optuna.structs.FrozenTrial.number" title="永久链接至目标">¶</a></dt>
-<dd><p>Unique and consecutive number of <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> for each
-<a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>. Note that this field uses zero-based numbering.</p>
+<dd><p>对于每一个 <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 设立的从 0 开始计数的 <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 编号。</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -270,44 +267,43 @@
 <dl class="py attribute">
 <dt id="optuna.structs.FrozenTrial.datetime_start">
 <code class="sig-name descname">datetime_start</code><a class="headerlink" href="#optuna.structs.FrozenTrial.datetime_start" title="永久链接至目标">¶</a></dt>
-<dd><p>Datetime where the <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> started.</p>
+<dd><p><a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 的开始时间。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.structs.FrozenTrial.datetime_complete">
 <code class="sig-name descname">datetime_complete</code><a class="headerlink" href="#optuna.structs.FrozenTrial.datetime_complete" title="永久链接至目标">¶</a></dt>
-<dd><p>Datetime where the <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> finished.</p>
+<dd><p><a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 的结束时间。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.structs.FrozenTrial.params">
 <code class="sig-name descname">params</code><a class="headerlink" href="#optuna.structs.FrozenTrial.params" title="永久链接至目标">¶</a></dt>
-<dd><p>Dictionary that contains suggested parameters.</p>
+<dd><p>包含了 suggested 参数集的字典。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.structs.FrozenTrial.user_attrs">
 <code class="sig-name descname">user_attrs</code><a class="headerlink" href="#optuna.structs.FrozenTrial.user_attrs" title="永久链接至目标">¶</a></dt>
-<dd><p>Dictionary that contains the attributes of the <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> set with
-<a class="reference internal" href="trial.html#optuna.trial.Trial.set_user_attr" title="optuna.trial.Trial.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.set_user_attr()</span></code></a>.</p>
+<dd><p>该字典包含了一个 <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 中所有用 <a class="reference internal" href="trial.html#optuna.trial.Trial.set_user_attr" title="optuna.trial.Trial.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.set_user_attr()</span></code></a> 来设置的属性。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.structs.FrozenTrial.intermediate_values">
 <code class="sig-name descname">intermediate_values</code><a class="headerlink" href="#optuna.structs.FrozenTrial.intermediate_values" title="永久链接至目标">¶</a></dt>
-<dd><p>Intermediate objective values set with <a class="reference internal" href="trial.html#optuna.trial.Trial.report" title="optuna.trial.Trial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.report()</span></code></a>.</p>
+<dd><p>用 <a class="reference internal" href="trial.html#optuna.trial.Trial.report" title="optuna.trial.Trial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.report()</span></code></a> 设置的中间目标函数值。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.structs.FrozenTrial.distributions">
 <em class="property">property </em><code class="sig-name descname">distributions</code><a class="headerlink" href="#optuna.structs.FrozenTrial.distributions" title="永久链接至目标">¶</a></dt>
-<dd><p>Dictionary that contains the distributions of <a class="reference internal" href="#optuna.structs.FrozenTrial.params" title="optuna.structs.FrozenTrial.params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">params</span></code></a>.</p>
+<dd><p>包含了 <a class="reference internal" href="#optuna.structs.FrozenTrial.params" title="optuna.structs.FrozenTrial.params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">params</span></code></a> 分布的字典。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.structs.FrozenTrial.duration">
 <em class="property">property </em><code class="sig-name descname">duration</code><a class="headerlink" href="#optuna.structs.FrozenTrial.duration" title="永久链接至目标">¶</a></dt>
-<dd><p>Return the elapsed time taken to complete the trial.</p>
+<dd><p>返回完成一个 trial 所消耗的时间。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>The duration.</p>
@@ -320,12 +316,11 @@
 <dl class="py class">
 <dt id="optuna.structs.StudySummary">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.structs.</code><code class="sig-name descname">StudySummary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study_name</span></em>, <em class="sig-param"><span class="n">direction</span></em>, <em class="sig-param"><span class="n">best_trial</span></em>, <em class="sig-param"><span class="n">user_attrs</span></em>, <em class="sig-param"><span class="n">system_attrs</span></em>, <em class="sig-param"><span class="n">n_trials</span></em>, <em class="sig-param"><span class="n">datetime_start</span></em>, <em class="sig-param"><span class="n">study_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/structs.html#StudySummary"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.structs.StudySummary" title="永久链接至目标">¶</a></dt>
-<dd><p>Basic attributes and aggregated results of a <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
+<dd><p><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 的基础属性和整合结果。</p>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">1.4.0 版后已移除: </span>This class was moved to <a class="reference internal" href="study.html#module-optuna.study" title="optuna.study"><code class="xref py py-mod docutils literal notranslate"><span class="pre">study</span></code></a>. Please use
-<a class="reference internal" href="study.html#optuna.study.StudySummary" title="optuna.study.StudySummary"><code class="xref py py-class docutils literal notranslate"><span class="pre">StudySummary</span></code></a> instead.</p>
+<p><span class="versionmodified deprecated">1.4.0 版后已移除: </span>该类已经迁移到 <a class="reference internal" href="study.html#module-optuna.study" title="optuna.study"><code class="xref py py-mod docutils literal notranslate"><span class="pre">study</span></code></a>, 请改用 <a class="reference internal" href="study.html#optuna.study.StudySummary" title="optuna.study.StudySummary"><code class="xref py py-class docutils literal notranslate"><span class="pre">StudySummary</span></code></a>.</p>
 </div>
-<p>See also <a class="reference internal" href="study.html#optuna.study.get_all_study_summaries" title="optuna.study.get_all_study_summaries"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.study.get_all_study_summaries()</span></code></a>.</p>
+<p>见 <a class="reference internal" href="study.html#optuna.study.get_all_study_summaries" title="optuna.study.get_all_study_summaries"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.study.get_all_study_summaries()</span></code></a>.</p>
 <dl class="py attribute">
 <dt id="optuna.structs.StudySummary.study_name">
 <code class="sig-name descname">study_name</code><a class="headerlink" href="#optuna.structs.StudySummary.study_name" title="永久链接至目标">¶</a></dt>
@@ -341,7 +336,7 @@
 <dl class="py attribute">
 <dt id="optuna.structs.StudySummary.best_trial">
 <code class="sig-name descname">best_trial</code><a class="headerlink" href="#optuna.structs.StudySummary.best_trial" title="永久链接至目标">¶</a></dt>
-<dd><p><a class="reference internal" href="#optuna.structs.FrozenTrial" title="optuna.structs.FrozenTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code></a> with best objective value in the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
+<dd><p>一个 <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 中有着最佳目标函数值的 <a class="reference internal" href="#optuna.structs.FrozenTrial" title="optuna.structs.FrozenTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code></a> .</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -354,20 +349,19 @@
 <dl class="py attribute">
 <dt id="optuna.structs.StudySummary.system_attrs">
 <code class="sig-name descname">system_attrs</code><a class="headerlink" href="#optuna.structs.StudySummary.system_attrs" title="永久链接至目标">¶</a></dt>
-<dd><p>Dictionary that contains the attributes of the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> internally
-set by Optuna.</p>
+<dd><p>该字典包含了一个 <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 中所有由 optuna 内部设置的属性。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.structs.StudySummary.n_trials">
 <code class="sig-name descname">n_trials</code><a class="headerlink" href="#optuna.structs.StudySummary.n_trials" title="永久链接至目标">¶</a></dt>
-<dd><p>The number of trials ran in the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
+<dd><p>一个 <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> trials 的数量。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.structs.StudySummary.datetime_start">
 <code class="sig-name descname">datetime_start</code><a class="headerlink" href="#optuna.structs.StudySummary.datetime_start" title="永久链接至目标">¶</a></dt>
-<dd><p>Datetime where the <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> started.</p>
+<dd><p><a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 的开始时间。</p>
 </dd></dl>
 
 </dd></dl>

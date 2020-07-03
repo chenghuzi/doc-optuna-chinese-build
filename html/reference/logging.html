@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="core.html">Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.html">命令行界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributions.html">Distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="importance.html">Hyperparameter Importance</a></li>
@@ -182,15 +182,15 @@
 <dl class="py function">
 <dt id="optuna.logging.get_verbosity">
 <code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">get_verbosity</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a><a class="reference internal" href="../_modules/optuna/logging.html#get_verbosity"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.logging.get_verbosity" title="永久链接至目标">¶</a></dt>
-<dd><p>Return the current level for the Optuna's root logger.</p>
+<dd><p>返回目前 Optuna 的 root logger 的 logging 层级。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>Logging level, e.g., <code class="docutils literal notranslate"><span class="pre">optuna.logging.DEBUG</span></code> and <code class="docutils literal notranslate"><span class="pre">optuna.logging.INFO</span></code>.</p>
+<dd class="field-odd"><p>Logging 层级，比如  <code class="docutils literal notranslate"><span class="pre">optuna.logging.DEBUG</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">optuna.logging.INFO</span></code>.</p>
 </dd>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p>Optuna has following logging levels:</p>
+<p>Optuna 包含以下 loggin 层级。</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">optuna.logging.CRITICAL</span></code>, <code class="docutils literal notranslate"><span class="pre">optuna.logging.FATAL</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">optuna.logging.ERROR</span></code></p></li>
@@ -204,10 +204,10 @@
 <dl class="py function">
 <dt id="optuna.logging.set_verbosity">
 <code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">set_verbosity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">verbosity</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/logging.html#set_verbosity"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.logging.set_verbosity" title="永久链接至目标">¶</a></dt>
-<dd><p>Set the level for the Optuna's root logger.</p>
+<dd><p>设置 Optuna 的 root logger 的 logging 层级。</p>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
-<dd class="field-odd"><p><strong>verbosity</strong> -- Logging level, e.g., <code class="docutils literal notranslate"><span class="pre">optuna.logging.DEBUG</span></code> and <code class="docutils literal notranslate"><span class="pre">optuna.logging.INFO</span></code>.</p>
+<dd class="field-odd"><p><strong>verbosity</strong> -- Logging 层级，比如  <code class="docutils literal notranslate"><span class="pre">optuna.logging.DEBUG</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">optuna.logging.INFO</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -215,9 +215,9 @@
 <dl class="py function">
 <dt id="optuna.logging.disable_default_handler">
 <code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">disable_default_handler</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/logging.html#disable_default_handler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.logging.disable_default_handler" title="永久链接至目标">¶</a></dt>
-<dd><p>Disable the default handler of the Optuna's root logger.</p>
+<dd><p>禁用 Optuna 的 root logger 的默认句柄。</p>
 <p class="rubric">示例</p>
-<p>Stop and then resume logging to <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.stderr" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sys.stderr</span></code></a>.</p>
+<p>停止并恢复 logging 层级到 <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.stderr" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sys.stderr</span></code></a>.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 
 <span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>
@@ -239,25 +239,24 @@
 <dl class="py function">
 <dt id="optuna.logging.enable_default_handler">
 <code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">enable_default_handler</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/logging.html#enable_default_handler"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.logging.enable_default_handler" title="永久链接至目标">¶</a></dt>
-<dd><p>Enable the default handler of the Optuna's root logger.</p>
-<p>Please refer to the example shown in <a class="reference internal" href="#optuna.logging.disable_default_handler" title="optuna.logging.disable_default_handler"><code class="xref py py-func docutils literal notranslate"><span class="pre">disable_default_handler()</span></code></a>.</p>
+<dd><p>启用 Optuna 的 root logger 的默认句柄。</p>
+<p>请参考 <a class="reference internal" href="#optuna.logging.disable_default_handler" title="optuna.logging.disable_default_handler"><code class="xref py py-func docutils literal notranslate"><span class="pre">disable_default_handler()</span></code></a> 中的例子。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="optuna.logging.disable_propagation">
 <code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">disable_propagation</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/logging.html#disable_propagation"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.logging.disable_propagation" title="永久链接至目标">¶</a></dt>
-<dd><p>Disable propagation of the library log outputs.</p>
-<p>Note that log propagation is disabled by default.</p>
+<dd><p>禁用库 log 输出的传递。</p>
+<p>注意：log 传递默认情况下是被禁用的。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="optuna.logging.enable_propagation">
 <code class="sig-prename descclassname">optuna.logging.</code><code class="sig-name descname">enable_propagation</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/logging.html#enable_propagation"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.logging.enable_propagation" title="永久链接至目标">¶</a></dt>
-<dd><p>Enable propagation of the library log outputs.</p>
-<p>Please disable the Optuna's default handler to prevent double logging if the root logger has
-been configured.</p>
+<dd><p>启用库 log 输出的传递。</p>
+<p>如果已经配置了 root logger 的话，请禁用 Optuna 的默认句柄，以防止重复 logging。</p>
 <p class="rubric">示例</p>
-<p>Propagate all log output to the root logger in order to save them to the file.</p>
+<p>将所有的log 输出传递到 root logger 以将它们存储到文件中。</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 

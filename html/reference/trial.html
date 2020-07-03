@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="core.html">Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.html">命令行界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributions.html">Distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="importance.html">Hyperparameter Importance</a></li>
@@ -182,13 +182,9 @@
 <dl class="py class">
 <dt id="optuna.trial.Trial">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.trial.</code><code class="sig-name descname">Trial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span></em>, <em class="sig-param"><span class="n">trial_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial" title="永久链接至目标">¶</a></dt>
-<dd><p>A trial is a process of evaluating an objective function.</p>
-<p>This object is passed to an objective function and provides interfaces to get parameter
-suggestion, manage the trial's state, and set/get user-defined attributes of the trial.</p>
-<p>Note that the direct use of this constructor is not recommended.
-This object is seamlessly instantiated and passed to the objective function behind
-the <a class="reference internal" href="study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.study.Study.optimize()</span></code></a> method; hence library users do not care about
-instantiation of this object.</p>
+<dd><p>一个 Trial 是一个评估目标函数的过程。</p>
+<p>该对象被传递给目标函数，并提供接口以获取 parameter suggestion, 管理 trial 状态以及设置/获取 trial 的用户定义属性。</p>
+<p>请注意，我们不建议直接使用此构造函数。 该对象被无缝实例化，并传递给 <a class="reference internal" href="study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.study.Study.optimize()</span></code></a> 方法后面的目标函数； 因此，库用户并不关心该对象的实例化。</p>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
@@ -200,7 +196,7 @@ instantiation of this object.</p>
 <dl class="py method">
 <dt id="optuna.trial.Trial.datetime_start">
 <em class="property">property </em><code class="sig-name descname">datetime_start</code><a class="headerlink" href="#optuna.trial.Trial.datetime_start" title="永久链接至目标">¶</a></dt>
-<dd><p>Return start datetime.</p>
+<dd><p>返回开始日期时间</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>Datetime where the <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> started.</p>
@@ -211,10 +207,10 @@ instantiation of this object.</p>
 <dl class="py method">
 <dt id="optuna.trial.Trial.distributions">
 <em class="property">property </em><code class="sig-name descname">distributions</code><a class="headerlink" href="#optuna.trial.Trial.distributions" title="永久链接至目标">¶</a></dt>
-<dd><p>Return distributions of parameters to be optimized.</p>
+<dd><p>返回待优化参数的分布。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>A dictionary containing all distributions.</p>
+<dd class="field-odd"><p>一个包含所有分布的字典。</p>
 </dd>
 </dl>
 </dd></dl>
@@ -222,7 +218,7 @@ instantiation of this object.</p>
 <dl class="py method">
 <dt id="optuna.trial.Trial.number">
 <em class="property">property </em><code class="sig-name descname">number</code><a class="headerlink" href="#optuna.trial.Trial.number" title="永久链接至目标">¶</a></dt>
-<dd><p>Return trial's number which is consecutive and unique in a study.</p>
+<dd><p>返回 trial 的连续且唯一的编号。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>A trial number.</p>
@@ -236,7 +232,7 @@ instantiation of this object.</p>
 <dd><p>Return parameters to be optimized.</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>A dictionary containing all parameters.</p>
+<dd class="field-odd"><p>一个包含所有参数的字典.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -244,21 +240,18 @@ instantiation of this object.</p>
 <dl class="py method">
 <dt id="optuna.trial.Trial.report">
 <code class="sig-name descname">report</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">step</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.report"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.report" title="永久链接至目标">¶</a></dt>
-<dd><p>Report an objective function value for a given step.</p>
-<p>The reported values are used by the pruners to determine whether this trial should be
-pruned.</p>
+<dd><p>报告给定的步骤下目标函数值。</p>
+<p>Pruner 使用报告的值来确定是否应对该 trial 剪枝。</p>
 <div class="admonition seealso">
 <p class="admonition-title">参见</p>
-<p>Please refer to <a class="reference internal" href="pruners.html#optuna.pruners.BasePruner" title="optuna.pruners.BasePruner"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePruner</span></code></a>.</p>
+<p>参见 <a class="reference internal" href="pruners.html#optuna.pruners.BasePruner" title="optuna.pruners.BasePruner"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePruner</span></code></a>.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p>The reported value is converted to <code class="docutils literal notranslate"><span class="pre">float</span></code> type by applying <code class="docutils literal notranslate"><span class="pre">float()</span></code>
-function internally. Thus, it accepts all float-like types (e.g., <code class="docutils literal notranslate"><span class="pre">numpy.float32</span></code>).
-If the conversion fails, a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> is raised.</p>
+<p>报告值在内部被 <code class="docutils literal notranslate"><span class="pre">float()</span></code> 函数转换成 <code class="docutils literal notranslate"><span class="pre">float</span></code> 类型。因此，它接受所有类似float的类型（例如 <code class="docutils literal notranslate"><span class="pre">numpy.float32''</span> <span class="pre">）。</span> <span class="pre">如果转换失败，则会引发</span> <span class="pre">``TypeError</span></code>.</p>
 </div>
 <p class="rubric">示例</p>
-<p>Report intermediate scores of <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html">SGDClassifier</a> training.</p>
+<p>报告 <cite>SGDClassifier &lt;https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html&gt;</cite> 在训练中的中间值。</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDClassifier</span>
@@ -287,8 +280,8 @@ If the conversion fails, a <code class="docutils literal notranslate"><span clas
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>value</strong> -- A value returned from the objective function.</p></li>
-<li><p><strong>step</strong> -- Step of the trial (e.g., Epoch of neural network training).</p></li>
+<li><p><strong>value</strong> -- 从目标函数返回的值。</p></li>
+<li><p><strong>step</strong> -- Trial 步骤（例如，神经网络训练的 epoch）。</p></li>
 </ul>
 </dd>
 </dl>
@@ -297,10 +290,10 @@ If the conversion fails, a <code class="docutils literal notranslate"><span clas
 <dl class="py method">
 <dt id="optuna.trial.Trial.set_user_attr">
 <code class="sig-name descname">set_user_attr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.set_user_attr"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.set_user_attr" title="永久链接至目标">¶</a></dt>
-<dd><p>Set user attributes to the trial.</p>
-<p>The user attributes in the trial can be access via <a class="reference internal" href="#optuna.trial.Trial.user_attrs" title="optuna.trial.Trial.user_attrs"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.user_attrs()</span></code></a>.</p>
+<dd><p>将用户属性设置到 trial中。</p>
+<p>可以通过 <a class="reference internal" href="#optuna.trial.Trial.user_attrs" title="optuna.trial.Trial.user_attrs"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.user_attrs()</span></code></a> 访问试 trial 中的用户属性。</p>
 <p class="rubric">示例</p>
-<p>Save fixed hyperparameters of neural network training.</p>
+<p>保存神经网络训练的固定超参数。</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
@@ -331,7 +324,7 @@ If the conversion fails, a <code class="docutils literal notranslate"><span clas
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>key</strong> -- A key string of the attribute.</p></li>
-<li><p><strong>value</strong> -- A value of the attribute. The value should be JSON serializable.</p></li>
+<li><p><strong>value</strong> -- 属性的值。 该值应为JSON可序列化的。</p></li>
 </ul>
 </dd>
 </dl>
@@ -340,24 +333,19 @@ If the conversion fails, a <code class="docutils literal notranslate"><span clas
 <dl class="py method">
 <dt id="optuna.trial.Trial.should_prune">
 <code class="sig-name descname">should_prune</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.should_prune"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.should_prune" title="永久链接至目标">¶</a></dt>
-<dd><p>Suggest whether the trial should be pruned or not.</p>
-<p>The suggestion is made by a pruning algorithm associated with the trial and is based on
-previously reported values. The algorithm can be specified when constructing a
-<a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
+<dd><p>建议是否应修剪该 trial.</p>
+<p>该 suggestion 是基于先前报告的值并通过与试验相关的 pruning 算法提出的。 可以在构造一个 <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 时指定该算法。</p>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p>If no values have been reported, the algorithm cannot make meaningful suggestions.
-Similarly, if this method is called multiple times with the exact same set of reported
-values, the suggestions will be the same.</p>
+<p>如果未报告任何值，则该算法无法提出有意义的 suggestion。 同样，如果使用完全相同的一组报告值多次调用此方法，则 suggestion 也将相同。</p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">参见</p>
-<p>Please refer to the example code in <a class="reference internal" href="#optuna.trial.Trial.report" title="optuna.trial.Trial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.report()</span></code></a>.</p>
+<p>请参考 <a class="reference internal" href="#optuna.trial.Trial.report" title="optuna.trial.Trial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.report()</span></code></a> 的示例代码。</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>A boolean value. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, the trial should be pruned according to the
-configured pruning algorithm. Otherwise, the trial should continue.</p>
+<dd class="field-odd"><p>一个布尔值。如果为 <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, 则应根据配置的 pruning 算法对 trial 进行修剪。否则， trial 应继续进行。</p>
 </dd>
 </dl>
 </dd></dl>
@@ -365,10 +353,10 @@ configured pruning algorithm. Otherwise, the trial should continue.</p>
 <dl class="py method">
 <dt id="optuna.trial.Trial.suggest_categorical">
 <code class="sig-name descname">suggest_categorical</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">choices</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.suggest_categorical"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_categorical" title="永久链接至目标">¶</a></dt>
-<dd><p>Suggest a value for the categorical parameter.</p>
-<p>The value is sampled from <code class="docutils literal notranslate"><span class="pre">choices</span></code>.</p>
+<dd><p>为分类参数提供一个 suggestion.</p>
+<p>这个值是用 <code class="docutils literal notranslate"><span class="pre">choices</span></code> 进行采样的。</p>
 <p class="rubric">示例</p>
-<p>Suggest a kernel function of <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html">SVC</a>.</p>
+<p>为 <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html">SVC</a> 提供一个 suggestion.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
@@ -411,18 +399,10 @@ configured pruning algorithm. Otherwise, the trial should continue.</p>
 <dl class="py method">
 <dt id="optuna.trial.Trial.suggest_discrete_uniform">
 <code class="sig-name descname">suggest_discrete_uniform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">q</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.suggest_discrete_uniform"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_discrete_uniform" title="永久链接至目标">¶</a></dt>
-<dd><p>Suggest a value for the discrete parameter.</p>
-<p>The value is sampled from the range <span class="math notranslate nohighlight">\([\mathsf{low}, \mathsf{high}]\)</span>,
-and the step of discretization is <span class="math notranslate nohighlight">\(q\)</span>. More specifically,
-this method returns one of the values in the sequence
-<span class="math notranslate nohighlight">\(\mathsf{low}, \mathsf{low} + q, \mathsf{low} + 2 q, \dots,
-\mathsf{low} + k q \le \mathsf{high}\)</span>,
-where <span class="math notranslate nohighlight">\(k\)</span> denotes an integer. Note that <span class="math notranslate nohighlight">\(high\)</span> may be changed due to round-off
-errors if <span class="math notranslate nohighlight">\(q\)</span> is not an integer. Please check warning messages to find the changed
-values.</p>
+<dd><p>提供离散参数的 suggestion.</p>
+<p>该值是从 <span class="math notranslate nohighlight">\([\mathsf{low}, \mathsf{high}]\)</span> 中采样的，并且其离散化的步数是:math:<cite>q</cite>. 更具体地说，该方法返回 <span class="math notranslate nohighlight">\(\mathsf{low}, \mathsf{low} + q, \mathsf{low} + 2 q, \dots, \mathsf{low} + k q \le \mathsf{high}\)</span> 序列中的一个值，其中:math:<cite>k</cite> 代表一个整数。注意，如果 <span class="math notranslate nohighlight">\(q\)</span> 不是整数的话，<span class="math notranslate nohighlight">\(high\)</span>  可能因为舍入误差而不同。请通过检查 warning 信息来找到改变的值。</p>
 <p class="rubric">示例</p>
-<p>Suggest a fraction of samples used for fitting the individual learners of
-<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html">GradientBoostingClassifier</a>.</p>
+<p>为 拟合 <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html">GradientBoostingClassifier</a> 的各个 learner 所需的样本个数提供一个 suggestion.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
@@ -447,9 +427,9 @@ values.</p>
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> -- A parameter name.</p></li>
-<li><p><strong>low</strong> -- Lower endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">low</span></code> is included in the range.</p></li>
-<li><p><strong>high</strong> -- Upper endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">high</span></code> is included in the range.</p></li>
-<li><p><strong>q</strong> -- A step of discretization.</p></li>
+<li><p><strong>low</strong> -- Suggestion 值范围的下限。 <code class="docutils literal notranslate"><span class="pre">low</span></code> 包含在范围内。</p></li>
+<li><p><strong>high</strong> -- Suggestion 值范围的上限。 <code class="docutils literal notranslate"><span class="pre">high</span></code> 包含在范围内。</p></li>
+<li><p><strong>q</strong> -- 一个离散化步骤</p></li>
 </ul>
 </dd>
 <dt class="field-even">返回</dt>
@@ -461,22 +441,17 @@ values.</p>
 <dl class="py method">
 <dt id="optuna.trial.Trial.suggest_float">
 <code class="sig-name descname">suggest_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">low</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">high</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">step</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">log</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.suggest_float"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_float" title="永久链接至目标">¶</a></dt>
-<dd><p>Suggest a value for the floating point parameter.</p>
-<p>Note that this is a wrapper method for <a class="reference internal" href="#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a>,
-<a class="reference internal" href="#optuna.trial.Trial.suggest_loguniform" title="optuna.trial.Trial.suggest_loguniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_loguniform()</span></code></a> and
-<a class="reference internal" href="#optuna.trial.Trial.suggest_discrete_uniform" title="optuna.trial.Trial.suggest_discrete_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_discrete_uniform()</span></code></a>.</p>
+<dd><p>提供一个 浮点数的 suggestion.</p>
+<p>注意，这事一个用于 <a class="reference internal" href="#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a>, <a class="reference internal" href="#optuna.trial.Trial.suggest_loguniform" title="optuna.trial.Trial.suggest_loguniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_loguniform()</span></code></a> 和 <a class="reference internal" href="#optuna.trial.Trial.suggest_discrete_uniform" title="optuna.trial.Trial.suggest_discrete_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_discrete_uniform()</span></code></a> 的 wrapper 方法。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">1.3.0 新版功能.</span></p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">参见</p>
-<p>Please see also <a class="reference internal" href="#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a>,
-<a class="reference internal" href="#optuna.trial.Trial.suggest_loguniform" title="optuna.trial.Trial.suggest_loguniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_loguniform()</span></code></a> and
-<a class="reference internal" href="#optuna.trial.Trial.suggest_discrete_uniform" title="optuna.trial.Trial.suggest_discrete_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_discrete_uniform()</span></code></a>.</p>
+<p>参见 <a class="reference internal" href="#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a>, <a class="reference internal" href="#optuna.trial.Trial.suggest_loguniform" title="optuna.trial.Trial.suggest_loguniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_loguniform()</span></code></a> 和 <a class="reference internal" href="#optuna.trial.Trial.suggest_discrete_uniform" title="optuna.trial.Trial.suggest_discrete_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_discrete_uniform()</span></code></a>.</p>
 </div>
 <p class="rubric">示例</p>
-<p>Suggest a momentum, learning rate and scaling factor of learning rate
-for neural network training.</p>
+<p>为神经网络训练提供 momentum，learning rate 和 learning rate 的比例因子的suggestion 值。</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
@@ -507,30 +482,14 @@ for neural network training.</p>
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> -- A parameter name.</p></li>
-<li><p><strong>low</strong> -- Lower endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">low</span></code> is included in the range.</p></li>
-<li><p><strong>high</strong> -- Upper endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">high</span></code> is excluded from the
-range.</p></li>
-<li><p><strong>step</strong> -- <p>A step of discretization.</p>
-<div class="admonition note">
-<p class="admonition-title">注解</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">step</span></code> and <code class="docutils literal notranslate"><span class="pre">log</span></code> arguments cannot be used at the same time. To set
-the <code class="docutils literal notranslate"><span class="pre">step</span></code> argument to a float number, set the <code class="docutils literal notranslate"><span class="pre">log</span></code> argument to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
-</div>
-</p></li>
-<li><p><strong>log</strong> -- <p>A flag to sample the value from the log domain or not.
-If <code class="docutils literal notranslate"><span class="pre">log</span></code> is true, the value is sampled from the range in the log domain.
-Otherwise, the value is sampled from the range in the linear domain.
-See also <a class="reference internal" href="#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a> and <a class="reference internal" href="#optuna.trial.Trial.suggest_loguniform" title="optuna.trial.Trial.suggest_loguniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_loguniform()</span></code></a>.</p>
-<div class="admonition note">
-<p class="admonition-title">注解</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">step</span></code> and <code class="docutils literal notranslate"><span class="pre">log</span></code> arguments cannot be used at the same time. To set
-the <code class="docutils literal notranslate"><span class="pre">log</span></code> argument to <code class="docutils literal notranslate"><span class="pre">True</span></code>, set the <code class="docutils literal notranslate"><span class="pre">step</span></code> argument to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-</div>
-</p></li>
+<li><p><strong>low</strong> -- Suggestion 值范围的下限。 <code class="docutils literal notranslate"><span class="pre">low</span></code> 包含在范围内。</p></li>
+<li><p><strong>high</strong> -- Suggestion 值范围的上限。 <code class="docutils literal notranslate"><span class="pre">high</span></code> 不包含在范围内。</p></li>
+<li><p><strong>step</strong> -- 一个离散化步骤 .. note::  <code class="docutils literal notranslate"><span class="pre">step</span></code> 和 <code class="docutils literal notranslate"><span class="pre">log</span></code> 参数不能同时使用。要把 <code class="docutils literal notranslate"><span class="pre">step</span></code> 设置成浮点数的话，请先把 <code class="docutils literal notranslate"><span class="pre">log</span></code> 参数设置成 <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>log</strong> -- 是否从对数域采样值的设置选项。如果 <code class="docutils literal notranslate"><span class="pre">log</span></code> 是 true，则从对数域中的范围采样该值，否则将从线性域中的范围采样。参见 <a class="reference internal" href="#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_uniform()</span></code></a> 和 <a class="reference internal" href="#optuna.trial.Trial.suggest_loguniform" title="optuna.trial.Trial.suggest_loguniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">suggest_loguniform()</span></code></a>... note::     <code class="docutils literal notranslate"><span class="pre">step</span></code> 和 <code class="docutils literal notranslate"><span class="pre">log</span></code> 参数不能同时使用。要把 <code class="docutils literal notranslate"><span class="pre">step</span></code> 设置成浮点数的话，请先把 <code class="docutils literal notranslate"><span class="pre">log</span></code> 参数设置成 <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">引发</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(在 Python v3.8)"><strong>ValueError</strong></a> -- If <code class="docutils literal notranslate"><span class="pre">step</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">None</span></code> and <code class="docutils literal notranslate"><span class="pre">log</span> <span class="pre">=</span> <span class="pre">True</span></code> are specified.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(在 Python v3.8)"><strong>ValueError</strong></a> -- 如果 <code class="docutils literal notranslate"><span class="pre">step</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">None</span></code> 并且制定了 <code class="docutils literal notranslate"><span class="pre">log</span> <span class="pre">=</span> <span class="pre">True</span></code>.</p>
 </dd>
 <dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>A suggested float value.</p>
@@ -541,10 +500,10 @@ the <code class="docutils literal notranslate"><span class="pre">log</span></cod
 <dl class="py method">
 <dt id="optuna.trial.Trial.suggest_int">
 <code class="sig-name descname">suggest_int</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">low</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">high</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">step</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">log</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.suggest_int"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_int" title="永久链接至目标">¶</a></dt>
-<dd><p>Suggest a value for the integer parameter.</p>
-<p>The value is sampled from the integers in <span class="math notranslate nohighlight">\([\mathsf{low}, \mathsf{high}]\)</span>.</p>
+<dd><p>提供一个整数 suggestion.</p>
+<p>该值是从 <span class="math notranslate nohighlight">\([\mathsf{low}, \mathsf{high}]\)</span> 中采样的。</p>
 <p class="rubric">示例</p>
-<p>Suggest the number of trees in <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">RandomForestClassifier</a>.</p>
+<p>为 <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">RandomForestClassifier</a> 提供一个关于树个数的 suggestion.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
@@ -569,51 +528,14 @@ the <code class="docutils literal notranslate"><span class="pre">log</span></cod
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> -- A parameter name.</p></li>
-<li><p><strong>low</strong> -- Lower endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">low</span></code> is included in the range.</p></li>
-<li><p><strong>high</strong> -- Upper endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">high</span></code> is included in the range.</p></li>
-<li><p><strong>step</strong> -- <p>A step of discretization.</p>
-<div class="admonition note">
-<p class="admonition-title">注解</p>
-<p>Note that <span class="math notranslate nohighlight">\(\mathsf{high}\)</span> is modified if the range is not divisible by
-<span class="math notranslate nohighlight">\(\mathsf{step}\)</span>. Please check the warning messages to find the changed
-values.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">注解</p>
-<p>The method returns one of the values in the sequence
-<span class="math notranslate nohighlight">\(\mathsf{low}, \mathsf{low} + \mathsf{step}, \mathsf{low} + 2 *
-\mathsf{step}, \dots, \mathsf{low} + k * \mathsf{step} \le
-\mathsf{high}\)</span>, where <span class="math notranslate nohighlight">\(k\)</span> denotes an integer.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">注解</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">step</span> <span class="pre">!=</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">log</span></code> arguments cannot be used at the same time.
-To set the <code class="docutils literal notranslate"><span class="pre">step</span></code> argument <span class="math notranslate nohighlight">\(\mathsf{step} \ge 2\)</span>, set the
-<code class="docutils literal notranslate"><span class="pre">log</span></code> argument to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
-</div>
-</p></li>
-<li><p><strong>log</strong> -- <p>A flag to sample the value from the log domain or not.</p>
-<div class="admonition note">
-<p class="admonition-title">注解</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">log</span></code> is true, at first, the range of suggested values is divided into
-grid points of width 1. The range of suggested values is then converted to
-a log domain, from which a value is sampled. The uniformly sampled
-value is re-converted to the original domain and rounded to the nearest grid
-point that we just split, and the suggested value is determined.
-For example, if <cite>low = 2</cite> and <cite>high = 8</cite>, then the range of suggested values is
-<cite>[2, 3, 4, 5, 6, 7, 8]</cite> and lower values tend to be more sampled than higher
-values.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">注解</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">step</span> <span class="pre">!=</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">log</span></code> arguments cannot be used at the same time.
-To set the <code class="docutils literal notranslate"><span class="pre">log</span></code> argument to <code class="docutils literal notranslate"><span class="pre">True</span></code>, set the <code class="docutils literal notranslate"><span class="pre">step</span></code> argument to 1.</p>
-</div>
-</p></li>
+<li><p><strong>low</strong> -- Suggestion 值范围的下限。 <code class="docutils literal notranslate"><span class="pre">low</span></code> 包含在范围内。</p></li>
+<li><p><strong>high</strong> -- Suggestion 值范围的上限。 <code class="docutils literal notranslate"><span class="pre">high</span></code> 包含在范围内。</p></li>
+<li><p><strong>step</strong> -- 一个离散化步骤。  .. note::     注意， <span class="math notranslate nohighlight">\(\mathsf{high}\)</span> 会被改变，如果该范围无法被 <span class="math notranslate nohighlight">\(\mathsf{step}\)</span> 整除的话。 请通过检查 warning 信息来找出改变了的值。 .. note::     该方法返回序列     <span class="math notranslate nohighlight">\(\mathsf{low}, \mathsf{low} + \mathsf{step}, \mathsf{low} + 2 *     \mathsf{step}, \dots, \mathsf{low} + k * \mathsf{step} \le     \mathsf{high}\)</span> 中的一个值，其中 <span class="math notranslate nohighlight">\(k\)</span> 代表一个整数.  .. note::     参数 <code class="docutils literal notranslate"><span class="pre">step</span> <span class="pre">!=</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">log</span></code> 不能同时使用。     要把 <code class="docutils literal notranslate"><span class="pre">step</span></code> 设置成 <span class="math notranslate nohighlight">\(\mathsf{step} \ge 2\)</span> 的话， 先把     <code class="docutils literal notranslate"><span class="pre">log</span></code> 设置成 <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>log</strong> -- 是否从对数域采样值的设置选项。.. note::     如果``log`` 是 true，则在一开始的时候， suggestion 值的范围会被分成宽度为 1 的网格点。然后 suggestion 值会被转化到对数域，并在该域上进行采样。这些均匀采样的值会被重新转换到原来的线性域上，并且被舍入到最近的网格点中。这就是确定采样值的过程。比如，如果 <cite>low = 2</cite> 且 <cite>high = 8</cite> 的话， suggestion 值的范围就是     <cite>[2, 3, 4, 5, 6, 7, 8]</cite> 而且较小的值有更大的概率被采样到。<code class="docutils literal notranslate"><span class="pre">step</span> <span class="pre">!=</span> <span class="pre">1</span></code> 和 <code class="docutils literal notranslate"><span class="pre">log</span></code> 参数不能同时使用要把 <code class="docutils literal notranslate"><span class="pre">log</span></code> 设置成 <code class="docutils literal notranslate"><span class="pre">True</span></code> 的话，请先把 <code class="docutils literal notranslate"><span class="pre">step</span></code> 设置成 1.</p></li>
 </ul>
 </dd>
 <dt class="field-even">引发</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(在 Python v3.8)"><strong>ValueError</strong></a> -- If <code class="docutils literal notranslate"><span class="pre">step</span> <span class="pre">!=</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">log</span> <span class="pre">=</span> <span class="pre">True</span></code> are specified.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(在 Python v3.8)"><strong>ValueError</strong></a> -- 如果 <code class="docutils literal notranslate"><span class="pre">step</span> <span class="pre">!=</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">log</span> <span class="pre">=</span> <span class="pre">True</span></code> 被确定了</p>
 </dd>
 </dl>
 </dd></dl>
@@ -621,12 +543,10 @@ To set the <code class="docutils literal notranslate"><span class="pre">log</spa
 <dl class="py method">
 <dt id="optuna.trial.Trial.suggest_loguniform">
 <code class="sig-name descname">suggest_loguniform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.suggest_loguniform"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_loguniform" title="永久链接至目标">¶</a></dt>
-<dd><p>Suggest a value for the continuous parameter.</p>
-<p>The value is sampled from the range <span class="math notranslate nohighlight">\([\mathsf{low}, \mathsf{high})\)</span>
-in the log domain. When <span class="math notranslate nohighlight">\(\mathsf{low} = \mathsf{high}\)</span>, the value of
-<span class="math notranslate nohighlight">\(\mathsf{low}\)</span> will be returned.</p>
+<dd><p>从连续参数值中提供 suggestion.</p>
+<p>该值是从对数域的 <span class="math notranslate nohighlight">\([\mathsf{low}, \mathsf{high}]\)</span> 中采样的。当 mathsf{low} = mathsf{high}` 时，返回结果是 <span class="math notranslate nohighlight">\(\mathsf{low}\)</span>.</p>
 <p class="rubric">示例</p>
-<p>Suggest penalty parameter <code class="docutils literal notranslate"><span class="pre">C</span></code> of <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html">SVC</a>.</p>
+<p>为 <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html">SVC</a>. 的罚参数 <code class="docutils literal notranslate"><span class="pre">C</span></code> 提供一个 suggestion 值。</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
@@ -651,9 +571,8 @@ in the log domain. When <span class="math notranslate nohighlight">\(\mathsf{low
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> -- A parameter name.</p></li>
-<li><p><strong>low</strong> -- Lower endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">low</span></code> is included in the range.</p></li>
-<li><p><strong>high</strong> -- Upper endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">high</span></code> is excluded from the
-range.</p></li>
+<li><p><strong>low</strong> -- Suggestion 值范围的下限。 <code class="docutils literal notranslate"><span class="pre">low</span></code> 包含在范围内。</p></li>
+<li><p><strong>high</strong> -- Suggestion 值范围的上限。 <code class="docutils literal notranslate"><span class="pre">high</span></code> 不包含在范围内。</p></li>
 </ul>
 </dd>
 <dt class="field-even">返回</dt>
@@ -665,12 +584,10 @@ range.</p></li>
 <dl class="py method">
 <dt id="optuna.trial.Trial.suggest_uniform">
 <code class="sig-name descname">suggest_uniform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_trial.html#Trial.suggest_uniform"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.Trial.suggest_uniform" title="永久链接至目标">¶</a></dt>
-<dd><p>Suggest a value for the continuous parameter.</p>
-<p>The value is sampled from the range <span class="math notranslate nohighlight">\([\mathsf{low}, \mathsf{high})\)</span>
-in the linear domain. When <span class="math notranslate nohighlight">\(\mathsf{low} = \mathsf{high}\)</span>, the value of
-<span class="math notranslate nohighlight">\(\mathsf{low}\)</span> will be returned.</p>
+<dd><p>从连续参数值中提供 suggestion.</p>
+<p>该值是从线性域的 <span class="math notranslate nohighlight">\([\mathsf{low}, \mathsf{high}]\)</span> 中采样的。当 mathsf{low} = mathsf{high}` 时，返回结果是 <span class="math notranslate nohighlight">\(\mathsf{low}\)</span>.</p>
 <p class="rubric">示例</p>
-<p>Suggest a momentum for neural network training.</p>
+<p>为神经网络训练提出 momentum 的suggestion 值。</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
@@ -697,9 +614,8 @@ in the linear domain. When <span class="math notranslate nohighlight">\(\mathsf{
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> -- A parameter name.</p></li>
-<li><p><strong>low</strong> -- Lower endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">low</span></code> is included in the range.</p></li>
-<li><p><strong>high</strong> -- Upper endpoint of the range of suggested values. <code class="docutils literal notranslate"><span class="pre">high</span></code> is excluded from the
-range.</p></li>
+<li><p><strong>low</strong> -- Suggestion 值范围的下限。 <code class="docutils literal notranslate"><span class="pre">low</span></code> 包含在范围内。</p></li>
+<li><p><strong>high</strong> -- Suggestion 值范围的上限。 <code class="docutils literal notranslate"><span class="pre">high</span></code> 不包含在范围内。</p></li>
 </ul>
 </dd>
 <dt class="field-even">返回</dt>
@@ -711,10 +627,10 @@ range.</p></li>
 <dl class="py method">
 <dt id="optuna.trial.Trial.user_attrs">
 <em class="property">property </em><code class="sig-name descname">user_attrs</code><a class="headerlink" href="#optuna.trial.Trial.user_attrs" title="永久链接至目标">¶</a></dt>
-<dd><p>Return user attributes.</p>
+<dd><p>返回用户属性</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>A dictionary containing all user attributes.</p>
+<dd class="field-odd"><p>包含所有用户属性的字典。</p>
 </dd>
 </dl>
 </dd></dl>
@@ -724,14 +640,10 @@ range.</p></li>
 <dl class="py class">
 <dt id="optuna.trial.FixedTrial">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.trial.</code><code class="sig-name descname">FixedTrial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">number</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_fixed.html#FixedTrial"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.FixedTrial" title="永久链接至目标">¶</a></dt>
-<dd><p>A trial class which suggests a fixed value for each parameter.</p>
-<p>This object has the same methods as <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>, and it suggests pre-defined
-parameter values. The parameter values can be determined at the construction of the
-<a class="reference internal" href="#optuna.trial.FixedTrial" title="optuna.trial.FixedTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixedTrial</span></code></a> object. In contrast to <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>,
-<a class="reference internal" href="#optuna.trial.FixedTrial" title="optuna.trial.FixedTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixedTrial</span></code></a> does not depend on <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>, and it is
-useful for deploying optimization results.</p>
+<dd><p>一个始终为每个参数提供固定 suggestion 值的 trial 类。</p>
+<p>该对象和 <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 有着一样的方法。它提供预定义的参数值 suggestion. 这些参数值可以通过构造 <a class="reference internal" href="#optuna.trial.FixedTrial" title="optuna.trial.FixedTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixedTrial</span></code></a> 来决定。和 <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 不同，<a class="reference internal" href="#optuna.trial.FixedTrial" title="optuna.trial.FixedTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixedTrial</span></code></a> 并不依赖 <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>, 这对于部署优化过程很有用。</p>
 <p class="rubric">示例</p>
-<p>Evaluate an objective function with parameter values given by a user.</p>
+<p>根据用户给定的参数值对一个目标函数求解。</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
@@ -744,13 +656,13 @@ useful for deploying optimization results.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p>Please refer to <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> for details of methods and properties.</p>
+<p>关于方法和属性的细节请参考 <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>params</strong> -- A dictionary containing all parameters.</p></li>
-<li><p><strong>number</strong> -- A trial number. Defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+<li><p><strong>params</strong> -- 一个包含所有参数的字典.</p></li>
+<li><p><strong>number</strong> -- Trial 编号，默认是 <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -759,12 +671,11 @@ useful for deploying optimization results.</p>
 <dl class="py class">
 <dt id="optuna.trial.FrozenTrial">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.trial.</code><code class="sig-name descname">FrozenTrial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">number</span></em>, <em class="sig-param"><span class="n">state</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">datetime_start</span></em>, <em class="sig-param"><span class="n">datetime_complete</span></em>, <em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">distributions</span></em>, <em class="sig-param"><span class="n">user_attrs</span></em>, <em class="sig-param"><span class="n">system_attrs</span></em>, <em class="sig-param"><span class="n">intermediate_values</span></em>, <em class="sig-param"><span class="n">trial_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/trial/_frozen.html#FrozenTrial"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.trial.FrozenTrial" title="永久链接至目标">¶</a></dt>
-<dd><p>Status and results of a <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>.</p>
+<dd><p>一个 <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 的状态和结果。</p>
 <dl class="py attribute">
 <dt id="optuna.trial.FrozenTrial.number">
 <code class="sig-name descname">number</code><a class="headerlink" href="#optuna.trial.FrozenTrial.number" title="永久链接至目标">¶</a></dt>
-<dd><p>Unique and consecutive number of <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> for each
-<a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>. Note that this field uses zero-based numbering.</p>
+<dd><p>每个 <a class="reference internal" href="study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 中 <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 的连续且唯一的编号。注意这是从 0 开始计数的。</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -776,7 +687,7 @@ useful for deploying optimization results.</p>
 <dl class="py attribute">
 <dt id="optuna.trial.FrozenTrial.value">
 <code class="sig-name descname">value</code><a class="headerlink" href="#optuna.trial.FrozenTrial.value" title="永久链接至目标">¶</a></dt>
-<dd><p>Objective value of the <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>.</p>
+<dd><p><a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 的目标函数值。</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -788,41 +699,40 @@ useful for deploying optimization results.</p>
 <dl class="py attribute">
 <dt id="optuna.trial.FrozenTrial.datetime_complete">
 <code class="sig-name descname">datetime_complete</code><a class="headerlink" href="#optuna.trial.FrozenTrial.datetime_complete" title="永久链接至目标">¶</a></dt>
-<dd><p>Datetime where the <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> finished.</p>
+<dd><p><a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 的完成时间。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.trial.FrozenTrial.params">
 <code class="sig-name descname">params</code><a class="headerlink" href="#optuna.trial.FrozenTrial.params" title="永久链接至目标">¶</a></dt>
-<dd><p>Dictionary that contains suggested parameters.</p>
+<dd><p>包含参数 suggestion 值的字典。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.trial.FrozenTrial.user_attrs">
 <code class="sig-name descname">user_attrs</code><a class="headerlink" href="#optuna.trial.FrozenTrial.user_attrs" title="永久链接至目标">¶</a></dt>
-<dd><p>Dictionary that contains the attributes of the <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> set with
-<a class="reference internal" href="#optuna.trial.Trial.set_user_attr" title="optuna.trial.Trial.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.set_user_attr()</span></code></a>.</p>
+<dd><p>通过 <a class="reference internal" href="#optuna.trial.Trial.set_user_attr" title="optuna.trial.Trial.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.set_user_attr()</span></code></a> 设置的、包含了 <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 属性的字典。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.trial.FrozenTrial.intermediate_values">
 <code class="sig-name descname">intermediate_values</code><a class="headerlink" href="#optuna.trial.FrozenTrial.intermediate_values" title="永久链接至目标">¶</a></dt>
-<dd><p>Intermediate objective values set with <a class="reference internal" href="#optuna.trial.Trial.report" title="optuna.trial.Trial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.report()</span></code></a>.</p>
+<dd><p>通过 <a class="reference internal" href="#optuna.trial.Trial.report" title="optuna.trial.Trial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.report()</span></code></a> 来设定的 中间目标函数值。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.trial.FrozenTrial.distributions">
 <em class="property">property </em><code class="sig-name descname">distributions</code><a class="headerlink" href="#optuna.trial.FrozenTrial.distributions" title="永久链接至目标">¶</a></dt>
-<dd><p>Dictionary that contains the distributions of <a class="reference internal" href="#optuna.trial.FrozenTrial.params" title="optuna.trial.FrozenTrial.params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">params</span></code></a>.</p>
+<dd><p>包含了 <a class="reference internal" href="#optuna.trial.FrozenTrial.params" title="optuna.trial.FrozenTrial.params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">params</span></code></a> 分布的字典。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.trial.FrozenTrial.duration">
 <em class="property">property </em><code class="sig-name descname">duration</code><a class="headerlink" href="#optuna.trial.FrozenTrial.duration" title="永久链接至目标">¶</a></dt>
-<dd><p>Return the elapsed time taken to complete the trial.</p>
+<dd><p>返回完成该 trial 耗费的时间。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>The duration.</p>
+<dd class="field-odd"><p>持续时间。</p>
 </dd>
 </dl>
 </dd></dl>
@@ -836,26 +746,25 @@ useful for deploying optimization results.</p>
 <dl class="py attribute">
 <dt id="optuna.trial.TrialState.RUNNING">
 <code class="sig-name descname">RUNNING</code><a class="headerlink" href="#optuna.trial.TrialState.RUNNING" title="永久链接至目标">¶</a></dt>
-<dd><p>The <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> is running.</p>
+<dd><p>该 <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>  处于运行中状态。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.trial.TrialState.COMPLETE">
 <code class="sig-name descname">COMPLETE</code><a class="headerlink" href="#optuna.trial.TrialState.COMPLETE" title="永久链接至目标">¶</a></dt>
-<dd><p>The <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> has been finished without any error.</p>
+<dd><p>该 <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 已完成，且未触发任何错误。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.trial.TrialState.PRUNED">
 <code class="sig-name descname">PRUNED</code><a class="headerlink" href="#optuna.trial.TrialState.PRUNED" title="永久链接至目标">¶</a></dt>
-<dd><p>The <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> has been pruned with
-<a class="reference internal" href="exceptions.html#optuna.exceptions.TrialPruned" title="optuna.exceptions.TrialPruned"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrialPruned</span></code></a>.</p>
+<dd><p>该 <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 已经被 <a class="reference internal" href="exceptions.html#optuna.exceptions.TrialPruned" title="optuna.exceptions.TrialPruned"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrialPruned</span></code></a> 剪枝。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.trial.TrialState.FAIL">
 <code class="sig-name descname">FAIL</code><a class="headerlink" href="#optuna.trial.TrialState.FAIL" title="永久链接至目标">¶</a></dt>
-<dd><p>The <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> has failed due to an uncaught error.</p>
+<dd><p>由于未捕获的错误，该 <a class="reference internal" href="#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 已经失败。</p>
 </dd></dl>
 
 </dd></dl>
