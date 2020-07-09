@@ -914,7 +914,7 @@
         <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="create_study"><a class="viewcode-back" href="../../reference/core.html#optuna.create_study">[文档]</a><span class="k">def</span> <span class="nf">create_study</span><span class="p">(</span>
+<div class="viewcode-block" id="create_study"><a class="viewcode-back" href="../../reference/study.html#optuna.create_study">[文档]</a><span class="k">def</span> <span class="nf">create_study</span><span class="p">(</span>
     <span class="n">storage</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: Union[None, str, storages.BaseStorage]</span>
     <span class="n">sampler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: samplers.BaseSampler</span>
     <span class="n">pruner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: pruners.BasePruner</span>
@@ -997,7 +997,7 @@
     <span class="k">return</span> <span class="n">study</span></div>
 
 
-<div class="viewcode-block" id="load_study"><a class="viewcode-back" href="../../reference/core.html#optuna.load_study">[文档]</a><span class="k">def</span> <span class="nf">load_study</span><span class="p">(</span>
+<div class="viewcode-block" id="load_study"><a class="viewcode-back" href="../../reference/study.html#optuna.load_study">[文档]</a><span class="k">def</span> <span class="nf">load_study</span><span class="p">(</span>
     <span class="n">study_name</span><span class="p">,</span>  <span class="c1"># type: str</span>
     <span class="n">storage</span><span class="p">,</span>  <span class="c1"># type: Union[str, storages.BaseStorage]</span>
     <span class="n">sampler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># type: samplers.BaseSampler</span>
@@ -1026,7 +1026,7 @@
     <span class="k">return</span> <span class="n">Study</span><span class="p">(</span><span class="n">study_name</span><span class="o">=</span><span class="n">study_name</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="n">storage</span><span class="p">,</span> <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span> <span class="n">pruner</span><span class="o">=</span><span class="n">pruner</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="delete_study"><a class="viewcode-back" href="../../reference/core.html#optuna.delete_study">[文档]</a><span class="k">def</span> <span class="nf">delete_study</span><span class="p">(</span>
+<div class="viewcode-block" id="delete_study"><a class="viewcode-back" href="../../reference/study.html#optuna.delete_study">[文档]</a><span class="k">def</span> <span class="nf">delete_study</span><span class="p">(</span>
     <span class="n">study_name</span><span class="p">,</span>  <span class="c1"># type: str</span>
     <span class="n">storage</span><span class="p">,</span>  <span class="c1"># type: Union[str, storages.BaseStorage]</span>
 <span class="p">):</span>
@@ -1047,7 +1047,7 @@
     <span class="n">storage</span><span class="o">.</span><span class="n">delete_study</span><span class="p">(</span><span class="n">study_id</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_all_study_summaries"><a class="viewcode-back" href="../../reference/core.html#optuna.get_all_study_summaries">[文档]</a><span class="k">def</span> <span class="nf">get_all_study_summaries</span><span class="p">(</span><span class="n">storage</span><span class="p">):</span>
+<div class="viewcode-block" id="get_all_study_summaries"><a class="viewcode-back" href="../../reference/study.html#optuna.get_all_study_summaries">[文档]</a><span class="k">def</span> <span class="nf">get_all_study_summaries</span><span class="p">(</span><span class="n">storage</span><span class="p">):</span>
     <span class="c1"># type: (Union[str, storages.BaseStorage]) -&gt; List[StudySummary]</span>
     <span class="sd">&quot;&quot;&quot;Get all history of studies stored in a specified storage.</span>
 

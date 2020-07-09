@@ -93,8 +93,8 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">教程</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/index.html">API Reference</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">常见问题</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#can-i-use-optuna-with-x-where-x-is-your-favorite-ml-library">某某库可以和 Optuna 配合使用吗？（某某是你最爱的机器学习库）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-to-define-objective-functions-that-have-own-arguments">如何定义带有独有参数的目标函数？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#can-i-use-optuna-with-x-where-x-is-your-favorite-ml-library">某某库可以和 Optuna 配合使用吗？（某某是你常用的机器学习库）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-define-objective-functions-that-have-own-arguments">如何定义带有额外参数的目标函数？</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#can-i-use-optuna-without-remote-rdb-servers">没有远程 RDB 的情况下可以使用 Optuna 吗？</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-can-i-save-and-resume-studies">如何保存和恢复 study？</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-suppress-log-messages-of-optuna">如何禁用 Optuna 的日志信息？</a></li>
@@ -103,7 +103,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#how-are-exceptions-from-trials-handled">Trial 是如何处理抛出异常的？</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-are-nans-returned-by-trials-handled">Trial 返回的 NaN 是如何处理的？</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what-happens-when-i-dynamically-alter-a-search-space">动态地改变搜索空间会导致怎样的结果？</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-can-i-use-two-gpus-for-evaluating-two-trials-simultaneously">如何用两块 GPU 同时对两个 trial 进行求值？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-can-i-use-two-gpus-for-evaluating-two-trials-simultaneously">如何在两块 GPU 上同时跑两个 trial?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-can-i-test-my-objective-functions">如何对目标函数进行测试？</a></li>
 </ul>
 </li>
@@ -175,8 +175,8 @@
 <h1>常见问题<a class="headerlink" href="#faq" title="永久链接至标题">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#can-i-use-optuna-with-x-where-x-is-your-favorite-ml-library" id="id1">某某库可以和 Optuna 配合使用吗？（某某是你最爱的机器学习库）</a></p></li>
-<li><p><a class="reference internal" href="#how-to-define-objective-functions-that-have-own-arguments" id="id2">如何定义带有独有参数的目标函数？</a></p></li>
+<li><p><a class="reference internal" href="#can-i-use-optuna-with-x-where-x-is-your-favorite-ml-library" id="id1">某某库可以和 Optuna 配合使用吗？（某某是你常用的机器学习库）</a></p></li>
+<li><p><a class="reference internal" href="#how-to-define-objective-functions-that-have-own-arguments" id="id2">如何定义带有额外参数的目标函数？</a></p></li>
 <li><p><a class="reference internal" href="#can-i-use-optuna-without-remote-rdb-servers" id="id3">没有远程 RDB 的情况下可以使用 Optuna 吗？</a></p></li>
 <li><p><a class="reference internal" href="#how-can-i-save-and-resume-studies" id="id4">如何保存和恢复 study？</a></p></li>
 <li><p><a class="reference internal" href="#how-to-suppress-log-messages-of-optuna" id="id5">如何禁用 Optuna 的日志信息？</a></p></li>
@@ -185,18 +185,18 @@
 <li><p><a class="reference internal" href="#how-are-exceptions-from-trials-handled" id="id8">Trial 是如何处理抛出异常的？</a></p></li>
 <li><p><a class="reference internal" href="#how-are-nans-returned-by-trials-handled" id="id9">Trial 返回的 NaN 是如何处理的？</a></p></li>
 <li><p><a class="reference internal" href="#what-happens-when-i-dynamically-alter-a-search-space" id="id10">动态地改变搜索空间会导致怎样的结果？</a></p></li>
-<li><p><a class="reference internal" href="#how-can-i-use-two-gpus-for-evaluating-two-trials-simultaneously" id="id11">如何用两块 GPU 同时对两个 trial 进行求值？</a></p></li>
+<li><p><a class="reference internal" href="#how-can-i-use-two-gpus-for-evaluating-two-trials-simultaneously" id="id11">如何在两块 GPU 上同时跑两个 trial?</a></p></li>
 <li><p><a class="reference internal" href="#how-can-i-test-my-objective-functions" id="id12">如何对目标函数进行测试？</a></p></li>
 </ul>
 </div>
 <div class="section" id="can-i-use-optuna-with-x-where-x-is-your-favorite-ml-library">
-<h2><a class="toc-backref" href="#id1">某某库可以和 Optuna 配合使用吗？（某某是你最爱的机器学习库）</a><a class="headerlink" href="#can-i-use-optuna-with-x-where-x-is-your-favorite-ml-library" title="永久链接至标题">¶</a></h2>
-<p>Optuna 和绝大多数ML库兼容，并且很容易同他们配合使用。参见 <a class="reference external" href="https://github.com/optuna/optuna/tree/master/examples">examples</a>.</p>
+<h2><a class="toc-backref" href="#id1">某某库可以和 Optuna 配合使用吗？（某某是你常用的机器学习库）</a><a class="headerlink" href="#can-i-use-optuna-with-x-where-x-is-your-favorite-ml-library" title="永久链接至标题">¶</a></h2>
+<p>Optuna 和绝大多数机器学习库兼容，并且很容易同他们配合使用。参见 <a class="reference external" href="https://github.com/optuna/optuna/tree/master/examples">examples</a>.</p>
 </div>
 <div class="section" id="how-to-define-objective-functions-that-have-own-arguments">
-<span id="objective-func-additional-args"></span><h2><a class="toc-backref" href="#id2">如何定义带有独有参数的目标函数？</a><a class="headerlink" href="#how-to-define-objective-functions-that-have-own-arguments" title="永久链接至标题">¶</a></h2>
+<span id="objective-func-additional-args"></span><h2><a class="toc-backref" href="#id2">如何定义带有额外参数的目标函数？</a><a class="headerlink" href="#how-to-define-objective-functions-that-have-own-arguments" title="永久链接至标题">¶</a></h2>
 <p>有两种方法可以实现这类函数。</p>
-<p>首先，如下的可调用的 objective 类具有这个功能：</p>
+<p>首先，如下例所示，可调用的 objective 类具有这个功能：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 
 <span class="k">class</span> <span class="nc">Objective</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -242,7 +242,7 @@
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>如果你想能保存和恢复 study 的化，将 SQLite 作为本地存储也是很方便的：</p>
+<p>如果想保存和恢复 study 的话，你可以轻松地将 SQLite 用作本地存储。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">study_name</span><span class="o">=</span><span class="s1">&#39;foo_study&#39;</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">&#39;sqlite:///example.db&#39;</span><span class="p">)</span>
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>  <span class="c1"># The state of `study` will be persisted to the local SQLite file.</span>
 </pre></div>
@@ -282,7 +282,7 @@
 </div>
 <div class="section" id="how-to-save-machine-learning-models-trained-in-objective-functions">
 <h2><a class="toc-backref" href="#id6">如何在目标函数中保存训练好的机器学习模型？</a><a class="headerlink" href="#how-to-save-machine-learning-models-trained-in-objective-functions" title="永久链接至标题">¶</a></h2>
-<p>Optuna 会保存超参数和对应的目标函数值到存储对象中，但是它不会存储诸如机器学习模型或者网络权重这样的中间对象。要保存模型或者权重的话，请利用你正在使用的机器学习库提供的对应功能。</p>
+<p>Optuna 会保存超参数和对应的目标函数值，但是它不会存储诸如机器学习模型或者网络权重这样的中间数据。要保存模型或者权重的话，请利用你正在使用的机器学习库提供的对应功能。</p>
 <p>在保存模型的时候，我们推荐将 <a class="reference internal" href="reference/trial.html#optuna.trial.Trial.number" title="optuna.trial.Trial.number"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.trial.Trial.number</span></code></a> 一同存储。这样易于之后确认对应的 trial.比如，你可以用以下方式在目标函数中保存训练好的 SVM 模型：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="n">svc_c</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_loguniform</span><span class="p">(</span><span class="s1">&#39;svc_c&#39;</span><span class="p">,</span> <span class="mf">1e-10</span><span class="p">,</span> <span class="mf">1e10</span><span class="p">)</span>
@@ -313,7 +313,7 @@
 <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>但是这么做的话有两个风险。</p>
+<p>但是这么做的需要注意以下两点。</p>
 <p>首先，如果一个 study 的优化过程本身是分布式的或者并行的，那么这个过程中存在着固有的不确定性。因此，在这种情况下我们很难复现出同样的结果。如果你想复现结果的话，我们建议用顺序执行的方式来优化你的 study.</p>
 <p>其次，如果你的目标函数的行为本身就是不确定的（也就是说，即使送入同样的参数，其返回值也不是唯一的），那么你就无法复现这个优化过程。要解决这个问题的话，请设置一个选项（比如随机数种子）来让你的优化目标的行为变成确定性的，前提是你用的机器学习库支持这一功能。</p>
 </div>
@@ -326,7 +326,7 @@
 the following error: ValueError<span class="o">(</span><span class="s1">&#39;A sample error in objective.&#39;</span><span class="o">)</span>
 </pre></div>
 </div>
-<p>你也可以在日志信息里找到失败的 trial.</p>
+<p>你也可以通过查看 trial 的状态来找到它们：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">study</span><span class="o">.</span><span class="n">trials_dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -386,7 +386,7 @@ objective <span class="k">function</span> returned nan.
 </div>
 </div>
 <div class="section" id="how-can-i-use-two-gpus-for-evaluating-two-trials-simultaneously">
-<h2><a class="toc-backref" href="#id11">如何用两块 GPU 同时对两个 trial 进行求值？</a><a class="headerlink" href="#how-can-i-use-two-gpus-for-evaluating-two-trials-simultaneously" title="永久链接至标题">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">如何在两块 GPU 上同时跑两个 trial?</a><a class="headerlink" href="#how-can-i-use-two-gpus-for-evaluating-two-trials-simultaneously" title="永久链接至标题">¶</a></h2>
 <p>如果你的优化目标支持 GPU (CUDA) 加速，你又想指定优化所用的 GPU 的话，设置 <code class="docutils literal notranslate"><span class="pre">CUDA_VISIBLE_DEVICES</span></code> 环境变量可能是实现这一目标最轻松的方式了：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># On a terminal.</span>
 <span class="c1">#</span>

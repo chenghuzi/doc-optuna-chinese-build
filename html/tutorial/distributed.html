@@ -172,8 +172,8 @@
             
   <div class="section" id="distributed-optimization">
 <span id="distributed"></span><h1>分布式优化<a class="headerlink" href="#distributed-optimization" title="永久链接至标题">¶</a></h1>
-<p>Optuna的分布式优化中没有复杂的设置，你只需让不同的节点/进程共享一个相同的 study 名。</p>
-<p>首先，使用 <code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">create-study</span></code> 命令 (如果是在Python脚本中的化，就用 <a class="reference internal" href="../reference/core.html#optuna.create_study" title="optuna.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.create_study()</span></code></a>) 创建一个共享的 study.</p>
+<p>Optuna 的分布式优化不需要复杂的设置，你只需让不同的节点/进程共享一个相同的 study 名。</p>
+<p>首先，使用 <code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">create-study</span></code> 命令 (如果是在Python脚本中的话，就用 <a class="reference internal" href="../reference/core.html#optuna.create_study" title="optuna.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.create_study()</span></code></a>) 创建一个共享的 study.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ optuna create-study --study-name <span class="s2">&quot;distributed-example&quot;</span> --storage <span class="s2">&quot;sqlite:///example.db&quot;</span>
 <span class="o">[</span>I <span class="m">2018</span>-10-31 <span class="m">18</span>:21:57,885<span class="o">]</span> A new study created with name: distributed-example
 </pre></div>

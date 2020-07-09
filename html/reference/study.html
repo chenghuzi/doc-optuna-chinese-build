@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="core.html">Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.html">命令行界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributions.html">Distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="importance.html">Hyperparameter Importance</a></li>
@@ -182,19 +182,16 @@
 <dl class="py class">
 <dt id="optuna.study.Study">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.study.</code><code class="sig-name descname">Study</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study_name</span></em>, <em class="sig-param"><span class="n">storage</span></em>, <em class="sig-param"><span class="n">sampler</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pruner</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/study.html#Study"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.study.Study" title="永久链接至目标">¶</a></dt>
-<dd><p>A study corresponds to an optimization task, i.e., a set of trials.</p>
-<p>This object provides interfaces to run a new <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>, access trials'
-history, set/get user-defined attributes of the study itself.</p>
-<p>Note that the direct use of this constructor is not recommended.
-To create and load a study, please refer to the documentation of
-<a class="reference internal" href="#optuna.study.create_study" title="optuna.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> and <a class="reference internal" href="#optuna.study.load_study" title="optuna.study.load_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_study()</span></code></a> respectively.</p>
+<dd><p>一个 study 对应于一个优化任务，即一组 trials.</p>
+<p>该对象提供了接口用于运行新的 <a class="reference internal" href="trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a>, 获取 trial 的历史记录和设置/获取 study 中用户定义的属性。</p>
+<p>注意，我们不建议直接使用这个构造函数。要创建或者加载 study 的话，请参考 <a class="reference internal" href="#optuna.study.create_study" title="optuna.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> 和 <a class="reference internal" href="#optuna.study.load_study" title="optuna.study.load_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_study()</span></code></a> 对应的文档。</p>
 <dl class="py method">
 <dt id="optuna.study.Study.best_params">
 <em class="property">property </em><code class="sig-name descname">best_params</code><a class="headerlink" href="#optuna.study.Study.best_params" title="永久链接至目标">¶</a></dt>
-<dd><p>Return parameters of the best trial in the study.</p>
+<dd><p>返回 study 中最佳 trial 对应的参数。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>A dictionary containing parameters of the best trial.</p>
+<dd class="field-odd"><p>包含最佳 trial 的参数的字典。</p>
 </dd>
 </dl>
 </dd></dl>
@@ -202,10 +199,10 @@ To create and load a study, please refer to the documentation of
 <dl class="py method">
 <dt id="optuna.study.Study.best_trial">
 <em class="property">property </em><code class="sig-name descname">best_trial</code><a class="headerlink" href="#optuna.study.Study.best_trial" title="永久链接至目标">¶</a></dt>
-<dd><p>Return the best trial in the study.</p>
+<dd><p>返回 study 中最佳 trial.</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code> object of the best trial.</p>
+<dd class="field-odd"><p>最佳 trial 的 <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -213,10 +210,10 @@ To create and load a study, please refer to the documentation of
 <dl class="py method">
 <dt id="optuna.study.Study.best_value">
 <em class="property">property </em><code class="sig-name descname">best_value</code><a class="headerlink" href="#optuna.study.Study.best_value" title="永久链接至目标">¶</a></dt>
-<dd><p>Return the best objective value in the study.</p>
+<dd><p>返回 study 中的最佳目标函数值。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>A float representing the best objective value.</p>
+<dd class="field-odd"><p>代表最佳目标函数值的浮点数。</p>
 </dd>
 </dl>
 </dd></dl>
@@ -224,7 +221,7 @@ To create and load a study, please refer to the documentation of
 <dl class="py method">
 <dt id="optuna.study.Study.direction">
 <em class="property">property </em><code class="sig-name descname">direction</code><a class="headerlink" href="#optuna.study.Study.direction" title="永久链接至目标">¶</a></dt>
-<dd><p>Return the direction of the study.</p>
+<dd><p>返回 study 的优化方向。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>A <a class="reference internal" href="#optuna.study.StudyDirection" title="optuna.study.StudyDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">StudyDirection</span></code></a> object.</p>
@@ -235,9 +232,8 @@ To create and load a study, please refer to the documentation of
 <dl class="py method">
 <dt id="optuna.study.Study.enqueue_trial">
 <code class="sig-name descname">enqueue_trial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/study.html#Study.enqueue_trial"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.study.Study.enqueue_trial" title="永久链接至目标">¶</a></dt>
-<dd><p>Enqueue a trial with given parameter values.</p>
-<p>You can fix the next sampling parameters which will be evaluated in your
-objective function.</p>
+<dd><p>插入具有特定参数的 trial.</p>
+<p>你可以固定下一次将被求值的目标函数对应的参数。</p>
 <p class="rubric">示例</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 
@@ -256,32 +252,27 @@ objective function.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
-<dd class="field-odd"><p><strong>params</strong> -- Parameter values to pass your objective function.</p>
+<dd class="field-odd"><p><strong>params</strong> -- 传入目标函数的参数值。</p>
 </dd>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p>Added in v1.2.0 as an experimental feature. The interface may change in newer versions
-without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.2.0">https://github.com/optuna/optuna/releases/tag/v1.2.0</a>.</p>
+<p>在版本 v1.2.0 中作为一个试验性特性加入。该接口在未来可能在没有提前告知的情况下改变，见 <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.2.0">https://github.com/optuna/optuna/releases/tag/v1.2.0</a>.</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.study.Study.get_trials">
 <code class="sig-name descname">get_trials</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">deepcopy</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#optuna.study.Study.get_trials" title="永久链接至目标">¶</a></dt>
-<dd><p>Return all trials in the study.</p>
-<p>The returned trials are ordered by trial number.</p>
-<p>For library users, it's recommended to use more handy
-<a class="reference internal" href="#optuna.study.Study.trials" title="optuna.study.Study.trials"><code class="xref py py-attr docutils literal notranslate"><span class="pre">trials</span></code></a> property to get the trials instead.</p>
+<dd><p>返回 study 中所有的 trial.</p>
+<p>返回的 trial 是根据 trial number 来排序的。</p>
+<p>我们推荐库用户使用更方便的 <a class="reference internal" href="#optuna.study.Study.trials" title="optuna.study.Study.trials"><code class="xref py py-attr docutils literal notranslate"><span class="pre">trials</span></code></a> 属性来获取 trial.</p>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
-<dd class="field-odd"><p><strong>deepcopy</strong> -- Flag to control whether to apply <code class="docutils literal notranslate"><span class="pre">copy.deepcopy()</span></code> to the trials.
-Note that if you set the flag to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>, you shouldn't mutate
-any fields of the returned trial. Otherwise the internal state of
-the study may corrupt and unexpected behavior may happen.</p>
+<dd class="field-odd"><p><strong>deepcopy</strong> -- 用于控制是否对 trial 应用 <code class="docutils literal notranslate"><span class="pre">copy.deepcopy()</span></code> 的选项。注意：如果你把该选项设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> 的话，就不要改变返回的 trial 中的任何东西了。否则 study 的内部状态可能会崩坏且导致不可预知的情况发生。</p>
 </dd>
 <dt class="field-even">返回</dt>
-<dd class="field-even"><p>A list of <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code> objects.</p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code> 对象的列表</p>
 </dd>
 </dl>
 </dd></dl>
@@ -289,40 +280,19 @@ the study may corrupt and unexpected behavior may happen.</p>
 <dl class="py method">
 <dt id="optuna.study.Study.optimize">
 <code class="sig-name descname">optimize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em>, <em class="sig-param"><span class="n">n_trials</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_jobs</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">catch</span><span class="o">=</span><span class="default_value">()</span></em>, <em class="sig-param"><span class="n">callbacks</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">gc_after_trial</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">show_progress_bar</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/study.html#Study.optimize"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.study.Study.optimize" title="永久链接至目标">¶</a></dt>
-<dd><p>Optimize an objective function.</p>
-<p>Optimization is done by choosing a suitable set of hyperparameter values from a given
-range. Uses a sampler which implements the task of value suggestion based on a specified
-distribution. The sampler is specified in <a class="reference internal" href="#optuna.study.create_study" title="optuna.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> and the
-default choice for the sampler is TPE.
-See also <a class="reference internal" href="samplers.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> for more details on 'TPE'.</p>
+<dd><p>优化目标函数。</p>
+<p>通过从一定范围内选择合适的超参数集合，该优化过程已经完成。使用一个从特定分布上获得 suggestion 值的 sampler. 该 sampler 是通过 <a class="reference internal" href="#optuna.study.create_study" title="optuna.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> 来确定的。其默认值是 TPE. 关于 TPE 的更多细节见 <a class="reference internal" href="samplers.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>func</strong> -- A callable that implements objective function.</p></li>
-<li><p><strong>n_trials</strong> -- The number of trials. If this argument is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, there is no
-limitation on the number of trials. If <code class="xref py py-obj docutils literal notranslate"><span class="pre">timeout</span></code> is also set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>,
-the study continues to create trials until it receives a termination signal such
-as Ctrl+C or SIGTERM.</p></li>
-<li><p><strong>timeout</strong> -- Stop study after the given number of second(s). If this argument is set to
-<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, the study is executed without time limitation. If <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_trials</span></code> is
-also set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, the study continues to create trials until it receives a
-termination signal such as Ctrl+C or SIGTERM.</p></li>
-<li><p><strong>n_jobs</strong> -- The number of parallel jobs. If this argument is set to <code class="xref py py-obj docutils literal notranslate"><span class="pre">-1</span></code>, the number is
-set to CPU count.</p></li>
-<li><p><strong>catch</strong> -- A study continues to run even when a trial raises one of the exceptions specified
-in this argument. Default is an empty tuple, i.e. the study will stop for any
-exception except for <a class="reference internal" href="exceptions.html#optuna.exceptions.TrialPruned" title="optuna.exceptions.TrialPruned"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrialPruned</span></code></a>.</p></li>
-<li><p><strong>callbacks</strong> -- List of callback functions that are invoked at the end of each trial. Each function
-must accept two parameters with the following types in this order:
-<a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> and <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code>.</p></li>
-<li><p><strong>gc_after_trial</strong> -- Flag to determine whether to automatically run garbage collection after each trial.
-Set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> to run the garbage collection, <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> otherwise.
-When it runs, it runs a full collection by internally calling <a class="reference external" href="https://docs.python.org/3/library/gc.html#gc.collect" title="(在 Python v3.8)"><code class="xref py py-func docutils literal notranslate"><span class="pre">gc.collect()</span></code></a>.
-If you see an increase in memory consumption over several trials, try setting this
-flag to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p></li>
-<li><p><strong>show_progress_bar</strong> -- Flag to show progress bars or not. To disable progress bar, set this <code class="docutils literal notranslate"><span class="pre">False</span></code>.
-Currently, progress bar is experimental feature and disabled
-when <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code> <span class="math notranslate nohighlight">\(\ne 1\)</span>.</p></li>
+<li><p><strong>func</strong> -- 目标函数。</p></li>
+<li><p><strong>n_trials</strong> -- trial 的个数。如果该选项被设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> 的话， trial 数就不存在限制了。如果 <code class="xref py py-obj docutils literal notranslate"><span class="pre">timeout</span></code> 也被设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> 的话， 该 study 将会一直创建新 trial，除非它收到了一个比如 Ctrl+C 或者是 SIGTERM 的终止信号。</p></li>
+<li><p><strong>timeout</strong> -- 该给定的秒数之后终止 study. 如果该选项被设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> 的话，该 study 将会在没有时间限制的情况下一直运行。如果 <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_trials</span></code> 也被设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> 的话， 该 study 将会一直创建新 trial，除非它收到了一个比如 Ctrl+C 或者是 SIGTERM 的终止信号。</p></li>
+<li><p><strong>n_jobs</strong> -- 并行运行的 job 数。如果该选项被设置成了 <code class="xref py py-obj docutils literal notranslate"><span class="pre">-1</span></code>, job 数目将等于 CPU 核心数。</p></li>
+<li><p><strong>catch</strong> -- 该选项中指定一些异常，这样，当 trial 抛出这些异常时，study 仍然会继续运行。默认情况下这是一个空元组，也就是说， study 会在碰到任何除 <a class="reference internal" href="exceptions.html#optuna.exceptions.TrialPruned" title="optuna.exceptions.TrialPruned"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrialPruned</span></code></a> 之外的异常时都终止运行。</p></li>
+<li><p><strong>callbacks</strong> -- 一系列在每个 trial 终止时会被调用的回调函数。每个函数必须按照 <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 和 <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code> 的顺序接受两个对应类型的参数。</p></li>
+<li><p><strong>gc_after_trial</strong> -- 用于确认是否在每个 trial 完成以后进行垃圾回收的选项。设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> 的话，垃圾回收就会运行，设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> 就不会了。如果运行的话，他就在内部调用 <a class="reference external" href="https://docs.python.org/3/library/gc.html#gc.collect" title="(在 Python v3.8)"><code class="xref py py-func docutils literal notranslate"><span class="pre">gc.collect()</span></code></a>. 如果你发现在数个 trial 之后内存消耗猛增，请试试把该选项设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p></li>
+<li><p><strong>show_progress_bar</strong> -- 设置是否显示进度条的选项。要禁用它的话，将其设置成 <code class="docutils literal notranslate"><span class="pre">False</span></code>. 目前这是一个试验性特性，并且当 <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code> <span class="math notranslate nohighlight">\([\ne 1]\)</span> 时会被自动禁用。</p></li>
 </ul>
 </dd>
 </dl>
@@ -331,12 +301,12 @@ when <code class="docutils literal notranslate"><span class="pre">n_jobs</span><
 <dl class="py method">
 <dt id="optuna.study.Study.set_user_attr">
 <code class="sig-name descname">set_user_attr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/study.html#Study.set_user_attr"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.study.Study.set_user_attr" title="永久链接至目标">¶</a></dt>
-<dd><p>Set a user attribute to the study.</p>
+<dd><p>给 study 设定一个用户属性。</p>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>key</strong> -- A key string of the attribute.</p></li>
-<li><p><strong>value</strong> -- A value of the attribute. The value should be JSON serializable.</p></li>
+<li><p><strong>key</strong> -- 一个属性键值对。</p></li>
+<li><p><strong>value</strong> -- 属性对应的值，该值应是可 JSON 序列化的。</p></li>
 </ul>
 </dd>
 </dl>
@@ -345,32 +315,28 @@ when <code class="docutils literal notranslate"><span class="pre">n_jobs</span><
 <dl class="py method">
 <dt id="optuna.study.Study.stop">
 <code class="sig-name descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../_modules/optuna/study.html#Study.stop"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.study.Study.stop" title="永久链接至目标">¶</a></dt>
-<dd><p>Exit from the current optimization loop after the running trials finish.</p>
-<p>This method lets the running <a class="reference internal" href="#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">optimize()</span></code></a> method return
-immediately after all trials which the <a class="reference internal" href="#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">optimize()</span></code></a> method
-spawned finishes.
-This method does not affect any behaviors of parallel or successive study processes.</p>
+<dd><p>当正在运行的 trial 结束以后，推出当前的优化过程。</p>
+<p>该方法会正在运行的 <a class="reference internal" href="#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">optimize()</span></code></a> 终止，只要其中由 <a class="reference internal" href="#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">optimize()</span></code></a> 生成的 trial 都结束了。该方法不会影响并行或者序列执行的 study 的任何行为。</p>
 <dl class="field-list simple">
 <dt class="field-odd">引发</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(在 Python v3.8)"><strong>RuntimeError</strong></a> -- If this method is called outside an objective function or callback.</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(在 Python v3.8)"><strong>RuntimeError</strong></a> -- 如果该方法实在目标函数或者一个回调函数之外被调用的话。</p>
 </dd>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p>Added in v1.4.0 as an experimental feature. The interface may change in newer versions
-without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.4.0">https://github.com/optuna/optuna/releases/tag/v1.4.0</a>.</p>
+<p>在版本 v1.4.0 中作为一个试验性特性加入。该接口在未来可能在没有提前告知的情况下改变，见 <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.4.0">https://github.com/optuna/optuna/releases/tag/v1.4.0</a>.</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.study.Study.trials">
 <em class="property">property </em><code class="sig-name descname">trials</code><a class="headerlink" href="#optuna.study.Study.trials" title="永久链接至目标">¶</a></dt>
-<dd><p>Return all trials in the study.</p>
-<p>The returned trials are ordered by trial number.</p>
-<p>This is a short form of <code class="docutils literal notranslate"><span class="pre">self.get_trials(deepcopy=True)</span></code>.</p>
+<dd><p>返回 study 中所有的 trial.</p>
+<p>返回的 trial 是根据 trial number 来排序的。</p>
+<p>是 <code class="docutils literal notranslate"><span class="pre">self.get_trials(deepcopy=True)</span></code> 的简写形式。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>A list of <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code> objects.</p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code> 对象的列表</p>
 </dd>
 </dl>
 </dd></dl>
@@ -378,10 +344,8 @@ without prior notice. See <a class="reference external" href="https://github.com
 <dl class="py method">
 <dt id="optuna.study.Study.trials_dataframe">
 <code class="sig-name descname">trials_dataframe</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attrs</span><span class="o">=</span><span class="default_value">'number', 'value', 'datetime_start', 'datetime_complete', 'duration', 'params', 'user_attrs', 'system_attrs', 'state'</span></em>, <em class="sig-param"><span class="n">multi_index</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/study.html#Study.trials_dataframe"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.study.Study.trials_dataframe" title="永久链接至目标">¶</a></dt>
-<dd><p>Export trials as a pandas <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html">DataFrame</a>.</p>
-<p>The <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html">DataFrame</a> provides various features to analyze studies. It is also useful to draw a
-histogram of objective values and to export trials as a CSV file.
-If there are no trials, an empty <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html">DataFrame</a> is returned.</p>
+<dd><p>将 trial 导出为 pandas <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html">DataFrame</a>.</p>
+<p><a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html">DataFrame</a> 提供了各种用于分析 study 的特性。它也可以用来画目标函数值的直方图或者将 trial 导出成 CSV 文件。如果 study 中没有 trial 的话，会返回一个空的 <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html">DataFrame</a>.</p>
 <p class="rubric">示例</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 <span class="kn">import</span> <span class="nn">pandas</span>
@@ -402,15 +366,12 @@ If there are no trials, an empty <a class="reference external" href="http://pand
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>attrs</strong> -- Specifies field names of <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code> to include them to a
-DataFrame of trials.</p></li>
-<li><p><strong>multi_index</strong> -- Specifies whether the returned <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html">DataFrame</a> employs <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/advanced.html">MultiIndex</a> or not. Columns that
-are hierarchical by nature such as <code class="docutils literal notranslate"><span class="pre">(params,</span> <span class="pre">x)</span></code> will be flattened to
-<code class="docutils literal notranslate"><span class="pre">params_x</span></code> when set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>.</p></li>
+<li><p><strong>attrs</strong> -- 确定 <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code> 的 field name, 将它们纳入 trial 的 DataFrame 中。</p></li>
+<li><p><strong>multi_index</strong> -- 指定返回的 <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html">DataFrame</a> 是否使用 <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/advanced.html">MultiIndex</a>.如果该值为 <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> 的话，那些本来是多层的列 （比如 <code class="docutils literal notranslate"><span class="pre">(params,</span> <span class="pre">x)</span></code>）将会被展平成 <code class="docutils literal notranslate"><span class="pre">params_x</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">返回</dt>
-<dd class="field-even"><p>A pandas <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html">DataFrame</a> of trials in the <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
+<dd class="field-even"><p><a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 中的包含 trial 的 <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html">DataFrame</a>.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -418,10 +379,10 @@ are hierarchical by nature such as <code class="docutils literal notranslate"><s
 <dl class="py method">
 <dt id="optuna.study.Study.user_attrs">
 <em class="property">property </em><code class="sig-name descname">user_attrs</code><a class="headerlink" href="#optuna.study.Study.user_attrs" title="永久链接至目标">¶</a></dt>
-<dd><p>Return user attributes.</p>
+<dd><p>返回用户属性。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>A dictionary containing all user attributes.</p>
+<dd class="field-odd"><p>包含所有用户属性的字典。</p>
 </dd>
 </dl>
 </dd></dl>
@@ -431,65 +392,39 @@ are hierarchical by nature such as <code class="docutils literal notranslate"><s
 <dl class="py function">
 <dt id="optuna.study.create_study">
 <code class="sig-prename descclassname">optuna.study.</code><code class="sig-name descname">create_study</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">storage</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sampler</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pruner</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">study_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">direction</span><span class="o">=</span><span class="default_value">'minimize'</span></em>, <em class="sig-param"><span class="n">load_if_exists</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/study.html#create_study"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.study.create_study" title="永久链接至目标">¶</a></dt>
-<dd><p>Create a new <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
+<dd><p>创建新的 <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>storage</strong> -- <p>Database URL. If this argument is set to None, in-memory storage is used, and the
-<a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> will not be persistent.</p>
-<div class="admonition note">
-<p class="admonition-title">注解</p>
-<blockquote>
-<div><p>When a database URL is passed, Optuna internally uses <a class="reference external" href="https://www.sqlalchemy.org/">SQLAlchemy</a> to handle
-the database. Please refer to <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls">SQLAlchemy's document</a> for further details.
-If you want to specify non-default options to <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html">SQLAlchemy Engine</a>, you can
-instantiate <a class="reference internal" href="storages.html#optuna.storages.RDBStorage" title="optuna.storages.RDBStorage"><code class="xref py py-class docutils literal notranslate"><span class="pre">RDBStorage</span></code></a> with your desired options and
-pass it to the <code class="docutils literal notranslate"><span class="pre">storage</span></code> argument instead of a URL.</p>
-</div></blockquote>
-</div>
-</p></li>
-<li><p><strong>sampler</strong> -- A sampler object that implements background algorithm for value suggestion.
-If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is specified, <a class="reference internal" href="samplers.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> is used
-as the default. See also <a class="reference internal" href="samplers.html#module-optuna.samplers" title="optuna.samplers"><code class="xref py py-class docutils literal notranslate"><span class="pre">samplers</span></code></a>.</p></li>
-<li><p><strong>pruner</strong> -- A pruner object that decides early stopping of unpromising trials. See also
-<a class="reference internal" href="pruners.html#module-optuna.pruners" title="optuna.pruners"><code class="xref py py-class docutils literal notranslate"><span class="pre">pruners</span></code></a>.</p></li>
-<li><p><strong>study_name</strong> -- Study's name. If this argument is set to None, a unique name is generated
-automatically.</p></li>
-<li><p><strong>direction</strong> -- Direction of optimization. Set <code class="docutils literal notranslate"><span class="pre">minimize</span></code> for minimization and <code class="docutils literal notranslate"><span class="pre">maximize</span></code> for
-maximization.</p></li>
-<li><p><strong>load_if_exists</strong> -- Flag to control the behavior to handle a conflict of study names.
-In the case where a study named <code class="docutils literal notranslate"><span class="pre">study_name</span></code> already exists in the <code class="docutils literal notranslate"><span class="pre">storage</span></code>,
-a <a class="reference internal" href="exceptions.html#optuna.exceptions.DuplicatedStudyError" title="optuna.exceptions.DuplicatedStudyError"><code class="xref py py-class docutils literal notranslate"><span class="pre">DuplicatedStudyError</span></code></a> is raised if <code class="docutils literal notranslate"><span class="pre">load_if_exists</span></code> is
-set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>.
-Otherwise, the creation of the study is skipped, and the existing one is returned.</p></li>
+<li><p><strong>storage</strong> -- 数据库 URL. 如果该参数被设置成 None 的话，Optuna 将采用内存存储。此时 <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 将无法被持久化。  .. note::     当传入一个数据库URL之后，在内部，Optuna 将会使用 <a class="reference internal" href="#sqlalchemy">SQLAlchemy</a> 来处理数据库。更多细节请参考 <a class="reference internal" href="#sqlalchemy-s-document">SQLAlchemy's document</a>. 如果你想改变默认的 <a class="reference internal" href="#sqlalchemy-engine">SQLAlchemy Engine</a> 的话，你可以用你想要用的引擎实例化一个 <a class="reference internal" href="storages.html#optuna.storages.RDBStorage" title="optuna.storages.RDBStorage"><code class="xref py py-class docutils literal notranslate"><span class="pre">RDBStorage</span></code></a>, 并将其而不是一个 URL 传入 <code class="docutils literal notranslate"><span class="pre">storage</span></code> 参数。   .. _SQLAlchemy: <a class="reference external" href="https://www.sqlalchemy.org/">https://www.sqlalchemy.org/</a>  .. _SQLAlchemy 的文档:      <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls">https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls</a>  .. _SQLAlchemy Engine: <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html">https://docs.sqlalchemy.org/en/latest/core/engines.html</a></p></li>
+<li><p><strong>sampler</strong> -- 一个实现了用于参数 suggestion 的 sampler 对象。如果设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> 的话，默认会启用 <a class="reference internal" href="samplers.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a>. 参见 <a class="reference internal" href="samplers.html#module-optuna.samplers" title="optuna.samplers"><code class="xref py py-class docutils literal notranslate"><span class="pre">samplers</span></code></a>.</p></li>
+<li><p><strong>pruner</strong> -- 一个用于确定提前终止无望 trial 的 pruner 对象。参见 <a class="reference internal" href="pruners.html#module-optuna.pruners" title="optuna.pruners"><code class="xref py py-class docutils literal notranslate"><span class="pre">pruners</span></code></a>.</p></li>
+<li><p><strong>study_name</strong> -- Study 名。如果该参数是 None 的话，Optuna 会自动生成一个唯一的名字。</p></li>
+<li><p><strong>direction</strong> -- 优化方向。设置成 <code class="docutils literal notranslate"><span class="pre">minimize</span></code> 就是最小化，设置成 <code class="docutils literal notranslate"><span class="pre">maximize</span></code> 就是最大化。</p></li>
+<li><p><strong>load_if_exists</strong> -- 用于处理 study 名冲突情况下行为的选项。当 <code class="docutils literal notranslate"><span class="pre">storage</span></code> 中已经存在同名 <code class="docutils literal notranslate"><span class="pre">study_name</span></code> 时，如果此时 <code class="docutils literal notranslate"><span class="pre">load_if_exists</span></code> 是设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> 的话，<a class="reference internal" href="exceptions.html#optuna.exceptions.DuplicatedStudyError" title="optuna.exceptions.DuplicatedStudyError"><code class="xref py py-class docutils literal notranslate"><span class="pre">DuplicatedStudyError</span></code></a> 异常会被抛出。否则，创建 study 的过程将会被调过，已经存在的那个 study 会被返回。</p></li>
 </ul>
 </dd>
 <dt class="field-even">返回</dt>
-<dd class="field-even"><p>A <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> object.</p>
+<dd class="field-even"><p><a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 对象。</p>
 </dd>
 </dl>
 </dd></dl>
 
 <div class="admonition seealso">
 <p class="admonition-title">参见</p>
-<p>The alias also exists as <a class="reference internal" href="core.html#optuna.create_study" title="optuna.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.create_study()</span></code></a>.</p>
+<p>也可以使用它的别名 <a class="reference internal" href="core.html#optuna.create_study" title="optuna.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.create_study()</span></code></a>.</p>
 </div>
 <dl class="py function">
 <dt id="optuna.study.load_study">
 <code class="sig-prename descclassname">optuna.study.</code><code class="sig-name descname">load_study</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study_name</span></em>, <em class="sig-param"><span class="n">storage</span></em>, <em class="sig-param"><span class="n">sampler</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pruner</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/study.html#load_study"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.study.load_study" title="永久链接至目标">¶</a></dt>
-<dd><p>Load the existing <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> that has the specified name.</p>
+<dd><p>加载一个指定名字的已经存在的 <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>study_name</strong> -- Study's name. Each study has a unique name as an identifier.</p></li>
-<li><p><strong>storage</strong> -- Database URL such as <code class="docutils literal notranslate"><span class="pre">sqlite:///example.db</span></code>. Please see also the documentation of
-<a class="reference internal" href="#optuna.study.create_study" title="optuna.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> for further details.</p></li>
-<li><p><strong>sampler</strong> -- A sampler object that implements background algorithm for value suggestion.
-If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is specified, <a class="reference internal" href="samplers.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> is used
-as the default. See also <a class="reference internal" href="samplers.html#module-optuna.samplers" title="optuna.samplers"><code class="xref py py-class docutils literal notranslate"><span class="pre">samplers</span></code></a>.</p></li>
-<li><p><strong>pruner</strong> -- A pruner object that decides early stopping of unpromising trials.
-If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is specified, <a class="reference internal" href="pruners.html#optuna.pruners.MedianPruner" title="optuna.pruners.MedianPruner"><code class="xref py py-class docutils literal notranslate"><span class="pre">MedianPruner</span></code></a> is used
-as the default. See also <a class="reference internal" href="pruners.html#module-optuna.pruners" title="optuna.pruners"><code class="xref py py-class docutils literal notranslate"><span class="pre">pruners</span></code></a>.</p></li>
+<li><p><strong>study_name</strong> -- Study 名，每个 study 都有一个唯一的作为标识符的名字。</p></li>
+<li><p><strong>storage</strong> -- 诸如 <code class="docutils literal notranslate"><span class="pre">sqlite:///example.db</span></code> 这样的数据库 URL. 更多细节见 <a class="reference internal" href="#optuna.study.create_study" title="optuna.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> 的文档。</p></li>
+<li><p><strong>sampler</strong> -- 一个实现了用于参数 suggestion 的 sampler 对象。如果设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> 的话，默认会启用 <a class="reference internal" href="samplers.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a>. 参见 <a class="reference internal" href="samplers.html#module-optuna.samplers" title="optuna.samplers"><code class="xref py py-class docutils literal notranslate"><span class="pre">samplers</span></code></a>.</p></li>
+<li><p><strong>pruner</strong> -- 一个用于确定提前终止无望 trial 的 pruner 对象。如果设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> 的话，默认将会启用  <a class="reference internal" href="pruners.html#optuna.pruners.MedianPruner" title="optuna.pruners.MedianPruner"><code class="xref py py-class docutils literal notranslate"><span class="pre">MedianPruner</span></code></a>.具体参见 <a class="reference internal" href="pruners.html#module-optuna.pruners" title="optuna.pruners"><code class="xref py py-class docutils literal notranslate"><span class="pre">pruners</span></code></a>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -497,18 +432,17 @@ as the default. See also <a class="reference internal" href="pruners.html#module
 
 <div class="admonition seealso">
 <p class="admonition-title">参见</p>
-<p>The alias also exists as <a class="reference internal" href="core.html#optuna.load_study" title="optuna.load_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.load_study()</span></code></a>.</p>
+<p>也可以使用它的别名 <a class="reference internal" href="core.html#optuna.load_study" title="optuna.load_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.load_study()</span></code></a>.</p>
 </div>
 <dl class="py function">
 <dt id="optuna.study.delete_study">
 <code class="sig-prename descclassname">optuna.study.</code><code class="sig-name descname">delete_study</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study_name</span></em>, <em class="sig-param"><span class="n">storage</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/study.html#delete_study"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.study.delete_study" title="永久链接至目标">¶</a></dt>
-<dd><p>Delete a <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> object.</p>
+<dd><p>删除一个 <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 对象。</p>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>study_name</strong> -- Study's name.</p></li>
-<li><p><strong>storage</strong> -- Database URL such as <code class="docutils literal notranslate"><span class="pre">sqlite:///example.db</span></code>. Please see also the documentation of
-<a class="reference internal" href="#optuna.study.create_study" title="optuna.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> for further details.</p></li>
+<li><p><strong>study_name</strong> -- Study 名。</p></li>
+<li><p><strong>storage</strong> -- 诸如 <code class="docutils literal notranslate"><span class="pre">sqlite:///example.db</span></code> 这样的数据库 URL. 更多细节见 <a class="reference internal" href="#optuna.study.create_study" title="optuna.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> 的文档。</p></li>
 </ul>
 </dd>
 </dl>
@@ -516,47 +450,46 @@ as the default. See also <a class="reference internal" href="pruners.html#module
 
 <div class="admonition seealso">
 <p class="admonition-title">参见</p>
-<p>The alias also exists as <a class="reference internal" href="core.html#optuna.delete_study" title="optuna.delete_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.delete_study()</span></code></a>.</p>
+<p>也可以使用它的别名 <a class="reference internal" href="core.html#optuna.delete_study" title="optuna.delete_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.delete_study()</span></code></a>.</p>
 </div>
 <dl class="py function">
 <dt id="optuna.study.get_all_study_summaries">
 <code class="sig-prename descclassname">optuna.study.</code><code class="sig-name descname">get_all_study_summaries</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">storage</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/study.html#get_all_study_summaries"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.study.get_all_study_summaries" title="永久链接至目标">¶</a></dt>
-<dd><p>Get all history of studies stored in a specified storage.</p>
+<dd><p>返回指定存储中 所有 study 的历史记录。</p>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
-<dd class="field-odd"><p><strong>storage</strong> -- Database URL such as <code class="docutils literal notranslate"><span class="pre">sqlite:///example.db</span></code>. Please see also the documentation of
-<a class="reference internal" href="#optuna.study.create_study" title="optuna.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> for further details.</p>
+<dd class="field-odd"><p><strong>storage</strong> -- 诸如 <code class="docutils literal notranslate"><span class="pre">sqlite:///example.db</span></code> 这样的数据库 URL. 更多细节见 <a class="reference internal" href="#optuna.study.create_study" title="optuna.study.create_study"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_study()</span></code></a> 的文档。</p>
 </dd>
 <dt class="field-even">返回</dt>
-<dd class="field-even"><p>List of study history summarized as <a class="reference internal" href="#optuna.study.StudySummary" title="optuna.study.StudySummary"><code class="xref py py-class docutils literal notranslate"><span class="pre">StudySummary</span></code></a> objects.</p>
+<dd class="field-even"><p>以 <a class="reference internal" href="#optuna.study.StudySummary" title="optuna.study.StudySummary"><code class="xref py py-class docutils literal notranslate"><span class="pre">StudySummary</span></code></a> 对象形式存在的 study 历史记录的列表。</p>
 </dd>
 </dl>
 </dd></dl>
 
 <div class="admonition seealso">
 <p class="admonition-title">参见</p>
-<p>The alias also exists as <a class="reference internal" href="core.html#optuna.get_all_study_summaries" title="optuna.get_all_study_summaries"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.get_all_study_summaries()</span></code></a>.</p>
+<p>也可以使用它的别名 <a class="reference internal" href="core.html#optuna.get_all_study_summaries" title="optuna.get_all_study_summaries"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.get_all_study_summaries()</span></code></a>.</p>
 </div>
 <dl class="py class">
 <dt id="optuna.study.StudyDirection">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.study.</code><code class="sig-name descname">StudyDirection</code><a class="reference internal" href="../_modules/optuna/_study_direction.html#StudyDirection"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.study.StudyDirection" title="永久链接至目标">¶</a></dt>
-<dd><p>Direction of a <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
+<dd><p><a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 的方向。</p>
 <dl class="py attribute">
 <dt id="optuna.study.StudyDirection.NOT_SET">
 <code class="sig-name descname">NOT_SET</code><a class="headerlink" href="#optuna.study.StudyDirection.NOT_SET" title="永久链接至目标">¶</a></dt>
-<dd><p>Direction has not been set.</p>
+<dd><p>方向未设置。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.study.StudyDirection.MINIMIZE">
 <code class="sig-name descname">MINIMIZE</code><a class="headerlink" href="#optuna.study.StudyDirection.MINIMIZE" title="永久链接至目标">¶</a></dt>
-<dd><p><a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> minimizes the objective function.</p>
+<dd><p><a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 将最小化目标函数</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.study.StudyDirection.MAXIMIZE">
 <code class="sig-name descname">MAXIMIZE</code><a class="headerlink" href="#optuna.study.StudyDirection.MAXIMIZE" title="永久链接至目标">¶</a></dt>
-<dd><p><a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> maximizes the objective function.</p>
+<dd><p><a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 将最大化目标函数</p>
 </dd></dl>
 
 </dd></dl>
@@ -564,50 +497,48 @@ as the default. See also <a class="reference internal" href="pruners.html#module
 <dl class="py class">
 <dt id="optuna.study.StudySummary">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.study.</code><code class="sig-name descname">StudySummary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">direction</span><span class="p">:</span> <span class="n">optuna._study_direction.StudyDirection</span></em>, <em class="sig-param"><span class="n">best_trial</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>optuna.trial._frozen.FrozenTrial<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">user_attrs</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span>Any<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">system_attrs</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">, </span>Any<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">n_trials</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">datetime_start</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(在 Python v3.8)">datetime.datetime</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">study_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optuna/_study_summary.html#StudySummary"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.study.StudySummary" title="永久链接至目标">¶</a></dt>
-<dd><p>Basic attributes and aggregated results of a <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
-<p>See also <a class="reference internal" href="#optuna.study.get_all_study_summaries" title="optuna.study.get_all_study_summaries"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.study.get_all_study_summaries()</span></code></a>.</p>
+<dd><p>一个 <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 的基本属性和简要结果。</p>
+<p>参见 <a class="reference internal" href="#optuna.study.get_all_study_summaries" title="optuna.study.get_all_study_summaries"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.study.get_all_study_summaries()</span></code></a>.</p>
 <dl class="py attribute">
 <dt id="optuna.study.StudySummary.study_name">
 <code class="sig-name descname">study_name</code><a class="headerlink" href="#optuna.study.StudySummary.study_name" title="永久链接至目标">¶</a></dt>
-<dd><p>Name of the <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
+<dd><p><a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 名。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.study.StudySummary.direction">
 <code class="sig-name descname">direction</code><a class="headerlink" href="#optuna.study.StudySummary.direction" title="永久链接至目标">¶</a></dt>
-<dd><p><a class="reference internal" href="#optuna.study.StudyDirection" title="optuna.study.StudyDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">StudyDirection</span></code></a> of the <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
+<dd><p><a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 的 <a class="reference internal" href="#optuna.study.StudyDirection" title="optuna.study.StudyDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">StudyDirection</span></code></a></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.study.StudySummary.best_trial">
 <code class="sig-name descname">best_trial</code><a class="headerlink" href="#optuna.study.StudySummary.best_trial" title="永久链接至目标">¶</a></dt>
-<dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code> with best objective value in the <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
+<dd><p><a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 中有着最佳目标函数值的 <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenTrial</span></code>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.study.StudySummary.user_attrs">
 <code class="sig-name descname">user_attrs</code><a class="headerlink" href="#optuna.study.StudySummary.user_attrs" title="永久链接至目标">¶</a></dt>
-<dd><p>Dictionary that contains the attributes of the <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> set with
-<a class="reference internal" href="#optuna.study.Study.set_user_attr" title="optuna.study.Study.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.study.Study.set_user_attr()</span></code></a>.</p>
+<dd><p>通过 <a class="reference internal" href="#optuna.study.Study.set_user_attr" title="optuna.study.Study.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.study.Study.set_user_attr()</span></code></a> 来设置的，包含 <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 中属性的字典。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.study.StudySummary.system_attrs">
 <code class="sig-name descname">system_attrs</code><a class="headerlink" href="#optuna.study.StudySummary.system_attrs" title="永久链接至目标">¶</a></dt>
-<dd><p>Dictionary that contains the attributes of the <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> internally
-set by Optuna.</p>
+<dd><p>由 Optuna 设定的，包含 <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 中属性的字典。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.study.StudySummary.n_trials">
 <code class="sig-name descname">n_trials</code><a class="headerlink" href="#optuna.study.StudySummary.n_trials" title="永久链接至目标">¶</a></dt>
-<dd><p>The number of trials ran in the <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a>.</p>
+<dd><p><a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 运行过的 trial 数目。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.study.StudySummary.datetime_start">
 <code class="sig-name descname">datetime_start</code><a class="headerlink" href="#optuna.study.StudySummary.datetime_start" title="永久链接至目标">¶</a></dt>
-<dd><p>Datetime where the <a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> started.</p>
+<dd><p><a class="reference internal" href="#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> 开始的日期。</p>
 </dd></dl>
 
 </dd></dl>

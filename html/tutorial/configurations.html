@@ -240,7 +240,7 @@
 <div class="section" id="arguments-for-study-optimize">
 <h2><cite>Study.optimize</cite> 的参数<a class="headerlink" href="#arguments-for-study-optimize" title="永久链接至标题">¶</a></h2>
 <p><a class="reference internal" href="../reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a> (还有命令 <code class="docutils literal notranslate"><span class="pre">optuna</span> <span class="pre">study</span> <span class="pre">optimize</span></code>) 有着数个有用的参数，比如``timeout``. 具体细节见 <a class="reference internal" href="../reference/study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optimize()</span></code></a> 的API参考资料。</p>
-<p><strong>供參考</strong>: 如果既没有给出 <code class="docutils literal notranslate"><span class="pre">n_trials</span></code> 也没有给出 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 参数的话，优化过程将一直持续下去，直到接收到一个诸如 Ctrl+C 或 SIGTERM 的终止信号</p>
+<p><strong>供參考</strong>: 如果既没有给出 <code class="docutils literal notranslate"><span class="pre">n_trials</span></code> 也没有给出 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 参数的话，优化过程将一直持续下去，直到接收到一个诸如 Ctrl+C 或 SIGTERM 的终止信号。这在难以估算优化目标函数所需的计算成本的情况时是有用的。</p>
 </div>
 </div>
 
