@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">教程</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../core.html">Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli.html">命令行界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli.html">Command Line Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../distributions.html">Distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../exceptions.html">Exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../importance.html">Hyperparameter Importance</a></li>
@@ -189,16 +189,14 @@
 <h1>Visualization<a class="headerlink" href="#visualization" title="永久链接至标题">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p><a class="reference internal" href="#module-optuna.multi_objective.visualization" title="optuna.multi_objective.visualization"><code class="xref py py-mod docutils literal notranslate"><span class="pre">visualization</span></code></a> module uses plotly to create figures,
-but <a class="reference external" href="https://github.com/jupyterlab/jupyterlab">JupyterLab</a> cannot render them by default. Please follow this <a class="reference external" href="https://github.com/plotly/plotly.py#jupyterlab-support-python-35">installation guide</a> to
-show figures in <a class="reference external" href="https://github.com/jupyterlab/jupyterlab">JupyterLab</a>.</p>
+<p><a class="reference internal" href="#module-optuna.multi_objective.visualization" title="optuna.multi_objective.visualization"><code class="xref py py-mod docutils literal notranslate"><span class="pre">visualization</span></code></a> 模块通过 plotly 来绘制图表，但是  <a class="reference external" href="https://github.com/jupyterlab/jupyterlab">JupyterLab</a>  不能直接渲染这些图表。要显示图表的话，请照 <a class="reference external" href="https://github.com/jupyterlab/jupyterlab">JupyterLab</a> 的 <a class="reference external" href="https://github.com/plotly/plotly.py#jupyterlab-support-python-35">installation guide</a> 办。</p>
 </div>
 <dl class="py function">
 <dt id="optuna.multi_objective.visualization.plot_pareto_front">
-<code class="sig-prename descclassname">optuna.multi_objective.visualization.</code><code class="sig-name descname">plot_pareto_front</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n"><a class="reference internal" href="study.html#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy">optuna.multi_objective.study.MultiObjectiveStudy</a></span></em>, <em class="sig-param"><span class="n">names</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; go.Figure<a class="reference internal" href="../../_modules/optuna/multi_objective/visualization/_pareto_front.html#plot_pareto_front"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.visualization.plot_pareto_front" title="永久链接至目标">¶</a></dt>
-<dd><p>Plot the pareto front of a study.</p>
+<code class="sig-prename descclassname">optuna.multi_objective.visualization.</code><code class="sig-name descname">plot_pareto_front</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">study</span><span class="p">:</span> <span class="n"><a class="reference internal" href="study.html#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy">optuna.multi_objective.study.MultiObjectiveStudy</a></span></em>, <em class="sig-param"><span class="n">names</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; plotly.graph_objs._figure.Figure<a class="reference internal" href="../../_modules/optuna/multi_objective/visualization/_pareto_front.html#plot_pareto_front"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.visualization.plot_pareto_front" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个 study 的帕累托前沿面。</p>
 <p class="rubric">示例</p>
-<p>The following code snippet shows how to plot the pareto front of a study.</p>
+<p>下面的代码片段展示来如何绘制一个 study 的帕累托前沿面。</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
 
 <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
@@ -219,23 +217,20 @@ show figures in <a class="reference external" href="https://github.com/jupyterla
 frameborder="0"></iframe><dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>study</strong> -- A <a class="reference internal" href="study.html#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveStudy</span></code></a> object whose trials
-are plotted for their objective values.</p></li>
-<li><p><strong>names</strong> -- Objective name list used as the axis titles. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is specified,
-&quot;Objective {objective_index}&quot; is used instead.</p></li>
+<li><p><strong>study</strong> -- <a class="reference internal" href="study.html#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveStudy</span></code></a> 对象，其trial 的目标函数值都将被绘制出来。</p></li>
+<li><p><strong>names</strong> -- 作为轴线标题的目标函数名。如果设置成 <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> 的话，Optuna 将采用  &quot;Objective {objective_index}&quot;。</p></li>
 </ul>
 </dd>
 <dt class="field-even">返回</dt>
-<dd class="field-even"><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">plotly.graph_objs.Figure</span></code> object.</p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">plotly.graph_objs.Figure</span></code> 对象。</p>
 </dd>
 <dt class="field-odd">引发</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(在 Python v3.8)"><strong>ValueError</strong></a> -- If the number of objectives of <code class="docutils literal notranslate"><span class="pre">study</span></code> isn't 2 or 3.</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(在 Python v3.8)"><strong>ValueError</strong></a> -- 如果  <code class="docutils literal notranslate"><span class="pre">study</span></code> 的目标函数个数不是 2 或者 3 的话。</p>
 </dd>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p>Added in v2.0.0 as an experimental feature. The interface may change in newer versions
-without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v2.0.0">https://github.com/optuna/optuna/releases/tag/v2.0.0</a>.</p>
+<p>在 v2.0.0 中作为试验性特性引入，在未来版本中，该接口可能在没有预先告知的情况下被改变。参考 <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v2.0.0">https://github.com/optuna/optuna/releases/tag/v2.0.0</a>.</p>
 </div>
 </dd></dl>
 

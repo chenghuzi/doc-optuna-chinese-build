@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">教程</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../core.html">Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli.html">命令行界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli.html">Command Line Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../distributions.html">Distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../exceptions.html">Exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../importance.html">Hyperparameter Importance</a></li>
@@ -190,27 +190,22 @@
 <dl class="py class">
 <dt id="optuna.multi_objective.trial.MultiObjectiveTrial">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.multi_objective.trial.</code><code class="sig-name descname">MultiObjectiveTrial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span><span class="p">:</span> <span class="n">optuna.trial._trial.Trial</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/optuna/multi_objective/trial.html#MultiObjectiveTrial"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="永久链接至目标">¶</a></dt>
-<dd><p>A trial is a process of evaluating an objective function.</p>
-<p>This object is passed to an objective function and provides interfaces to get parameter
-suggestion, manage the trial's state, and set/get user-defined attributes of the trial.</p>
-<p>Note that the direct use of this constructor is not recommended.
-This object is seamlessly instantiated and passed to the objective function behind
-the <a class="reference internal" href="study.html#optuna.multi_objective.study.MultiObjectiveStudy.optimize" title="optuna.multi_objective.study.MultiObjectiveStudy.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.multi_objective.study.MultiObjectiveStudy.optimize()</span></code></a> method;
-hence library users do not care about instantiation of this object.</p>
+<dd><p>一个Trial 是一次对目标函数求值的过程。</p>
+<p>该对象被传递给一个目标函数，它能提供用于参数 suggestion 的接口，管理 trial 状态和设置/获取该 trial 的用户定义属性。</p>
+<p>注意，我们并不推荐直接使用该构造函数。该对象是在 <a class="reference internal" href="study.html#optuna.multi_objective.study.MultiObjectiveStudy.optimize" title="optuna.multi_objective.study.MultiObjectiveStudy.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.multi_objective.study.MultiObjectiveStudy.optimize()</span></code></a> 方法中被实例化然后被传递给目标函数的。因此，库用户无需关心该对象的实例化过程。</p>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
-<dd class="field-odd"><p><strong>trial</strong> -- A <a class="reference internal" href="../trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> object.</p>
+<dd class="field-odd"><p><strong>trial</strong> -- <a class="reference internal" href="../trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> 对象。</p>
 </dd>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p>Added in v1.4.0 as an experimental feature. The interface may change in newer versions
-without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.4.0">https://github.com/optuna/optuna/releases/tag/v1.4.0</a>.</p>
+<p>在 v1.4.0 中作为试验性特性引入，在未来版本中，该接口可能在没有预先告知的情况下被改变。参考 <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.4.0">https://github.com/optuna/optuna/releases/tag/v1.4.0</a>.</p>
 </div>
 <dl class="py method">
 <dt id="optuna.multi_objective.trial.MultiObjectiveTrial.datetime_start">
 <em class="property">property </em><code class="sig-name descname">datetime_start</code><a class="headerlink" href="#optuna.multi_objective.trial.MultiObjectiveTrial.datetime_start" title="永久链接至目标">¶</a></dt>
-<dd><p>Return start datetime.</p>
+<dd><p>返回开始时间。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
 <dd class="field-odd"><p>Datetime where the <a class="reference internal" href="../trial.html#optuna.trial.Trial" title="optuna.trial.Trial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trial</span></code></a> started.</p>
@@ -221,10 +216,10 @@ without prior notice. See <a class="reference external" href="https://github.com
 <dl class="py method">
 <dt id="optuna.multi_objective.trial.MultiObjectiveTrial.distributions">
 <em class="property">property </em><code class="sig-name descname">distributions</code><a class="headerlink" href="#optuna.multi_objective.trial.MultiObjectiveTrial.distributions" title="永久链接至目标">¶</a></dt>
-<dd><p>Return distributions of parameters to be optimized.</p>
+<dd><p>返回待优化参数的分布。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>A dictionary containing all distributions.</p>
+<dd class="field-odd"><p>包含所有分布的字典。</p>
 </dd>
 </dl>
 </dd></dl>
@@ -232,10 +227,10 @@ without prior notice. See <a class="reference external" href="https://github.com
 <dl class="py method">
 <dt id="optuna.multi_objective.trial.MultiObjectiveTrial.number">
 <em class="property">property </em><code class="sig-name descname">number</code><a class="headerlink" href="#optuna.multi_objective.trial.MultiObjectiveTrial.number" title="永久链接至目标">¶</a></dt>
-<dd><p>Return trial's number which is consecutive and unique in a study.</p>
+<dd><p>返回 trial 编号，不同 trial 的该值在同一 study 中是唯一且连续变化的。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>A trial number.</p>
+<dd class="field-odd"><p>trial 编号。</p>
 </dd>
 </dl>
 </dd></dl>
@@ -243,10 +238,10 @@ without prior notice. See <a class="reference external" href="https://github.com
 <dl class="py method">
 <dt id="optuna.multi_objective.trial.MultiObjectiveTrial.params">
 <em class="property">property </em><code class="sig-name descname">params</code><a class="headerlink" href="#optuna.multi_objective.trial.MultiObjectiveTrial.params" title="永久链接至目标">¶</a></dt>
-<dd><p>Return parameters to be optimized.</p>
+<dd><p>返回待优化参数。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>A dictionary containing all parameters.</p>
+<dd class="field-odd"><p>包含所有参数的字典。</p>
 </dd>
 </dl>
 </dd></dl>
@@ -254,24 +249,21 @@ without prior notice. See <a class="reference external" href="https://github.com
 <dl class="py method">
 <dt id="optuna.multi_objective.trial.MultiObjectiveTrial.report">
 <code class="sig-name descname">report</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">values</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">step</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../../_modules/optuna/multi_objective/trial.html#MultiObjectiveTrial.report"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.trial.MultiObjectiveTrial.report" title="永久链接至目标">¶</a></dt>
-<dd><p>Report intermediate objective function values for a given step.</p>
-<p>The reported values are used by the pruners to determine whether this trial should be
-pruned.</p>
+<dd><p>对于给定步骤返回目标函数中间值。</p>
+<p>这个返回值将被 pruner 用于判定是否要对该 trial 进行剪枝。</p>
 <div class="admonition seealso">
 <p class="admonition-title">参见</p>
-<p>Please refer to <a class="reference internal" href="../pruners.html#optuna.pruners.BasePruner" title="optuna.pruners.BasePruner"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePruner</span></code></a>.</p>
+<p>请参考 <a class="reference internal" href="../pruners.html#optuna.pruners.BasePruner" title="optuna.pruners.BasePruner"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePruner</span></code></a> 。</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p>The reported values are converted to <code class="docutils literal notranslate"><span class="pre">float</span></code> type by applying <code class="docutils literal notranslate"><span class="pre">float()</span></code>
-function internally. Thus, it accepts all float-like types (e.g., <code class="docutils literal notranslate"><span class="pre">numpy.float32</span></code>).
-If the conversion fails, a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> is raised.</p>
+<p>该返回值会被 <code class="docutils literal notranslate"><span class="pre">float()</span></code> 转化成 <code class="docutils literal notranslate"><span class="pre">float</span></code> 类型。因此，它接受所有 类 float 数据类型。如果转换失败，Optuna 将抛出一个 <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> 。</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">参数</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>values</strong> -- Intermediate objective function values for a given step.</p></li>
-<li><p><strong>step</strong> -- Step of the trial (e.g., Epoch of neural network training).</p></li>
+<li><p><strong>values</strong> -- 给定步骤的目标函数中间值。</p></li>
+<li><p><strong>step</strong> -- Trial 的步骤（比如，神经网络训练中的 epoch）。</p></li>
 </ul>
 </dd>
 </dl>
@@ -280,66 +272,59 @@ If the conversion fails, a <code class="docutils literal notranslate"><span clas
 <dl class="py method">
 <dt id="optuna.multi_objective.trial.MultiObjectiveTrial.set_user_attr">
 <code class="sig-name descname">set_user_attr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(在 Python v3.8)">None</a><a class="reference internal" href="../../_modules/optuna/multi_objective/trial.html#MultiObjectiveTrial.set_user_attr"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.trial.MultiObjectiveTrial.set_user_attr" title="永久链接至目标">¶</a></dt>
-<dd><p>Set user attributes to the trial.</p>
-<p>Please refer to the documentation of <a class="reference internal" href="../trial.html#optuna.trial.Trial.set_user_attr" title="optuna.trial.Trial.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.set_user_attr()</span></code></a>
-for further details.</p>
+<dd><p>给该 trial 设定用户属性。</p>
+<p>更多细节请参考 <a class="reference internal" href="../trial.html#optuna.trial.Trial.set_user_attr" title="optuna.trial.Trial.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.set_user_attr()</span></code></a>  的文档。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.multi_objective.trial.MultiObjectiveTrial.suggest_categorical">
 <code class="sig-name descname">suggest_categorical</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">choices</span><span class="p">:</span> <span class="n">Sequence[Union[None, bool, int, float, str]]</span></em><span class="sig-paren">)</span> &#x2192; Union[None, bool, int, float, str]<a class="reference internal" href="../../_modules/optuna/multi_objective/trial.html#MultiObjectiveTrial.suggest_categorical"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.trial.MultiObjectiveTrial.suggest_categorical" title="永久链接至目标">¶</a></dt>
-<dd><p>Suggest a value for the categorical parameter.</p>
-<p>Please refer to the documentation of <a class="reference internal" href="../trial.html#optuna.trial.Trial.suggest_categorical" title="optuna.trial.Trial.suggest_categorical"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_categorical()</span></code></a>
-for further details.</p>
+<dd><p>为类别参数进行 value suggestion。</p>
+<p>更多细节请参考 <a class="reference internal" href="../trial.html#optuna.trial.Trial.suggest_categorical" title="optuna.trial.Trial.suggest_categorical"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_categorical()</span></code></a>  的文档。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.multi_objective.trial.MultiObjectiveTrial.suggest_discrete_uniform">
 <code class="sig-name descname">suggest_discrete_uniform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">low</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">high</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">q</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><a class="reference internal" href="../../_modules/optuna/multi_objective/trial.html#MultiObjectiveTrial.suggest_discrete_uniform"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.trial.MultiObjectiveTrial.suggest_discrete_uniform" title="永久链接至目标">¶</a></dt>
-<dd><p>Suggest a value for the discrete parameter.</p>
-<p>Please refer to the documentation of <a class="reference internal" href="../trial.html#optuna.trial.Trial.suggest_discrete_uniform" title="optuna.trial.Trial.suggest_discrete_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_discrete_uniform()</span></code></a>
-for further details.</p>
+<dd><p>为离散参数进行 value suggestion。</p>
+<p>更多细节请参考 <a class="reference internal" href="../trial.html#optuna.trial.Trial.suggest_discrete_uniform" title="optuna.trial.Trial.suggest_discrete_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_discrete_uniform()</span></code></a>  的文档。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.multi_objective.trial.MultiObjectiveTrial.suggest_float">
 <code class="sig-name descname">suggest_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">low</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">high</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">step</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">log</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><a class="reference internal" href="../../_modules/optuna/multi_objective/trial.html#MultiObjectiveTrial.suggest_float"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.trial.MultiObjectiveTrial.suggest_float" title="永久链接至目标">¶</a></dt>
-<dd><p>Suggest a value for the floating point parameter.</p>
-<p>Please refer to the documentation of <a class="reference internal" href="../trial.html#optuna.trial.Trial.suggest_float" title="optuna.trial.Trial.suggest_float"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_float()</span></code></a>
-for further details.</p>
+<dd><p>为浮点数参数进行 value suggestion。</p>
+<p>更多细节请参考 <a class="reference internal" href="../trial.html#optuna.trial.Trial.suggest_float" title="optuna.trial.Trial.suggest_float"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_float()</span></code></a>  的文档。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.multi_objective.trial.MultiObjectiveTrial.suggest_int">
 <code class="sig-name descname">suggest_int</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">low</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">high</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">step</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">log</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(在 Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a><a class="reference internal" href="../../_modules/optuna/multi_objective/trial.html#MultiObjectiveTrial.suggest_int"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.trial.MultiObjectiveTrial.suggest_int" title="永久链接至目标">¶</a></dt>
-<dd><p>Suggest a value for the integer parameter.</p>
-<p>Please refer to the documentation of <a class="reference internal" href="../trial.html#optuna.trial.Trial.suggest_int" title="optuna.trial.Trial.suggest_int"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_int()</span></code></a>
-for further details.</p>
+<dd><p>为整型参数进行 value suggestion。</p>
+<p>更多细节请参考 <a class="reference internal" href="../trial.html#optuna.trial.Trial.suggest_int" title="optuna.trial.Trial.suggest_int"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_int()</span></code></a>  的文档。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.multi_objective.trial.MultiObjectiveTrial.suggest_loguniform">
 <code class="sig-name descname">suggest_loguniform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">low</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">high</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><a class="reference internal" href="../../_modules/optuna/multi_objective/trial.html#MultiObjectiveTrial.suggest_loguniform"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.trial.MultiObjectiveTrial.suggest_loguniform" title="永久链接至目标">¶</a></dt>
-<dd><p>Suggest a value for the continuous parameter.</p>
-<p>Please refer to the documentation of <a class="reference internal" href="../trial.html#optuna.trial.Trial.suggest_loguniform" title="optuna.trial.Trial.suggest_loguniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_loguniform()</span></code></a>
-for further details.</p>
+<dd><p>为连续参数进行 value suggestion。</p>
+<p>更多细节请参考 <a class="reference internal" href="../trial.html#optuna.trial.Trial.suggest_loguniform" title="optuna.trial.Trial.suggest_loguniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_loguniform()</span></code></a>  的文档。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.multi_objective.trial.MultiObjectiveTrial.suggest_uniform">
 <code class="sig-name descname">suggest_uniform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(在 Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">low</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">high</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(在 Python v3.8)">float</a><a class="reference internal" href="../../_modules/optuna/multi_objective/trial.html#MultiObjectiveTrial.suggest_uniform"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.trial.MultiObjectiveTrial.suggest_uniform" title="永久链接至目标">¶</a></dt>
-<dd><p>Suggest a value for the continuous parameter.</p>
-<p>Please refer to the documentation of <a class="reference internal" href="../trial.html#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_uniform()</span></code></a>
-for further details.</p>
+<dd><p>为连续参数进行 value suggestion。</p>
+<p>更多细节请参考 <a class="reference internal" href="../trial.html#optuna.trial.Trial.suggest_uniform" title="optuna.trial.Trial.suggest_uniform"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_uniform()</span></code></a>  的文档。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="optuna.multi_objective.trial.MultiObjectiveTrial.user_attrs">
 <em class="property">property </em><code class="sig-name descname">user_attrs</code><a class="headerlink" href="#optuna.multi_objective.trial.MultiObjectiveTrial.user_attrs" title="永久链接至目标">¶</a></dt>
-<dd><p>Return user attributes.</p>
+<dd><p>返回用户属性。</p>
 <dl class="field-list simple">
 <dt class="field-odd">返回</dt>
-<dd class="field-odd"><p>A dictionary containing all user attributes.</p>
+<dd class="field-odd"><p>包含所有用户属性的字典。</p>
 </dd>
 </dl>
 </dd></dl>
@@ -349,72 +334,64 @@ for further details.</p>
 <dl class="py class">
 <dt id="optuna.multi_objective.trial.FrozenMultiObjectiveTrial">
 <em class="property">class </em><code class="sig-prename descclassname">optuna.multi_objective.trial.</code><code class="sig-name descname">FrozenMultiObjectiveTrial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_objectives</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">trial</span><span class="p">:</span> <span class="n">optuna.trial._frozen.FrozenTrial</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/optuna/multi_objective/trial.html#FrozenMultiObjectiveTrial"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#optuna.multi_objective.trial.FrozenMultiObjectiveTrial" title="永久链接至目标">¶</a></dt>
-<dd><p>Status and results of a <a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="optuna.multi_objective.trial.MultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTrial</span></code></a>.</p>
+<dd><p><a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="optuna.multi_objective.trial.MultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTrial</span></code></a> 的状态和结果。</p>
 <dl class="py attribute">
 <dt id="optuna.multi_objective.trial.FrozenMultiObjectiveTrial.number">
 <code class="sig-name descname">number</code><a class="headerlink" href="#optuna.multi_objective.trial.FrozenMultiObjectiveTrial.number" title="永久链接至目标">¶</a></dt>
-<dd><p>Unique and consecutive number of
-<a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="optuna.multi_objective.trial.MultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTrial</span></code></a> for each
-<a class="reference internal" href="study.html#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveStudy</span></code></a>.
-Note that this field uses zero-based numbering.</p>
+<dd><p>每个 <a class="reference internal" href="study.html#optuna.multi_objective.study.MultiObjectiveStudy" title="optuna.multi_objective.study.MultiObjectiveStudy"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveStudy</span></code></a> 中的每个 <a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="optuna.multi_objective.trial.MultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTrial</span></code></a> 所拥有的唯一且连续的编号。注意，该编号从零开始计数。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.multi_objective.trial.FrozenMultiObjectiveTrial.state">
 <code class="sig-name descname">state</code><a class="headerlink" href="#optuna.multi_objective.trial.FrozenMultiObjectiveTrial.state" title="永久链接至目标">¶</a></dt>
-<dd><p><a class="reference internal" href="../trial.html#optuna.trial.TrialState" title="optuna.trial.TrialState"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrialState</span></code></a> of the
-<a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="optuna.multi_objective.trial.MultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTrial</span></code></a>.</p>
+<dd><p><a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="optuna.multi_objective.trial.MultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTrial</span></code></a> 的 <a class="reference internal" href="../trial.html#optuna.trial.TrialState" title="optuna.trial.TrialState"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrialState</span></code></a> 。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.multi_objective.trial.FrozenMultiObjectiveTrial.values">
 <code class="sig-name descname">values</code><a class="headerlink" href="#optuna.multi_objective.trial.FrozenMultiObjectiveTrial.values" title="永久链接至目标">¶</a></dt>
-<dd><p>Objective values of the <a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="optuna.multi_objective.trial.MultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTrial</span></code></a>.</p>
+<dd><p><a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="optuna.multi_objective.trial.MultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTrial</span></code></a> 的目标函数值。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.multi_objective.trial.FrozenMultiObjectiveTrial.datetime_start">
 <code class="sig-name descname">datetime_start</code><a class="headerlink" href="#optuna.multi_objective.trial.FrozenMultiObjectiveTrial.datetime_start" title="永久链接至目标">¶</a></dt>
-<dd><p>Datetime where the <a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="optuna.multi_objective.trial.MultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTrial</span></code></a> started.</p>
+<dd><p><a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="optuna.multi_objective.trial.MultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTrial</span></code></a> 的开始时间。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.multi_objective.trial.FrozenMultiObjectiveTrial.datetime_complete">
 <code class="sig-name descname">datetime_complete</code><a class="headerlink" href="#optuna.multi_objective.trial.FrozenMultiObjectiveTrial.datetime_complete" title="永久链接至目标">¶</a></dt>
-<dd><p>Datetime where the <a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="optuna.multi_objective.trial.MultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTrial</span></code></a> finished.</p>
+<dd><p><a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="optuna.multi_objective.trial.MultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTrial</span></code></a> 的结束时间。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.multi_objective.trial.FrozenMultiObjectiveTrial.params">
 <code class="sig-name descname">params</code><a class="headerlink" href="#optuna.multi_objective.trial.FrozenMultiObjectiveTrial.params" title="永久链接至目标">¶</a></dt>
-<dd><p>Dictionary that contains suggested parameters.</p>
+<dd><p>包含参数 suggestion 的字典。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.multi_objective.trial.FrozenMultiObjectiveTrial.distributions">
 <code class="sig-name descname">distributions</code><a class="headerlink" href="#optuna.multi_objective.trial.FrozenMultiObjectiveTrial.distributions" title="永久链接至目标">¶</a></dt>
-<dd><p>Dictionary that contains the distributions of <a class="reference internal" href="#optuna.multi_objective.trial.FrozenMultiObjectiveTrial.params" title="optuna.multi_objective.trial.FrozenMultiObjectiveTrial.params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">params</span></code></a>.</p>
+<dd><p>包含 <a class="reference internal" href="#optuna.multi_objective.trial.FrozenMultiObjectiveTrial.params" title="optuna.multi_objective.trial.FrozenMultiObjectiveTrial.params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">params</span></code></a> 分布的字典。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.multi_objective.trial.FrozenMultiObjectiveTrial.user_attrs">
 <code class="sig-name descname">user_attrs</code><a class="headerlink" href="#optuna.multi_objective.trial.FrozenMultiObjectiveTrial.user_attrs" title="永久链接至目标">¶</a></dt>
-<dd><p>Dictionary that contains the attributes of the
-<a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="optuna.multi_objective.trial.MultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTrial</span></code></a> set with
-<a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial.set_user_attr" title="optuna.multi_objective.trial.MultiObjectiveTrial.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.multi_objective.trial.MultiObjectiveTrial.set_user_attr()</span></code></a>.</p>
+<dd><p>包含通过 <a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial.set_user_attr" title="optuna.multi_objective.trial.MultiObjectiveTrial.set_user_attr"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.multi_objective.trial.MultiObjectiveTrial.set_user_attr()</span></code></a> 来设置的 <a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial" title="optuna.multi_objective.trial.MultiObjectiveTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTrial</span></code></a> 的属性字典。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="optuna.multi_objective.trial.FrozenMultiObjectiveTrial.intermediate_values">
 <code class="sig-name descname">intermediate_values</code><a class="headerlink" href="#optuna.multi_objective.trial.FrozenMultiObjectiveTrial.intermediate_values" title="永久链接至目标">¶</a></dt>
-<dd><p>Intermediate objective values set with
-<a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial.report" title="optuna.multi_objective.trial.MultiObjectiveTrial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.multi_objective.trial.MultiObjectiveTrial.report()</span></code></a>.</p>
+<dd><p>通过 <a class="reference internal" href="#optuna.multi_objective.trial.MultiObjectiveTrial.report" title="optuna.multi_objective.trial.MultiObjectiveTrial.report"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.multi_objective.trial.MultiObjectiveTrial.report()</span></code></a> 设置的中间目标函数值。</p>
 </dd></dl>
 
 <div class="admonition note">
 <p class="admonition-title">注解</p>
-<p>Added in v1.4.0 as an experimental feature. The interface may change in newer versions
-without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.4.0">https://github.com/optuna/optuna/releases/tag/v1.4.0</a>.</p>
+<p>在 v1.4.0 中作为试验性特性引入，在未来版本中，该接口可能在没有预先告知的情况下被改变。参考 <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v1.4.0">https://github.com/optuna/optuna/releases/tag/v1.4.0</a>.</p>
 </div>
 </dd></dl>
 
